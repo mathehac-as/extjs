@@ -1,0 +1,25 @@
+div#logo {
+    background-color: white;
+}
+
+#reportresultfield table {
+/*    border-collapse: separate;*/
+    border: 1px solid black;
+    border-collapse: collapse;
+    border-spacing: 2px;
+}
+
+#reportresultfield table td {
+    border: 1px solid black;
+    padding: 2px;
+}
+
+.x-hidden-display,
+.x-hidden-visibility,
+.x-hidden-offsets {
+    visibility: hidden;
+}
+
+.x-fieldset {
+    padding: 10px;
+}
