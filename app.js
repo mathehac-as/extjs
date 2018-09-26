@@ -53702,7 +53702,7 @@ var contextMenuUnitMeasures = Ext.create('Ext.menu.Menu', {id:'contextMenuUnitMe
 Ext.cmd.derive('SopCor.view.options.UnitMeasuresGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'GoodsGroups';
   this.columns = [{text:'Краткое название', dataIndex:'shortName', width:250, sortable:true}, {text:'Название', dataIndex:'name', flex:1, sortable:true}];
-  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addGoodsGroupButton', text:'Добавить', action:'addgoodsgroup', icon:'/resources/images/icons/add.png', disabled:false}, '-', {xtype:'button', id:'deleteGoodsGroupButton', text:'Удалить', action:'deletegoodsgroup', icon:'/resources/images/icons/delete.png', disabled:true}]}];
+  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUnitMeasureButton', text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png', disabled:false}, '-', {xtype:'button', id:'deleteUnitMeasureButton', text:'Удалить', action:'deleteunitmeasure', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:'GoodsGroups', displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['unitmeasuresgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unitmeasuresgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unitmeasuresgrid':true}, ['widget.unitmeasuresgrid'], 0, [SopCor.view.options, 'UnitMeasuresGrid'], 0);
