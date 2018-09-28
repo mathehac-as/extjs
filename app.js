@@ -52870,6 +52870,11 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       if ('goodsgroups' == newCard.getId()) {
         var ggg = Ext.getCmp('goodsGroupsGrid');
         ggg.getStore().load();
+      } else {
+        if ('unitmeasures' == newCard.getId()) {
+          var ggg = Ext.getCmp('unitMeasuresGrid');
+          ggg.getStore().load();
+        }
       }
     }
   }
