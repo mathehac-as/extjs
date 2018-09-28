@@ -2418,12 +2418,12 @@ Ext.Boot = Ext.Boot || function(emptyFn) {
       status = content.status;
       content = content.content || '';
       if ((exception || status === 0) && !_environment.phantom) {
-        entry.error = true;
+        entry.error = "Failed loading synchronously via XHR: '" + url + "'. It's likely that the file is either being loaded from a different domain or from the local file system where cross origin requests are not allowed for security reasons. Try asynchronous loading instead." || true;
       } else {
         if (status >= 200 && status < 300 || status === 304 || _environment.phantom || status === 0 && content.length > 0) {
           Boot.inject(content, url);
         } else {
-          entry.error = true;
+          entry.error = "Failed loading synchronously via XHR: '" + url + "'. Please verify that the file exists. XHR status code: " + status || true;
         }
       }
       Boot.notifyAll(entry);
@@ -2444,6 +2444,9 @@ Ext.Boot = Ext.Boot || function(emptyFn) {
       entry.preserve = true;
     }
     ++request.loaded;
+    if (!request.loading) {
+      throw new Error('Unexpected script load notification ' + entry.url);
+    }
     if (entry.error) {
       (request.errors || (request.errors = [])).push(entry);
     }
@@ -2753,6 +2756,9 @@ Ext._startTime = (new Date).getTime();
           superclass.apply(this, arguments);
         };
       }
+      if (!superclass) {
+        Ext.Error.raise({sourceClass:'Ext', sourceMethod:'extend', msg:'Attempting to extend from a class which has not been loaded on the page.'});
+      }
       var F = function() {
       }, subclassProto, superclassProto = superclass.prototype;
       F.prototype = superclassProto;
@@ -2786,6 +2792,9 @@ Ext._startTime = (new Date).getTime();
             if (overrides.hasOwnProperty(name)) {
               value = overrides[name];
               if (typeof value == 'function') {
+                if (owner.$className) {
+                  value.displayName = owner.$className + '#' + name;
+                }
                 value.$name = name;
                 value.$owner = owner;
                 value.$previous = target.hasOwnProperty(name) ? target[name] : callOverrideParent;
@@ -2837,6 +2846,7 @@ Ext._startTime = (new Date).getTime();
       }
       return 'object';
     }
+    Ext.Error.raise({sourceClass:'Ext', sourceMethod:'typeOf', msg:'Failed to determine the type of the specified value "' + value + '". This is most likely a bug.'});
   }, coerce:function(from, to) {
     var fromType = Ext.typeOf(from), toType = Ext.typeOf(to), isString = typeof from === 'string';
     if (fromType !== toType) {
@@ -3487,16 +3497,28 @@ Ext.Number = new function() {
     }
     return ret;
   }, map:supportsMap ? function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.map must have a callback function passed as second argument.');
+    }
     return array.map(fn, scope);
   } : function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.map must have a callback function passed as second argument.');
+    }
     var results = [], i = 0, len = array.length;
     for (; i < len; i++) {
       results[i] = fn.call(scope, array[i], i, array);
     }
     return results;
   }, every:supportsEvery ? function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.every must have a callback function passed as second argument.');
+    }
     return array.every(fn, scope);
   } : function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.every must have a callback function passed as second argument.');
+    }
     var i = 0, ln = array.length;
     for (; i < ln; ++i) {
       if (!fn.call(scope, array[i], i, array)) {
@@ -3505,8 +3527,14 @@ Ext.Number = new function() {
     }
     return true;
   }, some:supportsSome ? function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.some must have a callback function passed as second argument.');
+    }
     return array.some(fn, scope);
   } : function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.some must have a callback function passed as second argument.');
+    }
     var i = 0, ln = array.length;
     for (; i < ln; ++i) {
       if (fn.call(scope, array[i], i, array)) {
@@ -3547,8 +3575,14 @@ Ext.Number = new function() {
     }
     return clone;
   }, filter:supportsFilter ? function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.filter must have a filter function passed as second argument.');
+    }
     return array.filter(fn, scope);
   } : function(array, fn, scope) {
+    if (!fn) {
+      Ext.Error.raise('Ext.Array.filter must have a filter function passed as second argument.');
+    }
     var results = [], i = 0, ln = array.length;
     for (; i < ln; i++) {
       if (fn.call(scope, array[i], i, array)) {
@@ -3771,7 +3805,7 @@ Ext.Number = new function() {
       }
     }
     return map;
-  }, erase:erase, insert:function(array, index, items) {
+  }, _replaceSim:replaceSim, _spliceSim:spliceSim, erase:erase, insert:function(array, index, items) {
     return replace(array, index, 0, items);
   }, replace:replace, splice:splice, push:function(array) {
     var len = arguments.length, i = 1, newItem;
@@ -4026,6 +4060,9 @@ Ext.bind = Ext.Function.alias(Ext.Function, 'bind');
         } else {
           matchedKeys = name.match(/(\[):?([^\]]*)\]/g);
           matchedName = name.match(/^([^\[]+)/);
+          if (!matchedName) {
+            throw new Error('[Ext.Object.fromQueryString] Malformed query string given, failed parsing name from "' + part + '"');
+          }
           name = matchedName[0];
           keys = [];
           if (matchedKeys === null) {
@@ -4594,6 +4631,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     prototype.initConfigMap = Ext.clone(prototype.initConfigMap);
     prototype.configMap = Ext.Object.chain(prototype.configMap);
   }, $onExtended:[], triggerExtended:function() {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(this, 'Ext.Base#triggerExtended', arguments);
     var callbacks = this.$onExtended, ln = callbacks.length, i, callback;
     if (ln > 0) {
       for (i = 0; i < ln; i++) {
@@ -4633,6 +4671,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
         if (typeof member == 'function' && !member.$isClass && member !== Ext.emptyFn && member !== Ext.identityFn) {
           member.$owner = this;
           member.$name = name;
+          member.displayName = Ext.getClassName(this) + '.' + name;
         }
         this[name] = member;
       }
@@ -4649,6 +4688,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     for (name in members) {
       if (members.hasOwnProperty(name)) {
         member = members[name];
+        if (typeof member == 'function') {
+          member.displayName = Ext.getClassName(this) + '.' + name;
+        }
         this[name] = member;
         if (!hasInheritableStatics[name]) {
           hasInheritableStatics[name] = true;
@@ -4672,6 +4714,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
         if (typeof member == 'function' && !member.$isClass && member !== Ext.emptyFn && member !== Ext.identityFn) {
           member.$owner = this;
           member.$name = name;
+          member.displayName = (this.$className || '') + '#' + name;
         }
         prototype[name] = member;
       }
@@ -4681,19 +4724,24 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     if (typeof member == 'function' && !member.$isClass && member !== Ext.emptyFn && member !== Ext.identityFn) {
       member.$owner = this;
       member.$name = name;
+      member.displayName = (this.$className || '') + '#' + name;
     }
     this.prototype[name] = member;
     return this;
   }, implement:function() {
     this.addMembers.apply(this, arguments);
   }, borrow:function(fromClass, members) {
-    var prototype = this.prototype, fromPrototype = fromClass.prototype, i, ln, name, fn, toBorrow;
+    Ext.classSystemMonitor && Ext.classSystemMonitor(this, 'Ext.Base#borrow', arguments);
+    var prototype = this.prototype, fromPrototype = fromClass.prototype, className = Ext.getClassName(this), i, ln, name, fn, toBorrow;
     members = Ext.Array.from(members);
     for (i = 0, ln = members.length; i < ln; i++) {
       name = members[i];
       toBorrow = fromPrototype[name];
       if (typeof toBorrow == 'function') {
         fn = Ext.Function.clone(toBorrow);
+        if (className) {
+          fn.displayName = className + '#' + name;
+        }
         fn.$owner = this;
         fn.$name = name;
         prototype[name] = fn;
@@ -4738,6 +4786,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
           if (typeof member == 'function' && !member.$className && member !== Ext.emptyFn && member !== Ext.identityFn) {
             if (typeof member.$owner != 'undefined') {
               member = cloneFunction(member);
+            }
+            if (me.$className) {
+              member.displayName = me.$className + '#' + name;
             }
             member.$owner = me;
             member.$name = name;
@@ -4837,9 +4888,39 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return method.$owner;
   }, callParent:function(args) {
     var method, superMethod = (method = this.callParent.caller) && (method.$previous || (method = method.$owner ? method : method.caller) && method.$owner.superclass[method.$name]);
+    if (!superMethod) {
+      method = this.callParent.caller;
+      var parentClass, methodName;
+      if (!method.$owner) {
+        if (!method.caller) {
+          throw new Error('Attempting to call a protected method from the public scope, which is not allowed');
+        }
+        method = method.caller;
+      }
+      parentClass = method.$owner.superclass;
+      methodName = method.$name;
+      if (!(methodName in parentClass)) {
+        throw new Error("this.callParent() was called but there's no such method (" + methodName + ') found in the parent class (' + (Ext.getClassName(parentClass) || 'Object') + ')');
+      }
+    }
     return superMethod.apply(this, args || noArgs);
   }, callSuper:function(args) {
     var method, superMethod = (method = this.callSuper.caller) && ((method = method.$owner ? method : method.caller) && method.$owner.superclass[method.$name]);
+    if (!superMethod) {
+      method = this.callSuper.caller;
+      var parentClass, methodName;
+      if (!method.$owner) {
+        if (!method.caller) {
+          throw new Error('Attempting to call a protected method from the public scope, which is not allowed');
+        }
+        method = method.caller;
+      }
+      parentClass = method.$owner.superclass;
+      methodName = method.$name;
+      if (!(methodName in parentClass)) {
+        throw new Error("this.callSuper() was called but there's no such method (" + methodName + ') found in the parent class (' + (Ext.getClassName(parentClass) || 'Object') + ')');
+      }
+    }
     return superMethod.apply(this, args || noArgs);
   }, self:Base, constructor:function() {
     return this;
@@ -4899,7 +4980,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       return config[name];
     }
   }, onConfigUpdate:function(names, callback, scope) {
-    var self = this.self, i, ln, name, updaterName, updater, newUpdater;
+    var self = this.self, className = self.$className, i, ln, name, updaterName, updater, newUpdater;
     names = Ext.Array.from(names);
     scope = scope || this;
     for (i = 0, ln = names.length; i < ln; i++) {
@@ -4912,6 +4993,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       };
       newUpdater.$name = updaterName;
       newUpdater.$owner = self;
+      newUpdater.displayName = className + '#' + updaterName;
       this[updaterName] = newUpdater;
     }
   }, destroy:function() {
@@ -4932,6 +5014,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     function constructor() {
       return this.constructor.apply(this, arguments) || null;
     }
+    if (className) {
+      constructor.displayName = className;
+    }
     return constructor;
   }
   Ext.Class = ExtClass = function(Class, data, onCreated) {
@@ -4948,12 +5033,14 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return Class;
   };
   Ext.apply(ExtClass, {onBeforeCreated:function(Class, data, hooks) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, '\x3e\x3e Ext.Class#onBeforeCreated', arguments);
     Class.addMembers(data);
     hooks.onCreated.call(Class, Class);
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, '\x3c\x3c Ext.Class#onBeforeCreated', arguments);
   }, create:function(Class, data) {
     var name, i;
     if (!Class) {
-      Class = makeCtor();
+      Class = makeCtor(data.$className);
     }
     for (i = 0; i < baseStaticMemberLength; i++) {
       name = baseStaticMembers[i];
@@ -5043,6 +5130,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return map;
   }});
   ExtClass.registerPreprocessor('extend', function(Class, data, hooks) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#extendPreProcessor', arguments);
     var Base = Ext.Base, basePrototype = Base.prototype, extend = data.extend, Parent, parentPrototype, i;
     delete data.extend;
     if (extend && extend !== Object) {
@@ -5066,14 +5154,17 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     }
   }, true);
   ExtClass.registerPreprocessor('statics', function(Class, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#staticsPreprocessor', arguments);
     Class.addStatics(data.statics);
     delete data.statics;
   });
   ExtClass.registerPreprocessor('inheritableStatics', function(Class, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#inheritableStaticsPreprocessor', arguments);
     Class.addInheritableStatics(data.inheritableStatics);
     delete data.inheritableStatics;
   });
   ExtClass.registerPreprocessor('config', function(Class, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#configPreProcessor', arguments);
     var config = data.config, prototype = Class.prototype;
     delete data.config;
     Ext.Object.each(config, function(name, value) {
@@ -5132,9 +5223,11 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     Class.addConfig(config, true);
   });
   ExtClass.registerPreprocessor('mixins', function(Class, data, hooks) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#mixinsPreprocessor', arguments);
     var mixins = data.mixins, name, mixin, i, ln;
     delete data.mixins;
     Ext.Function.interceptBefore(hooks, 'onCreated', function() {
+      Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#mixinsPreprocessor#beforeCreated', arguments);
       if (mixins instanceof Array) {
         for (i = 0, ln = mixins.length; i < ln; i++) {
           mixin = mixins[i];
@@ -5151,6 +5244,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     });
   });
   Ext.extend = function(Class, Parent, members) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(Class, 'Ext.Class#extend-backwards-compatible', arguments);
     if (arguments.length === 2 && Ext.isObject(Parent)) {
       members = Parent;
       Parent = Class;
@@ -5187,6 +5281,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
   }
   var Manager = Ext.ClassManager = {classes:{}, existCache:{}, namespaceRewrites:[{from:'Ext.', to:Ext}], maps:{alternateToName:{}, aliasToName:{}, nameToAliases:{}, nameToAlternates:{}}, enableNamespaceParseCache:true, namespaceParseCache:{}, instantiators:[], isCreated:function(className) {
     var existCache = this.existCache, i, ln, part, root, parts;
+    if (typeof className != 'string' || className.length < 1) {
+      throw new Error('[Ext.ClassManager] Invalid classname, must be a string and must not be empty');
+    }
     if (this.classes[className] || existCache[className]) {
       return true;
     }
@@ -5227,6 +5324,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       }
     }
   }, onCreated:function(fn, scope, className) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(className, 'Ext.ClassManager#onCreated', arguments);
     var listeners = this.createdListeners, nameListeners = this.nameCreatedListeners, listener = {fn:fn, scope:scope};
     if (className) {
       if (this.isCreated(className)) {
@@ -5241,6 +5339,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       listeners.push(listener);
     }
   }, parseNamespace:function(namespace) {
+    if (typeof namespace != 'string') {
+      throw new Error('[Ext.ClassManager] Invalid namespace, must be a string');
+    }
     var cache = this.namespaceParseCache, parts, rewrites, root, name, rewrite, from, to, i, ln;
     if (this.enableNamespaceParseCache) {
       if (cache.hasOwnProperty(namespace)) {
@@ -5339,6 +5440,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       className = this.getName(cls);
     }
     if (alias && aliasToNameMap[alias] !== className) {
+      if (aliasToNameMap[alias] && Ext.isDefined(global.console)) {
+        global.console.log("[Ext.ClassManager] Overriding existing alias: '" + alias + "' of: '" + aliasToNameMap[alias] + "' with: '" + className + "'. Be sure it's intentional.");
+      }
       aliasToNameMap[alias] = className;
     }
     if (!nameToAliasesMap[className]) {
@@ -5387,9 +5491,15 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
   }, getClass:function(object) {
     return object && object.self || null;
   }, create:function(className, data, createdFn) {
+    if (className != null && typeof className != 'string') {
+      throw new Error("[Ext.define] Invalid class name '" + className + "' specified, must be a non-empty string");
+    }
     var ctor = makeCtor();
     if (typeof data == 'function') {
       data = data(ctor);
+    }
+    if (className) {
+      ctor.displayName = className;
     }
     data.$className = className;
     return new Class(ctor, data, function() {
@@ -5424,6 +5534,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
   }, processCreate:function(className, cls, clsData) {
     var me = this, postprocessor = clsData.postprocessors.shift(), createdFn = clsData.createdFn;
     if (!postprocessor) {
+      Ext.classSystemMonitor && Ext.classSystemMonitor(className, 'Ext.ClassManager#classCreated', arguments);
       if (className) {
         me.set(className, cls);
       }
@@ -5467,6 +5578,12 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     var alias = arguments[0], args = arraySlice.call(arguments), className = this.getNameByAlias(alias);
     if (!className) {
       className = this.maps.aliasToName[alias];
+      if (!className) {
+        throw new Error('[Ext.createByAlias] Cannot create an instance of unrecognized alias: ' + alias);
+      }
+      if (global.console) {
+        global.console.warn("[Ext.Loader] Synchronously loading '" + className + "'; consider adding Ext.require('" + alias + "') above Ext.onReady");
+      }
       Ext.syncRequire(className);
     }
     args[0] = className;
@@ -5477,6 +5594,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       if (nameType != 'string' && args.length === 0) {
         args = [name];
         name = name.xclass;
+      }
+      if (typeof name != 'string' || name.length < 1) {
+        throw new Error("[Ext.create] Invalid class name or alias '" + name + "' specified, must be a non-empty string");
       }
       cls = this.get(name);
     } else {
@@ -5497,8 +5617,17 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
       }
     }
     if (!cls) {
+      if (global.console) {
+        global.console.warn("[Ext.Loader] Synchronously loading '" + name + "'; consider adding Ext.require('" + (possibleName ? alias : name) + "') above Ext.onReady");
+      }
       Ext.syncRequire(name);
       cls = this.get(name);
+    }
+    if (!cls) {
+      throw new Error('[Ext.create] Cannot create an instance of unrecognized class name / alias: ' + alias);
+    }
+    if (typeof cls != 'function') {
+      throw new Error("[Ext.create] '" + name + "' is a singleton and cannot be instantiated");
     }
     return this.getInstantiator(args.length)(cls, args);
   }, dynInstantiate:function(name, args) {
@@ -5515,6 +5644,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
         args.push('a[' + i + ']');
       }
       instantiator = instantiators[length] = new Function('c', 'a', 'return new c(' + args.join(',') + ')');
+      instantiator.displayName = 'Ext.ClassManager.instantiate' + length;
     }
     return instantiator;
   }, postprocessors:{}, defaultPostprocessors:[], registerPostprocessor:function(name, fn, properties, position, relativeTo) {
@@ -5551,6 +5681,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return this;
   }, getNamesByExpression:function(expression) {
     var nameToAliasesMap = this.maps.nameToAliases, names = [], name, alias, aliases, possibleName, regex, i, ln;
+    if (typeof expression != 'string' || expression.length < 1) {
+      throw new Error('[Ext.ClassManager.getNamesByExpression] Expression ' + expression + ' is invalid, must be a non-empty string');
+    }
     if (expression.indexOf('*') !== -1) {
       expression = expression.replace(/\*/g, '(.*?)');
       regex = new RegExp('^' + expression + '$');
@@ -5586,6 +5719,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return names;
   }};
   Manager.registerPostprocessor('alias', function(name, cls, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(name, 'Ext.ClassManager#aliasPostProcessor', arguments);
     var aliases = data.alias, i, ln;
     for (i = 0, ln = aliases.length; i < ln; i++) {
       alias = aliases[i];
@@ -5593,6 +5727,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     }
   }, ['xtype', 'alias']);
   Manager.registerPostprocessor('singleton', function(name, cls, data, fn) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(name, 'Ext.ClassManager#singletonPostProcessor', arguments);
     if (data.singleton) {
       fn.call(this, name, new cls, data);
     } else {
@@ -5601,12 +5736,16 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     return false;
   });
   Manager.registerPostprocessor('alternateClassName', function(name, cls, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(name, 'Ext.ClassManager#alternateClassNamePostprocessor', arguments);
     var alternates = data.alternateClassName, i, ln, alternate;
     if (!(alternates instanceof Array)) {
       alternates = [alternates];
     }
     for (i = 0, ln = alternates.length; i < ln; i++) {
       alternate = alternates[i];
+      if (typeof alternate != 'string') {
+        throw new Error("[Ext.define] Invalid alternate of: '" + alternate + "' for class: '" + name + "'; must be a valid string");
+      }
       this.set(alternate, cls);
     }
   });
@@ -5632,11 +5771,13 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     }
     return new T(config);
   }, createByAlias:alias(Manager, 'instantiateByAlias'), define:function(className, data, createdFn) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(className, 'ClassManager#define', arguments);
     if (data.override) {
       return Manager.createOverride.apply(Manager, arguments);
     }
     return Manager.create.apply(Manager, arguments);
   }, undefine:function(className) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(className, 'Ext.ClassManager#undefine', arguments);
     var classes = Manager.classes, maps = Manager.maps, aliasToName = maps.aliasToName, nameToAliases = maps.nameToAliases, alternateToName = maps.alternateToName, nameToAlternates = maps.nameToAlternates, aliases = nameToAliases[className], alternates = nameToAlternates[className], parts, partCount, namespace, i;
     delete Manager.namespaceParseCache[className];
     delete nameToAliases[className];
@@ -5685,12 +5826,18 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
   Class.registerPreprocessor('className', function(cls, data) {
     if (data.$className) {
       cls.$className = data.$className;
+      cls.displayName = cls.$className;
     }
+    Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.ClassManager#classNamePreprocessor', arguments);
   }, true, 'first');
   Class.registerPreprocessor('alias', function(cls, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.ClassManager#aliasPreprocessor', arguments);
     var prototype = cls.prototype, xtypes = arrayFrom(data.xtype), aliases = arrayFrom(data.alias), widgetPrefix = 'widget.', widgetPrefixLength = widgetPrefix.length, xtypesChain = Array.prototype.slice.call(prototype.xtypesChain || []), xtypesMap = Ext.merge({}, prototype.xtypesMap || {}), i, ln, alias, xtype;
     for (i = 0, ln = aliases.length; i < ln; i++) {
       alias = aliases[i];
+      if (typeof alias != 'string' || alias.length < 1) {
+        throw new Error("[Ext.define] Invalid alias of: '" + alias + "' for class: '" + name + "'; must be a valid string");
+      }
       if (alias.substring(0, widgetPrefixLength) === widgetPrefix) {
         xtype = alias.substring(widgetPrefixLength);
         Ext.Array.include(xtypes, xtype);
@@ -5708,6 +5855,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     data.xtypesChain = xtypesChain;
     data.xtypesMap = xtypesMap;
     Ext.Function.interceptAfter(data, 'onClassCreated', function() {
+      Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.ClassManager#aliasPreprocessor#afterClassCreated', arguments);
       var mixins = prototype.mixins, key, mixin;
       for (key in mixins) {
         if (mixins.hasOwnProperty(key)) {
@@ -5727,6 +5875,9 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     });
     for (i = 0, ln = xtypes.length; i < ln; i++) {
       xtype = xtypes[i];
+      if (typeof xtype != 'string' || xtype.length < 1) {
+        throw new Error("[Ext.define] Invalid xtype of: '" + xtype + "' for class: '" + name + "'; must be a valid non-empty string");
+      }
       Ext.Array.include(aliases, widgetPrefix + xtype);
     }
     data.alias = aliases;
@@ -5953,6 +6104,7 @@ Ext.Loader = new function() {
     Loader.isLoading = true;
     if (!synchronous) {
       onScriptError = function() {
+        onError.call(scope, "Failed loading '" + url + "', please verify that the file exists", synchronous);
       };
       scriptElements[url] = Loader.injectScriptElement(noCacheUrl, onLoad, onScriptError, scope);
     } else {
@@ -5970,6 +6122,7 @@ Ext.Loader = new function() {
       status = xhr.status === 1223 ? 204 : xhr.status === 0 && ((self.location || {}).protocol == 'file:' || (self.location || {}).protocol == 'ionp:') ? 200 : xhr.status;
       isCrossOriginRestricted = isCrossOriginRestricted || status === 0;
       if (isCrossOriginRestricted) {
+        onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; It's likely that the file is either being loaded from a different domain or from the local file system whereby cross origin requests are not allowed due to security reasons. Use asynchronous loading with Ext.require instead.", synchronous);
       } else {
         if (status >= 200 && status < 300 || status === 304) {
           if (!Ext.isIE) {
@@ -5978,6 +6131,7 @@ Ext.Loader = new function() {
           Ext.globalEval(xhr.responseText + debugSourceURL);
           onLoad.call(scope);
         } else {
+          onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; please verify that the file exists. XHR status code: " + status, synchronous);
         }
       }
       xhr = null;
@@ -6088,9 +6242,34 @@ Ext.Loader = new function() {
     if (Loader.numPendingFiles === 0) {
       Loader.refreshQueue();
     }
+    if (!Loader.syncModeEnabled && Loader.numPendingFiles === 0 && Loader.isLoading && !Loader.hasFileLoadError) {
+      var missingClasses = [], missingPaths = [], requires, i, ln, j, subLn;
+      for (i = 0, ln = queue.length; i < ln; i++) {
+        requires = queue[i].requires;
+        for (j = 0, subLn = requires.length; j < subLn; j++) {
+          if (isClassFileLoaded[requires[j]]) {
+            missingClasses.push(requires[j]);
+          }
+        }
+      }
+      if (missingClasses.length < 1) {
+        return;
+      }
+      missingClasses = Ext.Array.filter(Ext.Array.unique(missingClasses), function(item) {
+        return !requiresMap.hasOwnProperty(item);
+      }, Loader);
+      if (missingClasses.length < 1) {
+        return;
+      }
+      for (i = 0, ln = missingClasses.length; i < ln; i++) {
+        missingPaths.push(classNameToFilePathMap[missingClasses[i]]);
+      }
+      throw new Error("The following classes are not declared even if their files have been loaded: '" + missingClasses.join("', '") + "'. Please check the source code of their corresponding files for possible typos: '" + missingPaths.join("', '"));
+    }
   }, onFileLoadError:function(className, filePath, errorMessage, isSynchronous) {
     Loader.numPendingFiles--;
     Loader.hasFileLoadError = true;
+    throw new Error('[Ext.Loader] ' + errorMessage);
   }, addUsedClasses:function(classes) {
     var cls, i, ln;
     if (classes) {
@@ -6153,6 +6332,7 @@ Ext.Loader = new function() {
     Loader.onReady(fn, scope, true, options);
   };
   Class.registerPreprocessor('loader', function(cls, data, hooks, continueFn) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.Loader#loaderPreprocessor', arguments);
     var me = this, dependencies = [], dependency, className = Manager.getName(cls), i, j, ln, subLn, value, propertyName, propertyValue, requiredMap, requiredDep;
     for (i = 0, ln = dependencyProperties.length; i < ln; i++) {
       propertyName = dependencyProperties[i];
@@ -6185,6 +6365,27 @@ Ext.Loader = new function() {
     }
     if (dependencies.length === 0) {
       return;
+    }
+    var deadlockPath = [], detectDeadlock;
+    if (className) {
+      requiresMap[className] = dependencies;
+      requiredMap = Loader.requiredByMap || (Loader.requiredByMap = {});
+      for (i = 0, ln = dependencies.length; i < ln; i++) {
+        dependency = dependencies[i];
+        (requiredMap[dependency] || (requiredMap[dependency] = [])).push(className);
+      }
+      detectDeadlock = function(cls) {
+        deadlockPath.push(cls);
+        if (requiresMap[cls]) {
+          if (Ext.Array.contains(requiresMap[cls], className)) {
+            throw new Error("Deadlock detected while loading dependencies! '" + className + "' and '" + deadlockPath[1] + "' mutually require each other. Path: " + deadlockPath.join(' -\x3e ') + ' -\x3e ' + deadlockPath[0]);
+          }
+          for (i = 0, ln = requiresMap[cls].length; i < ln; i++) {
+            detectDeadlock(requiresMap[cls][i]);
+          }
+        }
+      };
+      detectDeadlock(className);
     }
     Loader.require(dependencies, function() {
       for (i = 0, ln = dependencyProperties.length; i < ln; i++) {
@@ -6221,6 +6422,7 @@ Ext.Loader = new function() {
     return false;
   }, true, 'after', 'className');
   Manager.registerPostprocessor('uses', function(name, cls, data) {
+    Ext.classSystemMonitor && Ext.classSystemMonitor(cls, 'Ext.Loader#usesPostprocessor', arguments);
     var uses = data.uses;
     if (uses) {
       Loader.addUsedClasses(uses);
@@ -6234,7 +6436,14 @@ if (Ext._classPathMetadata) {
 }
 (function() {
   var scripts = document.getElementsByTagName('script'), currentScript = scripts[scripts.length - 1], src = currentScript.src, path = src.substring(0, src.lastIndexOf('/') + 1), Loader = Ext.Loader;
-  Loader.setConfig({enabled:true, disableCaching:true, paths:{'Ext':path + 'src'}});
+  if (src.indexOf('/platform/core/src/class/') != -1) {
+    path = path + '../../../../extjs/';
+  } else {
+    if (src.indexOf('/core/src/class/') != -1) {
+      path = path + '../../../';
+    }
+  }
+  Loader.setConfig({enabled:true, disableCaching:/[?&](?:cache|disableCacheBuster)\b/i.test(location.search) || /(^|[ ;])ext-cache=1/.test(document.cookie) ? false : true, paths:{'Ext':path + 'src'}});
 })();
 Ext._endTime = (new Date).getTime();
 if (Ext._beforereadyhandler) {
@@ -6273,8 +6482,51 @@ Ext.Error = Ext.extend(Error, {statics:{ignore:false, raise:function(err) {
   return className + methodName + msg;
 }});
 Ext.deprecated = function(suggestion) {
+  if (!suggestion) {
+    suggestion = '';
+  }
+  function fail() {
+    Ext.Error.raise('The method "' + fail.$owner.$className + '.' + fail.$name + '" has been removed. ' + suggestion);
+  }
+  return fail;
   return Ext.emptyFn;
 };
+(function() {
+  var timer, errors = 0, win = Ext.global, msg;
+  if (typeof window === 'undefined') {
+    return;
+  }
+  function notify() {
+    var counters = Ext.log.counters, supports = Ext.supports, hasOnError = supports && supports.WindowOnError;
+    if (counters && counters.error + counters.warn + counters.info + counters.log) {
+      msg = ['Logged Errors:', counters.error, 'Warnings:', counters.warn, 'Info:', counters.info, 'Log:', counters.log].join(' ');
+      if (errors) {
+        msg = '*** Errors: ' + errors + ' - ' + msg;
+      } else {
+        if (counters.error) {
+          msg = '*** ' + msg;
+        }
+      }
+      win.status = msg;
+    }
+    if (!Ext.isDefined(Ext.Error.notify)) {
+      Ext.Error.notify = Ext.isIE6 || Ext.isIE7;
+    }
+    if (Ext.Error.notify && (hasOnError ? errors : counters && counters.error)) {
+      Ext.Error.notify = false;
+      if (timer) {
+        win.clearInterval(timer);
+        timer = null;
+      }
+      alert('Unhandled error on page: See console or log');
+      poll();
+    }
+  }
+  function poll() {
+    timer = win.setInterval(notify, 1000);
+  }
+  poll();
+})();
 Ext.JSON = new function() {
   var me = this, encodingFunction, decodingFunction, useNative = null, useHasOwn = !!{}.hasOwnProperty, isNative = function() {
     if (useNative === null) {
@@ -6327,7 +6579,30 @@ Ext.JSON = new function() {
       var c = m[a];
       return typeof c === 'string' ? c : '\\u' + ('0000' + a.charCodeAt(0).toString(16)).slice(-4);
     }) + '"';
+  }, encodeArrayPretty = function(o, newline) {
+    var len = o.length, cnewline = newline + '   ', sep = ',' + cnewline, a = ['[', cnewline], i;
+    for (i = 0; i < len; i += 1) {
+      a.push(Ext.JSON.encodeValue(o[i], cnewline), sep);
+    }
+    a[a.length - 1] = newline + ']';
+    return a.join('');
+  }, encodeObjectPretty = function(o, newline) {
+    var cnewline = newline + '   ', sep = ',' + cnewline, a = ['{', cnewline], i, val;
+    for (i in o) {
+      val = o[i];
+      if (!useHasOwn || o.hasOwnProperty(i)) {
+        if (typeof val === 'function' || val === undefined) {
+          continue;
+        }
+        a.push(Ext.JSON.encodeValue(i) + ': ' + Ext.JSON.encodeValue(val, cnewline), sep);
+      }
+    }
+    a[a.length - 1] = newline + '}';
+    return a.join('');
   }, encodeArray = function(o, newline) {
+    if (newline) {
+      return encodeArrayPretty(o, newline);
+    }
     var a = ['[', ''], len = o.length, i;
     for (i = 0; i < len; i += 1) {
       a.push(Ext.JSON.encodeValue(o[i]), ',');
@@ -6335,6 +6610,9 @@ Ext.JSON = new function() {
     a[a.length - 1] = ']';
     return a.join('');
   }, encodeObject = function(o, newline) {
+    if (newline) {
+      return encodeObjectPretty(o, newline);
+    }
     var a = ['{', ''], i, val;
     for (i in o) {
       val = o[i];
@@ -6377,6 +6655,9 @@ Ext.encode = Ext.JSON.encode;
 Ext.decode = Ext.JSON.decode;
 Ext.apply(Ext, {userAgent:navigator.userAgent.toLowerCase(), cache:{}, idSeed:1000, windowId:'ext-window', documentId:'ext-document', isReady:false, enableGarbageCollector:true, enableListenerCollection:true, rootHierarchyState:{}, addCacheEntry:function(id, el, dom) {
   dom = dom || el.dom;
+  if (!dom) {
+    Ext.Error.raise('Cannot add an entry to the element cache without the DOM node');
+  }
   var cache = Ext.cache, key = id || el && el.id || dom.id, entry = cache[key] || (cache[key] = {data:{}, events:{}, dom:dom, skipGarbageCollection:!!(dom.getElementById || dom.navigator)});
   if (el) {
     el.$cache = entry;
@@ -6461,6 +6742,9 @@ Ext.apply(Ext, {userAgent:navigator.userAgent.toLowerCase(), cache:{}, idSeed:10
   } else {
     if (scope && Ext.isString(callback)) {
       fn = scope[callback];
+      if (!fn) {
+        Ext.Error.raise('No method named "' + callback + '"');
+      }
     }
   }
   if (fn) {
@@ -6476,6 +6760,9 @@ Ext.apply(Ext, {userAgent:navigator.userAgent.toLowerCase(), cache:{}, idSeed:10
 }, resolveMethod:function(fn, scope) {
   if (Ext.isFunction(fn)) {
     return fn;
+  }
+  if (!Ext.isObject(scope) || !Ext.isFunction(scope[fn])) {
+    Ext.Error.raise('No method named "' + fn + '"');
   }
   return scope[fn];
 }, htmlEncode:function(value) {
@@ -6501,6 +6788,123 @@ window.undefined = window.undefined;
     document.execCommand('BackgroundImageCache', false, true);
   } catch (e$5) {
   }
+  var primitiveRe = /string|number|boolean/;
+  function dumpObject(object) {
+    var member, type, value, name, members = [];
+    for (name in object) {
+      if (object.hasOwnProperty(name)) {
+        value = object[name];
+        type = typeof value;
+        if (type == 'function') {
+          continue;
+        }
+        if (type == 'undefined') {
+          member = type;
+        } else {
+          if (value === null || primitiveRe.test(type) || Ext.isDate(value)) {
+            member = Ext.encode(value);
+          } else {
+            if (Ext.isArray(value)) {
+              member = '[ ]';
+            } else {
+              if (Ext.isObject(value)) {
+                member = '{ }';
+              } else {
+                member = type;
+              }
+            }
+          }
+        }
+        members.push(Ext.encode(name) + ': ' + member);
+      }
+    }
+    if (members.length) {
+      return ' \nData: {\n  ' + members.join(',\n  ') + '\n}';
+    }
+    return '';
+  }
+  function log(message) {
+    var options, dump, con = Ext.global.console, level = 'log', indent = log.indent || 0, stack, out, max;
+    log.indent = indent;
+    if (typeof message != 'string') {
+      options = message;
+      message = options.msg || '';
+      level = options.level || level;
+      dump = options.dump;
+      stack = options.stack;
+      if (options.indent) {
+        ++log.indent;
+      } else {
+        if (options.outdent) {
+          log.indent = indent = Math.max(indent - 1, 0);
+        }
+      }
+      if (dump && !(con && con.dir)) {
+        message += dumpObject(dump);
+        dump = null;
+      }
+    }
+    if (arguments.length > 1) {
+      message += Array.prototype.slice.call(arguments, 1).join('');
+    }
+    message = indent ? Ext.String.repeat(' ', log.indentSize * indent) + message : message;
+    if (level != 'log') {
+      message = '[' + level.charAt(0).toUpperCase() + '] ' + message;
+    }
+    if (con) {
+      if (con[level]) {
+        con[level](message);
+      } else {
+        con.log(message);
+      }
+      if (dump) {
+        con.dir(dump);
+      }
+      if (stack && con.trace) {
+        if (!con.firebug || level != 'error') {
+          con.trace();
+        }
+      }
+    } else {
+      if (Ext.isOpera) {
+        opera.postError(message);
+      } else {
+        out = log.out;
+        max = log.max;
+        if (out.length >= max) {
+          Ext.Array.erase(out, 0, out.length - 3 * Math.floor(max / 4));
+        }
+        out.push(message);
+      }
+    }
+    ++log.count;
+    ++log.counters[level];
+  }
+  function logx(level, args) {
+    if (typeof args[0] == 'string') {
+      args.unshift({});
+    }
+    args[0].level = level;
+    log.apply(this, args);
+  }
+  log.error = function() {
+    logx('error', Array.prototype.slice.call(arguments));
+  };
+  log.info = function() {
+    logx('info', Array.prototype.slice.call(arguments));
+  };
+  log.warn = function() {
+    logx('warn', Array.prototype.slice.call(arguments));
+  };
+  log.count = 0;
+  log.counters = {error:0, warn:0, info:0, log:0};
+  log.indentSize = 2;
+  log.out = [];
+  log.max = 750;
+  log.show = function() {
+    window.open('', 'extlog').document.write(['\x3chtml\x3e\x3chead\x3e\x3cscript type\x3d"text/javascript"\x3e', 'var lastCount \x3d 0;', 'function update () {', 'var ext \x3d window.opener.Ext,', 'extlog \x3d ext \x26\x26 ext.log;', 'if (extlog \x26\x26 extlog.out \x26\x26 lastCount !\x3d extlog.count) {', 'lastCount \x3d extlog.count;', 'var s \x3d "\x3ctt\x3e" + extlog.out.join("~~~").replace(/[\x26]/g, "\x26amp;").replace(/[\x3c]/g, "\x26lt;").replace(/[ ]/g, "\x26#160;").replace(/\\~\\~\\~/g, "\x3cbr/\x3e") + "\x3c/tt\x3e";', 
+    'document.body.innerHTML \x3d s;', '}', 'setTimeout(update, 1000);', '}', 'setTimeout(update, 1000);', '\x3c/script\x3e\x3c/head\x3e\x3cbody\x3e\x3c/body\x3e\x3c/html\x3e'].join(''));
+  };
   nullLog = function() {
   };
   nullLog.info = nullLog.warn = nullLog.error = Ext.emptyFn;
@@ -6612,7 +7016,7 @@ window.undefined = window.undefined;
       Ext.destroy(o[a[i]]);
       delete o[a[i]];
     }
-  }, log:nullLog, partition:function(arr, truth) {
+  }, log:log || nullLog, partition:function(arr, truth) {
     var ret = [[], []], a, v, aLen = arr.length;
     for (a = 0; a < aLen; a++) {
       v = arr[a];
@@ -6792,6 +7196,7 @@ Ext.application = function(config) {
       }
       extraChars = formatString.replace(formatPattern, '');
       if (splitFormat.length > 2) {
+        Ext.Error.raise({sourceClass:'Ext.util.Format', sourceMethod:'number', value:v, formatString:formatString, msg:'Invalid number format, should have no more than 1 decimal'});
       } else {
         if (splitFormat.length === 2) {
           precision = splitFormat[1].length;
@@ -6925,6 +7330,7 @@ Ext.cmd.derive('Ext.util.TaskRunner', Ext.Base, {interval:10, timerId:null, cons
           rt = task.run.apply(task.scope || task, task.args || [++task.taskRunCount]);
         } catch (taskError) {
           try {
+            Ext.log({msg:taskError, level:'error'});
             if (task.onError) {
               rt = task.onError.call(task.scope || task, task, taskError);
             }
@@ -7282,6 +7688,13 @@ Ext.is.init();
       doc.body.removeChild(div);
     }
     me.toRun = notRun;
+  }, generateVector:function() {
+    var tests = this.tests, vector = [], i = 0, ln = tests.length, test;
+    for (; i < ln; i++) {
+      test = tests[i];
+      vector.push(this[test.identity] ? 1 : 0);
+    }
+    return vector;
   }, PointerEvents:'pointerEvents' in document.documentElement.style, LocalStorage:function() {
     try {
       return 'localStorage' in window && window['localStorage'] !== null;
@@ -7473,6 +7886,9 @@ Ext.cmd.derive('Ext.util.Event', Ext.Base, function() {
   }, addListener:function(fn, scope, options) {
     var me = this, listeners, listener, priority, isNegativePriority, highestNegativePriorityIndex, hasNegativePriorityIndex, length, index, i, listenerPriority;
     scope = scope || me.observable;
+    if (!fn) {
+      Ext.Error.raise({sourceClass:Ext.getClassName(this.observable), sourceMethod:'addListener', msg:'The specified callback function is undefined'});
+    }
     if (!me.isListening(fn, scope)) {
       listener = me.createListener(fn, scope, options);
       if (me.firing) {
@@ -7884,6 +8300,9 @@ Ext.EventManager = new function() {
     var dom = element.dom || Ext.getDom(element), hasAddEventListener, bind, wrap, cache, id, cacheItem, capture;
     if (typeof fn === 'string') {
       fn = Ext.resolveMethod(fn, scope || element);
+    }
+    if (!fn) {
+      Ext.Error.raise({sourceClass:'Ext.EventManager', sourceMethod:'addListener', targetElement:element, eventName:eventName, msg:'Error adding "' + eventName + '" listener. The handler function is undefined.'});
     }
     options = options || {};
     bind = EventManager.normalizeEvent(eventName, fn);
@@ -8453,6 +8872,9 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
       } else {
         me.events[ename] = event = new ExtEvent(me, ename);
       }
+      if (!fn) {
+        Ext.Error.raise('No function passed for event ' + me.$className + '.' + ename);
+      }
       if (typeof fn === 'string') {
         scope = scope || me;
         fn = Ext.resolveMethod(fn, scope);
@@ -8502,6 +8924,11 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
       }
     }
     this.clearManagedListeners();
+  }, purgeListeners:function() {
+    if (Ext.global.console) {
+      Ext.global.console.warn('Observable: purgeListeners has been deprecated. Please use clearListeners.');
+    }
+    return this.clearListeners.apply(this, arguments);
   }, clearManagedListeners:function() {
     var managedListeners = this.managedListeners || [], i = 0, len = managedListeners.length;
     for (; i < len; i++) {
@@ -8515,6 +8942,11 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
         Ext.Array.remove(this.managedListeners, managedListener);
       }
     }
+  }, purgeManagedListeners:function() {
+    if (Ext.global.console) {
+      Ext.global.console.warn('Observable: purgeManagedListeners has been deprecated. Please use clearManagedListeners.');
+    }
+    return this.clearManagedListeners.apply(this, arguments);
   }, addEvents:function(o) {
     var me = this, events = me.events || (me.events = {}), arg, args, i;
     if (typeof o == 'string') {
@@ -8595,6 +9027,7 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
       var proto = T.prototype;
       Observable.prepareClass(T, this);
       T.onExtended(function(U) {
+        Ext.classSystemMonitor && Ext.classSystemMonitor('extend mixin', arguments);
         Observable.prepareClass(U);
       });
       if (proto.onClassMixedIn) {
@@ -9134,6 +9567,9 @@ margins:{l:'margin-left', r:'margin-right', t:'margin-top', b:'margin-bottom'}, 
     return size || '';
   }
   if (!this.unitRe.test(size)) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Warning, size detected as NaN on Element.addUnits.');
+    }
     return size || '';
   }
   return size;
@@ -9427,6 +9863,9 @@ Ext.define('Ext.dom.AbstractElement_style', {override:'Ext.dom.AbstractElement'}
     return totalSize;
   }, addCls:function() {
     var addWithClassList = function(className) {
+      if (String(className).indexOf('undefined') > -1) {
+        Ext.Logger.warn('called with an undefined className: ' + className);
+      }
       var me = this, dom = me.dom, trimRe = me.trimRe, origClassName = className, classList, newCls, i, len, cls;
       if (typeof className == 'string') {
         className = className.replace(trimRe, '').split(spacesRe);
@@ -9460,6 +9899,9 @@ Ext.define('Ext.dom.AbstractElement_style', {override:'Ext.dom.AbstractElement'}
       }
       return me;
     }, addWithoutClassList = function(className) {
+      if (String(className).indexOf('undefined') > -1) {
+        Ext.Logger.warn("called with an undefined className: '" + className + "'");
+      }
       var me = this, dom = me.dom, elClasses;
       if (dom && className && className.length) {
         elClasses = Ext.Element.mergeClsList(dom.className, className);
@@ -10354,6 +10796,7 @@ Ext.cmd.derive('Ext.dom.Helper', Ext.dom.AbstractHelper, function() {
         return el[rangeEl];
       }
     }
+    Ext.Error.raise({sourceClass:'Ext.DomHelper', sourceMethod:'insertHtml', htmlToInsert:html, targetElement:el, msg:'Illegal insertion point reached: "' + where + '"'});
   }, createTemplate:function(o) {
     var html = this.markup(o);
     return new Ext.Template(html);
@@ -10770,7 +11213,7 @@ Ext.cmd.derive('Ext.XTemplateCompiler', Ext.XTemplateParser, {useEval:Ext.isGeck
   return 'ts.call(c' + L + ')\x3d\x3d\x3d"[object Array]"';
 }, doExec:function(action, actions) {
   var me = this, name = 'f' + me.definitions.length;
-  me.definitions.push('function ' + name + '(' + me.fnArgs + ') {', ' try { with(values) {', '  ' + action, ' }} catch(e) {', '}', '}');
+  me.definitions.push('function ' + name + '(' + me.fnArgs + ') {', ' try { with(values) {', '  ' + action, ' }} catch(e) {', 'Ext.log("XTemplate Error: " + e.message);', '}', '}');
   me.body.push(name + me.callFn + '\n');
 }, addFn:function(body) {
   var me = this, name = 'f' + me.definitions.length;
@@ -10780,7 +11223,7 @@ Ext.cmd.derive('Ext.XTemplateCompiler', Ext.XTemplateParser, {useEval:Ext.isGeck
     if (body === '..') {
       me.definitions.push('function ' + name + '(' + me.fnArgs + ') {', ' return parent', '}');
     } else {
-      me.definitions.push('function ' + name + '(' + me.fnArgs + ') {', ' try { with(values) {', '  return(' + body + ')', ' }} catch(e) {', '}', '}');
+      me.definitions.push('function ' + name + '(' + me.fnArgs + ') {', ' try { with(values) {', '  return(' + body + ')', ' }} catch(e) {', 'Ext.log("XTemplate Error: " + e.message);', '}', '}');
     }
   }
   return name;
@@ -10851,6 +11294,7 @@ Ext.cmd.derive('Ext.XTemplate', Ext.Template, {emptyObj:{}, apply:function(value
   try {
     me.fn(out, values, parent || me.emptyObj, 1, 1);
   } catch (e$13) {
+    Ext.log('Error: ' + e$13.message);
   }
   return out;
 }, compile:function() {
@@ -12840,7 +13284,35 @@ Ext.onReady(function() {
     }});
   }
 });
-Ext.cmd.derive('Ext.util.Positionable', Ext.Base, {_positionTopLeft:['position', 'top', 'left'], _alignRe:/^([a-z]+)-([a-z]+)(\?)?$/, afterSetPosition:Ext.emptyFn, adjustForConstraints:function(xy, parent) {
+Ext.cmd.derive('Ext.util.Positionable', Ext.Base, {_positionTopLeft:['position', 'top', 'left'], _alignRe:/^([a-z]+)-([a-z]+)(\?)?$/, afterSetPosition:Ext.emptyFn, getAnchorToXY:function() {
+  Ext.Error.raise('getAnchorToXY is not implemented in ' + this.$className);
+}, getBorderPadding:function() {
+  Ext.Error.raise('getBorderPadding is not implemented in ' + this.$className);
+}, getLocalX:function() {
+  Ext.Error.raise('getLocalX is not implemented in ' + this.$className);
+}, getLocalXY:function() {
+  Ext.Error.raise('getLocalXY is not implemented in ' + this.$className);
+}, getLocalY:function() {
+  Ext.Error.raise('getLocalY is not implemented in ' + this.$className);
+}, getX:function() {
+  Ext.Error.raise('getX is not implemented in ' + this.$className);
+}, getXY:function() {
+  Ext.Error.raise('getXY is not implemented in ' + this.$className);
+}, getY:function() {
+  Ext.Error.raise('getY is not implemented in ' + this.$className);
+}, setLocalX:function() {
+  Ext.Error.raise('setLocalX is not implemented in ' + this.$className);
+}, setLocalXY:function() {
+  Ext.Error.raise('setLocalXY is not implemented in ' + this.$className);
+}, setLocalY:function() {
+  Ext.Error.raise('setLocalY is not implemented in ' + this.$className);
+}, setX:function() {
+  Ext.Error.raise('setX is not implemented in ' + this.$className);
+}, setXY:function() {
+  Ext.Error.raise('setXY is not implemented in ' + this.$className);
+}, setY:function() {
+  Ext.Error.raise('setY is not implemented in ' + this.$className);
+}, adjustForConstraints:function(xy, parent) {
   var vector = this.getConstrainVector(parent, xy);
   if (vector) {
     xy[0] += vector[0];
@@ -12908,11 +13380,15 @@ Ext.cmd.derive('Ext.util.Positionable', Ext.Base, {_positionTopLeft:['position',
   var me = this, viewportWidth = Ext.Element.getViewWidth() - 10, viewportHeight = Ext.Element.getViewHeight() - 10, doc = document, docElement = doc.documentElement, docBody = doc.body, scrollX = docElement.scrollLeft || docBody.scrollLeft || 0, scrollY = docElement.scrollTop || docBody.scrollTop || 0, alignMatch, myPosition, alignToElPosition, myWidth, myHeight, alignToElRegion, swapY, swapX, constrain, align1, align2, p1y, p1x, p2y, p2x, x, y;
   alignToEl = Ext.get(alignToEl.el || alignToEl);
   if (!alignToEl || !alignToEl.dom) {
+    Ext.Error.raise({sourceClass:'Ext.util.Positionable', sourceMethod:'getAlignToXY', msg:"Attempted to align an element that doesn't exist"});
   }
   offset = offset || [0, 0];
   posSpec = (!posSpec || posSpec == '?' ? 'tl-bl?' : !/-/.test(posSpec) && posSpec !== '' ? 'tl-' + posSpec : posSpec || 'tl-bl').toLowerCase();
   posSpec = me.convertPositionSpec(posSpec);
   alignMatch = posSpec.match(me._alignRe);
+  if (!alignMatch) {
+    Ext.Error.raise({sourceClass:'Ext.util.Positionable', sourceMethod:'getAlignToXY', el:alignToEl, position:posSpec, offset:offset, msg:'Attemmpted to align an element with an invalid position: "' + posSpec + '"'});
+  }
   align1 = alignMatch[1];
   align2 = alignMatch[2];
   constrain = !!alignMatch[3];
@@ -13353,6 +13829,12 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
           continue;
         }
         d = o.dom;
+        if (!d) {
+          Ext.Error.raise('Missing DOM node in element garbage collection: ' + eid);
+        }
+        if (d && (d.getElementById || d.navigator)) {
+          Ext.Error.raise('Unexpected document or window element in element garbage collection');
+        }
         if (d && (!d.parentNode || !d.offsetParent && !Ext.getElementById(eid))) {
           if (Ext.enableListenerCollection) {
             Ext.EventManager.removeAll(d);
@@ -13785,6 +14267,7 @@ Ext.cmd.derive('Ext.dom.CompositeElementLite', Ext.Base, {alternateClassName:'Ex
       if (selector.length !== undefined) {
         elements = selector;
       } else {
+        throw new Error('[Ext.select] Invalid selector specified: ' + selector);
       }
     }
     return new Ext.CompositeElementLite(elements);
@@ -13806,6 +14289,7 @@ Ext.cmd.derive('Ext.dom.CompositeElement', Ext.dom.CompositeElementLite, {altern
       if (selector.length !== undefined) {
         elements = selector;
       } else {
+        throw new Error('[Ext.select] Invalid selector specified: ' + selector);
       }
     }
     return unique === true ? new Ext.CompositeElement(elements) : new Ext.CompositeElementLite(elements);
@@ -13951,6 +14435,10 @@ Ext.cmd.derive('Ext.AbstractManager', Ext.Base, {typeName:'type', constructor:fu
 }, get:function(id) {
   return this.all.get(id);
 }, register:function(item) {
+  var all = this.all, key = all.getKey(item);
+  if (all.containsKey(key)) {
+    Ext.Error.raise('Registering duplicate id "' + key + '" with this manager');
+  }
   this.all.add(item);
 }, unregister:function(item) {
   this.all.remove(item);
@@ -13961,6 +14449,9 @@ Ext.cmd.derive('Ext.AbstractManager', Ext.Base, {typeName:'type', constructor:fu
   return this.types[type] !== undefined;
 }, create:function(config, defaultType) {
   var type = config[this.typeName] || config.type || defaultType, Constructor = this.types[type];
+  if (Constructor === undefined) {
+    Ext.Error.raise("The '" + type + "' type has not been registered with this manager");
+  }
   return new Constructor(config);
 }, onAvailable:function(id, fn, scope) {
   var all = this.all, item, callback;
@@ -14905,6 +15396,9 @@ Ext.cmd.derive('Ext.util.AbstractMixedCollection', Ext.Base, {isMixedCollection:
 Ext.cmd.derive('Ext.util.Sorter', Ext.Base, {direction:'ASC', constructor:function(config) {
   var me = this;
   Ext.apply(me, config);
+  if (me.property === undefined && me.sorterFn === undefined) {
+    Ext.Error.raise('A Sorter requires either a property or a sorter function');
+  }
   me.updateSortFunction();
 }, createSortFunction:function(sorterFn) {
   var me = this, direction = me.direction || 'ASC', modifier = direction.toUpperCase() == 'DESC' ? -1 : 1;
@@ -15587,6 +16081,9 @@ Ext.cmd.derive('Ext.fx.Manager', Ext.Base, {singleton:true, constructor:function
     anim = items[i];
     if (anim.isRunning()) {
       me.runAnim(anim);
+    } else {
+      if (!me.useCSS3) {
+      }
     }
   }
   me.applyPendingAttrs();
@@ -17741,6 +18238,9 @@ Ext.cmd.derive('Ext.util.Renderable', Ext.Base, {frameCls:'x-frame', frameIdRege
     } else {
       frameInfo = false;
     }
+    if (me.frame === true && !frameInfo) {
+      Ext.log.error('You have set frame: true explicity on this component (' + me.getXType() + ') and it does not have any framing defined in the CSS template. In this case IE cannot figure out what sizes to use and thus framing on this component will be disabled.');
+    }
     frameInfoCache[cls] = frameInfo;
   }
   me.frame = !!frameInfo;
@@ -18077,6 +18577,13 @@ borderBoxCls:'x-border-box', constructor:function(config) {
   }
   if (me.autoShow && !me.isContained) {
     me.show();
+  }
+  if (Ext.isDefined(me.disabledClass)) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.Component: disabledClass has been deprecated. Please use disabledCls.');
+    }
+    me.disabledCls = me.disabledClass;
+    delete me.disabledClass;
   }
 }, initComponent:function() {
   this.plugins = this.constructPlugins();
@@ -18843,6 +19350,11 @@ borderBoxCls:'x-border-box', constructor:function(config) {
   var me = this, el = me.rendered ? me.el : me.protoEl;
   el.removeCls.apply(el, arguments);
   return me;
+}, removeClass:function() {
+  if (Ext.isDefined(Ext.global.console)) {
+    Ext.global.console.warn('Ext.Component: removeClass has been deprecated. Please use removeCls.');
+  }
+  return this.removeCls.apply(this, arguments);
 }, addOverCls:function() {
   var me = this;
   if (!me.disabled) {
@@ -19376,6 +19888,8 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
   connection = this.liveConnections[Number(javascriptId)];
   if (connection) {
     connection.onFlashStateChange(state, data);
+  } else {
+    Ext.warn.log('onFlashStateChange for unknown connection ID: ' + javascriptId);
   }
 }, registerConnection:function(conn) {
   var i = this.connectionIndex;
@@ -19399,6 +19913,7 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
   Ext.getBody().dom.appendChild(divTag);
   flashLoaderPath = [Ext.Loader.getPath('Ext.data.Connection'), '../../../plugins/flash/swfobject.js'].join('/');
   flashObjectPath = '/plugins/flash/FlashPlugin.swf';
+  flashObjectPath = [Ext.Loader.getPath('Ext.data.Connection'), '../../plugins/flash/FlashPlugin.swf'].join('/');
   if (Ext.flashPluginPath) {
     flashObjectPath = Ext.flashPluginPath;
   }
@@ -19417,6 +19932,7 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
     attributes.align = 'middle';
     swfobject.embedSWF(flashObjectPath, 'ext-flash-polyfill', '0', '0', swfVersionStr, xiSwfUrlStr, flashvars, params, attributes);
   }, onError:function() {
+    Ext.Error.raise('Could not load flash-loader file swfobject.js from ' + flashLoader);
   }, scope:me});
   Ext.globalEvents.addEvents('flashready');
   Ext.data.flash.BinaryXhr.flashPluginInjected = true;
@@ -19430,6 +19946,7 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
 }, abort:function() {
   var me = this;
   if (me.readyState == 4) {
+    Ext.warn.log("Aborting a connection that's completed its transfer: " + this.url);
     return;
   }
   me.aborted = true;
@@ -19455,6 +19972,12 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
   me.async = async !== false;
   me.user = user;
   me.password = password;
+  if (!me.async) {
+    Ext.Error.raise('Binary posts are only supported in async mode: ' + url);
+  }
+  if (me.method != 'POST') {
+    Ext.log.warn('Binary data can only be sent as a POST request: ' + url);
+  }
 }, overrideMimeType:function(mimeType) {
   this.mimeType = mimeType;
 }, send:function(body) {
@@ -19492,6 +20015,8 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
     if (data.reason == 'error' || data.reason == 'securityError') {
       this.statusText = data.text;
       me.responseHeaders['content-length'] = 0;
+    } else {
+      Ext.Error.raise('Unkown reason code in data: ' + data.reason);
     }
   }
 }, onFlashStateChange:function(state, data) {
@@ -19650,11 +20175,17 @@ Ext.cmd.derive('Ext.data.Connection', Ext.Base, {statics:{requestId:0}, url:null
     url = url.call(scope, options);
   }
   url = this.setupUrl(options, url);
+  if (!url) {
+    Ext.Error.raise({options:options, msg:'No URL specified'});
+  }
   data = options.rawData || options.binaryData || options.xmlData || jsonData || null;
   if (jsonData && !Ext.isPrimitive(jsonData)) {
     data = Ext.encode(data);
   }
   if (options.binaryData) {
+    if (!Ext.isArray(options.binaryData)) {
+      Ext.log.warn('Binary submission data must be an array of byte values! Instead got ' + typeof options.binaryData);
+    }
     if (me.nativeBinaryPostSupport()) {
       data = new Uint8Array(options.binaryData);
       if (Ext.isChrome && Ext.chromeVersion < 22 || Ext.isSafari || Ext.isGecko) {
@@ -19769,6 +20300,10 @@ Ext.cmd.derive('Ext.data.Connection', Ext.Base, {statics:{requestId:0}, url:null
     } else {
       if (xhr.overrideMimeType) {
         xhr.overrideMimeType('text/plain; charset\x3dx-user-defined');
+      } else {
+        if (!Ext.isIE) {
+          Ext.log.warn('Your does not support loading binary data using Ajax.');
+        }
       }
     }
   }
@@ -20269,6 +20804,10 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
   me.show();
 }, showBy:function(cmp, pos, off) {
   var me = this;
+  if (!me.floating) {
+    Ext.log.warn('Using showBy on a non-floating component');
+    return me;
+  }
   if (me.floating && cmp) {
     me.show();
     if (me.rendered && !me.hidden) {
@@ -20729,6 +21268,9 @@ Ext.cmd.derive('Ext.ElementLoader', Ext.Base, {statics:{Renderer:{Html:function(
 }, addMask:function(mask) {
   this.target.mask(mask === true ? null : mask);
 }, load:function(options) {
+  if (!this.target) {
+    Ext.Error.raise('A valid target is required when loading content');
+  }
   options = Ext.apply({}, options);
   var me = this, mask = Ext.isDefined(options.loadMask) ? options.loadMask : me.loadMask, params = Ext.apply({}, options.params), ajaxOptions = Ext.apply({}, options.ajaxOptions), callback = options.callback || me.callback, scope = options.scope || me.scope || me;
   Ext.applyIf(ajaxOptions, me.ajaxOptions);
@@ -20736,6 +21278,9 @@ Ext.cmd.derive('Ext.ElementLoader', Ext.Base, {statics:{Renderer:{Html:function(
   Ext.applyIf(params, me.params);
   Ext.apply(params, me.baseParams);
   Ext.applyIf(options, {url:me.url});
+  if (!options.url) {
+    Ext.Error.raise('You must specify the URL from which content should be loaded');
+  }
   Ext.apply(options, {scope:me, params:params, callback:me.onComplete});
   if (me.fireEvent('beforeload', me, options) === false) {
     return;
@@ -20799,6 +21344,9 @@ Ext.cmd.derive('Ext.ComponentLoader', Ext.ElementLoader, {statics:{Renderer:{Dat
   return success;
 }, Component:function(loader, response, active) {
   var success = true, target = loader.getTarget(), items = [];
+  if (!target.isContainer) {
+    Ext.Error.raise({target:target, msg:'Components can only be loaded into a container'});
+  }
   try {
     items = Ext.decode(response.responseText);
   } catch (e$27) {
@@ -21139,6 +21687,9 @@ Ext.cmd.derive('Ext.layout.container.Container', Ext.layout.Layout, {alternateCl
   me.cacheElements();
   target = me.getRenderTarget();
   items = me.getLayoutItems();
+  if (me.targetCls && !me.getTarget().hasCls(me.targetCls)) {
+    Ext.log.warn('targetCls is missing. This may mean that getTargetEl() is being overridden but not applyTargetCls(). ' + me.owner.id);
+  }
   me.finishRenderItems(target, items);
 }, notifyOwner:function() {
   this.owner.afterLayout(this);
@@ -21995,6 +22546,9 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
   }
   for (i = 0; i < length; i++) {
     item = items[i];
+    if (!item) {
+      Ext.Error.raise('Cannot add null item to Container with itemId/id: ' + me.getItemId());
+    }
     pos = index < 0 ? me.items.length : index + i;
     if (item.floating) {
       me.floatingItems.add(item);
@@ -22047,6 +22601,9 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
   }
 }, remove:function(comp, autoDestroy) {
   var me = this, c = me.getComponent(comp);
+  if (Ext.isDefined(Ext.global.console) && !c) {
+    Ext.global.console.warn('Attempted to remove a component that does not exist. Ext.container.Container: remove takes an argument of the component to remove. cmp.remove() is incorrect usage.');
+  }
   if (c && (!me.hasListeners.beforeremove || me.fireEvent('beforeremove', me, c) !== false)) {
     me.doRemove(c, autoDestroy);
     if (me.hasListeners.remove) {
@@ -22891,12 +23448,18 @@ Ext.cmd.derive('Ext.LoadMask', Ext.Component, {msg:'Loading...', msgCls:'x-mask-
 constructor:function(config) {
   var me = this, comp;
   if (arguments.length === 2) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.LoadMask: LoadMask now uses a standard 1 arg constructor: use the target config');
+    }
     comp = config;
     config = arguments[1];
   } else {
     comp = config.target;
   }
   if (!comp.isComponent) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.LoadMask: LoadMask for elements has been deprecated, use Ext.dom.Element.mask \x26 Ext.dom.Element.unmask');
+    }
     comp = Ext.get(comp);
     this.isElement = true;
   }
@@ -23101,6 +23664,7 @@ Ext.cmd.derive('Ext.data.association.Association', Ext.Base, {alternateClassName
     case 'hasOne':
       return new Ext.data.association.HasOne(association);
     default:
+      Ext.Error.raise('Unknown Association type: "' + association.type + '"');
   }
   return association;
 }}, constructor:function(config) {
@@ -23113,6 +23677,12 @@ Ext.cmd.derive('Ext.data.association.Association', Ext.Base, {alternateClassName
     }
   }
   me.initialConfig = config;
+  if (ownerModel === undefined) {
+    Ext.Error.raise('The configured ownerModel was not valid (you tried ' + ownerName + ')');
+  }
+  if (associatedModel === undefined) {
+    Ext.Error.raise('The configured associatedModel was not valid (you tried ' + associatedName + ')');
+  }
   me.ownerModel = ownerModel;
   me.associatedModel = associatedModel;
   Ext.applyIf(me, {ownerName:ownerName, associatedName:associatedName});
@@ -23172,6 +23742,9 @@ Ext.cmd.derive('Ext.ModelManager', Ext.AbstractManager, {alternateClassName:'Ext
   return new Con(config, id);
 }}, 0, 0, 0, 0, 0, 0, [Ext, 'ModelManager', Ext, 'ModelMgr'], function() {
   Ext.regModel = function() {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.regModel has been deprecated. Models can now be created by extending Ext.data.Model: Ext.define("MyModel", {extend: "Ext.data.Model", fields: []});.');
+    }
     return this.ModelManager.registerType.apply(this.ModelManager, arguments);
   };
 });
@@ -23830,6 +24403,9 @@ Ext.cmd.derive('Ext.app.EventDomain', Ext.Base, {statics:{instances:{}}, isEvent
   for (selector in selectors) {
     if (selectors.hasOwnProperty(selector) && (listeners = selectors[selector])) {
       if (idProperty) {
+        if (!/^[*#]/.test(selector)) {
+          Ext.Error.raise('Selectors containing id should begin with #');
+        }
         selector = selector === '*' ? selector : selector.substring(1);
       }
       for (ev in listeners) {
@@ -24085,6 +24661,7 @@ Ext.cmd.derive('Ext.data.reader.Reader', Ext.Base, {alternateClassName:['Ext.dat
 }, getFields:function() {
   return this.model.prototype.fields.items;
 }, getData:Ext.identityFn, getRoot:Ext.identityFn, getResponseData:function(response) {
+  Ext.Error.raise('getResponseData must be implemented in the Ext.data.reader.Reader subclass');
 }, onMetaChange:function(meta) {
   var me = this, fields = meta.fields || me.getFields(), newModel, clientIdProperty;
   me.metaData = meta;
@@ -24356,6 +24933,7 @@ Ext.cmd.derive('Ext.data.writer.Json', Ext.data.writer.Writer, {alternateClassNa
     if (root) {
       request.params[root] = Ext.encode(data);
     } else {
+      Ext.Error.raise('Must specify a root when using encode');
     }
   } else {
     request.jsonData = request.jsonData || {};
@@ -24602,12 +25180,20 @@ Ext.cmd.derive('Ext.data.AbstractStore', Ext.Base, {statics:{create:function(sto
   Ext.apply(me, config);
   me.removed = [];
   me.mixins.observable.constructor.apply(me, arguments);
+  var configModel = me.model;
   me.model = Ext.ModelManager.getModel(me.model);
   Ext.applyIf(me, {modelDefaults:null});
   if (!me.model && me.fields) {
     me.model = Ext.define('Ext.data.Store.ImplicitModel-' + (me.storeId || Ext.id()), {extend:'Ext.data.Model', fields:me.fields, proxy:me.proxy || me.defaultProxyType});
     delete me.fields;
     me.implicitModel = true;
+  }
+  if (!me.model && me.useModelWarning !== false) {
+    var logMsg = [Ext.getClassName(me) || 'Store', ' created with no model.'];
+    if (typeof configModel === 'string') {
+      logMsg.push(" The name '", configModel, "'", ' does not correspond to a valid model.');
+    }
+    Ext.log.warn(logMsg.join(''));
   }
   me.setProxy(me.proxy || me.model.getProxy());
   if (!me.disableMetaChangeEvent) {
@@ -24953,6 +25539,9 @@ Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:
     if (name.indexOf('.') > 0 && (Ext.ClassManager.isCreated(name) || Ext.Loader.isAClassNameWithAKnownPrefix(name))) {
       absoluteName = name;
     } else {
+      if (!namespace) {
+        Ext.log.warn('Cannot find namespace for ' + kind + ' ' + name + ', assuming it is fully qualified class name');
+      }
       if (namespace) {
         absoluteName = namespace + '.' + kind + '.' + name;
         shortName = name;
@@ -24971,6 +25560,8 @@ Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:
     namespace = data.$namespace || Ext.app.getNamespace(className) || (match = ctrlRegex.exec(className)) && match[1];
     if (namespace) {
       proto.$namespace = namespace;
+    } else {
+      Ext.log.warn('Missing namespace for ' + className + ', please define it in namespaces property of your Application class.');
     }
     Controller.processDependencies(proto, requires, namespace, 'model', data.models);
     Controller.processDependencies(proto, requires, namespace, 'view', data.views);
@@ -26493,6 +27084,9 @@ Ext.cmd.derive('Ext.util.Offset', Ext.Base, {statics:{fromObject:function(obj) {
 }, toString:function() {
   return 'Offset[' + this.x + ',' + this.y + ']';
 }, equals:function(offset) {
+  if (!(offset instanceof this.statics())) {
+    Ext.Error.raise('Offset must be an instance of Ext.util.Offset');
+  }
   return this.x == offset.x && this.y == offset.y;
 }, round:function(to) {
   if (!isNaN(to)) {
@@ -27665,7 +28259,7 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
   return this.targetEl;
 }, getElementTarget:function() {
   return this.innerCt;
-}, destroy:function() {
+}, calculateChildBox:Ext.deprecated(), calculateChildBoxes:Ext.deprecated(), updateChildBoxes:Ext.deprecated(), destroy:function() {
   Ext.destroy(this.innerCt, this.overflowHandler);
   Ext.layout.container.Container.prototype.destroy.apply(this, arguments);
 }, getRenderData:function() {
@@ -30786,6 +31380,9 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
     me.tipAnchor = me.anchor.charAt(0);
   } else {
     m = me.defaultAlign.match(/^([a-z]+)-([a-z]+)(\?)?$/);
+    if (!m) {
+      Ext.Error.raise('The AnchorTip.defaultAlign value "' + me.defaultAlign + '" is invalid.');
+    }
     me.tipAnchor = m[1].charAt(0);
   }
   switch(me.tipAnchor) {
@@ -31261,6 +31858,9 @@ Ext.cmd.derive('Ext.tip.QuickTipManager', Ext.Base, {singleton:true, alternateCl
     }
     if (autoRender !== false) {
       tipConfig.renderTo = document.body;
+      if (tipConfig.renderTo.tagName.toUpperCase() != 'BODY') {
+        Ext.Error.raise({sourceClass:'Ext.tip.QuickTipManager', sourceMethod:'init', msg:'Cannot init QuickTipManager: no document body'});
+      }
     }
     me.tip = Ext.create(className || 'Ext.tip.QuickTip', tipConfig);
     Ext.quickTipsActive = true;
@@ -31332,6 +31932,9 @@ Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enab
     delete data['paths processed'];
   }
   if (data.autoCreateViewport) {
+    if (!namespace) {
+      Ext.Error.raise("[Ext.app.Application] Can't resolve namespace for " + data.$className + ", did you forget to specify 'name' property?");
+    }
     Controller.processDependencies(proto, requires, namespace, 'view', ['Viewport']);
   }
   if (requires.length) {
@@ -31345,6 +31948,9 @@ Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enab
   }
 }, constructor:function(config) {
   var me = this;
+  if (Ext.isEmpty(me.name)) {
+    Ext.Error.raise('[Ext.app.Application] Name property is required');
+  }
   Ext.app.Controller.prototype.constructor.apply(this, arguments);
   me.doInit(me);
   me.initNamespace();
@@ -31361,6 +31967,10 @@ Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enab
     if (appProperty) {
       if (!ns[appProperty]) {
         ns[appProperty] = me;
+      } else {
+        if (ns[appProperty] !== me) {
+          Ext.log.warn('An existing reference is being overwritten for ' + name + '.' + appProperty + '. See the appProperty config.');
+        }
       }
     }
   }
@@ -31950,6 +32560,9 @@ Ext.cmd.derive('Ext.data.Model', Ext.Base, {alternateClassName:'Ext.data.Record'
   var me = this, passedId = id || id === 0, hasId, fields, length, field, name, value, newId, persistenceProperty, idProperty = me.idProperty, idField = me.idField, i;
   me.raw = raw || data;
   me.modified = {};
+  if (me.persistenceProperty !== 'data') {
+    Ext.log.warn(this.$className, 'The persistenceProperty will be deprecated, all data will be stored in the underlying data property.');
+  }
   persistenceProperty = me[me.persistenceProperty] = convertedData || {};
   me.data = me[me.persistenceProperty];
   me.mixins.observable.constructor.call(me);
@@ -32178,6 +32791,9 @@ Ext.cmd.derive('Ext.data.Model', Ext.Base, {alternateClassName:'Ext.data.Record'
       me.modified[name] = me.get(name);
     }
   }
+}, markDirty:function() {
+  Ext.log.warn('Ext.data.Model: markDirty has been deprecated. Use setDirty instead.');
+  return this.setDirty.apply(this, arguments);
 }, reject:function(silent) {
   var me = this, modified = me.modified, field;
   for (field in modified) {
@@ -32504,6 +33120,9 @@ Ext.cmd.derive('Ext.data.proxy.Server', Ext.data.proxy.Proxy, {alternateClassNam
   return params;
 }, buildUrl:function(request) {
   var me = this, url = me.getUrl(request);
+  if (!url) {
+    Ext.Error.raise('You are using a ServerProxy but have not supplied it with a url.');
+  }
   if (me.noCache) {
     url = Ext.urlAppend(url, Ext.String.format('{0}\x3d{1}', me.cacheString, Ext.Date.now()));
   }
@@ -32511,6 +33130,7 @@ Ext.cmd.derive('Ext.data.proxy.Server', Ext.data.proxy.Proxy, {alternateClassNam
 }, getUrl:function(request) {
   return request.url || this.api[request.action] || this.url;
 }, doRequest:function(operation, callback, scope) {
+  Ext.Error.raise('The doRequest function has not been implemented on your Ext.data.proxy.Server subclass. See src/data/ServerProxy.js for details');
 }, afterRequest:Ext.emptyFn, onDestroy:function() {
   Ext.destroy(this.reader, this.writer);
 }}, 1, 0, 0, 0, ['proxy.server'], 0, [Ext.data.proxy, 'Server', Ext.data, 'ServerProxy'], 0);
@@ -32533,6 +33153,7 @@ Ext.cmd.derive('Ext.data.proxy.Ajax', Ext.data.proxy.Server, {alternateClassName
   Ext.data.HttpProxy = this;
 });
 Ext.cmd.derive('Ext.data.proxy.Client', Ext.data.proxy.Proxy, {alternateClassName:'Ext.data.ClientProxy', isSynchronous:true, clear:function() {
+  Ext.Error.raise("The Ext.data.proxy.Client subclass that you are using has not defined a 'clear' function. See src/data/ClientProxy.js for details.");
 }}, 0, 0, 0, 0, 0, 0, [Ext.data.proxy, 'Client', Ext.data, 'ClientProxy'], 0);
 Ext.cmd.derive('Ext.data.proxy.Memory', Ext.data.proxy.Client, {alternateClassName:'Ext.data.MemoryProxy', constructor:function(config) {
   Ext.data.proxy.Client.prototype.constructor.call(this, config);
@@ -32747,6 +33368,9 @@ Ext.cmd.derive('Ext.data.PageMap', Ext.util.LruCache, {clear:function(initial) {
 }, getPageFromRecordIndex:function() {
   return Ext.data.Store.prototype.getPageFromRecordIndex.apply(this, arguments);
 }, addAll:function(records) {
+  if (this.getCount()) {
+    Ext.Error.raise('Cannot addAll to a non-empty PageMap');
+  }
   this.addPage(1, records);
 }, addPage:function(pageNumber, records) {
   var me = this, lastPage = pageNumber + Math.floor((records.length - 1) / me.pageSize), startIdx, page;
@@ -32764,8 +33388,11 @@ Ext.cmd.derive('Ext.data.PageMap', Ext.util.LruCache, {clear:function(initial) {
 }, indexOf:function(record) {
   return record ? record.index : -1;
 }, insert:function() {
+  Ext.Error.raise('insert operation not suppported into buffered Store');
 }, remove:function() {
+  Ext.Error.raise('remove operation not suppported from buffered Store');
 }, removeAt:function() {
+  Ext.Error.raise('removeAt operation not suppported from buffered Store');
 }, getPage:function(pageNumber) {
   return this.get(pageNumber);
 }, hasRange:function(start, end) {
@@ -33177,6 +33804,9 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
   }
 }, add:function(arg) {
   var me = this, records, length, isSorted;
+  if (me.buffered) {
+    Ext.Error.raise({msg:'add method may not be called on a buffered store'});
+  }
   if (Ext.isArray(arg)) {
     records = arg;
   } else {
@@ -33717,6 +34347,9 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
 }, onGuaranteedRange:function(options) {
   var me = this, totalCount = me.getTotalCount(), start = options.prefetchStart, end = options.prefetchEnd > totalCount - 1 ? totalCount - 1 : options.prefetchEnd, range;
   end = Math.max(0, end);
+  if (start > end) {
+    Ext.log({level:'warn', msg:'Start (' + start + ') was greater than end (' + end + ') for the range of records requested (' + start + '-' + options.prefetchEnd + ')' + (this.storeId ? ' from store "' + this.storeId + '"' : '')});
+  }
   range = me.data.getRange(start, end);
   if (options.fireEvent !== false) {
     me.fireEvent('guaranteedrange', range, start, end, options);
@@ -33770,6 +34403,9 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
       me.load();
     }
   } else {
+    if (me.buffered) {
+      Ext.Error.raise({msg:'Local sorting may not be used on a buffered store'});
+    }
     me.data.sortBy(sorterFn);
     if (!me.buffered) {
       range = me.getRange();
@@ -33811,6 +34447,10 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
 }, getAt:function(index) {
   return this.data.getAt(index);
 }, getRange:function(start, end, options) {
+  if (options && options.cb) {
+    options.callback = options.cb;
+    Ext.Error.raise({msg:'guaranteeRange options.cb is deprecated, use options.callback'});
+  }
   var me = this, requiredStart, requiredEnd, maxIndex = me.totalCount - 1, lastRequestStart = me.lastRequestStart, pageAddHandler, result;
   options = Ext.apply({prefetchStart:start, prefetchEnd:end}, options);
   if (me.buffered) {
@@ -33845,6 +34485,9 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
   var result = (this.snapshot || this.data).findBy(function(record) {
     return record.getId() === id;
   });
+  if (this.buffered && !result) {
+    Ext.Error.raise('getById called for ID that is not present in local cache');
+  }
   return result;
 }, indexOf:function(record) {
   return this.data.indexOf(record);
@@ -35024,20 +35667,20 @@ Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', st
   this.callParent(arguments);
   return this.sync();
 }, setLocalX:function() {
-  this.callParent(arguments);
+  Ext.dom.Element.prototype.setLocalX.apply(this, arguments);
   return this.sync();
 }, setLocalXY:function() {
-  this.callParent(arguments);
+  Ext.dom.Element.prototype.setLocalXY.apply(this, arguments);
   return this.sync();
 }, setLocalY:function() {
-  this.callParent(arguments);
+  Ext.dom.Element.prototype.setLocalY.apply(this, arguments);
   return this.sync();
 }, setXY:function(xy, animate, duration, callback, easing) {
   var me = this;
   callback = me.createCB(callback);
   me.fixDisplay();
   me.beforeAction();
-  (arguments.callee.$previous || Ext.dom.Element.prototype.setXY).call(this, xy, animate, duration, callback, easing);
+  Ext.dom.Element.prototype.setXY.call(this, xy, animate, duration, callback, easing);
   if (!animate) {
     callback();
   }
@@ -35815,6 +36458,10 @@ labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMar
 Ext.cmd.derive('Ext.form.field.Field', Ext.Base, {isFormField:true, disabled:false, submitValue:true, validateOnChange:true, suspendCheckChange:0, initField:function() {
   this.addEvents('change', 'validitychange', 'dirtychange');
   this.initValue();
+  var badNames = ['tagName', 'nodeName', 'children', 'childNodes'], name = this.name;
+  if (name && Ext.Array.indexOf(badNames, name) > -1) {
+    Ext.log.warn(['It is recommended to not use "', name, '" as a field name, because it ', 'can cause naming collisions during form submission.'].join(''));
+  }
 }, initValue:function() {
   var me = this;
   me.value = me.transformOriginalValue(me.value);
@@ -36753,6 +37400,7 @@ Ext.cmd.derive('Ext.layout.container.Anchor', Ext.layout.container.Auto, {altern
     }
   }
   ownerContext.anchorDimensions = dimensions;
+  me.sanityCheck(ownerContext);
 }, calculateItems:function(ownerContext, containerSize) {
   var me = this, childItems = ownerContext.childItems, length = childItems.length, gotHeight = containerSize.gotHeight, gotWidth = containerSize.gotWidth, ownerHeight = containerSize.height, ownerWidth = containerSize.width, knownDimensions = (gotWidth ? 1 : 0) | (gotHeight ? 2 : 0), anchorDimensions = ownerContext.anchorDimensions, anchorSpec, childContext, childMargins, height, i, width;
   if (!anchorDimensions) {
@@ -36774,6 +37422,25 @@ Ext.cmd.derive('Ext.layout.container.Anchor', Ext.layout.container.Auto, {altern
     }
   }
   return (knownDimensions & anchorDimensions) === anchorDimensions;
+}, sanityCheck:function(ownerContext) {
+  var shrinkWrapWidth = ownerContext.widthModel.shrinkWrap, shrinkWrapHeight = ownerContext.heightModel.shrinkWrap, children = ownerContext.childItems, anchorSpec, comp, childContext, i, length;
+  for (i = 0, length = children.length; i < length; ++i) {
+    childContext = children[i];
+    comp = childContext.target;
+    anchorSpec = comp.anchorSpec;
+    if (anchorSpec) {
+      if (childContext.widthModel.calculated && anchorSpec.right) {
+        if (shrinkWrapWidth) {
+          Ext.log({level:'warn', msg:'Right anchor on ' + comp.id + ' in shrinkWrap width container'});
+        }
+      }
+      if (childContext.heightModel.calculated && anchorSpec.bottom) {
+        if (shrinkWrapHeight) {
+          Ext.log({level:'warn', msg:'Bottom anchor on ' + comp.id + ' in shrinkWrap height container'});
+        }
+      }
+    }
+  }
 }, anchorFactory:{offset:function(delta) {
   return function(v) {
     return v + delta;
@@ -37252,6 +37919,7 @@ Ext.cmd.derive('Ext.form.Basic', Ext.util.Observable, {alternateClassName:'Ext.f
 }, updateRecord:function(record) {
   record = record || this._record;
   if (!record) {
+    Ext.Error.raise('A record is required.');
     return this;
   }
   var fields = record.fields.items, values = this.getFieldValues(), obj = {}, i = 0, len = fields.length, name;
@@ -39361,8 +40029,27 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
     itemTpl = Ext.String.format('\x3ctpl for\x3d"."\x3e\x3cdiv class\x3d"{0}"\x3e{1}\x3c/div\x3e\x3c/tpl\x3e', me.itemCls, itemTpl);
     me.tpl = new Ext.XTemplate(itemTpl, memberFn);
   }
+  if (!isDef(me.tpl) || !isDef(me.itemSelector)) {
+    Ext.Error.raise({sourceClass:'Ext.view.View', tpl:me.tpl, itemSelector:me.itemSelector, msg:'DataView requires both tpl and itemSelector configurations to be defined.'});
+  }
   Ext.Component.prototype.initComponent.call(this);
   me.tpl = me.getTpl('tpl');
+  if (isDef(me.overCls) || isDef(me.overClass)) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.view.View: Using the deprecated overCls or overClass configuration. Use overItemCls instead.');
+    }
+    me.overItemCls = me.overCls || me.overClass;
+    delete me.overCls;
+    delete me.overClass;
+  }
+  if (isDef(me.selectedCls) || isDef(me.selectedClass)) {
+    if (Ext.isDefined(Ext.global.console)) {
+      Ext.global.console.warn('Ext.view.View: Using the deprecated selectedCls or selectedClass configuration. Use selectedItemCls instead.');
+    }
+    me.selectedItemCls = me.selectedCls || me.selectedClass;
+    delete me.selectedCls;
+    delete me.selectedClass;
+  }
   if (me.overItemCls) {
     me.trackOver = true;
   }
@@ -40565,6 +41252,15 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
 }, initComponent:function() {
   var me = this, isDefined = Ext.isDefined, store = me.store, transform = me.transform, transformSelect, isLocalMode;
   Ext.applyIf(me.renderSelectors, {hiddenDataEl:'.' + me.hiddenDataCls.split(' ').join('.')});
+  if (me.typeAhead && me.multiSelect) {
+    Ext.Error.raise('typeAhead and multiSelect are mutually exclusive options -- please remove one of them.');
+  }
+  if (me.typeAhead && !me.editable) {
+    Ext.Error.raise('If typeAhead is enabled the combo must be editable: true -- please change one of those settings.');
+  }
+  if (me.selectOnFocus && !me.editable) {
+    Ext.Error.raise('If selectOnFocus is enabled the combo must be editable: true -- please change one of those settings.');
+  }
   this.addEvents('beforequery', 'select', 'beforeselect', 'beforedeselect');
   if (transform) {
     transformSelect = Ext.getDom(transform);
@@ -42113,8 +42809,14 @@ Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridco
   return Ext.layout.container.HBox.prototype.publishInnerCtSize.apply(this, arguments);
 }}, 0, 0, 0, 0, ['layout.gridcolumn'], 0, [Ext.grid, 'ColumnLayout'], 0);
 Ext.cmd.derive('Ext.grid.ColumnManager', Ext.Base, {alternateClassName:['Ext.grid.ColumnModel'], columns:null, constructor:function(headerCt, secondHeaderCt) {
+  if (!headerCt.isRootHeader) {
+    Ext.Error.raise('ColumnManager must be passed an instantiated HeaderContainer');
+  }
   this.headerCt = headerCt;
   if (secondHeaderCt) {
+    if (!headerCt.isRootHeader) {
+      Ext.Error.raise('ColumnManager must be passed an instantiated HeaderContainer');
+    }
     this.secondHeaderCt = secondHeaderCt;
   }
 }, getColumns:function() {
@@ -42160,11 +42862,20 @@ Ext.cmd.derive('Ext.grid.ColumnManager', Ext.Base, {alternateClassName:['Ext.gri
 });
 Ext.cmd.derive('Ext.panel.Table', Ext.panel.Panel, {extraBaseCls:'x-grid', extraBodyCls:'x-grid-body', layout:'fit', hasView:false, viewType:null, selType:'rowmodel', scroll:true, deferRowRender:true, sortableColumns:true, enableLocking:false, scrollerOwner:true, enableColumnMove:true, sealedColumns:false, enableColumnResize:true, rowLines:true, colLinesCls:'x-grid-with-col-lines', rowLinesCls:'x-grid-with-row-lines', noRowLinesCls:'x-grid-no-row-lines', hiddenHeaderCtCls:'x-grid-header-ct-hidden', 
 hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', emptyCls:'x-grid-empty', initComponent:function() {
+  if (!this.viewType) {
+    Ext.Error.raise('You must specify a viewType config.');
+  }
+  if (this.headers) {
+    Ext.Error.raise('The headers config is not supported. Please specify columns instead.');
+  }
   var me = this, headerCtCfg = me.columns || me.colModel, view, i, len, store = me.store = Ext.data.StoreManager.lookup(me.store || 'ext-empty-store'), columns;
   if (me.columnLines) {
     me.addCls(me.colLinesCls);
   }
   me.addCls(me.rowLines ? me.rowLinesCls : me.noRowLinesCls);
+  if (!headerCtCfg) {
+    Ext.Error.raise('A column configuration must be specified');
+  }
   if (headerCtCfg instanceof Ext.grid.header.Container) {
     headerCtCfg.isRootHeader = true;
     me.headerCt = headerCtCfg;
@@ -42294,7 +43005,9 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
     return header.processEvent.apply(header, arguments);
   }
 }, determineScrollbars:function() {
+  Ext.log.warn('Obsolete');
 }, invalidateScroller:function() {
+  Ext.log.warn('Obsolete');
 }, scrollByDeltaY:function(yDelta, animate) {
   this.getView().scrollBy(0, yDelta, animate);
 }, scrollByDeltaX:function(xDelta, animate) {
@@ -42749,6 +43462,9 @@ Ext.cmd.derive('Ext.view.NodeCache', Ext.Base, {constructor:function(view) {
 }, insert:function(insertPoint, nodes) {
   var me = this, elements = me.elements, i, nodeCount = nodes.length;
   if (me.count) {
+    if (insertPoint > me.endIndex + 1 || insertPoint + nodes.length - 1 < me.startIndex) {
+      Ext.Error.raise('Discontiguous range would result from inserting ' + nodes.length + ' nodes at ' + insertPoint);
+    }
     if (insertPoint < me.count) {
       for (i = me.endIndex + nodeCount; i >= insertPoint + nodeCount; i--) {
         elements[i] = elements[i - nodeCount];
@@ -44434,6 +45150,15 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   if (!c.getStateId()) {
     c.stateId = c.initialConfig.id || 'h' + ++me.headerCounter;
   }
+  if (Ext.global.console && Ext.global.console.warn) {
+    if (!me._usedIDs) {
+      me._usedIDs = {};
+    }
+    if (me._usedIDs[c.headerId]) {
+      Ext.global.console.warn(this.$className, 'attempted to reuse an existing id', c.headerId);
+    }
+    me._usedIDs[c.headerId] = true;
+  }
   Ext.container.Container.prototype.onAdd.apply(this, arguments);
   me.onColumnsChanged();
 }, onMove:function() {
@@ -44457,6 +45182,10 @@ sortable:true, enableColumnHide:true, initComponent:function() {
 }, onRemove:function(c) {
   var me = this, ownerCt = me.ownerCt;
   Ext.container.Container.prototype.onRemove.apply(this, arguments);
+  if (!me._usedIDs) {
+    me._usedIDs = {};
+  }
+  delete me._usedIDs[c.headerId];
   if (!me.destroying) {
     me.onColumnsChanged();
     if (me.isGroupHeader && !me.items.getCount() && ownerCt) {
@@ -44742,6 +45471,12 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   }
   if (me.columns != null) {
     me.isGroupHeader = true;
+    if (me.dataIndex) {
+      Ext.Error.raise('Ext.grid.column.Column: Group header may not accept a dataIndex');
+    }
+    if (me.width && me.width !== Ext.grid.header.Container.prototype.defaultWidth || me.flex) {
+      Ext.Error.raise('Ext.grid.column.Column: Group header does not support setting explicit widths or flexs. The group header width is calculated by the sum of its children.');
+    }
     me.items = me.columns;
     me.columns = me.flex = me.width = null;
     me.cls = (me.cls || '') + ' ' + me.groupHeaderCls;
@@ -45457,6 +46192,9 @@ determineXTypeToCreate:function(lockedSide) {
   }
   normalGrid.viewConfig = me.normalViewConfig || {};
   normalGrid.viewConfig.loadMask = false;
+  if (me.viewConfig && me.viewConfig.id) {
+    Ext.log.warn('id specified on Lockable viewConfig, it will be shared between both views: "' + me.viewConfig.id + '"');
+  }
   Ext.applyIf(lockedGrid.viewConfig, me.viewConfig);
   Ext.applyIf(normalGrid.viewConfig, me.viewConfig);
   me.lockedGrid = Ext.ComponentManager.create(lockedGrid);
@@ -45531,6 +46269,9 @@ determineXTypeToCreate:function(lockedSide) {
   return result;
 }, getColumnWidth:function(column) {
   var result = column.width || 0, subcols, len, i;
+  if (column.flex) {
+    Ext.Error.raise('Columns which are locked do NOT support a flex width. You must set a width on the ' + column.text + 'column.');
+  }
   if (!result && column.isGroupHeader) {
     subcols = column.items.items;
     len = subcols.length;
@@ -46978,6 +47719,7 @@ wrapsComponent:false, constructor:function(config) {
   }
 }, writeProps:function(dirtyProps, flushing) {
   if (!(dirtyProps && typeof dirtyProps == 'object')) {
+    Ext.Logger.warn('writeProps expected dirtyProps to be an object');
     return;
   }
   var me = this, el = me.el, styles = {}, styleCount = 0, styleInfo = me.styleInfo, info, propName, numericValue, width = dirtyProps.width, height = dirtyProps.height, isBorderBox = me.isBorderBoxValue, target = me.target, max = Math.max, paddingWidth = 0, paddingHeight = 0, hasWidth, hasHeight, isAbsolute, scrollbarSize, style, targetEl;
@@ -47008,6 +47750,9 @@ wrapsComponent:false, constructor:function(config) {
     }
   }
   if (!isBorderBox && (width > 0 || height > 0)) {
+    if (!(me.borderInfo && me.paddingInfo)) {
+      throw Error("Needed to have gotten the borderInfo and paddingInfo when the width or height was setProp'd");
+    }
     if (!me.frameBodyContext) {
       paddingWidth = me.paddingInfo.width;
       paddingHeight = me.paddingInfo.height;
@@ -47210,6 +47955,11 @@ Ext.cmd.derive('Ext.layout.Context', Ext.Base, {remainingLayouts:0, state:0, con
       layout.running = false;
       layout.ownerContext = null;
     }
+  }
+  if (Ext.repoDevMode && !this.pageAnalyzerMode) {
+    Ext.Error.raise('Layout run failed');
+  } else {
+    Ext.log.error('Layout run failed');
   }
 }, invalidate:function(components, full) {
   var me = this, isArray = !components.isComponent, containerLayoutDone, firstTime, i, comp, item, items, length, componentLayout, layout, invalidateOptions, token;
@@ -47979,6 +48729,9 @@ borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap
       item.initBorderRegion();
     }
     if (region === 'center') {
+      if (me.centerRegion) {
+        Ext.Error.raise('Cannot have multiple center regions in a BorderLayout.');
+      }
       me.centerRegion = item;
     } else {
       split = item.split;
@@ -48988,9 +49741,13 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
   }
   me.setY(returnY);
 }}, 0, ['menu'], ['component', 'box', 'container', 'panel', 'menu'], {'component':true, 'box':true, 'container':true, 'panel':true, 'menu':true}, ['widget.menu'], 0, [Ext.menu, 'Menu'], 0);
-Ext.cmd.derive('Ext.panel.Tool', Ext.Component, {isTool:true, baseCls:'x-tool', disabledCls:'x-tool-disabled', toolPressedCls:'x-tool-pressed', toolOverCls:'x-tool-over', ariaRole:'button', childEls:['toolEl'], renderTpl:['\x3cimg role\x3d"presentation" id\x3d"{id}-toolEl" src\x3d"{blank}" class\x3d"{baseCls}-img {baseCls}-{type}{childElCls}" role\x3d"presentation"/\x3e'], toolOwner:null, tooltipType:'qtip', stopEvent:true, height:15, width:15, initComponent:function() {
+Ext.cmd.derive('Ext.panel.Tool', Ext.Component, {isTool:true, baseCls:'x-tool', disabledCls:'x-tool-disabled', toolPressedCls:'x-tool-pressed', toolOverCls:'x-tool-over', ariaRole:'button', childEls:['toolEl'], renderTpl:['\x3cimg role\x3d"presentation" id\x3d"{id}-toolEl" src\x3d"{blank}" class\x3d"{baseCls}-img {baseCls}-{type}{childElCls}" role\x3d"presentation"/\x3e'], toolOwner:null, tooltipType:'qtip', stopEvent:true, height:15, width:15, _toolTypes:{close:1, collapse:1, down:1, expand:1, gear:1, 
+help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, print:1, refresh:1, restore:1, right:1, save:1, search:1, toggle:1, unpin:1, up:1}, initComponent:function() {
   var me = this;
   me.addEvents('click');
+  if (me.id && me._toolTypes[me.id] && Ext.global.console) {
+    Ext.global.console.warn('When specifying a tool you should use the type option, the id can conflict now that tool is a Component');
+  }
   me.type = me.type || me.id;
   Ext.applyIf(me.renderData, {baseCls:me.baseCls, blank:Ext.BLANK_IMAGE_URL, type:me.type});
   me.tooltip = me.tooltip || me.qtip;
@@ -49671,6 +50428,7 @@ Ext.cmd.derive('Ext.selection.CellModel', Ext.selection.Model, {isCellModel:true
       return me.setCurrentPosition(newPos);
     }
   }
+  return null;
 }, getCurrentPosition:function() {
   return this.selecting ? this.nextSelection : this.selection;
 }, setCurrentPosition:function(pos, suppressEvent) {
@@ -49690,6 +50448,7 @@ Ext.cmd.derive('Ext.selection.CellModel', Ext.selection.Model, {isCellModel:true
     me.selecting = false;
     return me.selection = me.nextSelection;
   }
+  return null;
 }, isCellSelected:function(view, row, column) {
   var me = this, testPos, pos = me.getCurrentPosition();
   if (pos && pos.view === view) {
