@@ -51753,11 +51753,11 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   'menuitem[action\x3daddreel]':{click:this.addReel}, 'addreel button[action\x3dsave]':{click:this.saveReel}, 'markersresult \x3e grid[id\x3dmarkersGrid]':{selectionchange:this.onMarkersGridSelectionChange, itemcontextmenu:this.onMarkersGridContextMenu, celldblclick:this.onMarkersGridDblClick}, 'menuitem[action\x3dshowMarker]':{click:this.onMarkersGridShow}, 'markersresult button[action\x3dmarkreleased]':{click:this.markMarkerReleased}, 'markersresult button[action\x3dmarkspoiled]':{click:this.markMarkerSpoiled}, 
   'markersresult button[action\x3dmarkcontrafact]':{click:this.markMarkerContrafact}, 'markersform button[action\x3dsearchmarkers]':{click:this.searchMarkers}, 'markersform button[action\x3dclearmarkersfilter]':{click:this.clearMarkersFilter}, 'optionslist \x3e grid[id\x3doptionsGrid]':{itemcontextmenu:this.onOptionsGridContextMenu, selectionchange:this.onOptionsGridSelectionChange}, 'optionslist button[action\x3deditoption]':{click:this.editOption}, 'menuitem[action\x3deditoption]':{click:this.editOption}, 
   'editoption button[action\x3dsave]':{click:this.saveOption}, 'triggeroptionslist \x3e grid[id\x3dtriggerOptionsGrid]':{itemcontextmenu:this.onTriggerOptionsGridContextMenu, selectionchange:this.onTriggerOptionsGridSelectionChange}, 'triggeroptionslist button[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'menuitem[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'edittriggeroption button[action\x3dsave]':{click:this.saveTriggerOption}, 'goodsgroupslist \x3e grid[id\x3dgoodsGroupsGrid]':{itemcontextmenu:this.onGoodGroupsGridContextMenu, 
-  selectionchange:this.onGoodGroupsGridSelectionChange}, 'goodsgroupslist button[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'menuitem[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'addgoodsgroup button[action\x3dsave]':{click:this.saveGoodsGroup}, 'goodsgroupslist button[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'menuitem[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 
-  'usereventsform button[action\x3dclearusereventsfilter]':{click:this.clearUserEventsFilter}, 'markereventsform button[action\x3dsearchmarkerevents]':{click:this.searcMarkerEvents}, 'markereventsform button[action\x3dclearmarkereventsfilter]':{click:this.clearMarkerEventsFilter}, 'reports':{show:this.onReportsShow}, 'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 
-  'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 
-  'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 
-  'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
+  selectionchange:this.onGoodGroupsGridSelectionChange}, 'goodsgroupslist button[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'menuitem[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'addgoodsgroup button[action\x3dsave]':{click:this.saveGoodsGroup}, 'goodsgroupslist button[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'menuitem[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'unitmeasureslist button[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 
+  'menuitem[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'addunitmeasure button[action\x3dsave]':{click:this.saveUnitMeasure}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 'usereventsform button[action\x3dclearusereventsfilter]':{click:this.clearUserEventsFilter}, 'markereventsform button[action\x3dsearchmarkerevents]':{click:this.searcMarkerEvents}, 'markereventsform button[action\x3dclearmarkereventsfilter]':{click:this.clearMarkerEventsFilter}, 'reports':{show:this.onReportsShow}, 
+  'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 
+  'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, 
+  selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
 }, loadStatistics:function() {
   var FormPanel = Ext.getCmp('briefKMO');
   if (undefined != FormPanel) {
@@ -52724,6 +52724,26 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   }, failure:function(form, action) {
     var obj = Ext.decode(action.response.responseText);
     Ext.MessageBox.show({title:'Редактирование информации о товарной группе', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
+}, addUnitMeasure:function(button) {
+  var agg = Ext.getCmp('add_unit_measure_window');
+  if (agg) {
+    agg.show();
+  } else {
+    Ext.create('SopCor.view.options.addUnitMeasure', {id:'add_unit_measure_window'}).show();
+  }
+}, saveUnitMeasure:function(button) {
+  var form = Ext.getCmp('addunitmeasureform').getForm();
+  if (!form || !form.isValid()) {
+    return;
+  }
+  form.submit({method:'post', url:'/request/volume', success:function(form, action) {
+    var grid = Ext.getCmp('unitMeasureGrid');
+    grid.getStore().reload();
+    Ext.getCmp('add_unit_measure_window').close();
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Добавление единицы измерения', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
   }});
 }, searcUserEvents:function(button) {
   var form = button.up('form').getForm();
@@ -53706,11 +53726,11 @@ Ext.cmd.derive('SopCor.view.options.GoodsGroupsGrid', Ext.grid.Panel, {initCompo
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['goodsgroupsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'goodsgroupsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'goodsgroupsgrid':true}, ['widget.goodsgroupsgrid'], 0, [SopCor.view.options, 'GoodsGroupsGrid'], 0);
 Ext.cmd.derive('SopCor.view.options.GoodsGroupsList', Ext.Container, {id:'goodsgroupslist', layout:'fit', items:[{id:'goodsGroupsGrid', xtype:'goodsgroupsgrid', autoheight:true, stateful:false}]}, 0, ['goodsgroupslist'], ['component', 'box', 'container', 'goodsgroupslist'], {'component':true, 'box':true, 'container':true, 'goodsgroupslist':true}, ['widget.goodsgroupslist'], 0, [SopCor.view.options, 'GoodsGroupsList'], 0);
-var contextMenuUnitMeasures = Ext.create('Ext.menu.Menu', {id:'contextMenuUnitMeasures', alias:'widget.contextunitmeasures', items:[{text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png'}, '-', {text:'Удалить', action:'deleteunitmeasure', icon:'/resources/images/icons/delete.png'}]});
+var contextMenuUnitMeasures = Ext.create('Ext.menu.Menu', {id:'contextMenuUnitMeasures', alias:'widget.contextunitmeasures', items:[{text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png'}]});
 Ext.cmd.derive('SopCor.view.options.UnitMeasuresGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'UnitMeasures';
   this.columns = [{text:'Название', dataIndex:'volume_name', width:250, sortable:true}, {text:'Краткое название', dataIndex:'volume_shortname', flex:1, sortable:true}, {text:'Код', dataIndex:'volume_code', flex:1, sortable:true}, {text:'Сортировка', dataIndex:'sort_order', flex:1, sortable:true}];
-  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUnitMeasureButton', text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png', disabled:false}, '-', {xtype:'button', id:'deleteUnitMeasureButton', text:'Удалить', action:'deleteunitmeasure', icon:'/resources/images/icons/delete.png', disabled:true}]}];
+  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUnitMeasureButton', text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png', disabled:false}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:'UnitMeasures', displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['unitmeasuresgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unitmeasuresgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unitmeasuresgrid':true}, ['widget.unitmeasuresgrid'], 0, [SopCor.view.options, 'UnitMeasuresGrid'], 0);
