@@ -53729,7 +53729,7 @@ Ext.cmd.derive('SopCor.view.options.GoodsGroupsList', Ext.Container, {id:'goodsg
 var contextMenuUnitMeasures = Ext.create('Ext.menu.Menu', {id:'contextMenuUnitMeasures', alias:'widget.contextunitmeasures', items:[{text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png'}]});
 Ext.cmd.derive('SopCor.view.options.UnitMeasuresGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'UnitMeasures';
-  this.columns = [{text:'Название', dataIndex:'volume_name', width:250, sortable:true}, {text:'Краткое название', dataIndex:'volume_shortname', flex:1, sortable:true}, {text:'Код', dataIndex:'volume_code', flex:1, sortable:true}, {text:'Сортировка', dataIndex:'sort_order', flex:1, sortable:true}];
+  this.columns = [{text:'Название', dataIndex:'volume_name', flex:1, sortable:true}, {text:'Краткое название', dataIndex:'volume_shortname', width:250, sortable:true}, {text:'Код', dataIndex:'volume_code', width:250, sortable:true}, {text:'Сортировка', dataIndex:'sort_order', flex:1, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUnitMeasureButton', text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png', disabled:false}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:'UnitMeasures', displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
