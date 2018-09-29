@@ -52738,7 +52738,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     return;
   }
   form.submit({method:'post', url:'/request/volume', success:function(form, action) {
-    var grid = Ext.getCmp('unitMeasureGrid');
+    var grid = Ext.getCmp('unitMeasuresGrid');
     grid.getStore().reload();
     Ext.getCmp('add_unit_measure_window').close();
   }, failure:function(form, action) {
