@@ -52876,7 +52876,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     productsTabPanel.setActiveTab(0);
   }
 }, onProductsTabChange:function(tab, newCard, oldCard, opt) {
-  var ueg = Ext.getCmp('userProductsGrid');
+  var ueg = Ext.getCmp('productsGrid');
   ueg.getStore().load();
 }, onEventsActivate:function(cmp, opt) {
   var eventsTabPanel = Ext.getCmp('eventstabpanel');
@@ -53812,7 +53812,7 @@ Ext.cmd.derive('SopCor.view.products.ProductsGrid', Ext.grid.Panel, {initCompone
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['productsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'productsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'productsgrid':true}, ['widget.productsgrid'], 0, [SopCor.view.products, 'ProductsGrid'], 0);
-Ext.cmd.derive('SopCor.view.products.ProductsResult', Ext.Container, {layout:'fit', items:[{id:'ProductsGrid', xtype:'productsgrid', autoHeight:true, stateful:false}]}, 0, ['productsresult'], ['component', 'box', 'container', 'productsresult'], {'component':true, 'box':true, 'container':true, 'productsresult':true}, ['widget.productsresult'], 0, [SopCor.view.products, 'ProductsResult'], 0);
+Ext.cmd.derive('SopCor.view.products.ProductsResult', Ext.Container, {layout:'fit', items:[{id:'productsGrid', xtype:'productsgrid', autoHeight:true, stateful:false}]}, 0, ['productsresult'], ['component', 'box', 'container', 'productsresult'], {'component':true, 'box':true, 'container':true, 'productsresult':true}, ['widget.productsresult'], 0, [SopCor.view.products, 'ProductsResult'], 0);
 Ext.cmd.derive('SopCor.view.products.Products', Ext.Panel, {id:'products', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Продукция', items:[{xtype:'tabpanel', id:'productstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:10}, items:[{title:'Список продукции', id:'productslist', items:[{xtype:'productsform', id:'productsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'productsresult', id:'productsresult'}]}]}]}, 0, ['products'], ['component', 'box', 'container', 
 'panel', 'products'], {'component':true, 'box':true, 'container':true, 'panel':true, 'products':true}, ['widget.products'], 0, [SopCor.view.products, 'Products'], 0);
 Ext.cmd.derive('SopCor.view.reports.RequestReportForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[]}], monitorValid:true}, 0, ['requestreportform'], ['component', 'box', 'container', 'panel', 'form', 'requestreportform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'requestreportform':true}, ['widget.requestreportform'], 0, [SopCor.view.reports, 
