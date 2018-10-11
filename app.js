@@ -51760,9 +51760,11 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   'menuitem[action\x3deditoption]':{click:this.editOption}, 'editoption button[action\x3dsave]':{click:this.saveOption}, 'triggeroptionslist \x3e grid[id\x3dtriggerOptionsGrid]':{itemcontextmenu:this.onTriggerOptionsGridContextMenu, selectionchange:this.onTriggerOptionsGridSelectionChange}, 'triggeroptionslist button[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'menuitem[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'edittriggeroption button[action\x3dsave]':{click:this.saveTriggerOption}, 
   'goodsgroupslist \x3e grid[id\x3dgoodsGroupsGrid]':{itemcontextmenu:this.onGoodGroupsGridContextMenu, selectionchange:this.onGoodGroupsGridSelectionChange}, 'goodsgroupslist button[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'menuitem[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'addgoodsgroup button[action\x3dsave]':{click:this.saveGoodsGroup}, 'goodsgroupslist button[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'menuitem[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 
   'unitmeasureslist button[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'menuitem[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'addunitmeasure button[action\x3dsave]':{click:this.saveUnitMeasure}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 'usereventsform button[action\x3dclearusereventsfilter]':{click:this.clearUserEventsFilter}, 'markereventsform button[action\x3dsearchmarkerevents]':{click:this.searcMarkerEvents}, 'markereventsform button[action\x3dclearmarkereventsfilter]':{click:this.clearMarkerEventsFilter}, 
-  'reports':{show:this.onReportsShow}, 'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'products':{activate:this.onProductsActivate}, 'tabpanel[id\x3dproductstabpanel]':{tabchange:this.onProductsTabChange}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 
-  'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 
-  'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
+  'reports':{show:this.onReportsShow}, 'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'products':{activate:this.onProductsActivate}, 'tabpanel[id\x3dproductstabpanel]':{tabchange:this.onProductsTabChange}, 'productslist button[action\x3daddproduct]':{click:this.addProduct}, 
+  'menuitem[action\x3daddproduct]':{click:this.addProduct}, 'addproduct button[action\x3dsave]':{click:this.saveProduct}, 'productslist button[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'menuitem[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'productslist button[action\x3deditproduct]':{click:this.editProduct}, 'menuitem[action\x3deditproduct]':{click:this.editProduct}, 'productslist \x3e grid[id\x3dproductsGrid]':{itemcontextmenu:this.onProductsGridContextMenu, selectionchange:this.onProductsGridSelectionChange}, 
+  'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'tabpanel[id\x3deditproducttabpanel]':{tabchange:this.onEditProductTabChange}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, 
+  selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 
+  'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
 }, loadStatistics:function() {
   var FormPanel = Ext.getCmp('briefKMO');
   if (undefined != FormPanel) {
@@ -51923,6 +51925,110 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
 }, onVendorsActivate:function(comp, opt) {
   var vg = Ext.getCmp('vendorsGrid');
   vg.getStore().load();
+}, addProduct:function(button) {
+  var av = Ext.getCmp('add_product_window');
+  if (av) {
+    av.show();
+  } else {
+    Ext.create('SopCor.view.products.AddProduct', {id:'add_product_window'}).show();
+  }
+}, saveProduct:function(button) {
+  var form = Ext.getCmp('addproductform').getForm();
+  if (!form || !form.isValid()) {
+    return;
+  }
+  form.submit({method:'post', url:'/request/product', success:function(form, action) {
+    var grid = Ext.getCmp('productsGrid');
+    grid.getStore().reload();
+    Ext.getCmp('add_product_window').close();
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Добавление продукции', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
+}, deleteProduct:function(button) {
+  var grid = Ext.getCmp('productsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    var id = rec.get('productId');
+    Ext.MessageBox.confirm('Удаление продукции', 'Вы действительно хотите удалить продукцию ' + rec.get('name'), function(btn) {
+      if ('yes' == btn) {
+        var grid = Ext.getCmp('productsGrid');
+        var rec = grid.getSelectionModel().getSelection()[0];
+        var id = rec.get('productId');
+        Ext.Ajax.request({url:'/request/product?id\x3d' + id, method:'delete', success:function(response, opt) {
+          var obj = Ext.decode(response.responseText);
+          if (obj.success) {
+            var grid = Ext.getCmp('productsGrid');
+            grid.getStore().reload();
+          } else {
+            Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+          }
+        }, failure:function(response, opt) {
+          Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+        }});
+      }
+    }).setHeight(50);
+  }
+}, onProductsGridContextMenu:function(view, rec, node, index, e) {
+  e.stopEvent();
+  var menu = Ext.getCmp('contextMenuProducts');
+  menu.showAt(e.getXY());
+  return false;
+}, onProductsGridSelectionChange:function(selectionModel, selected) {
+  var delButton = Ext.getCmp('deleteProductButton');
+  var editButton = Ext.getCmp('editProductButton');
+  if (undefined != delButton) {
+    if (selected.length > 0) {
+      delButton.setDisabled(false);
+    } else {
+      delButton.setDisabled(true);
+    }
+  }
+  if (undefined != editButton) {
+    if (selected.length > 0) {
+      editButton.setDisabled(false);
+    } else {
+      editButton.setDisabled(true);
+    }
+  }
+}, editProduct:function(button) {
+  var vendorId = 0;
+  var ev = Ext.getCmp('edit_product_window');
+  var grid = Ext.getCmp('productsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    vendorId = rec.get('productId');
+  }
+  if (ev) {
+    ev.initialConfig.productId = productId;
+    ev.show();
+  } else {
+    Ext.create('SopCor.view.products.EditProduct', {id:'edit_product_window', vendorId:productId}).show();
+  }
+}, onEditProductWindowShow:function(comp, opt) {
+  var editProductTabPanel = Ext.getCmp('editproducttabpanel');
+  if (undefined != editProductTabPanel) {
+    editProductTabPanel.setActiveTab(0);
+  }
+}, onEditProductWindowClose:function(comp, opt) {
+  var editProductTabPanel = Ext.getCmp('editproducttabpanel');
+  if (undefined != editProductTabPanel) {
+    editProductTabPanel.setActiveTab(1);
+  }
+}, onEditProductTabChange:function(tab, newCard, oldCard, opt) {
+  var comp = Ext.getCmp('edit_product_window');
+  if ('contacts' == newCard.getId()) {
+    var FormPanel = Ext.getCmp('productscontactsform');
+    if (undefined != FormPanel) {
+      var grid = Ext.getCmp('productsGrid');
+      var rec = grid.getSelectionModel().getSelection()[0];
+      if (rec) {
+        FormPanel.getForm().setValues({name:rec.get('name'), shortName:rec.get('shortName'), public_name:rec.get('public_name'), inn:rec.get('inn'), ogrn:rec.get('ogrn'), notes:rec.get('notes'), contactPerson:rec.get('contactPerson'), contactPhone:rec.get('contactPhone'), address:rec.get('address'), city:rec.get('city'), region:rec.get('region')});
+        var combo_type = Ext.getCmp('edit_product_type');
+        combo_type.setValue(rec.get('typeOfProduct'));
+      }
+    }
+  }
 }, addUser:function(button) {
   var au = Ext.getCmp('add_user_window');
   if (au) {
@@ -53806,7 +53912,7 @@ Ext.cmd.derive('SopCor.view.products.ProductsForm', Ext.form.Panel, {frame:false
 var contextMenuEvents = Ext.create('Ext.menu.Menu', {id:'contextMenuProducts', alias:'widget.contextMenuProducts', items:[{text:'Подробнее', action:'viewproduct', icon:'/resources/images/icons/document_info.png'}]});
 Ext.cmd.derive('SopCor.view.products.ProductsGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Products';
-  this.columns = [{text:'Идентификатор', dataIndex:'id', flex:1, sortable:true}, {text:'Наименование продукции', dataIndex:'public_name', width:250, sortable:true}, {text:'Определяющий документ: ТУ, ГОСТ, другое', dataIndex:'product_doc', width:250, sortable:true}, {text:'Идентификатор замены', dataIndex:'product_replacedby', width:150, sortable:true}, {text:'Срок годности', dataIndex:'product_expiration', width:150, sortable:true}, {text:'Дата последнего изменения', dataIndex:'product_modification', 
+  this.columns = [{text:'Идентификатор', dataIndex:'id', flex:1, sortable:true}, {text:'Наименование продукции', dataIndex:'product_name', width:250, sortable:true}, {text:'Определяющий документ: ТУ, ГОСТ, другое', dataIndex:'product_doc', width:250, sortable:true}, {text:'Идентификатор замены', dataIndex:'product_replacedby', width:150, sortable:true}, {text:'Срок годности', dataIndex:'product_expiration', width:150, sortable:true}, {text:'Дата последнего изменения', dataIndex:'product_modification', 
   width:150, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addProductButton', text:'Добавить', action:'addproduct', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editProductButton', text:'Изменить', action:'editproduct', icon:'/resources/images/icons/pencil.png', disabled:true}, '-', {xtype:'button', id:'deleteProductButton', text:'Удалить', action:'deleteproduct', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
