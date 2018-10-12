@@ -51992,12 +51992,12 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     }
   }
 }, editProduct:function(button) {
-  var vendorId = 0;
+  var productId = 0;
   var ev = Ext.getCmp('edit_product_window');
   var grid = Ext.getCmp('productsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
-    vendorId = rec.get('id');
+    productId = rec.get('id');
   }
   if (ev) {
     ev.initialConfig.productId = productId;
