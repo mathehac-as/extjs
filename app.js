@@ -51926,7 +51926,6 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var vg = Ext.getCmp('vendorsGrid');
   vg.getStore().load();
 }, addProduct:function(button) {
-  alert(11111);
   var av = Ext.getCmp('add_product_window');
   if (av) {
     av.show();
