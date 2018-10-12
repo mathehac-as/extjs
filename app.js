@@ -51997,7 +51997,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var grid = Ext.getCmp('productsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
-    vendorId = rec.get('productId');
+    vendorId = rec.get('id');
   }
   if (ev) {
     ev.initialConfig.productId = productId;
