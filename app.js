@@ -49155,64 +49155,6 @@ Ext.cmd.derive('Ext.layout.container.Card', Ext.layout.container.Fit, {alternate
   }
   return false;
 }}, 0, 0, 0, 0, ['layout.card'], 0, [Ext.layout.container, 'Card', Ext.layout, 'CardLayout'], 0);
-Ext.cmd.derive('Ext.layout.container.Column', Ext.layout.container.Auto, {alternateClassName:'Ext.layout.ColumnLayout', type:'column', itemCls:'x-column', targetCls:'x-column-layout-ct', columnWidthSizePolicy:{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, createsInnerCt:true, manageOverflow:true, isItemShrinkWrap:function(ownerContext) {
-  return true;
-}, getItemSizePolicy:function(item, ownerSizeModel) {
-  if (item.columnWidth) {
-    if (!ownerSizeModel) {
-      ownerSizeModel = this.owner.getSizeModel();
-    }
-    if (!ownerSizeModel.width.shrinkWrap) {
-      return this.columnWidthSizePolicy;
-    }
-  }
-  return this.autoSizePolicy;
-}, calculateItems:function(ownerContext, containerSize) {
-  var me = this, targetContext = ownerContext.targetContext, items = ownerContext.childItems, len = items.length, contentWidth = 0, gotWidth = containerSize.gotWidth, blocked, availableWidth, i, itemContext, itemMarginWidth, itemWidth;
-  if (gotWidth === false) {
-    targetContext.domBlock(me, 'width');
-    blocked = true;
-  } else {
-    if (gotWidth) {
-      availableWidth = containerSize.width;
-    } else {
-      return true;
-    }
-  }
-  for (i = 0; i < len; ++i) {
-    itemContext = items[i];
-    itemMarginWidth = itemContext.getMarginInfo().width;
-    if (!itemContext.widthModel.calculated) {
-      itemWidth = itemContext.getProp('width');
-      if (typeof itemWidth != 'number') {
-        itemContext.block(me, 'width');
-        blocked = true;
-      }
-      contentWidth += itemWidth + itemMarginWidth;
-    }
-  }
-  if (!blocked) {
-    availableWidth = availableWidth < contentWidth ? 0 : availableWidth - contentWidth;
-    for (i = 0; i < len; ++i) {
-      itemContext = items[i];
-      if (itemContext.widthModel.calculated) {
-        itemMarginWidth = itemContext.marginInfo.width;
-        itemWidth = itemContext.target.columnWidth;
-        itemWidth = Math.floor(itemWidth * availableWidth) - itemMarginWidth;
-        itemWidth = itemContext.setWidth(itemWidth);
-        contentWidth += itemWidth + itemMarginWidth;
-      }
-    }
-    ownerContext.setContentWidth(contentWidth + ownerContext.paddingContext.getPaddingInfo().width);
-  }
-  return !blocked;
-}, setCtSizeIfNeeded:function(ownerContext, containerSize) {
-  var me = this, padding = ownerContext.paddingContext.getPaddingInfo();
-  Ext.layout.container.Auto.prototype.setCtSizeIfNeeded.apply(this, arguments);
-  if ((Ext.isIEQuirks || Ext.isIE7m) && me.isShrinkWrapTpl && padding.right) {
-    ownerContext.outerCtContext.setProp('width', containerSize.width + padding.left);
-  }
-}}, 0, 0, 0, 0, ['layout.column'], 0, [Ext.layout.container, 'Column', Ext.layout, 'ColumnLayout'], 0);
 Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.TextItem', activeCls:'x-menu-item-active', ariaRole:'menuitem', canActivate:true, clickHideDelay:0, destroyMenu:true, disabledCls:'x-menu-item-disabled', hideOnClick:true, isMenuItem:true, menuAlign:'tl-tr?', menuExpandDelay:200, menuHideDelay:200, tooltipType:'qtip', arrowCls:'x-menu-item-arrow', childEls:['itemEl', 'iconEl', 'textEl', 'arrowEl'], renderTpl:['\x3ctpl if\x3d"plain"\x3e', '{text}', '\x3ctpl else\x3e', '\x3ca id\x3d"{id}-itemEl"', 
 ' class\x3d"x-menu-item-link{childElCls}"', ' href\x3d"{href}"', '\x3ctpl if\x3d"hrefTarget"\x3e target\x3d"{hrefTarget}"\x3c/tpl\x3e', ' hidefocus\x3d"true"', ' unselectable\x3d"on"', '\x3ctpl if\x3d"tabIndex"\x3e', ' tabIndex\x3d"{tabIndex}"', '\x3c/tpl\x3e', '\x3e', '\x3cdiv role\x3d"img" id\x3d"{id}-iconEl" class\x3d"x-menu-item-icon {iconCls}', '{childElCls} {glyphCls}" style\x3d"\x3ctpl if\x3d"icon"\x3ebackground-image:url({icon});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', 
 '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cspan id\x3d"{id}-textEl" class\x3d"x-menu-item-text" unselectable\x3d"on"\x3e{text}\x3c/span\x3e', '\x3cimg id\x3d"{id}-arrowEl" src\x3d"{blank}" class\x3d"{arrowCls}', '{childElCls}"/\x3e', '\x3c/a\x3e', '\x3c/tpl\x3e'], maskOnDisable:false, activate:function() {
@@ -53973,8 +53915,8 @@ Ext.cmd.derive('SopCor.view.options.EditTriggerOptionForm', Ext.form.Panel, {bor
 Ext.cmd.derive('SopCor.view.options.EditTriggerOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['edittriggeroption'], ['component', 'box', 'container', 'panel', 'window', 'edittriggeroption'], {'component':true, 'box':true, 'container':true, 'panel':true, 
 'window':true, 'edittriggeroption':true}, ['widget.edittriggeroption'], 0, [SopCor.view.options, 'EditTriggerOption'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProductForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', fieldLabel:'Идентификатор замены'}, 
-{xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', layout:'column', defaults:{xtype:'textfield', width:'10%', margin:'0 0 5'}, items:[{id:'product_expiration_year', afterSubTpl:'год'}, {id:'product_expiration_month', afterSubTpl:'месяц'}, {id:'product_expiration_day', afterSubTpl:'день'}]}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], 
-{'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
+{xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', width:'10%', margin:'0 0 5'}, items:[{id:'product_expiration_year', afterSubTpl:'год'}, {id:'product_expiration_month', afterSubTpl:'месяц'}, {id:'product_expiration_day', afterSubTpl:'день'}]}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 
+'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['addproduct'], ['component', 'box', 'container', 'panel', 'window', 'addproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addproduct':true}, 
 ['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
 Ext.cmd.derive('SopCor.view.products.EditProduct', Ext.window.Window, {title:'Редактирование продукции', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'editproductform'}], buttons:[{id:'EditProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['editproduct'], ['component', 'box', 'container', 'panel', 'window', 'editproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editproduct':true}, 
