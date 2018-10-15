@@ -52000,6 +52000,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
     var product_expiration_split = rec.get('product_expiration').split(' ');
+    console.log(product_expiration_split);
     Ext.getCmp('editproductform').getForm().setValues({product_name:rec.get('product_name'), product_doc:rec.get('product_doc'), product_replacedby:rec.get('product_replacedby'), product_expiration:rec.get('product_expiration'), product_expiration_year:!isNaN(product_expiration_split[0]) ? product_expiration_split[0] : '', product_expiration_month:!isNaN(product_expiration_split[2]) ? product_expiration_split[2] : '', product_expiration_day:!isNaN(product_expiration_split[4]) ? product_expiration_split[4] : 
     '', product_modification:rec.get('product_modification')});
   }
