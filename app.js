@@ -51762,9 +51762,9 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   'unitmeasureslist button[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'menuitem[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'addunitmeasure button[action\x3dsave]':{click:this.saveUnitMeasure}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 'usereventsform button[action\x3dclearusereventsfilter]':{click:this.clearUserEventsFilter}, 'markereventsform button[action\x3dsearchmarkerevents]':{click:this.searcMarkerEvents}, 'markereventsform button[action\x3dclearmarkereventsfilter]':{click:this.clearMarkerEventsFilter}, 
   'reports':{show:this.onReportsShow}, 'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'products':{activate:this.onProductsActivate}, 'tabpanel[id\x3dproductstabpanel]':{tabchange:this.onProductsTabChange}, 'productsresult button[action\x3daddproduct]':{click:this.addProduct}, 
   'menuitem[action\x3daddproduct]':{click:this.addProduct}, 'addproduct button[action\x3dsave]':{click:this.saveProduct}, 'productsresult button[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'menuitem[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'productsresult button[action\x3deditproduct]':{click:this.editProduct}, 'menuitem[action\x3deditproduct]':{click:this.editProduct}, 'editproduct button[action\x3dsave]':{click:this.updateProduct}, 'productsresult \x3e grid[id\x3dproductsGrid]':{itemcontextmenu:this.onProductsGridContextMenu, 
-  selectionchange:this.onProductsGridSelectionChange}, 'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'tabpanel[id\x3deditproducttabpanel]':{tabchange:this.onEditProductTabChange}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 
-  'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, 
-  selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
+  selectionchange:this.onProductsGridSelectionChange}, 'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, 
+  selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 
+  'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
 }, loadStatistics:function() {
   var FormPanel = Ext.getCmp('briefKMO');
   if (undefined != FormPanel) {
@@ -52034,21 +52034,6 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
   if (undefined != editProductTabPanel) {
     editProductTabPanel.setActiveTab(1);
-  }
-}, onEditProductTabChange:function(tab, newCard, oldCard, opt) {
-  var comp = Ext.getCmp('edit_product_window');
-  alert(1111);
-  if ('contacts' == newCard.getId()) {
-    var FormPanel = Ext.getCmp('productscontactsform');
-    if (undefined != FormPanel) {
-      var grid = Ext.getCmp('productsGrid');
-      var rec = grid.getSelectionModel().getSelection()[0];
-      if (rec) {
-        FormPanel.getForm().setValues({name:rec.get('name'), shortName:rec.get('shortName'), public_name:rec.get('public_name'), inn:rec.get('inn'), ogrn:rec.get('ogrn'), notes:rec.get('notes'), contactPerson:rec.get('contactPerson'), contactPhone:rec.get('contactPhone'), address:rec.get('address'), city:rec.get('city'), region:rec.get('region')});
-        var combo_type = Ext.getCmp('edit_product_type');
-        combo_type.setValue(rec.get('typeOfProduct'));
-      }
-    }
   }
 }, addUser:function(button) {
   var au = Ext.getCmp('add_user_window');
@@ -53930,7 +53915,8 @@ Ext.cmd.derive('SopCor.view.options.EditTriggerOptionForm', Ext.form.Panel, {bor
 Ext.cmd.derive('SopCor.view.options.EditTriggerOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['edittriggeroption'], ['component', 'box', 'container', 'panel', 'window', 'edittriggeroption'], {'component':true, 'box':true, 'container':true, 'panel':true, 
 'window':true, 'edittriggeroption':true}, ['widget.edittriggeroption'], 0, [SopCor.view.options, 'EditTriggerOption'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProductForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', fieldLabel:'Идентификатор замены'}, 
-{id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {id:'product_modification', name:'product_modification', fieldLabel:'Дата последнего изменения'}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
+{id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности', xtype:'compositefield', defaults:{xtype:'textfield'}, items:[{name:'год', flex:5}, {name:'месяц', flex:8}, {name:'день', flex:3}]}, {id:'product_modification', name:'product_modification', fieldLabel:'Дата последнего изменения'}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 
+'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['addproduct'], ['component', 'box', 'container', 'panel', 'window', 'addproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addproduct':true}, 
 ['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
 Ext.cmd.derive('SopCor.view.products.EditProduct', Ext.window.Window, {title:'Редактирование продукции', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'editproductform'}], buttons:[{id:'EditProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['editproduct'], ['component', 'box', 'container', 'panel', 'window', 'editproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editproduct':true}, 
