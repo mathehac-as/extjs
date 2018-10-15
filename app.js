@@ -51949,12 +51949,12 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var grid = Ext.getCmp('productsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
-    var id = rec.get('productId');
+    var id = rec.get('id');
     Ext.MessageBox.confirm('Удаление продукции', 'Вы действительно хотите удалить продукцию ' + rec.get('name'), function(btn) {
       if ('yes' == btn) {
         var grid = Ext.getCmp('productsGrid');
         var rec = grid.getSelectionModel().getSelection()[0];
-        var id = rec.get('productId');
+        var id = rec.get('id');
         Ext.Ajax.request({url:'/request/product?id\x3d' + id, method:'delete', success:function(response, opt) {
           var obj = Ext.decode(response.responseText);
           if (obj.success) {
@@ -52010,7 +52010,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var grid = Ext.getCmp('productsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
-    var productId = grid.getStore().proxy.extraParams.Id;
+    var productId = rec.get('id');
   }
   form.submit({method:'post', url:'/request/product', params:{id:productId}, success:function(form, action) {
     var obj = Ext.decode(action.response.responseText);
