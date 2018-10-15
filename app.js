@@ -52010,7 +52010,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var grid = Ext.getCmp('productsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
-    var productId = rec.get('productId');
+    var productId = grid.getStore().proxy.extraParams.Id;
   }
   form.submit({method:'post', url:'/request/product', params:{id:productId}, success:function(form, action) {
     var obj = Ext.decode(action.response.responseText);
