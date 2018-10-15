@@ -52015,7 +52015,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     var product_expiration_year = Ext.getCmp('product_expiration_year').getValue();
     var product_expiration_month = Ext.getCmp('product_expiration_month').getValue();
     var product_expiration_day = Ext.getCmp('product_expiration_day').getValue();
-    Ext.getCmp('editproductform').getForm().setValues({product_expiration:Eproduct_expiration_year + ' year ' + product_expiration_month + ' month ' + product_expiration_day + ' day'});
+    Ext.getCmp('editproductform').getForm().setValues({product_expiration:product_expiration_year + ' year ' + product_expiration_month + ' month ' + product_expiration_day + ' day'});
   }
   form.submit({method:'post', url:'/request/product', params:{id:productId}, success:function(form, action) {
     var obj = Ext.decode(action.response.responseText);
