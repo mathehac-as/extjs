@@ -52000,7 +52000,8 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
     var product_expiration_split = rec.get('product_expiration').split(' ');
-    Ext.getCmp('editproductform').getForm().setValues({product_name:rec.get('product_name'), product_doc:rec.get('product_doc'), product_replacedby:rec.get('product_replacedby'), product_expiration:rec.get('product_expiration'), product_expiration_year:product_expiration_split[0], product_expiration_month:product_expiration_split[2], product_expiration_day:product_expiration_split[3], product_modification:rec.get('product_modification')});
+    Ext.getCmp('editproductform').getForm().setValues({product_name:rec.get('product_name'), product_doc:rec.get('product_doc'), product_replacedby:rec.get('product_replacedby'), product_expiration:rec.get('product_expiration'), product_expiration_year:isNaN(product_expiration_split[0]) ? product_expiration_split[0] : '', product_expiration_month:isNaN(product_expiration_split[2]) ? product_expiration_split[2] : '', product_expiration_day:isNaN(product_expiration_split[4]) ? product_expiration_split[4] : 
+    '', product_modification:rec.get('product_modification')});
   }
   eu.show();
 }, updateProduct:function(button) {
@@ -52012,10 +52013,26 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
     var productId = rec.get('id');
+    var product_expiration_str = '';
     var product_expiration_year = Ext.getCmp('product_expiration_year').getValue();
+    if (product_expiration_year != '') {
+      product_expiration_str = product_expiration_year + ' year';
+    }
     var product_expiration_month = Ext.getCmp('product_expiration_month').getValue();
+    if (product_expiration_month != '') {
+      if (product_expiration_str != '') {
+        product_expiration_str = product_expiration_str + ' ';
+      }
+      product_expiration_str = product_expiration_month + ' month';
+    }
     var product_expiration_day = Ext.getCmp('product_expiration_day').getValue();
-    Ext.getCmp('editproductform').getForm().setValues({product_expiration:product_expiration_year + ' year ' + product_expiration_month + ' month ' + product_expiration_day + ' day'});
+    if (product_expiration_day != '') {
+      if (product_expiration_str != '') {
+        product_expiration_str = product_expiration_str + ' ';
+      }
+      product_expiration_str = product_expiration_day + ' day';
+    }
+    Ext.getCmp('editproductform').getForm().setValues({product_expiration:product_expiration_str});
   }
   form.submit({method:'post', url:'/request/product', params:{id:productId}, success:function(form, action) {
     var obj = Ext.decode(action.response.responseText);
@@ -53920,7 +53937,7 @@ Ext.cmd.derive('SopCor.view.options.EditTriggerOptionForm', Ext.form.Panel, {bor
 Ext.cmd.derive('SopCor.view.options.EditTriggerOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['edittriggeroption'], ['component', 'box', 'container', 'panel', 'window', 'edittriggeroption'], {'component':true, 'box':true, 'container':true, 'panel':true, 
 'window':true, 'edittriggeroption':true}, ['widget.edittriggeroption'], 0, [SopCor.view.options, 'EditTriggerOption'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProductForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', fieldLabel:'Идентификатор замены'}, 
-{xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'5 0 5', anchor:'10%'}, layout:{type:'hbox'}, items:[{id:'product_expiration_year', name:'product_expiration_year', Width:20, afterSubTpl:' год'}, {id:'product_expiration_month', name:'product_expiration_month', Width:20, afterSubTpl:' месяц'}, {id:'product_expiration_day', name:'product_expiration_day', Width:20, 
+{xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'5 0 5', anchor:'5%'}, layout:{type:'hbox'}, items:[{id:'product_expiration_year', name:'product_expiration_year', Width:20, afterSubTpl:' год'}, {id:'product_expiration_month', name:'product_expiration_month', Width:20, afterSubTpl:' месяц'}, {id:'product_expiration_day', name:'product_expiration_day', Width:20, 
 afterSubTpl:' день'}]}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['addproduct'], ['component', 'box', 'container', 'panel', 'window', 'addproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addproduct':true}, 
 ['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
