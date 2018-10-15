@@ -52000,13 +52000,6 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var rec = grid.getSelectionModel().getSelection()[0];
   if (rec) {
     Ext.getCmp('editproductform').getForm().setValues({product_name:rec.get('product_name'), product_doc:rec.get('product_doc'), product_replacedby:rec.get('product_replacedby'), product_expiration:rec.get('product_expiration'), product_modification:rec.get('product_modification')});
-    var accessLevel = rec.get('accessLevel');
-    Ext.getCmp('edituserform').getForm().findField('ACL_GLOBAL').setValue(accessLevel & 1);
-    Ext.getCmp('edituserform').getForm().findField('ACL_PRINTING').setValue((accessLevel & 1 << 1) >> 1);
-    Ext.getCmp('edituserform').getForm().findField('ACL_UNITTYPES').setValue((accessLevel & 1 << 2) >> 2);
-    Ext.getCmp('edituserform').getForm().findField('ACL_ORGMANAGER').setValue((accessLevel & 1 << 3) >> 3);
-    Ext.getCmp('edituserform').getForm().findField('ACL_ENDUSER').setValue((accessLevel & 1 << 4) >> 4);
-    Ext.getCmp('edituserform').getForm().findField('ACL_STATUSER').setValue((accessLevel & 1 << 5) >> 5);
   }
   eu.show();
 }, onEditProductWindowShow:function(comp, opt) {
