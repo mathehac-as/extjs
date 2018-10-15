@@ -52002,6 +52002,29 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     Ext.getCmp('editproductform').getForm().setValues({product_name:rec.get('product_name'), product_doc:rec.get('product_doc'), product_replacedby:rec.get('product_replacedby'), product_expiration:rec.get('product_expiration'), product_modification:rec.get('product_modification')});
   }
   eu.show();
+}, updateProduct:function(button) {
+  var form = Ext.getCmp('editproductform').getForm();
+  if (!form || !form.isValid()) {
+    return;
+  }
+  var grid = Ext.getCmp('productsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    var productId = rec.get('productId');
+  }
+  form.submit({method:'post', url:'/request/product', params:{id:productId}, success:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    if (obj.success) {
+      var grid = Ext.getCmp('productsGrid');
+      grid.getStore().reload();
+      Ext.getCmp('edit_product_window').close();
+    } else {
+      Ext.MessageBox.show({title:'Редактирование продукции', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+    }
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Редактирование продукции', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
 }, onEditProductWindowShow:function(comp, opt) {
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
   if (undefined != editProductTabPanel) {
@@ -52014,6 +52037,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   }
 }, onEditProductTabChange:function(tab, newCard, oldCard, opt) {
   var comp = Ext.getCmp('edit_product_window');
+  alert(1111);
   if ('contacts' == newCard.getId()) {
     var FormPanel = Ext.getCmp('productscontactsform');
     if (undefined != FormPanel) {
