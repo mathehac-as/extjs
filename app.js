@@ -52954,8 +52954,8 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   if (!form || !form.isValid()) {
     return;
   }
-  var product_name = Ext.getCmp('search_product_name');
-  var product_doc = Ext.getCmp('search_product_doc');
+  var product_name = Ext.getCmp('search_product_name').getValue();
+  var product_doc = Ext.getCmp('search_product_doc').getValue();
   var grid = Ext.getCmp('productsGrid');
   if (undefined != grid) {
     grid.getStore().getProxy().setExtraParam('product_name', product_name);
@@ -53984,8 +53984,8 @@ Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Н�
 ['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
 Ext.cmd.derive('SopCor.view.products.EditProduct', Ext.window.Window, {title:'Редактирование продукции', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'editproductform'}], buttons:[{id:'EditProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['editproduct'], ['component', 'box', 'container', 'panel', 'window', 'editproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editproduct':true}, 
 ['widget.editproduct'], 0, [SopCor.view.products, 'EditProduct'], 0);
-Ext.cmd.derive('SopCor.view.products.ProductsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:200, margin:'0 0 5'}, items:[{id:'search_product_name', name:'product_name', fieldLabel:'Наименование продукции', margin:'0 10 0 0'}, {id:'search_product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', 
-action:'searchproducts'}, {xtype:'button', text:'Сбросить фильтр', action:'clearproductsfilter'}]}]}, 0, ['productsform'], ['component', 'box', 'container', 'panel', 'form', 'productsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'productsform':true}, ['widget.productsform'], 0, [SopCor.view.products, 'ProductsForm'], 0);
+Ext.cmd.derive('SopCor.view.products.ProductsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_product_name', name:'product_name', fieldLabel:'Наименование продукции', margin:'0 10 0 0'}, {id:'search_product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchproducts'}, 
+{xtype:'button', text:'Сбросить фильтр', action:'clearproductsfilter'}]}]}, 0, ['productsform'], ['component', 'box', 'container', 'panel', 'form', 'productsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'productsform':true}, ['widget.productsform'], 0, [SopCor.view.products, 'ProductsForm'], 0);
 var contextMenuEvents = Ext.create('Ext.menu.Menu', {id:'contextMenuProducts', alias:'widget.contextMenuProducts', items:[{text:'Подробнее', action:'viewproduct', icon:'/resources/images/icons/document_info.png'}]});
 Ext.cmd.derive('SopCor.view.products.ProductsGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Products';
