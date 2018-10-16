@@ -52956,7 +52956,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   }
   var product_name = Ext.getCmp('search_product_name');
   var product_doc = Ext.getCmp('search_product_doc');
-  var grid = Ext.getCmp('markerEventsGrid');
+  var grid = Ext.getCmp('productsGrid');
   if (undefined != grid) {
     grid.getStore().getProxy().setExtraParam('product_name', product_name);
     grid.getStore().getProxy().setExtraParam('product_doc', product_doc);
