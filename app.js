@@ -53049,33 +53049,14 @@ views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options
     productsTabPanel.setActiveTab(0);
   }
 }, onProductsTabChange:function(tab, newCard, oldCard, opt) {
-  if ('products' == newCard.getId()) {
+  console.log(newCard.getId());
+  if ('productslist' == newCard.getId()) {
     var pg = Ext.getCmp('productsGrid');
     pg.getStore().load();
   } else {
-    if ('components' == newCard.getId()) {
+    if ('componentslist' == newCard.getId()) {
       var cg = Ext.getCmp('componentsGrid');
       cg.getStore().load();
-    }
-  }
-}, onOptionsTabChange:function(tab, newCard, oldCard, opt) {
-  if ('commonoptions' == newCard.getId()) {
-    var og = Ext.getCmp('optionsGrid');
-    og.getStore().load();
-  } else {
-    if ('triggeroptions' == newCard.getId()) {
-      var tog = Ext.getCmp('triggerOptionsGrid');
-      tog.getStore().load();
-    } else {
-      if ('goodsgroups' == newCard.getId()) {
-        var ggg = Ext.getCmp('goodsGroupsGrid');
-        ggg.getStore().load();
-      } else {
-        if ('unitmeasures' == newCard.getId()) {
-          var ggg = Ext.getCmp('unitMeasuresGrid');
-          ggg.getStore().load();
-        }
-      }
     }
   }
 }, onEventsActivate:function(cmp, opt) {
