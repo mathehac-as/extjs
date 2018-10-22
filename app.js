@@ -51764,9 +51764,11 @@ views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options
   'unitmeasureslist button[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'menuitem[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'addunitmeasure button[action\x3dsave]':{click:this.saveUnitMeasure}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 'usereventsform button[action\x3dclearusereventsfilter]':{click:this.clearUserEventsFilter}, 'markereventsform button[action\x3dsearchmarkerevents]':{click:this.searcMarkerEvents}, 'markereventsform button[action\x3dclearmarkereventsfilter]':{click:this.clearMarkerEventsFilter}, 
   'reports':{show:this.onReportsShow}, 'reportslist \x3e grid[id\x3dreportsGrid]':{itemcontextmenu:this.onReportsGridContextMenu, selectionchange:this.onReportsGridSelectionChange}, 'reportslist button[action\x3drequestreport]':{click:this.requestReport}, 'menuitem[action\x3drequestreport]':{click:this.requestReport}, 'products':{activate:this.onProductsActivate}, 'tabpanel[id\x3dproductstabpanel]':{tabchange:this.onProductsTabChange}, 'productsresult button[action\x3daddproduct]':{click:this.addProduct}, 
   'menuitem[action\x3daddproduct]':{click:this.addProduct}, 'addproduct button[action\x3dsave]':{click:this.saveProduct}, 'productsresult button[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'menuitem[action\x3ddeleteproduct]':{click:this.deleteProduct}, 'productsresult button[action\x3deditproduct]':{click:this.editProduct}, 'menuitem[action\x3deditproduct]':{click:this.editProduct}, 'editproduct button[action\x3dsave]':{click:this.updateProduct}, 'productsresult \x3e grid[id\x3dproductsGrid]':{selectionchange:this.onProductsGridSelectionChange}, 
-  'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'productsform button[action\x3dsearchproducts]':{click:this.searcProducts}, 'productsform button[action\x3dclearproductsfilter]':{click:this.clearProductsFilter}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 
-  'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, 
-  selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
+  'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'productsform button[action\x3dsearchproducts]':{click:this.searcProducts}, 'productsform button[action\x3dclearproductsfilter]':{click:this.clearProductsFilter}, 'componentsresult button[action\x3daddcomponent]':{click:this.addComponent}, 'menuitem[action\x3daddcomponent]':{click:this.addComponent}, 'addcomponent button[action\x3dsave]':{click:this.saveComponent}, 'componentsresult button[action\x3ddeletecomponent]':{click:this.deleteComponent}, 
+  'menuitem[action\x3ddeletecomponent]':{click:this.deleteComponent}, 'componentsresult button[action\x3deditcomponent]':{click:this.editComponent}, 'menuitem[action\x3deditcomponent]':{click:this.editComponent}, 'editcomponent button[action\x3dsave]':{click:this.updateComponent}, 'componentsresult \x3e grid[id\x3dcomponentsGrid]':{selectionchange:this.onComponentsGridSelectionChange}, 'editcomponent':{show:this.onEditComponentWindowShow, close:this.onEditComponentWindowClose}, 'componentsform button[action\x3dsearchcomponents]':{click:this.searcComponents}, 
+  'componentsform button[action\x3dclearcomponentsfilter]':{click:this.clearComponentsFilter}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, selectionchange:this.onRequestsGridSelectionChange}, 
+  'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 
+  'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
 }, loadStatistics:function() {
   var FormPanel = Ext.getCmp('briefKMO');
   if (undefined != FormPanel) {
@@ -52075,6 +52077,155 @@ views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
   if (undefined != editProductTabPanel) {
     editProductTabPanel.setActiveTab(1);
+  }
+}, addComponent:function(button) {
+  var av = Ext.getCmp('add_component_window');
+  if (av) {
+    av.show();
+  } else {
+    Ext.create('SopCor.view.products.AddComponent', {id:'add_component_window'}).show();
+  }
+}, saveComponent:function(button) {
+  var form = Ext.getCmp('addcomponentform').getForm();
+  if (!form || !form.isValid()) {
+    return;
+  }
+  var \u0441omponent_expiration_str = '';
+  var \u0441omponent_expiration_year = Ext.getCmp('сomponent_expiration_year').getValue();
+  if (\u0441omponent_expiration_year != '' && \u0441omponent_expiration_year != null) {
+    \u0441omponent_expiration_str = \u0441omponent_expiration_year + ' year';
+  }
+  var \u0441omponent_expiration_month = Ext.getCmp('сomponent_expiration_month').getValue();
+  if (\u0441omponent_expiration_month != '' && \u0441omponent_expiration_month != null) {
+    if (\u0441omponent_expiration_str != '') {
+      \u0441omponent_expiration_str = \u0441omponent_expiration_str + ' ';
+    }
+    \u0441omponent_expiration_str = \u0441omponent_expiration_str + \u0441omponent_expiration_month + ' month';
+  }
+  var \u0441omponent_expiration_day = Ext.getCmp('сomponent_expiration_day').getValue();
+  if (\u0441omponent_expiration_day != '' && \u0441omponent_expiration_day != null) {
+    if (\u0441omponent_expiration_str != '') {
+      \u0441omponent_expiration_str = \u0441omponent_expiration_str + ' ';
+    }
+    \u0441omponent_expiration_str = \u0441omponent_expiration_str + \u0441omponent_expiration_day + ' day';
+  }
+  Ext.getCmp('addcomponentform').getForm().setValues({'сomponent_expiration':\u0441omponent_expiration_str});
+  form.submit({method:'post', url:'/request/component', success:function(form, action) {
+    var grid = Ext.getCmp('componentsGrid');
+    grid.getStore().reload();
+    Ext.getCmp('add_component_window').close();
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Добавление компонента', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
+}, deleteComponent:function(button) {
+  var grid = Ext.getCmp('сomponentsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    var id = rec.get('id');
+    Ext.override(Ext.MessageBox, {buttonText:{yes:'Да', no:'Нет'}});
+    Ext.MessageBox.confirm('Удаление компонента', 'Вы действительно хотите удалить компонент ' + rec.get('name'), function(btn) {
+      if ('yes' == btn) {
+        var grid = Ext.getCmp('сomponentsGrid');
+        var rec = grid.getSelectionModel().getSelection()[0];
+        var id = rec.get('id');
+        Ext.Ajax.request({url:'/request/сomponent?id\x3d' + id, method:'delete', success:function(response, opt) {
+          var obj = Ext.decode(response.responseText);
+          if (obj.success) {
+            var grid = Ext.getCmp('сomponentsGrid');
+            grid.getStore().reload();
+          } else {
+            Ext.MessageBox.show({title:'Удаление компонента', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+          }
+        }, failure:function(response, opt) {
+          Ext.MessageBox.show({title:'Удаление компонента', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+        }});
+      }
+    }).setHeight(50);
+  }
+}, 'onСomponentsGridSelectionChange':function(selectionModel, selected) {
+  var delButton = Ext.getCmp('deleteСomponentButton');
+  var editButton = Ext.getCmp('editСomponentButton');
+  if (undefined != delButton) {
+    if (selected.length > 0) {
+      delButton.setDisabled(false);
+    } else {
+      delButton.setDisabled(true);
+    }
+  }
+  if (undefined != editButton) {
+    if (selected.length > 0) {
+      editButton.setDisabled(false);
+    } else {
+      editButton.setDisabled(true);
+    }
+  }
+}, 'editСomponent':function(button) {
+  var eu = Ext.getCmp('edit_component_window');
+  if (undefined == eu) {
+    eu = Ext.create('SopCor.view.products.EditСomponent', {id:'edit_component_window'});
+  }
+  var grid = Ext.getCmp('componentsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    var component_expiration = rec.get('component_expiration');
+    var component_expiration_split = component_expiration.match(/((\d+)\syear)*\s*((\d+)\smonth)*\s*((\d+)\sday)*/i);
+    Ext.getCmp('editcomponentform').getForm().setValues({component_name:rec.get('component_name'), component_doc:rec.get('component_doc'), component_replacedby:rec.get('component_replacedby'), component_expiration:rec.get('component_expiration'), component_expiration_year:!isNaN(component_expiration_split[2]) ? component_expiration_split[2] : '', component_expiration_month:!isNaN(component_expiration_split[4]) ? component_expiration_split[4] : '', component_expiration_day:!isNaN(component_expiration_split[6]) ? 
+    component_expiration_split[6] : '', component_modification:rec.get('component_modification')});
+  }
+  eu.show();
+}, 'updateСomponent':function(button) {
+  var form = Ext.getCmp('editcomponentform').getForm();
+  if (!form || !form.isValid()) {
+    return;
+  }
+  var grid = Ext.getCmp('componentsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    var componentId = rec.get('id');
+    var component_expiration_str = '';
+    var component_expiration_year = Ext.getCmp('component_expiration_year').getValue();
+    if (component_expiration_year != '' && component_expiration_year != null) {
+      component_expiration_str = component_expiration_year + ' year';
+    }
+    var component_expiration_month = Ext.getCmp('component_expiration_month').getValue();
+    if (component_expiration_month != '' && component_expiration_month != null) {
+      if (component_expiration_str != '') {
+        component_expiration_str = component_expiration_str + ' ';
+      }
+      component_expiration_str = component_expiration_str + component_expiration_month + ' month';
+    }
+    var component_expiration_day = Ext.getCmp('component_expiration_day').getValue();
+    if (component_expiration_day != '' && component_expiration_day != null) {
+      if (component_expiration_str != '') {
+        component_expiration_str = component_expiration_str + ' ';
+      }
+      component_expiration_str = component_expiration_str + component_expiration_day + ' day';
+    }
+    Ext.getCmp('editcomponentform').getForm().setValues({component_expiration:component_expiration_str});
+  }
+  form.submit({method:'post', url:'/request/component', params:{id:componentId}, success:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    if (obj.success) {
+      var grid = Ext.getCmp('componentsGrid');
+      grid.getStore().reload();
+      Ext.getCmp('edit_component_window').close();
+    } else {
+      Ext.MessageBox.show({title:'Редактирование компонента', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+    }
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Редактирование компонента', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
+}, 'onEditСomponentWindowShow':function(comp, opt) {
+  var editProductTabPanel = Ext.getCmp('editcomponenttabpanel');
+  if (undefined != editProductTabPanel) {
+    editProductTabPanel.setActiveTab(0);
+  }
+}, 'onEditСomponentWindowClose':function(comp, opt) {
+  var edit\u0421omponentTabPanel = Ext.getCmp('editcomponenttabpanel');
+  if (undefined != edit\u0421omponentTabPanel) {
+    edit\u0421omponentTabPanel.setActiveTab(1);
   }
 }, addUser:function(button) {
   var au = Ext.getCmp('add_user_window');
@@ -53983,16 +54134,21 @@ Ext.cmd.derive('SopCor.view.options.EditTriggerOptionForm', Ext.form.Panel, {bor
 'edittriggeroptionform':true}, ['widget.edittriggeroptionform'], 0, [SopCor.view.options, 'EditTriggerOptionForm'], 0);
 Ext.cmd.derive('SopCor.view.options.EditTriggerOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['edittriggeroption'], ['component', 'box', 'container', 'panel', 'window', 'edittriggeroption'], {'component':true, 'box':true, 'container':true, 'panel':true, 
 'window':true, 'edittriggeroption':true}, ['widget.edittriggeroption'], 0, [SopCor.view.options, 'EditTriggerOption'], 0);
+Ext.cmd.derive('SopCor.view.products.AddComponentForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'component_name', name:'name', fieldLabel:'Наименование компонента'}, {id:'component_comments', name:'comments', fieldLabel:'Комментарии'}, {id:'component_is_mark_required', name:'is_mark_required', fieldLabel:'Обязательная маркировка'}, {xtype:'hiddenfield', 
+id:'component_modification_date', name:'modification_date', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'component_expiration_year', name:'component_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'component_expiration_month', name:'component_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, {id:'component_expiration_day', 
+name:'component_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true}, 0, ['addcomponentform'], ['component', 'box', 'container', 'panel', 'form', 'addcomponentform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addcomponentform':true}, ['widget.addcomponentform'], 0, [SopCor.view.products, 'AddComponentForm'], 0);
+Ext.cmd.derive('SopCor.view.products.AddComponent', Ext.window.Window, {title:'Новый компонент', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addcomponentform', id:'addcomponentform'}], buttons:[{id:'AddComponentSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'name'}, 0, ['addcomponent'], ['component', 'box', 'container', 'panel', 'window', 'addcomponent'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addcomponent':true}, 
+['widget.addcomponent'], 0, [SopCor.view.products, 'AddComponent'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProductForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', fieldLabel:'Идентификатор замены'}, 
 {xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'product_expiration_year', name:'product_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'product_expiration_month', name:'product_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, {id:'product_expiration_day', 
 name:'product_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
 Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['addproduct'], ['component', 'box', 'container', 'panel', 'window', 'addproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addproduct':true}, 
 ['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
-Ext.cmd.derive('SopCor.view.products.ComponentsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_component_name', name:'product_name', fieldLabel:'Наименование продукции', margin:'0 10 0 0'}, {id:'search_component_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', 
-action:'searchcomponents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearcomponentsfilter'}]}]}, 0, ['componentsform'], ['component', 'box', 'container', 'panel', 'form', 'componentsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'componentsform':true}, ['widget.componentsform'], 0, [SopCor.view.products, 'ComponentsForm'], 0);
+Ext.cmd.derive('SopCor.view.products.ComponentsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_component_name', name:'name', fieldLabel:'Наименование компонента', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchcomponents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearcomponentsfilter'}]}]}, 0, ['componentsform'], 
+['component', 'box', 'container', 'panel', 'form', 'componentsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'componentsform':true}, ['widget.componentsform'], 0, [SopCor.view.products, 'ComponentsForm'], 0);
 Ext.cmd.derive('SopCor.view.products.ComponentsGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Components';
-  this.columns = [{text:'Идентификатор', dataIndex:'id', width:100, sortable:true}, {text:'Наименование компонента', dataIndex:'name', flex:1, sortable:true}, {text:'Комментарии', dataIndex:'comments', flex:1, sortable:true}, {text:'Обязательная маркировка', dataIndex:'is_mark_required', width:20, sortable:true}, {text:'Идентификатор замены', dataIndex:'is_mark_required', width:200, sortable:true}, {text:'Срок годности', dataIndex:'modification_date', width:200, sortable:true}];
+  this.columns = [{text:'Идентификатор', dataIndex:'id', width:100, sortable:true}, {text:'Наименование компонента', dataIndex:'name', flex:1, sortable:true}, {text:'Комментарии', dataIndex:'comments', flex:1, sortable:true}, {text:'Обязательная маркировка', dataIndex:'is_mark_required', width:200, sortable:true}, {text:'Срок годности', dataIndex:'modification_date', width:200, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addComponentButton', text:'Добавить', action:'addpcomponent', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editComponentButton', text:'Изменить', action:'editcomponent', icon:'/resources/images/icons/pencil.png', disabled:true}, '-', {xtype:'button', id:'deleteComponentButton', text:'Удалить', action:'deletecomponent', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
