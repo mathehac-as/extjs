@@ -1760,398 +1760,6 @@ try {
   }
 } catch (e) {
 }
-var Ext = Ext || {};
-if (!Ext.Toolbar) {
-  Ext.Toolbar = {};
-}
-if (!Ext.app) {
-  Ext.app = {};
-}
-if (!Ext.app.domain) {
-  Ext.app.domain = {};
-}
-if (!Ext.button) {
-  Ext.button = {};
-}
-if (!Ext.container) {
-  Ext.container = {};
-}
-if (!Ext.core) {
-  Ext.core = {};
-}
-if (!Ext.data) {
-  Ext.data = {};
-}
-if (!Ext.data.association) {
-  Ext.data.association = {};
-}
-if (!Ext.data.flash) {
-  Ext.data.flash = {};
-}
-if (!Ext.data.proxy) {
-  Ext.data.proxy = {};
-}
-if (!Ext.data.reader) {
-  Ext.data.reader = {};
-}
-if (!Ext.data.writer) {
-  Ext.data.writer = {};
-}
-if (!Ext.dd) {
-  Ext.dd = {};
-}
-if (!Ext.dom) {
-  Ext.dom = {};
-}
-if (!Ext.draw) {
-  Ext.draw = {};
-}
-if (!Ext.form) {
-  Ext.form = {};
-}
-if (!Ext.form.Action) {
-  Ext.form.Action = {};
-}
-if (!Ext.form.action) {
-  Ext.form.action = {};
-}
-if (!Ext.form.field) {
-  Ext.form.field = {};
-}
-if (!Ext.fx) {
-  Ext.fx = {};
-}
-if (!Ext.fx.target) {
-  Ext.fx.target = {};
-}
-if (!Ext.grid) {
-  Ext.grid = {};
-}
-if (!Ext.grid.column) {
-  Ext.grid.column = {};
-}
-if (!Ext.grid.feature) {
-  Ext.grid.feature = {};
-}
-if (!Ext.grid.header) {
-  Ext.grid.header = {};
-}
-if (!Ext.grid.locking) {
-  Ext.grid.locking = {};
-}
-if (!Ext.grid.plugin) {
-  Ext.grid.plugin = {};
-}
-if (!Ext.layout) {
-  Ext.layout = {};
-}
-if (!Ext.layout.boxOverflow) {
-  Ext.layout.boxOverflow = {};
-}
-if (!Ext.layout.component) {
-  Ext.layout.component = {};
-}
-if (!Ext.layout.component.field) {
-  Ext.layout.component.field = {};
-}
-if (!Ext.layout.container) {
-  Ext.layout.container = {};
-}
-if (!Ext.layout.container.border) {
-  Ext.layout.container.border = {};
-}
-if (!Ext.layout.container.boxOverflow) {
-  Ext.layout.container.boxOverflow = {};
-}
-if (!Ext.list) {
-  Ext.list = {};
-}
-if (!Ext.menu) {
-  Ext.menu = {};
-}
-if (!Ext.panel) {
-  Ext.panel = {};
-}
-if (!Ext.perf) {
-  Ext.perf = {};
-}
-if (!Ext.picker) {
-  Ext.picker = {};
-}
-if (!Ext.resizer) {
-  Ext.resizer = {};
-}
-if (!Ext.selection) {
-  Ext.selection = {};
-}
-if (!Ext.state) {
-  Ext.state = {};
-}
-if (!Ext.tab) {
-  Ext.tab = {};
-}
-if (!Ext.tip) {
-  Ext.tip = {};
-}
-if (!Ext.toolbar) {
-  Ext.toolbar = {};
-}
-if (!Ext.util) {
-  Ext.util = {};
-}
-if (!Ext.ux) {
-  Ext.ux = {};
-}
-if (!Ext.view) {
-  Ext.view = {};
-}
-if (!Ext.window) {
-  Ext.window = {};
-}
-var SopCor = SopCor || {};
-if (!SopCor.controller) {
-  SopCor.controller = {};
-}
-if (!SopCor.model) {
-  SopCor.model = {};
-}
-if (!SopCor.store) {
-  SopCor.store = {};
-}
-if (!SopCor.view) {
-  SopCor.view = {};
-}
-if (!SopCor.view.checkuid) {
-  SopCor.view.checkuid = {};
-}
-if (!SopCor.view.events) {
-  SopCor.view.events = {};
-}
-if (!SopCor.view.login) {
-  SopCor.view.login = {};
-}
-if (!SopCor.view.markers) {
-  SopCor.view.markers = {};
-}
-if (!SopCor.view.options) {
-  SopCor.view.options = {};
-}
-if (!SopCor.view.products) {
-  SopCor.view.products = {};
-}
-if (!SopCor.view.reports) {
-  SopCor.view.reports = {};
-}
-if (!SopCor.view.scans) {
-  SopCor.view.scans = {};
-}
-if (!SopCor.view.statistics) {
-  SopCor.view.statistics = {};
-}
-if (!SopCor.view.vendors) {
-  SopCor.view.vendors = {};
-}
-(function(ExtCmd) {
-  var baseStaticMembers, enumerables = ['constructor', 'toString', 'valueOf', 'toLocaleString'], enumerablesMap = {}, enumerablesObj = {}, enumerablesMask = 0, baseStaticMember, Base, ClassManager, Class, configPreFn, cachedConfigPreFn, platformConfigPostFn, platformConfigPreFn, deprecatedPostFn, privatesPreFn, v5ClassSystem, thunk = function() {
-    var i, mask;
-    Base = Ext.Base;
-    ClassManager = Ext.ClassManager;
-    Class = Ext.Class;
-    for (i = enumerables.length; i-- > 0;) {
-      mask = 1 << i;
-      enumerablesObj[enumerablesMap[mask] = enumerables[i]] = mask;
-    }
-    for (i in enumerablesObj) {
-      enumerablesMask |= enumerablesObj[i];
-    }
-    enumerablesMask = ~enumerablesMask;
-    Function.prototype.$isFunction = 1;
-    v5ClassSystem = !!ClassManager.addAlias;
-    configPreFn = Class.getPreprocessor('config').fn;
-    cachedConfigPreFn = Class.getPreprocessor('cachedConfig');
-    cachedConfigPreFn = cachedConfigPreFn && cachedConfigPreFn.fn;
-    privatesPreFn = Class.getPreprocessor('privates');
-    privatesPreFn = privatesPreFn && privatesPreFn.fn;
-    platformConfigPreFn = Class.getPreprocessor('platformConfig');
-    platformConfigPreFn = platformConfigPreFn && platformConfigPreFn.fn;
-    platformConfigPostFn = ClassManager.postprocessors.platformConfig;
-    platformConfigPostFn = platformConfigPostFn && platformConfigPostFn.fn;
-    deprecatedPostFn = ClassManager.postprocessors.deprecated;
-    deprecatedPostFn = deprecatedPostFn && deprecatedPostFn.fn;
-    baseStaticMembers = Base.$staticMembers;
-    if (!baseStaticMembers) {
-      baseStaticMembers = [];
-      for (baseStaticMember in Base) {
-        if (Base.hasOwnProperty(baseStaticMember)) {
-          baseStaticMembers.push(baseStaticMember);
-        }
-      }
-    }
-    ExtCmd.derive = derive;
-    return derive.apply(this, arguments);
-  }, onBeforeCreated = function(cls, data, hooks) {
-    var enumerableMembers = hooks.enumerableMembers, proto = cls.prototype, member, fn, which, val, existing;
-    if (!data) {
-      return;
-    }
-    if (v5ClassSystem) {
-      cls.addMembers(data);
-    } else {
-      for (member in data) {
-        val = data[member];
-        if (val && val.$isFunction && !val.$isClass && val !== Ext.emptyFn && val !== Ext.identityFn) {
-          existing = proto.hasOwnProperty(member) && proto[member];
-          if (existing) {
-            val.$previous = existing;
-          }
-          proto[member] = fn = val;
-          fn.$owner = cls;
-          fn.$name = member;
-        } else {
-          proto[member] = val;
-        }
-      }
-      for (which = 1; enumerableMembers; which <<= 1) {
-        if (enumerableMembers & which) {
-          enumerableMembers &= ~which;
-          member = enumerablesMap[which];
-          proto[member] = fn = data[member];
-          fn.$owner = cls;
-          fn.$name = member;
-        }
-      }
-    }
-    if (data.platformConfig && platformConfigPostFn) {
-      platformConfigPostFn.call(ClassManager, cls.$className, cls, data);
-    }
-    if (data.deprecated && deprecatedPostFn) {
-      deprecatedPostFn.call(ClassManager, cls.$className, cls, data);
-    }
-  }, derive = function(className, base, data, enumerableMembers, xtypes, xtypesChain, xtypeMap, aliases, mixins, names, createdFn) {
-    var cls = function ctor() {
-      return this.constructor.apply(this, arguments) || null;
-    }, ret = cls, hooks = {enumerableMembers:enumerableMembers & enumerablesMask, onCreated:createdFn, onBeforeCreated:onBeforeCreated, aliases:aliases}, alternates = data.alternateClassName || [], global = Ext.global, alias, alternate, i, ln, n, ns, name, proto, statics, staticMember, targetName, fn, val, altToName = ClassManager.alternateToName || ClassManager.maps.alternateToName, nameToAlt = ClassManager.nameToAlternates || ClassManager.maps.nameToAlternates;
-    for (i = baseStaticMembers.length; i-- > 0;) {
-      name = baseStaticMembers[i];
-      cls[name] = Base[name];
-    }
-    if (data.$isFunction) {
-      data = data(cls);
-    }
-    hooks.data = data;
-    statics = data.statics;
-    delete data.statics;
-    data.$className = className;
-    if ('$className' in data) {
-      cls.$className = data.$className;
-    }
-    cls.extend(base);
-    proto = cls.prototype;
-    if (xtypes) {
-      cls.xtype = data.xtype = xtypes[0];
-      proto.xtypes = xtypes;
-    }
-    proto.xtypesChain = xtypesChain;
-    proto.xtypesMap = xtypeMap;
-    data.alias = aliases;
-    ret.triggerExtended(cls, data, hooks);
-    if (data.onClassExtended) {
-      cls.onExtended(data.onClassExtended, cls);
-      delete data.onClassExtended;
-    }
-    if (data.privates && privatesPreFn) {
-      privatesPreFn.call(Class, cls, data);
-    }
-    if (statics) {
-      if (v5ClassSystem) {
-        cls.addStatics(statics);
-      } else {
-        for (staticMember in statics) {
-          if (statics.hasOwnProperty(staticMember)) {
-            val = statics[staticMember];
-            if (val && val.$isFunction && !val.$isClass && val !== Ext.emptyFn && val !== Ext.identityFn) {
-              cls[staticMember] = fn = val;
-              fn.$owner = cls;
-              fn.$name = staticMember;
-            }
-            cls[staticMember] = val;
-          }
-        }
-      }
-    }
-    if (data.inheritableStatics) {
-      cls.addInheritableStatics(data.inheritableStatics);
-      delete data.inheritableStatics;
-    }
-    if (proto.onClassExtended) {
-      ret.onExtended(proto.onClassExtended, ret);
-      delete proto.onClassExtended;
-    }
-    if (data.platformConfig && platformConfigPreFn) {
-      platformConfigPreFn.call(Class, cls, data);
-      delete data.platformConfig;
-    }
-    if (data.config) {
-      configPreFn.call(Class, cls, data);
-    }
-    if (data.cachedConfig && cachedConfigPreFn) {
-      cachedConfigPreFn.call(Class, cls, data);
-      delete data.cachedConfig;
-    }
-    hooks.onBeforeCreated(cls, hooks.data, hooks);
-    for (i = 0, n = mixins && mixins.length; i < n; ++i) {
-      cls.mixin.apply(cls, mixins[i]);
-    }
-    for (i = 0, n = aliases.length; i < n; i++) {
-      alias = aliases[i];
-      ClassManager.setAlias ? ClassManager.setAlias(cls, alias) : ClassManager.addAlias(cls, alias);
-    }
-    if (data.singleton) {
-      ret = new cls;
-    }
-    if (!(alternates instanceof Array)) {
-      alternates = [alternates];
-    }
-    targetName = ClassManager.getName(ret);
-    for (i = 0, ln = alternates.length; i < ln; i++) {
-      alternate = alternates[i];
-      ClassManager.classes[alternate] = ret;
-      if (v5ClassSystem) {
-        ClassManager.addAlternate(cls, alternate);
-      } else {
-        if (targetName) {
-          altToName[alternate] = targetName;
-          alternates = nameToAlt[targetName] || (nameToAlt[targetName] = []);
-          alternates.push(alternate);
-        }
-      }
-    }
-    for (i = 0, n = names.length; i < n; i += 2) {
-      ns = names[i];
-      if (!ns) {
-        ns = global;
-      }
-      ns[names[i + 1]] = ret;
-    }
-    ClassManager.classes[className] = ret;
-    if (!v5ClassSystem) {
-      if (targetName && targetName !== className) {
-        altToName[className] = targetName;
-        alternates = nameToAlt[targetName] || (nameToAlt[targetName] = []);
-        alternates.push(className);
-      }
-    }
-    delete proto.alternateClassName;
-    if (hooks.onCreated) {
-      hooks.onCreated.call(ret, ret);
-    }
-    if (className) {
-      ClassManager.triggerCreated(className);
-    }
-    return ret;
-  };
-  ExtCmd.derive = thunk;
-})(Ext.cmd = {});
 var Ext = Ext || window['Ext'] || {};
 Ext.Boot = Ext.Boot || function(emptyFn) {
   var doc = document, _config = {disableCaching:/[?&](?:cache|disableCacheBuster)\b/i.test(location.search) || location.href.substring(0, 5) === 'file:' || /(^|[ ;])ext-cache=1/.test(doc.cookie) ? false : true, disableCachingParam:'_dc', loadDelay:false, preserveScripts:true, charset:undefined}, _currentRequest, _suspendedQueue = [], _items = {}, cssRe = /\.css(?:\?|$)/i, pathTailRe = /\/[^\/]*$/, resolverEl = doc.createElement('a'), isBrowser = typeof window !== 'undefined', _environment = {browser:isBrowser, 
@@ -2421,7 +2029,7 @@ Ext.Boot = Ext.Boot || function(emptyFn) {
       status = content.status;
       content = content.content || '';
       if ((exception || status === 0) && !_environment.phantom) {
-        entry.error = "Failed loading synchronously via XHR: '" + url + "'. It's likely that the file is either being loaded from a different domain or from the local file system where cross origin requests are not allowed for security reasons. Try asynchronous loading instead." || true;
+        entry.error = "Failed loading synchronously via XHR: '" + url + "'. It's likely that the file is either being loaded from a " + 'different domain or from the local file system where cross ' + 'origin requests are not allowed for security reasons. Try ' + 'asynchronous loading instead.' || true;
       } else {
         if (status >= 200 && status < 300 || status === 304 || _environment.phantom || status === 0 && content.length > 0) {
           Boot.inject(content, url);
@@ -3199,7 +2807,7 @@ Ext.String = function() {
       entityKeys.push(key);
     }
     charToEntityRegex = new RegExp('(' + charKeys.join('|') + ')', 'g');
-    entityToCharRegex = new RegExp('(' + entityKeys.join('|') + '|\x26#[0-9]{1,5};)', 'g');
+    entityToCharRegex = new RegExp('(' + entityKeys.join('|') + '|\x26#[0-9]{1,5};' + ')', 'g');
   }, resetCharacterEntities:function() {
     charToEntity = {};
     entityToChar = {};
@@ -4391,11 +3999,11 @@ Ext.Date = new function() {
     for (var a = [], i = 0; i < 12; a.push(utilDate.getShortMonthName(i)), ++i) {
     }
     return Ext.applyIf({s:'(' + a.join('|') + ')'}, utilDate.formatCodeToRegex('F'));
-  }, m:{g:1, c:'m \x3d parseInt(results[{0}], 10) - 1;\n', s:'(1[0-2]|0[1-9])'}, n:{g:1, c:'m \x3d parseInt(results[{0}], 10) - 1;\n', s:'(1[0-2]|[1-9])'}, t:{g:0, c:null, s:'(?:\\d{2})'}, L:{g:0, c:null, s:'(?:1|0)'}, o:{g:1, c:'y \x3d parseInt(results[{0}], 10);\n', s:'(\\d{4})'}, Y:{g:1, c:'y \x3d parseInt(results[{0}], 10);\n', s:'(\\d{4})'}, y:{g:1, c:'var ty \x3d parseInt(results[{0}], 10);\ny \x3d ty \x3e me.y2kYear ? 1900 + ty : 2000 + ty;\n', s:'(\\d{1,2})'}, a:{g:1, c:'if (/(am)/i.test(results[{0}])) {\nif (!h || h \x3d\x3d 12) { h \x3d 0; }\n} else { if (!h || h \x3c 12) { h \x3d (h || 0) + 12; }}', 
-  s:'(am|pm|AM|PM)', calcAtEnd:true}, A:{g:1, c:'if (/(am)/i.test(results[{0}])) {\nif (!h || h \x3d\x3d 12) { h \x3d 0; }\n} else { if (!h || h \x3c 12) { h \x3d (h || 0) + 12; }}', s:'(AM|PM|am|pm)', calcAtEnd:true}, g:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(1[0-2]|[0-9])'}, G:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(2[0-3]|1[0-9]|[0-9])'}, h:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(1[0-2]|0[1-9])'}, H:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(2[0-3]|[0-1][0-9])'}, 
-  i:{g:1, c:'i \x3d parseInt(results[{0}], 10);\n', s:'([0-5][0-9])'}, s:{g:1, c:'s \x3d parseInt(results[{0}], 10);\n', s:'([0-5][0-9])'}, u:{g:1, c:'ms \x3d results[{0}]; ms \x3d parseInt(ms, 10)/Math.pow(10, ms.length - 3);\n', s:'(\\d+)'}, O:{g:1, c:['o \x3d results[{0}];', 'var sn \x3d o.substring(0,1),', 'hr \x3d o.substring(1,3)*1 + Math.floor(o.substring(3,5) / 60),', 'mn \x3d o.substring(3,5) % 60;', "o \x3d ((-12 \x3c\x3d (hr*60 + mn)/60) \x26\x26 ((hr*60 + mn)/60 \x3c\x3d 14))? (sn + Ext.String.leftPad(hr, 2, '0') + Ext.String.leftPad(mn, 2, '0')) : null;\n"].join('\n'), 
-  s:'([+-]\\d{4})'}, P:{g:1, c:['o \x3d results[{0}];', 'var sn \x3d o.substring(0,1),', 'hr \x3d o.substring(1,3)*1 + Math.floor(o.substring(4,6) / 60),', 'mn \x3d o.substring(4,6) % 60;', "o \x3d ((-12 \x3c\x3d (hr*60 + mn)/60) \x26\x26 ((hr*60 + mn)/60 \x3c\x3d 14))? (sn + Ext.String.leftPad(hr, 2, '0') + Ext.String.leftPad(mn, 2, '0')) : null;\n"].join('\n'), s:'([+-]\\d{2}:\\d{2})'}, T:{g:0, c:null, s:'[A-Z]{1,5}'}, Z:{g:1, c:'zz \x3d results[{0}] * 1;\nzz \x3d (-43200 \x3c\x3d zz \x26\x26 zz \x3c\x3d 50400)? zz : null;\n', 
-  s:'([+-]?\\d{1,5})'}, c:function() {
+  }, m:{g:1, c:'m \x3d parseInt(results[{0}], 10) - 1;\n', s:'(1[0-2]|0[1-9])'}, n:{g:1, c:'m \x3d parseInt(results[{0}], 10) - 1;\n', s:'(1[0-2]|[1-9])'}, t:{g:0, c:null, s:'(?:\\d{2})'}, L:{g:0, c:null, s:'(?:1|0)'}, o:{g:1, c:'y \x3d parseInt(results[{0}], 10);\n', s:'(\\d{4})'}, Y:{g:1, c:'y \x3d parseInt(results[{0}], 10);\n', s:'(\\d{4})'}, y:{g:1, c:'var ty \x3d parseInt(results[{0}], 10);\n' + 'y \x3d ty \x3e me.y2kYear ? 1900 + ty : 2000 + ty;\n', s:'(\\d{1,2})'}, a:{g:1, c:'if (/(am)/i.test(results[{0}])) {\n' + 
+  'if (!h || h \x3d\x3d 12) { h \x3d 0; }\n' + '} else { if (!h || h \x3c 12) { h \x3d (h || 0) + 12; }}', s:'(am|pm|AM|PM)', calcAtEnd:true}, A:{g:1, c:'if (/(am)/i.test(results[{0}])) {\n' + 'if (!h || h \x3d\x3d 12) { h \x3d 0; }\n' + '} else { if (!h || h \x3c 12) { h \x3d (h || 0) + 12; }}', s:'(AM|PM|am|pm)', calcAtEnd:true}, g:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(1[0-2]|[0-9])'}, G:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(2[0-3]|1[0-9]|[0-9])'}, h:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', 
+  s:'(1[0-2]|0[1-9])'}, H:{g:1, c:'h \x3d parseInt(results[{0}], 10);\n', s:'(2[0-3]|[0-1][0-9])'}, i:{g:1, c:'i \x3d parseInt(results[{0}], 10);\n', s:'([0-5][0-9])'}, s:{g:1, c:'s \x3d parseInt(results[{0}], 10);\n', s:'([0-5][0-9])'}, u:{g:1, c:'ms \x3d results[{0}]; ms \x3d parseInt(ms, 10)/Math.pow(10, ms.length - 3);\n', s:'(\\d+)'}, O:{g:1, c:['o \x3d results[{0}];', 'var sn \x3d o.substring(0,1),', 'hr \x3d o.substring(1,3)*1 + Math.floor(o.substring(3,5) / 60),', 'mn \x3d o.substring(3,5) % 60;', 
+  "o \x3d ((-12 \x3c\x3d (hr*60 + mn)/60) \x26\x26 ((hr*60 + mn)/60 \x3c\x3d 14))? (sn + Ext.String.leftPad(hr, 2, '0') + Ext.String.leftPad(mn, 2, '0')) : null;\n"].join('\n'), s:'([+-]\\d{4})'}, P:{g:1, c:['o \x3d results[{0}];', 'var sn \x3d o.substring(0,1),', 'hr \x3d o.substring(1,3)*1 + Math.floor(o.substring(4,6) / 60),', 'mn \x3d o.substring(4,6) % 60;', "o \x3d ((-12 \x3c\x3d (hr*60 + mn)/60) \x26\x26 ((hr*60 + mn)/60 \x3c\x3d 14))? (sn + Ext.String.leftPad(hr, 2, '0') + Ext.String.leftPad(mn, 2, '0')) : null;\n"].join('\n'), 
+  s:'([+-]\\d{2}:\\d{2})'}, T:{g:0, c:null, s:'[A-Z]{1,5}'}, Z:{g:1, c:'zz \x3d results[{0}] * 1;\n' + 'zz \x3d (-43200 \x3c\x3d zz \x26\x26 zz \x3c\x3d 50400)? zz : null;\n', s:'([+-]?\\d{1,5})'}, c:function() {
     var calc = [], arr = [utilDate.formatCodeToRegex('Y', 1), utilDate.formatCodeToRegex('m', 2), utilDate.formatCodeToRegex('d', 3), utilDate.formatCodeToRegex('H', 4), utilDate.formatCodeToRegex('i', 5), utilDate.formatCodeToRegex('s', 6), {c:"ms \x3d results[7] || '0'; ms \x3d parseInt(ms, 10)/Math.pow(10, ms.length - 3);\n"}, {c:['if(results[8]) {', "if(results[8] \x3d\x3d 'Z'){", 'zz \x3d 0;', "}else if (results[8].indexOf(':') \x3e -1){", utilDate.formatCodeToRegex('P', 8).c, '}else{', utilDate.formatCodeToRegex('O', 
     8).c, '}', '}'].join('\n')}], i, l;
     for (i = 0, l = arr.length; i < l; ++i) {
@@ -5444,7 +5052,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     }
     if (alias && aliasToNameMap[alias] !== className) {
       if (aliasToNameMap[alias] && Ext.isDefined(global.console)) {
-        global.console.log("[Ext.ClassManager] Overriding existing alias: '" + alias + "' of: '" + aliasToNameMap[alias] + "' with: '" + className + "'. Be sure it's intentional.");
+        global.console.log("[Ext.ClassManager] Overriding existing alias: '" + alias + "' " + "of: '" + aliasToNameMap[alias] + "' with: '" + className + "'. Be sure it's intentional.");
       }
       aliasToNameMap[alias] = className;
     }
@@ -5585,7 +5193,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
         throw new Error('[Ext.createByAlias] Cannot create an instance of unrecognized alias: ' + alias);
       }
       if (global.console) {
-        global.console.warn("[Ext.Loader] Synchronously loading '" + className + "'; consider adding Ext.require('" + alias + "') above Ext.onReady");
+        global.console.warn("[Ext.Loader] Synchronously loading '" + className + "'; consider adding " + "Ext.require('" + alias + "') above Ext.onReady");
       }
       Ext.syncRequire(className);
     }
@@ -5621,7 +5229,7 @@ Ext.setVersion('ext-theme-classic', '4.2.1');
     }
     if (!cls) {
       if (global.console) {
-        global.console.warn("[Ext.Loader] Synchronously loading '" + name + "'; consider adding Ext.require('" + (possibleName ? alias : name) + "') above Ext.onReady");
+        global.console.warn("[Ext.Loader] Synchronously loading '" + name + "'; consider adding " + "Ext.require('" + (possibleName ? alias : name) + "') above Ext.onReady");
       }
       Ext.syncRequire(name);
       cls = this.get(name);
@@ -6125,7 +5733,7 @@ Ext.Loader = new function() {
       status = xhr.status === 1223 ? 204 : xhr.status === 0 && ((self.location || {}).protocol == 'file:' || (self.location || {}).protocol == 'ionp:') ? 200 : xhr.status;
       isCrossOriginRestricted = isCrossOriginRestricted || status === 0;
       if (isCrossOriginRestricted) {
-        onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; It's likely that the file is either being loaded from a different domain or from the local file system whereby cross origin requests are not allowed due to security reasons. Use asynchronous loading with Ext.require instead.", synchronous);
+        onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; It's likely that the file is either " + 'being loaded from a different domain or from the local file system whereby cross origin ' + 'requests are not allowed due to security reasons. Use asynchronous loading with ' + 'Ext.require instead.', synchronous);
       } else {
         if (status >= 200 && status < 300 || status === 304) {
           if (!Ext.isIE) {
@@ -6134,7 +5742,7 @@ Ext.Loader = new function() {
           Ext.globalEval(xhr.responseText + debugSourceURL);
           onLoad.call(scope);
         } else {
-          onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; please verify that the file exists. XHR status code: " + status, synchronous);
+          onError.call(Loader, "Failed loading synchronously via XHR: '" + url + "'; please " + 'verify that the file exists. ' + 'XHR status code: ' + status, synchronous);
         }
       }
       xhr = null;
@@ -6199,7 +5807,7 @@ Ext.Loader = new function() {
     }
     if (classNames.length > 0) {
       if (!Loader.config.enabled) {
-        throw new Error('Ext.Loader is not enabled, so dependencies cannot be resolved dynamically. Missing required class' + (classNames.length > 1 ? 'es' : '') + ': ' + classNames.join(', '));
+        throw new Error('Ext.Loader is not enabled, so dependencies cannot be resolved dynamically. ' + 'Missing required class' + (classNames.length > 1 ? 'es' : '') + ': ' + classNames.join(', '));
       }
     } else {
       callback.call(scope);
@@ -6267,7 +5875,7 @@ Ext.Loader = new function() {
       for (i = 0, ln = missingClasses.length; i < ln; i++) {
         missingPaths.push(classNameToFilePathMap[missingClasses[i]]);
       }
-      throw new Error("The following classes are not declared even if their files have been loaded: '" + missingClasses.join("', '") + "'. Please check the source code of their corresponding files for possible typos: '" + missingPaths.join("', '"));
+      throw new Error('The following classes are not declared even if their files have been ' + "loaded: '" + missingClasses.join("', '") + "'. Please check the source code of their " + "corresponding files for possible typos: '" + missingPaths.join("', '"));
     }
   }, onFileLoadError:function(className, filePath, errorMessage, isSynchronous) {
     Loader.numPendingFiles--;
@@ -6381,7 +5989,7 @@ Ext.Loader = new function() {
         deadlockPath.push(cls);
         if (requiresMap[cls]) {
           if (Ext.Array.contains(requiresMap[cls], className)) {
-            throw new Error("Deadlock detected while loading dependencies! '" + className + "' and '" + deadlockPath[1] + "' mutually require each other. Path: " + deadlockPath.join(' -\x3e ') + ' -\x3e ' + deadlockPath[0]);
+            throw new Error("Deadlock detected while loading dependencies! '" + className + "' and '" + deadlockPath[1] + "' " + 'mutually require each other. Path: ' + deadlockPath.join(' -\x3e ') + ' -\x3e ' + deadlockPath[0]);
           }
           for (i = 0, ln = requiresMap[cls].length; i < ln; i++) {
             detectDeadlock(requiresMap[cls][i]);
@@ -6963,7 +6571,7 @@ window.undefined = window.undefined;
     }
   }, isStrict:isStrict, isIEQuirks:isIE && (!isStrict && (isIE6 || isIE7 || isIE8 || isIE9)), isOpera:isOpera, isOpera10_5:isOpera10_5, isWebKit:isWebKit, isChrome:isChrome, isSafari:isSafari, isSafari3:isSafari3, isSafari4:isSafari4, isSafari5:isSafari5, isSafari5_0:isSafari5_0, isSafari2:isSafari2, isIE:isIE, isIE6:isIE6, isIE7:isIE7, isIE7m:isIE6 || isIE7, isIE7p:isIE && !isIE6, isIE8:isIE8, isIE8m:isIE6 || isIE7 || isIE8, isIE8p:isIE && !(isIE6 || isIE7), isIE9:isIE9, isIE9m:isIE6 || isIE7 || 
   isIE8 || isIE9, isIE9p:isIE && !(isIE6 || isIE7 || isIE8), isIE10:isIE10, isIE10m:isIE6 || isIE7 || isIE8 || isIE9 || isIE10, isIE10p:isIE && !(isIE6 || isIE7 || isIE8 || isIE9), isGecko:isGecko, isGecko3:isGecko3, isGecko4:isGecko4, isGecko5:isGecko5, isGecko10:isGecko10, isFF3_0:isFF3_0, isFF3_5:isFF3_5, isFF3_6:isFF3_6, isFF4:4 <= firefoxVersion && firefoxVersion < 5, isFF5:5 <= firefoxVersion && firefoxVersion < 6, isFF10:10 <= firefoxVersion && firefoxVersion < 11, isLinux:isLinux, isWindows:isWindows, 
-  isMac:isMac, chromeVersion:chromeVersion, firefoxVersion:firefoxVersion, ieVersion:ieVersion, operaVersion:operaVersion, safariVersion:safariVersion, webKitVersion:webKitVersion, isSecure:isSecure, BLANK_IMAGE_URL:isIE6 || isIE7 ? '//www.sencha.com/s.gif' : 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw\x3d\x3d', value:function(v, defaultValue, allowBlank) {
+  isMac:isMac, chromeVersion:chromeVersion, firefoxVersion:firefoxVersion, ieVersion:ieVersion, operaVersion:operaVersion, safariVersion:safariVersion, webKitVersion:webKitVersion, isSecure:isSecure, BLANK_IMAGE_URL:isIE6 || isIE7 ? '/' + '/www.sencha.com/s.gif' : 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw\x3d\x3d', value:function(v, defaultValue, allowBlank) {
     return Ext.isEmpty(v, allowBlank) ? defaultValue : v;
   }, escapeRe:function(s) {
     return s.replace(/([-.*+?\^${}()|\[\]\/\\])/g, '\\$1');
@@ -7206,20 +6814,20 @@ Ext.application = function(config) {
           trimTrailingZeroes = allHashes.test(splitFormat[1]);
         }
       }
-      code = ['var utilFormat\x3dExt.util.Format,extNumber\x3dExt.Number,neg,fnum,parts' + (hasComma ? ',thousandSeparator,thousands\x3d[],j,n,i' : '') + (extraChars ? ',formatString\x3d"' + formatString + '",formatPattern\x3d/[\\d,\\.#]+/' : '') + (trimTrailingZeroes ? ',trailingZeroes\x3d/\\.?0+$/;' : ';') + 'return function(v){if(typeof v!\x3d\x3d"number"\x26\x26isNaN(v\x3dextNumber.from(v,NaN)))return"";neg\x3dv\x3c0;', 'fnum\x3dExt.Number.toFixed(Math.abs(v), ' + precision + ');'];
+      code = ['var utilFormat\x3dExt.util.Format,extNumber\x3dExt.Number,neg,fnum,parts' + (hasComma ? ',thousandSeparator,thousands\x3d[],j,n,i' : '') + (extraChars ? ',formatString\x3d"' + formatString + '",formatPattern\x3d/[\\d,\\.#]+/' : '') + (trimTrailingZeroes ? ',trailingZeroes\x3d/\\.?0+$/;' : ';') + 'return function(v){' + 'if(typeof v!\x3d\x3d"number"\x26\x26isNaN(v\x3dextNumber.from(v,NaN)))return"";' + 'neg\x3dv\x3c0;', 'fnum\x3dExt.Number.toFixed(Math.abs(v), ' + precision + ');'];
       if (hasComma) {
         if (precision) {
           code[code.length] = 'parts\x3dfnum.split(".");';
           code[code.length] = 'fnum\x3dparts[0];';
         }
         code[code.length] = 'if(v\x3e\x3d1000) {';
-        code[code.length] = 'thousandSeparator\x3dutilFormat.thousandSeparator;thousands.length\x3d0;j\x3dfnum.length;n\x3dfnum.length%3||3;for(i\x3d0;i\x3cj;i+\x3dn){if(i!\x3d\x3d0){n\x3d3;}thousands[thousands.length]\x3dfnum.substr(i,n);}fnum\x3dthousands.join(thousandSeparator);}';
+        code[code.length] = 'thousandSeparator\x3dutilFormat.thousandSeparator;' + 'thousands.length\x3d0;' + 'j\x3dfnum.length;' + 'n\x3dfnum.length%3||3;' + 'for(i\x3d0;i\x3cj;i+\x3dn){' + 'if(i!\x3d\x3d0){' + 'n\x3d3;' + '}' + 'thousands[thousands.length]\x3dfnum.substr(i,n);' + '}' + 'fnum\x3dthousands.join(thousandSeparator);' + '}';
         if (precision) {
           code[code.length] = 'fnum +\x3d utilFormat.decimalSeparator+parts[1];';
         }
       } else {
         if (precision) {
-          code[code.length] = 'if(utilFormat.decimalSeparator!\x3d\x3d"."){parts\x3dfnum.split(".");fnum\x3dparts[0]+utilFormat.decimalSeparator+parts[1];}';
+          code[code.length] = 'if(utilFormat.decimalSeparator!\x3d\x3d"."){' + 'parts\x3dfnum.split(".");' + 'fnum\x3dparts[0]+utilFormat.decimalSeparator+parts[1];' + '}';
         }
       }
       if (trimTrailingZeroes) {
@@ -7276,7 +6884,7 @@ Ext.application = function(config) {
     return s.replace(/([\-.*+?\^${}()|\[\]\/\\])/g, '\\$1');
   }});
 })();
-Ext.cmd.derive('Ext.util.TaskRunner', Ext.Base, {interval:10, timerId:null, constructor:function(interval) {
+Ext.define('Ext.util.TaskRunner', {interval:10, timerId:null, constructor:function(interval) {
   var me = this;
   if (typeof interval == 'number') {
     me.interval = interval;
@@ -7391,7 +6999,7 @@ Ext.cmd.derive('Ext.util.TaskRunner', Ext.Base, {interval:10, timerId:null, cons
     me.timerId = setTimeout(me.timerFn, timeout);
     me.nextExpires = expires;
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'TaskRunner'], function() {
+}}, function() {
   var me = this, proto = me.prototype;
   proto.destroy = proto.stopAll;
   Ext.util.TaskManager = Ext.TaskManager = new me;
@@ -7412,8 +7020,8 @@ Ext.cmd.derive('Ext.util.TaskRunner', Ext.Base, {interval:10, timerId:null, cons
   proto = me.Task.prototype;
   proto.destroy = proto.stop;
 });
-Ext.cmd.derive('Ext.util.TaskManager', Ext.util.TaskRunner, {alternateClassName:['Ext.TaskManager'], singleton:true}, 0, 0, 0, 0, 0, 0, [Ext.util, 'TaskManager', Ext, 'TaskManager'], 0);
-Ext.cmd.derive('Ext.perf.Accumulator', Ext.Base, function() {
+Ext.define('Ext.util.TaskManager', {extend:Ext.util.TaskRunner, alternateClassName:['Ext.TaskManager'], singleton:true});
+Ext.define('Ext.perf.Accumulator', function() {
   var currentFrame = null, khrome = Ext.global['chrome'], formatTpl, getTimestamp = function() {
     getTimestamp = function() {
       return (new Date).getTime();
@@ -7551,10 +7159,10 @@ Ext.cmd.derive('Ext.perf.Accumulator', Ext.Base, function() {
     Ext.ClassManager.onCreated(tapFunc, me, className);
     return me;
   }};
-}(), 1, 0, 0, 0, 0, 0, [Ext.perf, 'Accumulator'], function() {
+}(), function() {
   Ext.perf.getTimestamp = this.getTimestamp;
 });
-Ext.cmd.derive('Ext.perf.Monitor', Ext.Base, {singleton:true, alternateClassName:'Ext.Perf', constructor:function() {
+Ext.define('Ext.perf.Monitor', {singleton:true, alternateClassName:'Ext.Perf', constructor:function() {
   this.accumulators = [];
   this.accumulatorsByName = {};
 }, calibrate:function() {
@@ -7641,7 +7249,7 @@ Ext.cmd.derive('Ext.perf.Monitor', Ext.Base, {singleton:true, alternateClassName
     }
   }
   this.watchGC();
-}}, 1, 0, 0, 0, 0, 0, [Ext.perf, 'Monitor', Ext, 'Perf'], 0);
+}});
 Ext.is = {init:function(navigator) {
   var platforms = this.platforms, ln = platforms.length, i, platform;
   navigator = navigator || window.navigator;
@@ -7735,7 +7343,7 @@ Ext.is.init();
     view = doc.defaultView;
     return view && view.getComputedStyle;
   }}, {identity:'Svg', fn:function(doc) {
-    return !!doc.createElementNS && !!doc.createElementNS('http://www.w3.org/2000/svg', 'svg').createSVGRect;
+    return !!doc.createElementNS && !!doc.createElementNS('http:/' + '/www.w3.org/2000/svg', 'svg').createSVGRect;
   }}, {identity:'Canvas', fn:function(doc) {
     return !!doc.createElement('canvas').getContext;
   }}, {identity:'Vml', fn:function(doc) {
@@ -7831,7 +7439,7 @@ Ext.is.init();
     }
     return hasBug;
   }}, {identity:'xOriginBug', fn:function(doc, div) {
-    div.innerHTML = '\x3cdiv id\x3d"b1" style\x3d"height:100px;width:100px;direction:rtl;position:relative;overflow:scroll"\x3e\x3cdiv id\x3d"b2" style\x3d"position:relative;width:100%;height:20px;"\x3e\x3c/div\x3e\x3cdiv id\x3d"b3" style\x3d"position:absolute;width:20px;height:20px;top:0px;right:0px"\x3e\x3c/div\x3e\x3c/div\x3e';
+    div.innerHTML = '\x3cdiv id\x3d"b1" style\x3d"height:100px;width:100px;direction:rtl;position:relative;overflow:scroll"\x3e' + '\x3cdiv id\x3d"b2" style\x3d"position:relative;width:100%;height:20px;"\x3e\x3c/div\x3e' + '\x3cdiv id\x3d"b3" style\x3d"position:absolute;width:20px;height:20px;top:0px;right:0px"\x3e\x3c/div\x3e' + '\x3c/div\x3e';
     var outerBox = document.getElementById('b1').getBoundingClientRect(), b2 = document.getElementById('b2').getBoundingClientRect(), b3 = document.getElementById('b3').getBoundingClientRect();
     return b2.left !== outerBox.left && b3.right !== outerBox.right;
   }}, {identity:'ScrollWidthInlinePaddingBug', fn:function(doc) {
@@ -7880,7 +7488,7 @@ Ext.util.DelayedTask = function(fn, scope, args, cancelOnDelay) {
     }
   };
 };
-Ext.cmd.derive('Ext.util.Event', Ext.Base, function() {
+Ext.define('Ext.util.Event', function() {
   var arraySlice = Array.prototype.slice, arrayInsert = Ext.Array.insert, toArray = Ext.Array.toArray, DelayedTask = Ext.util.DelayedTask;
   return {isEvent:true, suspended:0, noOptions:{}, constructor:function(observable, name) {
     this.name = name;
@@ -8054,9 +7662,9 @@ Ext.cmd.derive('Ext.util.Event', Ext.Base, function() {
       return handler.apply(scope, arguments);
     };
   }};
-}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Event'], 0);
+});
 Ext.EventManager = new function() {
-  var EventManager = this, doc = document, win = window, escapeRx = /\\/g, prefix = 'x-', supportsAddEventListener = !Ext.isIE9 && 'addEventListener' in doc, readyEvent, initExtCss = function() {
+  var EventManager = this, doc = document, win = window, escapeRx = /\\/g, prefix = Ext.baseCSSPrefix, supportsAddEventListener = !Ext.isIE9 && 'addEventListener' in doc, readyEvent, initExtCss = function() {
     var bd = doc.body || doc.getElementsByTagName('body')[0], cls = [prefix + 'body'], htmlCls = [], supportsLG = Ext.supports.CSS3LinearGradient, supportsBR = Ext.supports.CSS3BorderRadius, html;
     if (!bd) {
       return false;
@@ -8711,7 +8319,7 @@ Ext.EventManager = new function() {
   EventManager.un = EventManager.removeListener;
   Ext.onReady(initExtCss);
 };
-Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
+Ext.define('Ext.util.Observable', function(Observable) {
   var emptyArray = [], arrayProto = Array.prototype, arraySlice = arrayProto.slice, ExtEvent = Ext.util.Event, ListenerRemover = function(observable) {
     if (observable instanceof ListenerRemover) {
       return observable;
@@ -9023,7 +8631,7 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
       }
     }
   }};
-}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Observable'], function() {
+}, function() {
   var Observable = this, proto = Observable.prototype, HasListeners = function() {
   }, prepareMixin = function(T) {
     if (!T.HasListeners) {
@@ -9144,8 +8752,8 @@ Ext.cmd.derive('Ext.util.Observable', Ext.Base, function(Observable) {
     });
   }});
 });
-Ext.cmd.derive('Ext.EventObjectImpl', Ext.Base, {BACKSPACE:8, TAB:9, NUM_CENTER:12, ENTER:13, RETURN:13, SHIFT:16, CTRL:17, ALT:18, PAUSE:19, CAPS_LOCK:20, ESC:27, SPACE:32, PAGE_UP:33, PAGE_DOWN:34, END:35, HOME:36, LEFT:37, UP:38, RIGHT:39, DOWN:40, PRINT_SCREEN:44, INSERT:45, DELETE:46, ZERO:48, ONE:49, TWO:50, THREE:51, FOUR:52, FIVE:53, SIX:54, SEVEN:55, EIGHT:56, NINE:57, A:65, B:66, C:67, D:68, E:69, F:70, G:71, H:72, I:73, J:74, K:75, L:76, M:77, N:78, O:79, P:80, Q:81, R:82, S:83, T:84, 
-U:85, V:86, W:87, X:88, Y:89, Z:90, CONTEXT_MENU:93, NUM_ZERO:96, NUM_ONE:97, NUM_TWO:98, NUM_THREE:99, NUM_FOUR:100, NUM_FIVE:101, NUM_SIX:102, NUM_SEVEN:103, NUM_EIGHT:104, NUM_NINE:105, NUM_MULTIPLY:106, NUM_PLUS:107, NUM_MINUS:109, NUM_PERIOD:110, NUM_DIVISION:111, F1:112, F2:113, F3:114, F4:115, F5:116, F6:117, F7:118, F8:119, F9:120, F10:121, F11:122, F12:123, WHEEL_SCALE:function() {
+Ext.define('Ext.EventObjectImpl', {BACKSPACE:8, TAB:9, NUM_CENTER:12, ENTER:13, RETURN:13, SHIFT:16, CTRL:17, ALT:18, PAUSE:19, CAPS_LOCK:20, ESC:27, SPACE:32, PAGE_UP:33, PAGE_DOWN:34, END:35, HOME:36, LEFT:37, UP:38, RIGHT:39, DOWN:40, PRINT_SCREEN:44, INSERT:45, DELETE:46, ZERO:48, ONE:49, TWO:50, THREE:51, FOUR:52, FIVE:53, SIX:54, SEVEN:55, EIGHT:56, NINE:57, A:65, B:66, C:67, D:68, E:69, F:70, G:71, H:72, I:73, J:74, K:75, L:76, M:77, N:78, O:79, P:80, Q:81, R:82, S:83, T:84, U:85, V:86, W:87, 
+X:88, Y:89, Z:90, CONTEXT_MENU:93, NUM_ZERO:96, NUM_ONE:97, NUM_TWO:98, NUM_THREE:99, NUM_FOUR:100, NUM_FIVE:101, NUM_SIX:102, NUM_SEVEN:103, NUM_EIGHT:104, NUM_NINE:105, NUM_MULTIPLY:106, NUM_PLUS:107, NUM_MINUS:109, NUM_PERIOD:110, NUM_DIVISION:111, F1:112, F2:113, F3:114, F4:115, F5:116, F6:117, F7:118, F8:119, F9:120, F10:121, F11:122, F12:123, WHEEL_SCALE:function() {
   var scale;
   if (Ext.isGecko) {
     scale = 3;
@@ -9399,10 +9007,10 @@ U:85, V:86, W:87, X:88, Y:89, Z:90, CONTEXT_MENU:93, NUM_ZERO:96, NUM_ONE:97, NU
     t = API.fixTarget(t);
     dispatcher(t, me);
   };
-}()}, 1, 0, 0, 0, 0, 0, [Ext, 'EventObjectImpl'], function() {
+}()}, function() {
   Ext.EventObject = new Ext.EventObjectImpl;
 });
-Ext.cmd.derive('Ext.dom.AbstractQuery', Ext.Base, {select:function(q, root) {
+Ext.define('Ext.dom.AbstractQuery', {select:function(q, root) {
   var results = [], nodes, i, j, qlen, nlen;
   root = root || document;
   if (typeof root == 'string') {
@@ -9430,8 +9038,8 @@ Ext.cmd.derive('Ext.dom.AbstractQuery', Ext.Base, {select:function(q, root) {
     el = document.getElementById(el);
   }
   return this.select(q).indexOf(el) !== -1;
-}}, 0, 0, 0, 0, 0, 0, [Ext.dom, 'AbstractQuery'], 0);
-Ext.cmd.derive('Ext.dom.AbstractHelper', Ext.Base, {emptyTags:/^(?:br|frame|hr|img|input|link|meta|range|spacer|wbr|area|param|col)$/i, confRe:/^(?:tag|children|cn|html|tpl|tplData)$/i, endRe:/end/i, styleSepRe:/\s*(?::|;)\s*/, attributeTransform:{cls:'class', htmlFor:'for'}, closeTags:{}, decamelizeName:function() {
+}});
+Ext.define('Ext.dom.AbstractHelper', {emptyTags:/^(?:br|frame|hr|img|input|link|meta|range|spacer|wbr|area|param|col)$/i, confRe:/^(?:tag|children|cn|html|tpl|tplData)$/i, endRe:/end/i, styleSepRe:/\s*(?::|;)\s*/, attributeTransform:{cls:'class', htmlFor:'for'}, closeTags:{}, decamelizeName:function() {
   var camelCaseRe = /([a-z])([A-Z])/g, cache = {};
   function decamel(match, p1, p2) {
     return p1 + '-' + p2.toLowerCase();
@@ -9560,7 +9168,7 @@ Ext.cmd.derive('Ext.dom.AbstractHelper', Ext.Base, {emptyTags:/^(?:br|frame|hr|i
 }, doInsert:function(el, o, returnElement, pos, sibling, append) {
   var newNode = this.insertHtml(pos, Ext.getDom(el), this.markup(o));
   return returnElement ? Ext.get(newNode, true) : newNode;
-}}, 0, 0, 0, 0, 0, 0, [Ext.dom, 'AbstractHelper'], 0);
+}});
 Ext.define('Ext.dom.AbstractElement_static', {override:'Ext.dom.AbstractElement', inheritableStatics:{unitRe:/\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i, camelRe:/(-[a-z])/gi, msRe:/^-ms-/, cssRe:/([a-z0-9\-]+)\s*:\s*([^;\s]+(?:\s*[^;\s]+)*)?;?/gi, opacityRe:/alpha\(opacity=(.*)\)/i, propertyCache:{}, defaultUnit:'px', borders:{l:'border-left-width', r:'border-right-width', t:'border-top-width', b:'border-bottom-width'}, paddings:{l:'padding-left', r:'padding-right', t:'padding-top', b:'padding-bottom'}, 
 margins:{l:'margin-left', r:'margin-right', t:'margin-top', b:'margin-bottom'}, addUnits:function(size, units) {
   if (typeof size == 'number') {
@@ -10127,9 +9735,9 @@ Ext.define('Ext.dom.AbstractElement_style', {override:'Ext.dom.AbstractElement'}
     return {width:Math.max(0, contentSize ? dom.clientWidth - this.getPadding('lr') : dom.offsetWidth), height:Math.max(0, contentSize ? dom.clientHeight - this.getPadding('tb') : dom.offsetHeight)};
   }, repaint:function() {
     var dom = this.dom;
-    this.addCls('x-repaint');
+    this.addCls(Ext.baseCSSPrefix + 'repaint');
     setTimeout(function() {
-      internalFly.attach(dom).removeCls('x-repaint');
+      internalFly.attach(dom).removeCls(Ext.baseCSSPrefix + 'repaint');
     }, 1);
     return this;
   }, getMargin:function(side) {
@@ -10154,7 +9762,7 @@ Ext.define('Ext.dom.AbstractElement_style', {override:'Ext.dom.AbstractElement'}
       return me.addStyles(side, me.margins);
     }
   }, mask:function(msg, msgCls, transparent) {
-    var me = this, dom = me.dom, data = (me.$cache || me.getCache()).data, el = data.mask, mask, size, cls = '', prefix = 'x-';
+    var me = this, dom = me.dom, data = (me.$cache || me.getCache()).data, el = data.mask, mask, size, cls = '', prefix = Ext.baseCSSPrefix;
     me.addCls(prefix + 'masked');
     if (me.getStyle('position') == 'static') {
       me.addCls(prefix + 'masked-relative');
@@ -10187,7 +9795,7 @@ Ext.define('Ext.dom.AbstractElement_style', {override:'Ext.dom.AbstractElement'}
       Ext.repaint();
     }
   }, unmask:function() {
-    var me = this, data = (me.$cache || me.getCache()).data, mask = data.mask, prefix = 'x-';
+    var me = this, data = (me.$cache || me.getCache()).data, mask = data.mask, prefix = Ext.baseCSSPrefix;
     if (mask) {
       mask.remove();
       delete data.mask;
@@ -10303,7 +9911,7 @@ Ext.define('Ext.dom.AbstractElement_traversal', {override:'Ext.dom.AbstractEleme
 }, isAncestor:function(element) {
   return this.self.isAncestor.call(this.self, this.dom, element);
 }});
-Ext.cmd.derive('Ext.dom.AbstractElement', Ext.Base, {trimRe:/^\s+|\s+$/g, whitespaceRe:/\s/, inheritableStatics:{trimRe:/^\s+|\s+$/g, whitespaceRe:/\s/, get:function(el) {
+Ext.define('Ext.dom.AbstractElement', {trimRe:/^\s+|\s+$/g, whitespaceRe:/\s/, inheritableStatics:{trimRe:/^\s+|\s+$/g, whitespaceRe:/\s/, get:function(el) {
   var me = this, document = window.document, El = Ext.dom.Element, cacheItem, docEl, extEl, dom, id;
   if (!el) {
     return null;
@@ -10526,7 +10134,7 @@ Ext.cmd.derive('Ext.dom.AbstractElement', Ext.Base, {trimRe:/^\s+|\s+$/g, whites
   this.setVisible(true);
   return this;
 }, setVisible:function(visible, animate) {
-  var me = this, statics = me.self, mode = me.getVisibilityMode(), prefix = 'x-';
+  var me = this, statics = me.self, mode = me.getVisibilityMode(), prefix = Ext.baseCSSPrefix;
   switch(mode) {
     case statics.VISIBILITY:
       me.removeCls([prefix + 'hidden-display', prefix + 'hidden-offsets']);
@@ -10555,7 +10163,7 @@ Ext.cmd.derive('Ext.dom.AbstractElement', Ext.Base, {trimRe:/^\s+|\s+$/g, whites
   var me = this, id = me.dom.id || Ext.id(me.dom);
   me.$cache = Ext.cache[id] || Ext.addCacheEntry(id, null, me.dom);
   return me.$cache;
-}}, 1, 0, 0, 0, 0, 0, [Ext.dom, 'AbstractElement'], function() {
+}}, function() {
   var AbstractElement = this;
   Ext.getDetachedBody = function() {
     var detachedEl = AbstractElement.detachedBodyEl;
@@ -10612,10 +10220,10 @@ Ext.cmd.derive('Ext.dom.AbstractElement', Ext.Base, {trimRe:/^\s+|\s+$/g, whites
     }
   })(this.prototype);
 });
-Ext.cmd.derive('Ext.dom.Helper', Ext.dom.AbstractHelper, function() {
+Ext.define('Ext.dom.Helper', function() {
   var afterbegin = 'afterbegin', afterend = 'afterend', beforebegin = 'beforebegin', beforeend = 'beforeend', ts = '\x3ctable\x3e', te = '\x3c/table\x3e', tbs = ts + '\x3ctbody\x3e', tbe = '\x3c/tbody\x3e' + te, trs = tbs + '\x3ctr\x3e', tre = '\x3c/tr\x3e' + tbe, detachedDiv = document.createElement('div'), bbValues = ['BeforeBegin', 'previousSibling'], aeValues = ['AfterEnd', 'nextSibling'], bb_ae_PositionHash = {beforebegin:bbValues, afterend:aeValues}, fullPositionHash = {beforebegin:bbValues, 
   afterend:aeValues, afterbegin:['AfterBegin', 'firstChild'], beforeend:['BeforeEnd', 'lastChild']};
-  return {tableRe:/^(?:table|thead|tbody|tr|td)$/i, tableElRe:/td|tr|tbody|thead/i, useDom:false, createDom:function(o, parentNode) {
+  return {extend:Ext.dom.AbstractHelper, tableRe:/^(?:table|thead|tbody|tr|td)$/i, tableElRe:/td|tr|tbody|thead/i, useDom:false, createDom:function(o, parentNode) {
     var el, doc = document, useSet, attr, val, cn, i, l;
     if (Ext.isArray(o)) {
       el = doc.createDocumentFragment();
@@ -10804,11 +10412,11 @@ Ext.cmd.derive('Ext.dom.Helper', Ext.dom.AbstractHelper, function() {
     var html = this.markup(o);
     return new Ext.Template(html);
   }};
-}(), 0, 0, 0, 0, 0, 0, [Ext.dom, 'Helper'], function() {
+}(), function() {
   Ext.ns('Ext.core');
   Ext.DomHelper = Ext.core.DomHelper = new this;
 });
-Ext.cmd.derive('Ext.Template', Ext.Base, {inheritableStatics:{from:function(el, config) {
+Ext.define('Ext.Template', {inheritableStatics:{from:function(el, config) {
   el = Ext.getDom(el);
   return new this(el.value || el.innerHTML, config || '');
 }}, constructor:function(html) {
@@ -10907,8 +10515,8 @@ Ext.cmd.derive('Ext.Template', Ext.Base, {inheritableStatics:{from:function(el, 
 }, overwrite:function(el, values, returnElement) {
   var newNode = Ext.DomHelper.overwrite(Ext.getDom(el), this.apply(values));
   return returnElement ? Ext.get(newNode) : newNode;
-}}, 1, 0, 0, 0, 0, 0, [Ext, 'Template'], 0);
-Ext.cmd.derive('Ext.XTemplateParser', Ext.Base, {constructor:function(config) {
+}});
+Ext.define('Ext.XTemplateParser', {constructor:function(config) {
   Ext.apply(this, config);
 }, doTpl:Ext.emptyFn, parse:function(str) {
   var me = this, len = str.length, aliases = {elseif:'elif'}, topRe = me.topRe, actionsRe = me.actionsRe, index, stack, s, m, t, prev, frame, subMatch, begin, end, actions, prop;
@@ -11028,8 +10636,8 @@ Ext.cmd.derive('Ext.XTemplateParser', Ext.Base, {constructor:function(config) {
       }
     }
   }
-}, topRe:/(?:(\{\%)|(\{\[)|\{([^{}]+)\})|(?:<tpl([^>]*)\>)|(?:<\/tpl>)/g, actionsRe:/\s*(elif|elseif|if|for|foreach|exec|switch|case|eval|between)\s*\=\s*(?:(?:"([^"]*)")|(?:'([^']*)'))\s*/g, propRe:/prop=(?:(?:"([^"]*)")|(?:'([^']*)'))/, defaultRe:/^\s*default\s*$/, elseRe:/^\s*else\s*$/}, 1, 0, 0, 0, 0, 0, [Ext, 'XTemplateParser'], 0);
-Ext.cmd.derive('Ext.XTemplateCompiler', Ext.XTemplateParser, {useEval:Ext.isGecko, useIndex:Ext.isIE8m, useFormat:true, propNameRe:/^[\w\d\$]*$/, compile:function(tpl) {
+}, topRe:/(?:(\{\%)|(\{\[)|\{([^{}]+)\})|(?:<tpl([^>]*)\>)|(?:<\/tpl>)/g, actionsRe:/\s*(elif|elseif|if|for|foreach|exec|switch|case|eval|between)\s*\=\s*(?:(?:"([^"]*)")|(?:'([^']*)'))\s*/g, propRe:/prop=(?:(?:"([^"]*)")|(?:'([^']*)'))/, defaultRe:/^\s*default\s*$/, elseRe:/^\s*else\s*$/});
+Ext.define('Ext.XTemplateCompiler', {extend:Ext.XTemplateParser, useEval:Ext.isGecko, useIndex:Ext.isIE8m, useFormat:true, propNameRe:/^[\w\d\$]*$/, compile:function(tpl) {
   var me = this, code = me.generate(tpl);
   return me.useEval ? me.evalTpl(code) : (new Function('Ext', code))(Ext);
 }, generate:function(tpl) {
@@ -11281,12 +10889,12 @@ Ext.cmd.derive('Ext.XTemplateCompiler', Ext.XTemplateParser, {useEval:Ext.isGeck
 }, evalTpl:function($) {
   eval($);
   return $;
-}, newLineRe:/\r\n|\r|\n/g, aposRe:/[']/g, intRe:/^\s*(\d+)\s*$/, tagRe:/^([\w-\.\#\$]+)(?:\:([\w\.]*)(?:\((.*?)?\))?)?(\s?[\+\-\*\/]\s?[\d\.\+\-\*\/\(\)]+)?$/}, 0, 0, 0, 0, 0, 0, [Ext, 'XTemplateCompiler'], function() {
+}, newLineRe:/\r\n|\r|\n/g, aposRe:/[']/g, intRe:/^\s*(\d+)\s*$/, tagRe:/^([\w-\.\#\$]+)(?:\:([\w\.]*)(?:\((.*?)?\))?)?(\s?[\+\-\*\/]\s?[\d\.\+\-\*\/\(\)]+)?$/}, function() {
   var proto = this.prototype;
   proto.fnArgs = 'out,values,parent,xindex,xcount,xkey';
   proto.callFn = '.call(this,' + proto.fnArgs + ')';
 });
-Ext.cmd.derive('Ext.XTemplate', Ext.Template, {emptyObj:{}, apply:function(values, parent) {
+Ext.define('Ext.XTemplate', {extend:Ext.Template, emptyObj:{}, apply:function(values, parent) {
   return this.applyOut(values, [], parent).join('');
 }, applyOut:function(values, out, parent) {
   var me = this, compiler;
@@ -11316,7 +10924,7 @@ Ext.cmd.derive('Ext.XTemplate', Ext.Template, {emptyObj:{}, apply:function(value
     tpl.owner = owner;
   }
   return tpl || null;
-}}}, 0, 0, 0, 0, 0, 0, [Ext, 'XTemplate'], 0);
+}}});
 Ext.ns('Ext.core');
 Ext.dom.Query = Ext.core.DomQuery = Ext.DomQuery = function() {
   var DQ, doc = document, cache = {}, simpleCache = {}, valueCache = {}, useClassList = !!doc.documentElement.classList, useElementPointer = !!doc.documentElement.firstElementChild, useChildrenCollection = function() {
@@ -12353,7 +11961,7 @@ Ext.define('Ext.dom.Element_dd', {override:'Ext.dom.Element', initDD:function(gr
   return Ext.apply(dd, overrides);
 }});
 Ext.define('Ext.dom.Element_fx', {override:'Ext.dom.Element'}, function() {
-  var Element = Ext.dom.Element, VISIBILITY = 'visibility', DISPLAY = 'display', NONE = 'none', HIDDEN = 'hidden', VISIBLE = 'visible', OFFSETS = 'offsets', ASCLASS = 'asclass', NOSIZE = 'nosize', ORIGINALDISPLAY = 'originalDisplay', VISMODE = 'visibilityMode', ISVISIBLE = 'isVisible', OFFSETCLASS = 'x-hide-offsets', getDisplay = function(el) {
+  var Element = Ext.dom.Element, VISIBILITY = 'visibility', DISPLAY = 'display', NONE = 'none', HIDDEN = 'hidden', VISIBLE = 'visible', OFFSETS = 'offsets', ASCLASS = 'asclass', NOSIZE = 'nosize', ORIGINALDISPLAY = 'originalDisplay', VISMODE = 'visibilityMode', ISVISIBLE = 'isVisible', OFFSETCLASS = Ext.baseCSSPrefix + 'hide-offsets', getDisplay = function(el) {
     var data = (el.$cache || el.getCache()).data, display = data[ORIGINALDISPLAY];
     if (display === undefined) {
       data[ORIGINALDISPLAY] = display = '';
@@ -13063,7 +12671,7 @@ Ext.define('Ext.dom.Element_style', {override:'Ext.dom.Element'}, function() {
     }
     return me;
   }, boxWrap:function(cls) {
-    cls = cls || 'x-box';
+    cls = cls || Ext.baseCSSPrefix + 'box';
     var el = Ext.get(this.insertHtml('beforeBegin', "\x3cdiv class\x3d'" + cls + "'\x3e" + Ext.String.format(Element.boxMarkup, cls) + '\x3c/div\x3e'));
     Ext.DomQuery.selectNode('.' + cls + '-mc', el.dom).appendChild(this.dom);
     return el;
@@ -13143,7 +12751,7 @@ Ext.define('Ext.dom.Element_style', {override:'Ext.dom.Element'}, function() {
       }
     }
     return {width:w || me.getWidth(true), height:h || me.getHeight(true)};
-  }, statics:{selectableCls:'x-selectable', unselectableCls:'x-unselectable'}, selectable:function() {
+  }, statics:{selectableCls:Ext.baseCSSPrefix + 'selectable', unselectableCls:Ext.baseCSSPrefix + 'unselectable'}, selectable:function() {
     var me = this;
     me.dom.unselectable = '';
     me.removeCls(Element.unselectableCls);
@@ -13287,7 +12895,7 @@ Ext.onReady(function() {
     }});
   }
 });
-Ext.cmd.derive('Ext.util.Positionable', Ext.Base, {_positionTopLeft:['position', 'top', 'left'], _alignRe:/^([a-z]+)-([a-z]+)(\?)?$/, afterSetPosition:Ext.emptyFn, getAnchorToXY:function() {
+Ext.define('Ext.util.Positionable', {_positionTopLeft:['position', 'top', 'left'], _alignRe:/^([a-z]+)-([a-z]+)(\?)?$/, afterSetPosition:Ext.emptyFn, getAnchorToXY:function() {
   Ext.Error.raise('getAnchorToXY is not implemented in ' + this.$className);
 }, getBorderPadding:function() {
   Ext.Error.raise('getBorderPadding is not implemented in ' + this.$className);
@@ -13576,9 +13184,9 @@ Ext.cmd.derive('Ext.util.Positionable', Ext.Base, {_positionTopLeft:['position',
   left = typeof x == 'number' ? x - xy[0] + left : undefined;
   top = typeof y == 'number' ? y - xy[1] + top : undefined;
   return {x:left, y:top};
-}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Positionable'], 0);
-Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
-  var HIDDEN = 'hidden', DOC = document, VISIBILITY = 'visibility', DISPLAY = 'display', NONE = 'none', XMASKED = 'x-masked', XMASKEDRELATIVE = 'x-masked-relative', EXTELMASKMSG = 'x-mask-msg', bodyRe = /^body/i, visFly, noBoxAdjust = Ext.isStrict ? {select:1} : {input:1, select:1, textarea:1}, isScrolled = function(c) {
+}});
+Ext.define('Ext.dom.Element', function(Element) {
+  var HIDDEN = 'hidden', DOC = document, VISIBILITY = 'visibility', DISPLAY = 'display', NONE = 'none', XMASKED = Ext.baseCSSPrefix + 'masked', XMASKEDRELATIVE = Ext.baseCSSPrefix + 'masked-relative', EXTELMASKMSG = Ext.baseCSSPrefix + 'mask-msg', bodyRe = /^body/i, visFly, noBoxAdjust = Ext.isStrict ? {select:1} : {input:1, select:1, textarea:1}, isScrolled = function(c) {
     var r = [], ri = -1, i, ci;
     for (i = 0; ci = c[i]; i++) {
       if (ci.scrollTop > 0 || ci.scrollLeft > 0) {
@@ -13587,7 +13195,7 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
     }
     return r;
   };
-  return {alternateClassName:['Ext.Element', 'Ext.core.Element'], tableTagRe:/^(?:tr|td|table|tbody)$/i, addUnits:function() {
+  return {extend:Ext.dom.AbstractElement, alternateClassName:['Ext.Element', 'Ext.core.Element'], tableTagRe:/^(?:tr|td|table|tbody)$/i, mixins:[Ext.util.Positionable], addUnits:function() {
     return Element.addUnits.apply(Element, arguments);
   }, focus:function(defer, dom) {
     var me = this;
@@ -13700,11 +13308,11 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
       maskShimEl.remove();
     }
     if (Ext.isIE6) {
-      maskShimEl = Ext.DomHelper.append(dom, {tag:'iframe', cls:'x-shim x-mask-shim'}, true);
+      maskShimEl = Ext.DomHelper.append(dom, {tag:'iframe', cls:Ext.baseCSSPrefix + 'shim ' + Ext.baseCSSPrefix + 'mask-shim'}, true);
       data.maskShimEl = maskShimEl;
       maskShimEl.setDisplayed(true);
     }
-    Ext.DomHelper.append(dom, [{cls:'x-mask', style:'top:0;left:0;'}, {cls:msgCls ? EXTELMASKMSG + ' ' + msgCls : EXTELMASKMSG, cn:{tag:'div', cls:'x-mask-msg-inner', cn:{tag:'div', cls:'x-mask-msg-text', html:msg || ''}}}]);
+    Ext.DomHelper.append(dom, [{cls:Ext.baseCSSPrefix + 'mask', style:'top:0;left:0;'}, {cls:msgCls ? EXTELMASKMSG + ' ' + msgCls : EXTELMASKMSG, cn:{tag:'div', cls:Ext.baseCSSPrefix + 'mask-msg-inner', cn:{tag:'div', cls:Ext.baseCSSPrefix + 'mask-msg-text', html:msg || ''}}}]);
     maskMsg = Ext.get(dom.lastChild);
     maskEl = Ext.get(maskMsg.dom.previousSibling);
     data.maskMsg = maskMsg;
@@ -13785,7 +13393,7 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
   }, createShim:function() {
     var el = DOC.createElement('iframe'), shim;
     el.frameBorder = '0';
-    el.className = 'x-shim';
+    el.className = Ext.baseCSSPrefix + 'shim';
     el.src = Ext.SSL_SECURE_URL;
     shim = Ext.get(this.dom.parentNode.insertBefore(el, this.dom));
     shim.autoBoxAdjust = false;
@@ -13815,7 +13423,7 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
   }, select:function(selector) {
     return Element.select(selector, false, this.dom);
   }};
-}, 0, 0, 0, 0, 0, [[Ext.util.Positionable.prototype.mixinId || Ext.util.Positionable.$className, Ext.util.Positionable]], [Ext.dom, 'Element', Ext, 'Element', Ext.core, 'Element'], function() {
+}, function() {
   var DOC = document, EC = Ext.cache, Element = this, AbstractElement = Ext.dom.AbstractElement, focusRe = /^a|button|embed|iframe|input|object|select|textarea$/i, nonSpaceRe = /\S/, scriptTagRe = /(?:<script([^>]*)?>)((\n|\r|.)*?)(?:<\/script>)/ig, replaceScriptTagRe = /(?:<script.*?>)((\n|\r|.)*?)(?:<\/script>)/ig, srcRe = /\ssrc=([\'\"])(.*?)\1/i, typeRe = /\stype=([\'\"])(.*?)\1/i, useDocForId = !Ext.isIE8m, internalFly;
   Element.boxMarkup = '\x3cdiv class\x3d"{0}-tl"\x3e\x3cdiv class\x3d"{0}-tr"\x3e\x3cdiv class\x3d"{0}-tc"\x3e\x3c/div\x3e\x3c/div\x3e\x3c/div\x3e\x3cdiv class\x3d"{0}-ml"\x3e\x3cdiv class\x3d"{0}-mr"\x3e\x3cdiv class\x3d"{0}-mc"\x3e\x3c/div\x3e\x3c/div\x3e\x3c/div\x3e\x3cdiv class\x3d"{0}-bl"\x3e\x3cdiv class\x3d"{0}-br"\x3e\x3cdiv class\x3d"{0}-bc"\x3e\x3c/div\x3e\x3c/div\x3e\x3c/div\x3e';
   function garbageCollect() {
@@ -13998,7 +13606,7 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
             if (window.execScript) {
               window.execScript(match[2]);
             } else {
-              window['eval'](match[2]);
+              window.eval(match[2]);
             }
           }
         }
@@ -14093,7 +13701,7 @@ Ext.cmd.derive('Ext.dom.Element', Ext.dom.AbstractElement, function(Element) {
     }
   }
 });
-Ext.cmd.derive('Ext.dom.CompositeElementLite', Ext.Base, {alternateClassName:'Ext.CompositeElementLite', statics:{importElementMethods:function() {
+Ext.define('Ext.dom.CompositeElementLite', {alternateClassName:'Ext.CompositeElementLite', statics:{importElementMethods:function() {
   var name, elementPrototype = Ext.dom.Element.prototype, prototype = this.prototype;
   for (name in elementPrototype) {
     if (typeof elementPrototype[name] == 'function') {
@@ -14256,7 +13864,7 @@ Ext.cmd.derive('Ext.dom.CompositeElementLite', Ext.Base, {alternateClassName:'Ex
     }
   }
   return me;
-}}, 1, 0, 0, 0, 0, 0, [Ext.dom, 'CompositeElementLite', Ext, 'CompositeElementLite'], function() {
+}}, function() {
   this.importElementMethods();
   this.prototype.on = this.prototype.addListener;
   if (Ext.DomQuery) {
@@ -14279,11 +13887,11 @@ Ext.cmd.derive('Ext.dom.CompositeElementLite', Ext.Base, {alternateClassName:'Ex
     return Ext.dom.Element.select.apply(Ext.dom.Element, arguments);
   };
 });
-Ext.cmd.derive('Ext.dom.CompositeElement', Ext.dom.CompositeElementLite, {alternateClassName:'Ext.CompositeElement', getElement:function(el) {
+Ext.define('Ext.dom.CompositeElement', {alternateClassName:'Ext.CompositeElement', extend:Ext.dom.CompositeElementLite, getElement:function(el) {
   return el;
 }, transformElement:function(el) {
   return Ext.get(el);
-}}, 0, 0, 0, 0, 0, 0, [Ext.dom, 'CompositeElement', Ext, 'CompositeElement'], function() {
+}}, function() {
   Ext.dom.Element.select = function(selector, unique, root) {
     var elements;
     if (typeof selector == 'string') {
@@ -14299,7 +13907,7 @@ Ext.cmd.derive('Ext.dom.CompositeElement', Ext.dom.CompositeElementLite, {altern
   };
 });
 Ext.select = Ext.Element.select;
-Ext.cmd.derive('Ext.util.HashMap', Ext.Base, {generation:0, constructor:function(config) {
+Ext.define('Ext.util.HashMap', {mixins:{observable:Ext.util.Observable}, generation:0, constructor:function(config) {
   config = config || {};
   var me = this, keyFn = config.keyFn;
   me.initialConfig = config;
@@ -14430,8 +14038,8 @@ Ext.cmd.derive('Ext.util.HashMap', Ext.Base, {generation:0, constructor:function
     }
   }
   return undefined;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.util, 'HashMap'], 0);
-Ext.cmd.derive('Ext.AbstractManager', Ext.Base, {typeName:'type', constructor:function(config) {
+}});
+Ext.define('Ext.AbstractManager', {typeName:'type', constructor:function(config) {
   Ext.apply(this, config || {});
   this.all = new Ext.util.HashMap;
   this.types = {};
@@ -14474,8 +14082,8 @@ Ext.cmd.derive('Ext.AbstractManager', Ext.Base, {typeName:'type', constructor:fu
   this.all.each(fn, scope || this);
 }, getCount:function() {
   return this.all.getCount();
-}}, 1, 0, 0, 0, 0, 0, [Ext, 'AbstractManager'], 0);
-Ext.cmd.derive('Ext.ComponentManager', Ext.AbstractManager, {alternateClassName:'Ext.ComponentMgr', singleton:true, typeName:'xtype', create:function(component, defaultType) {
+}});
+Ext.define('Ext.ComponentManager', {extend:Ext.AbstractManager, alternateClassName:'Ext.ComponentMgr', singleton:true, typeName:'xtype', create:function(component, defaultType) {
   if (typeof component == 'string') {
     return Ext.widget(component);
   }
@@ -14487,12 +14095,12 @@ Ext.cmd.derive('Ext.ComponentManager', Ext.AbstractManager, {alternateClassName:
   this.types[type] = cls;
   cls[this.typeName] = type;
   cls.prototype[this.typeName] = type;
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'ComponentManager', Ext, 'ComponentMgr'], function() {
+}}, function() {
   Ext.getCmp = function(id) {
     return Ext.ComponentManager.get(id);
   };
 });
-Ext.cmd.derive('Ext.ComponentQuery', Ext.Base, {singleton:true}, 0, 0, 0, 0, 0, 0, [Ext, 'ComponentQuery'], function() {
+Ext.define('Ext.ComponentQuery', {singleton:true}, function() {
   var cq = this, domQueryOperators = Ext.dom.Query.operators, nthRe = /(\d*)n\+?(\d*)/, nthRe2 = /\D/, filterFnPattern = ['var r \x3d [],', 'i \x3d 0,', 'it \x3d items,', 'l \x3d it.length,', 'c;', 'for (; i \x3c l; i++) {', 'c \x3d it[i];', 'if (c.{0}) {', 'r.push(c);', '}', '}', 'return r;'].join(''), filterItems = function(items, operation) {
     return operation.method.apply(this, [items].concat(operation.args));
   }, getItems = function(items, mode) {
@@ -14751,7 +14359,7 @@ Ext.cmd.derive('Ext.ComponentQuery', Ext.Base, {singleton:true}, 0, 0, 0, 0, 0, 
     return new cq.Query({operations:operations});
   }});
 });
-Ext.cmd.derive('Ext.util.ProtoElement', Ext.Base, function() {
+Ext.define('Ext.util.ProtoElement', function() {
   var splitWords = Ext.String.splitWords, toMap = Ext.Array.toMap;
   return {isProtoEl:true, clsProp:'cls', styleProp:'style', removedProp:'removed', styleIsText:false, constructor:function(config) {
     var me = this;
@@ -14849,8 +14457,8 @@ Ext.cmd.derive('Ext.util.ProtoElement', Ext.Base, function() {
     }
     return to;
   }};
-}(), 1, 0, 0, 0, 0, 0, [Ext.util, 'ProtoElement'], 0);
-Ext.cmd.derive('Ext.PluginManager', Ext.AbstractManager, {alternateClassName:'Ext.PluginMgr', singleton:true, typeName:'ptype', create:function(config, defaultType, host) {
+}());
+Ext.define('Ext.PluginManager', {extend:Ext.AbstractManager, alternateClassName:'Ext.PluginMgr', singleton:true, typeName:'ptype', create:function(config, defaultType, host) {
   var result;
   if (config.init) {
     result = config;
@@ -14887,12 +14495,12 @@ Ext.cmd.derive('Ext.PluginManager', Ext.AbstractManager, {alternateClassName:'Ex
     }
   }
   return matches;
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'PluginManager', Ext, 'PluginMgr'], function() {
+}}, function() {
   Ext.preg = function() {
     return Ext.PluginManager.registerType.apply(Ext.PluginManager, arguments);
   };
 });
-Ext.cmd.derive('Ext.util.Filter', Ext.Base, {id:null, anyMatch:false, exactMatch:false, caseSensitive:false, disabled:false, operator:null, statics:{createFilterFn:function(filters) {
+Ext.define('Ext.util.Filter', {id:null, anyMatch:false, exactMatch:false, caseSensitive:false, disabled:false, operator:null, statics:{createFilterFn:function(filters) {
   return filters && filters.length ? function(candidate) {
     var isMatch = true, length = filters.length, i, filter;
     for (i = 0; isMatch && i < length; i++) {
@@ -14970,10 +14578,10 @@ Ext.cmd.derive('Ext.util.Filter', Ext.Base, {id:null, anyMatch:false, exactMatch
   var me = this, result = Ext.apply({}, me.initialConfig);
   result.value = me.value;
   return result;
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Filter'], function() {
+}}, function() {
   this.prototype.operatorFns['\x3d\x3d'] = this.prototype.operatorFns['\x3d'];
 });
-Ext.cmd.derive('Ext.util.AbstractMixedCollection', Ext.Base, {isMixedCollection:true, generation:0, indexGeneration:0, constructor:function(allowFunctions, keyFn) {
+Ext.define('Ext.util.AbstractMixedCollection', {mixins:{observable:Ext.util.Observable}, isMixedCollection:true, generation:0, indexGeneration:0, constructor:function(allowFunctions, keyFn) {
   var me = this;
   if (arguments.length === 1 && Ext.isObject(allowFunctions)) {
     me.initialConfig = allowFunctions;
@@ -15395,8 +15003,8 @@ Ext.cmd.derive('Ext.util.AbstractMixedCollection', Ext.Base, {isMixedCollection:
   var me = this, copy = new this.self(me.initialConfig);
   copy.add(me.keys, me.items);
   return copy;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.util, 'AbstractMixedCollection'], 0);
-Ext.cmd.derive('Ext.util.Sorter', Ext.Base, {direction:'ASC', constructor:function(config) {
+}});
+Ext.define('Ext.util.Sorter', {direction:'ASC', constructor:function(config) {
   var me = this;
   Ext.apply(me, config);
   if (me.property === undefined && me.sorterFn === undefined) {
@@ -15431,8 +15039,8 @@ Ext.cmd.derive('Ext.util.Sorter', Ext.Base, {direction:'ASC', constructor:functi
   me.sort = me.createSortFunction(fn);
 }, serialize:function() {
   return {root:this.root, property:this.property, direction:this.direction};
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Sorter'], 0);
-Ext.cmd.derive('Ext.util.Sortable', Ext.Base, {isSortable:true, defaultSortDirection:'ASC', statics:{createComparator:function(sorters) {
+}});
+Ext.define('Ext.util.Sortable', {isSortable:true, defaultSortDirection:'ASC', statics:{createComparator:function(sorters) {
   return sorters && sorters.length ? function(r1, r2) {
     var result = sorters[0].sort(r1, r2), length = sorters.length, i = 1;
     for (; i < length; i++) {
@@ -15545,12 +15153,12 @@ Ext.cmd.derive('Ext.util.Sortable', Ext.Base, {isSortable:true, defaultSortDirec
     }
   }
   return null;
-}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Sortable'], function() {
+}}, function() {
   this.prototype.createComparator = this.createComparator;
 });
-Ext.cmd.derive('Ext.util.MixedCollection', Ext.util.AbstractMixedCollection, {constructor:function() {
+Ext.define('Ext.util.MixedCollection', {extend:Ext.util.AbstractMixedCollection, mixins:{sortable:Ext.util.Sortable}, constructor:function() {
   var me = this;
-  Ext.util.AbstractMixedCollection.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   me.addEvents('sort');
   me.mixins.sortable.initSortable.call(me);
 }, doSort:function(sorterFn) {
@@ -15635,14 +15243,14 @@ Ext.cmd.derive('Ext.util.MixedCollection', Ext.util.AbstractMixedCollection, {co
     var v1 = String(a).toUpperCase(), v2 = String(b).toUpperCase();
     return v1 > v2 ? 1 : v1 < v2 ? -1 : 0;
   });
-}}, 1, 0, 0, 0, 0, [['sortable', Ext.util.Sortable]], [Ext.util, 'MixedCollection'], 0);
-Ext.cmd.derive('Ext.fx.target.Target', Ext.Base, {isAnimTarget:true, constructor:function(target) {
+}});
+Ext.define('Ext.fx.target.Target', {isAnimTarget:true, constructor:function(target) {
   this.target = target;
   this.id = this.getId();
 }, getId:function() {
   return this.target.id;
-}}, 1, 0, 0, 0, 0, 0, [Ext.fx.target, 'Target'], 0);
-Ext.cmd.derive('Ext.fx.target.Element', Ext.fx.target.Target, {type:'element', getElVal:function(el, attr, val) {
+}});
+Ext.define('Ext.fx.target.Element', {extend:Ext.fx.target.Target, type:'element', getElVal:function(el, attr, val) {
   if (val == undefined) {
     if (attr === 'x') {
       val = el.getX();
@@ -15714,8 +15322,8 @@ Ext.cmd.derive('Ext.fx.target.Element', Ext.fx.target.Target, {type:'element', g
       }
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'Element'], 0);
-Ext.cmd.derive('Ext.fx.target.ElementCSS', Ext.fx.target.Element, {setAttr:function(targetData, isFirstFrame) {
+}});
+Ext.define('Ext.fx.target.ElementCSS', {extend:Ext.fx.target.Element, setAttr:function(targetData, isFirstFrame) {
   var cssArr = {attrs:[], duration:[], easing:[]}, ln = targetData.length, attributes, attrs, attr, easing, duration, o, i, j, ln2;
   for (i = 0; i < ln; i++) {
     attrs = targetData[i];
@@ -15757,10 +15365,10 @@ Ext.cmd.derive('Ext.fx.target.ElementCSS', Ext.fx.target.Element, {setAttr:funct
       }
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'ElementCSS'], 0);
-Ext.cmd.derive('Ext.fx.target.CompositeElement', Ext.fx.target.Element, {isComposite:true, constructor:function(target) {
+}});
+Ext.define('Ext.fx.target.CompositeElement', {extend:Ext.fx.target.Element, isComposite:true, constructor:function(target) {
   target.id = target.id || Ext.id(null, 'ext-composite-');
-  Ext.fx.target.Element.prototype.constructor.call(this, target);
+  this.callParent([target]);
 }, getAttr:function(attr, val) {
   var out = [], target = this.target, elements = target.elements, length = elements.length, i, el;
   for (i = 0; i < length; i++) {
@@ -15791,11 +15399,11 @@ Ext.cmd.derive('Ext.fx.target.CompositeElement', Ext.fx.target.Element, {isCompo
       }
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.fx.target, 'CompositeElement'], 0);
-Ext.cmd.derive('Ext.fx.target.CompositeElementCSS', Ext.fx.target.CompositeElement, {setAttr:function() {
+}});
+Ext.define('Ext.fx.target.CompositeElementCSS', {extend:Ext.fx.target.CompositeElement, setAttr:function() {
   return Ext.fx.target.ElementCSS.prototype.setAttr.apply(this, arguments);
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'CompositeElementCSS'], 0);
-Ext.cmd.derive('Ext.fx.target.Sprite', Ext.fx.target.Target, {type:'draw', getFromPrim:function(sprite, attr) {
+}});
+Ext.define('Ext.fx.target.Sprite', {extend:Ext.fx.target.Target, type:'draw', getFromPrim:function(sprite, attr) {
   var obj;
   switch(attr) {
     case 'rotate':
@@ -15872,16 +15480,16 @@ Ext.cmd.derive('Ext.fx.target.Sprite', Ext.fx.target.Target, {type:'draw', getFr
     spriteArr[i][0].setAttributes(spriteArr[i][1]);
   }
   this.target.redraw();
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'Sprite'], 0);
-Ext.cmd.derive('Ext.fx.target.CompositeSprite', Ext.fx.target.Sprite, {getAttr:function(attr, val) {
+}});
+Ext.define('Ext.fx.target.CompositeSprite', {extend:Ext.fx.target.Sprite, getAttr:function(attr, val) {
   var out = [], sprites = [].concat(this.target.items), length = sprites.length, i, sprite;
   for (i = 0; i < length; i++) {
     sprite = sprites[i];
     out.push([sprite, val != undefined ? val : this.getFromPrim(sprite, attr)]);
   }
   return out;
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'CompositeSprite'], 0);
-Ext.cmd.derive('Ext.fx.target.Component', Ext.fx.target.Target, {type:'component', getPropMethod:{top:function() {
+}});
+Ext.define('Ext.fx.target.Component', {extend:Ext.fx.target.Target, type:'component', getPropMethod:{top:function() {
   return this.getPosition(true)[1];
 }, left:function() {
   return this.getPosition(true)[0];
@@ -15934,8 +15542,8 @@ Ext.cmd.derive('Ext.fx.target.Component', Ext.fx.target.Target, {type:'component
       o.target.el.setStyle('opacity', o.opacity);
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx.target, 'Component'], 0);
-Ext.cmd.derive('Ext.fx.Queue', Ext.Base, {constructor:function() {
+}});
+Ext.define('Ext.fx.Queue', {constructor:function() {
   this.targets = new Ext.util.HashMap;
   this.fxQueue = {};
 }, getFxDefaults:function(targetId) {
@@ -16011,8 +15619,8 @@ Ext.cmd.derive('Ext.fx.Queue', Ext.Base, {constructor:function() {
     }
   }, me, {single:true});
   queue.push(anim);
-}}, 1, 0, 0, 0, 0, 0, [Ext.fx, 'Queue'], 0);
-Ext.cmd.derive('Ext.fx.Manager', Ext.Base, {singleton:true, constructor:function() {
+}});
+Ext.define('Ext.fx.Manager', {singleton:true, mixins:{queue:Ext.fx.Queue}, constructor:function() {
   var me = this;
   me.items = new Ext.util.MixedCollection;
   me.mixins.queue.constructor.call(me);
@@ -16138,8 +15746,8 @@ Ext.cmd.derive('Ext.fx.Manager', Ext.Base, {singleton:true, constructor:function
       }
     }
   }
-}}, 1, 0, 0, 0, 0, [['queue', Ext.fx.Queue]], [Ext.fx, 'Manager'], 0);
-Ext.cmd.derive('Ext.fx.Animator', Ext.Base, {isAnimator:true, duration:250, delay:0, delayStart:0, dynamic:false, easing:'ease', running:false, paused:false, damper:1, iterations:1, currentIteration:0, keyframeStep:0, animKeyFramesRE:/^(from|to|\d+%?)$/, constructor:function(config) {
+}});
+Ext.define('Ext.fx.Animator', {mixins:{observable:Ext.util.Observable}, isAnimator:true, duration:250, delay:0, delayStart:0, dynamic:false, easing:'ease', running:false, paused:false, damper:1, iterations:1, currentIteration:0, keyframeStep:0, animKeyFramesRE:/^(from|to|\d+%?)$/, constructor:function(config) {
   var me = this;
   config = Ext.apply(me, config || {});
   me.config = config;
@@ -16246,8 +15854,8 @@ Ext.cmd.derive('Ext.fx.Animator', Ext.Base, {isAnimator:true, duration:250, dela
   return this.paused === false && this.running === false && this.iterations > 0;
 }, isRunning:function() {
   return false;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.fx, 'Animator'], 0);
-Ext.cmd.derive('Ext.fx.CubicBezier', Ext.Base, {singleton:true, cubicBezierAtTime:function(t, p1x, p1y, p2x, p2y, duration) {
+}});
+Ext.define('Ext.fx.CubicBezier', {singleton:true, cubicBezierAtTime:function(t, p1x, p1y, p2x, p2y, duration) {
   var cx = 3 * p1x, bx = 3 * (p2x - p1x) - cx, ax = 1 - cx - bx, cy = 3 * p1y, by = 3 * (p2y - p1y) - cy, ay = 1 - cy - by;
   function sampleCurveX(t) {
     return ((ax * t + bx) * t + cx) * t;
@@ -16304,10 +15912,10 @@ Ext.cmd.derive('Ext.fx.CubicBezier', Ext.Base, {singleton:true, cubicBezierAtTim
     return Ext.fx.CubicBezier.cubicBezier(1 - x2, 1 - y2, 1 - x1, 1 - y1);
   };
   return fn;
-}}, 0, 0, 0, 0, 0, 0, [Ext.fx, 'CubicBezier'], 0);
+}});
 Ext.require('Ext.fx.CubicBezier', function() {
   var math = Math, pi = math.PI, pow = math.pow, sin = math.sin, sqrt = math.sqrt, abs = math.abs, backInSeed = 1.70158;
-  Ext.cmd.derive('Ext.fx.Easing', Ext.Base, {singleton:true, linear:Ext.identityFn, ease:function(n) {
+  Ext.define('Ext.fx.Easing', {singleton:true, linear:Ext.identityFn, ease:function(n) {
     var q = 0.07813 - n / 2, alpha = -0.25, Q = sqrt(0.0066 + q * q), x = Q - q, X = pow(abs(x), 1 / 3) * (x < 0 ? -1 : 1), y = -Q - q, Y = pow(abs(y), 1 / 3) * (y < 0 ? -1 : 1), t = X + Y + 0.25;
     return pow(1 - t, 2) * 3 * t * 0.1 + (1 - t) * 3 * t * t + t * t * t;
   }, easeIn:function(n) {
@@ -16351,12 +15959,12 @@ Ext.require('Ext.fx.CubicBezier', function() {
       }
     }
     return l;
-  }}, 0, 0, 0, 0, 0, 0, [Ext.fx, 'Easing'], function() {
+  }}, function() {
     var easing = Ext.fx.Easing.self, proto = easing.prototype;
     easing.implement({'back-in':proto.backIn, 'back-out':proto.backOut, 'ease-in':proto.easeIn, 'ease-out':proto.easeOut, 'elastic-in':proto.elasticIn, 'elastic-out':proto.elasticOut, 'bounce-in':proto.bounceIn, 'bounce-out':proto.bounceOut, 'ease-in-out':proto.easeInOut});
   });
 });
-Ext.cmd.derive('Ext.draw.Color', Ext.Base, {colorToHexRe:/(.*?)rgb\((\d+),\s*(\d+),\s*(\d+)\)/, rgbRe:/\s*rgb\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*\)\s*/, hexRe:/\s*#([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)\s*/, lightnessFactor:0.2, constructor:function(red, green, blue) {
+Ext.define('Ext.draw.Color', {colorToHexRe:/(.*?)rgb\((\d+),\s*(\d+),\s*(\d+)\)/, rgbRe:/\s*rgb\s*\(\s*([0-9]+)\s*,\s*([0-9]+)\s*,\s*([0-9]+)\s*\)\s*/, hexRe:/\s*#([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)([0-9a-fA-F][0-9a-fA-F]?)\s*/, lightnessFactor:0.2, constructor:function(red, green, blue) {
   var me = this, clamp = Ext.Number.constrain;
   me.r = clamp(red, 0, 255);
   me.g = clamp(green, 0, 255);
@@ -16482,7 +16090,7 @@ Ext.cmd.derive('Ext.draw.Color', Ext.Base, {colorToHexRe:/(.*?)rgb\((\d+),\s*(\d
     rgb = [rgb[0] + m, rgb[1] + m, rgb[2] + m];
   }
   return new Ext.draw.Color(rgb[0] * 255, rgb[1] * 255, rgb[2] * 255);
-}}, 3, 0, 0, 0, 0, 0, [Ext.draw, 'Color'], function() {
+}}, function() {
   var prototype = this.prototype;
   this.addStatics({fromHSL:function() {
     return prototype.fromHSL.apply(prototype, arguments);
@@ -16492,8 +16100,8 @@ Ext.cmd.derive('Ext.draw.Color', Ext.Base, {colorToHexRe:/(.*?)rgb\((\d+),\s*(\d
     return prototype.toHex.apply(prototype, arguments);
   }});
 });
-Ext.cmd.derive('Ext.draw.Draw', Ext.Base, {singleton:true, pathToStringRE:/,?([achlmqrstvxz]),?/gi, pathCommandRE:/([achlmqstvz])[\s,]*((-?\d*\.?\d*(?:e[-+]?\d+)?\s*,?\s*)+)/ig, pathValuesRE:/(-?\d*\.?\d*(?:e[-+]?\d+)?)\s*,?\s*/ig, stopsRE:/^(\d+%?)$/, radian:Math.PI / 180, availableAnimAttrs:{along:'along', blur:null, 'clip-rect':'csv', cx:null, cy:null, fill:'color', 'fill-opacity':null, 'font-size':null, height:null, opacity:null, path:'path', r:null, rotation:'csv', rx:null, ry:null, scale:'csv', 
-stroke:'color', 'stroke-opacity':null, 'stroke-width':null, translation:'csv', width:null, x:null, y:null}, is:function(o, type) {
+Ext.define('Ext.draw.Draw', {singleton:true, pathToStringRE:/,?([achlmqrstvxz]),?/gi, pathCommandRE:/([achlmqstvz])[\s,]*((-?\d*\.?\d*(?:e[-+]?\d+)?\s*,?\s*)+)/ig, pathValuesRE:/(-?\d*\.?\d*(?:e[-+]?\d+)?)\s*,?\s*/ig, stopsRE:/^(\d+%?)$/, radian:Math.PI / 180, availableAnimAttrs:{along:'along', blur:null, 'clip-rect':'csv', cx:null, cy:null, fill:'color', 'fill-opacity':null, 'font-size':null, height:null, opacity:null, path:'path', r:null, rotation:'csv', rx:null, ry:null, scale:'csv', stroke:'color', 
+'stroke-opacity':null, 'stroke-width':null, translation:'csv', width:null, x:null, y:null}, is:function(o, type) {
   type = String(type).toLowerCase();
   return type == 'object' && o === Object(o) || type == 'undefined' && typeof o == type || type == 'null' && o === null || type == 'array' && Array.isArray && Array.isArray(o) || Object.prototype.toString.call(o).toLowerCase().slice(8, -1) == type;
 }, ellipsePath:function(sprite) {
@@ -17330,8 +16938,8 @@ stroke:'color', 'stroke-opacity':null, 'stroke-width':null, translation:'csv', w
   } else {
     return {id:gradient.id, type:type, centerX:gradient.centerX, centerY:gradient.centerY, focalX:gradient.focalX, focalY:gradient.focalY, radius:gradient.radius, vector:vector, stops:stopsArr};
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.draw, 'Draw'], 0);
-Ext.cmd.derive('Ext.fx.PropertyHandler', Ext.Base, {statics:{defaultHandler:{pixelDefaultsRE:/width|height|top$|bottom$|left$|right$/i, unitRE:/^(-?\d*\.?\d*){1}(em|ex|px|in|cm|mm|pt|pc|%)*$/, scrollRE:/^scroll/i, computeDelta:function(from, end, damper, initial, attr) {
+}});
+Ext.define('Ext.fx.PropertyHandler', {statics:{defaultHandler:{pixelDefaultsRE:/width|height|top$|bottom$|left$|right$/i, unitRE:/^(-?\d*\.?\d*){1}(em|ex|px|in|cm|mm|pt|pc|%)*$/, scrollRE:/^scroll/i, computeDelta:function(from, end, damper, initial, attr) {
   damper = typeof damper == 'number' ? damper : 1;
   var unitRE = this.unitRE, match = unitRE.exec(from), start, units;
   if (match) {
@@ -17539,7 +17147,7 @@ Ext.cmd.derive('Ext.fx.PropertyHandler', Ext.Base, {statics:{defaultHandler:{pix
     out.push([values[i][0], newPath.join(',')]);
   }
   return out;
-}}}}, 0, 0, 0, 0, 0, 0, [Ext.fx, 'PropertyHandler'], function() {
+}}}}, function() {
   var props = ['outlineColor', 'backgroundColor', 'borderColor', 'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor', 'fill', 'stroke'], length = props.length, i = 0, prop;
   for (; i < length; i++) {
     prop = props[i];
@@ -17553,7 +17161,7 @@ Ext.cmd.derive('Ext.fx.PropertyHandler', Ext.Base, {statics:{defaultHandler:{pix
     this[prop] = this.stringHandler;
   }
 });
-Ext.cmd.derive('Ext.fx.Anim', Ext.Base, {isAnimation:true, duration:250, delay:0, delayStart:0, dynamic:false, easing:'ease', damper:1, bezierRE:/^(?:cubic-)?bezier\(([^,]+),([^,]+),([^,]+),([^\)]+)\)/, reverse:false, running:false, paused:false, iterations:1, alternate:false, currentIteration:0, startTime:0, frameCount:0, constructor:function(config) {
+Ext.define('Ext.fx.Anim', {mixins:{observable:Ext.util.Observable}, isAnimation:true, duration:250, delay:0, delayStart:0, dynamic:false, easing:'ease', damper:1, bezierRE:/^(?:cubic-)?bezier\(([^,]+),([^,]+),([^,]+),([^\)]+)\)/, reverse:false, running:false, paused:false, iterations:1, alternate:false, currentIteration:0, startTime:0, frameCount:0, constructor:function(config) {
   var me = this, curve;
   config = config || {};
   if (config.keyframes) {
@@ -17671,9 +17279,9 @@ Ext.cmd.derive('Ext.fx.Anim', Ext.Base, {isAnimation:true, duration:250, delay:0
   return this.paused === false && this.running === false && this.iterations > 0;
 }, isRunning:function() {
   return this.paused === false && this.running === true && this.isAnimator !== true;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.fx, 'Anim'], 0);
+}});
 Ext.enableFx = true;
-Ext.cmd.derive('Ext.util.Animate', Ext.Base, {isAnimate:true, animate:function(animObj) {
+Ext.define('Ext.util.Animate', {isAnimate:true, animate:function(animObj) {
   var me = this;
   if (Ext.fx.Manager.hasFxBlock(me.id)) {
     return me;
@@ -17701,11 +17309,11 @@ Ext.cmd.derive('Ext.util.Animate', Ext.Base, {isAnimate:true, animate:function(a
   return this;
 }, hasActiveFx:Ext.Function.alias(Ext.util.Animate, 'getActiveAnimation'), getActiveAnimation:function() {
   return Ext.fx.Manager.getActiveAnimation(this.id);
-}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Animate'], function() {
+}}, function() {
   Ext.applyIf(Ext.Element.prototype, this.prototype);
   Ext.CompositeElementLite.importElementMethods();
 });
-Ext.cmd.derive('Ext.util.ElementContainer', Ext.Base, {childEls:[], constructor:function() {
+Ext.define('Ext.util.ElementContainer', {childEls:[], constructor:function() {
   var me = this, childEls;
   if (me.hasOwnProperty('childEls')) {
     childEls = me.childEls;
@@ -17825,8 +17433,8 @@ Ext.cmd.derive('Ext.util.ElementContainer', Ext.Base, {childEls:[], constructor:
       keepers.push(cel);
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'ElementContainer'], 0);
-Ext.cmd.derive('Ext.util.Renderable', Ext.Base, {frameCls:'x-frame', frameIdRegex:/[\-]frame\d+[TMB][LCR]$/, frameElNames:['TL', 'TC', 'TR', 'ML', 'MC', 'MR', 'BL', 'BC', 'BR'], frameTpl:['{%this.renderDockedItems(out,values,0);%}', '\x3ctpl if\x3d"top"\x3e', '\x3ctpl if\x3d"left"\x3e\x3cdiv id\x3d"{fgid}TL" class\x3d"{frameCls}-tl {baseCls}-tl {baseCls}-{ui}-tl\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-tl\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', '\x3ctpl if\x3d"right"\x3e\x3cdiv id\x3d"{fgid}TR" class\x3d"{frameCls}-tr {baseCls}-tr {baseCls}-{ui}-tr\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-tr\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', 
+}});
+Ext.define('Ext.util.Renderable', {frameCls:Ext.baseCSSPrefix + 'frame', frameIdRegex:/[\-]frame\d+[TMB][LCR]$/, frameElNames:['TL', 'TC', 'TR', 'ML', 'MC', 'MR', 'BL', 'BC', 'BR'], frameTpl:['{%this.renderDockedItems(out,values,0);%}', '\x3ctpl if\x3d"top"\x3e', '\x3ctpl if\x3d"left"\x3e\x3cdiv id\x3d"{fgid}TL" class\x3d"{frameCls}-tl {baseCls}-tl {baseCls}-{ui}-tl\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-tl\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', '\x3ctpl if\x3d"right"\x3e\x3cdiv id\x3d"{fgid}TR" class\x3d"{frameCls}-tr {baseCls}-tr {baseCls}-{ui}-tr\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-tr\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', 
 '\x3cdiv id\x3d"{fgid}TC" class\x3d"{frameCls}-tc {baseCls}-tc {baseCls}-{ui}-tc\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-tc\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/div\x3e', '\x3ctpl if\x3d"right"\x3e\x3c/div\x3e\x3c/tpl\x3e', '\x3ctpl if\x3d"left"\x3e\x3c/div\x3e\x3c/tpl\x3e', '\x3c/tpl\x3e', '\x3ctpl if\x3d"left"\x3e\x3cdiv id\x3d"{fgid}ML" class\x3d"{frameCls}-ml {baseCls}-ml {baseCls}-{ui}-ml\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-ml\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', 
 '\x3ctpl if\x3d"right"\x3e\x3cdiv id\x3d"{fgid}MR" class\x3d"{frameCls}-mr {baseCls}-mr {baseCls}-{ui}-mr\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-mr\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', '\x3cdiv id\x3d"{fgid}MC" class\x3d"{frameCls}-mc {baseCls}-mc {baseCls}-{ui}-mc\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-mc\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e', '{%this.applyRenderTpl(out, values)%}', '\x3c/div\x3e', '\x3ctpl if\x3d"right"\x3e\x3c/div\x3e\x3c/tpl\x3e', 
 '\x3ctpl if\x3d"left"\x3e\x3c/div\x3e\x3c/tpl\x3e', '\x3ctpl if\x3d"bottom"\x3e', '\x3ctpl if\x3d"left"\x3e\x3cdiv id\x3d"{fgid}BL" class\x3d"{frameCls}-bl {baseCls}-bl {baseCls}-{ui}-bl\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-bl\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', '\x3ctpl if\x3d"right"\x3e\x3cdiv id\x3d"{fgid}BR" class\x3d"{frameCls}-br {baseCls}-br {baseCls}-{ui}-br\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-{parent.ui}-{.}-br\x3c/tpl\x3e{frameElCls}" role\x3d"presentation"\x3e\x3c/tpl\x3e', 
@@ -17839,7 +17447,7 @@ Ext.cmd.derive('Ext.util.Renderable', Ext.Base, {frameCls:'x-frame', frameIdRege
   var me = this, data = {}, protoEl = me.protoEl, target = me.el, item, pre, hide, contentEl;
   me.finishRenderChildren();
   if (me.contentEl) {
-    pre = 'x-';
+    pre = Ext.baseCSSPrefix;
     hide = pre + 'hide-';
     contentEl = Ext.get(me.contentEl);
     contentEl.removeCls([pre + 'hidden', hide + 'display', hide + 'offsets', hide + 'nosize']);
@@ -18242,7 +17850,7 @@ Ext.cmd.derive('Ext.util.Renderable', Ext.Base, {frameCls:'x-frame', frameIdRege
       frameInfo = false;
     }
     if (me.frame === true && !frameInfo) {
-      Ext.log.error('You have set frame: true explicity on this component (' + me.getXType() + ') and it does not have any framing defined in the CSS template. In this case IE cannot figure out what sizes to use and thus framing on this component will be disabled.');
+      Ext.log.error('You have set frame: true explicity on this component (' + me.getXType() + ') and it ' + 'does not have any framing defined in the CSS template. In this case IE cannot figure out ' + 'what sizes to use and thus framing on this component will be disabled.');
     }
     frameInfoCache[cls] = frameInfo;
   }
@@ -18257,8 +17865,8 @@ Ext.cmd.derive('Ext.util.Renderable', Ext.Base, {frameCls:'x-frame', frameIdRege
   return result;
 }, getFrameTpl:function(table) {
   return this.getTpl(table ? 'frameTableTpl' : 'frameTpl');
-}, frameInfoCache:{}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Renderable'], 0);
-Ext.cmd.derive('Ext.state.Provider', Ext.Base, {prefix:'ext-', constructor:function(config) {
+}, frameInfoCache:{}});
+Ext.define('Ext.state.Provider', {mixins:{observable:Ext.util.Observable}, prefix:'ext-', constructor:function(config) {
   config = config || {};
   var me = this;
   Ext.apply(me, config);
@@ -18356,8 +17964,8 @@ Ext.cmd.derive('Ext.state.Provider', Ext.Base, {prefix:'ext-', constructor:funct
     }
   }
   return escape(enc);
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.state, 'Provider'], 0);
-Ext.cmd.derive('Ext.state.Manager', Ext.Base, {singleton:true, constructor:function() {
+}});
+Ext.define('Ext.state.Manager', {singleton:true, constructor:function() {
   this.provider = new Ext.state.Provider;
 }, setProvider:function(stateProvider) {
   this.provider = stateProvider;
@@ -18369,8 +17977,8 @@ Ext.cmd.derive('Ext.state.Manager', Ext.Base, {singleton:true, constructor:funct
   this.provider.clear(key);
 }, getProvider:function() {
   return this.provider;
-}}, 1, 0, 0, 0, 0, 0, [Ext.state, 'Manager'], 0);
-Ext.cmd.derive('Ext.state.Stateful', Ext.Base, {stateful:false, saveDelay:100, constructor:function(config) {
+}});
+Ext.define('Ext.state.Stateful', {mixins:{observable:Ext.util.Observable}, stateful:false, saveDelay:100, constructor:function(config) {
   var me = this;
   config = config || {};
   if (config.stateful !== undefined) {
@@ -18484,8 +18092,8 @@ Ext.cmd.derive('Ext.state.Stateful', Ext.Base, {stateful:false, saveDelay:100, c
     me.stateTask = null;
   }
   me.clearListeners();
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.state, 'Stateful'], 0);
-Ext.cmd.derive('Ext.AbstractComponent', Ext.Base, {statics:{AUTO_ID:1000, pendingLayouts:null, layoutSuspendCount:0, cancelLayout:function(comp, isDestroying) {
+}});
+Ext.define('Ext.AbstractComponent', {mixins:{positionable:Ext.util.Positionable, observable:Ext.util.Observable, animate:Ext.util.Animate, elementCt:Ext.util.ElementContainer, renderable:Ext.util.Renderable, state:Ext.state.Stateful}, statics:{AUTO_ID:1000, pendingLayouts:null, layoutSuspendCount:0, cancelLayout:function(comp, isDestroying) {
   var context = this.runningLayoutContext || this.pendingLayouts;
   if (context) {
     context.cancelComponent(comp, false, isDestroying);
@@ -18530,8 +18138,8 @@ Ext.cmd.derive('Ext.AbstractComponent', Ext.Base, {statics:{AUTO_ID:1000, pendin
 }}, isComponent:true, getAutoId:function() {
   this.autoGenId = true;
   return ++Ext.AbstractComponent.AUTO_ID;
-}, deferLayouts:false, autoGenId:false, renderTpl:'{%this.renderContent(out,values)%}', frameSize:null, tplWriteMode:'overwrite', baseCls:'x-component', disabledCls:'x-item-disabled', ui:'default', uiCls:[], hidden:false, disabled:false, draggable:false, floating:false, hideMode:'display', autoShow:false, autoRender:false, allowDomMove:true, rendered:false, componentLayoutCounter:0, shrinkWrap:2, weight:0, maskOnDisable:true, _isLayoutRoot:false, contentPaddingProperty:'padding', horizontalPosProp:'left', 
-borderBoxCls:'x-border-box', constructor:function(config) {
+}, deferLayouts:false, autoGenId:false, renderTpl:'{%this.renderContent(out,values)%}', frameSize:null, tplWriteMode:'overwrite', baseCls:Ext.baseCSSPrefix + 'component', disabledCls:Ext.baseCSSPrefix + 'item-disabled', ui:'default', uiCls:[], hidden:false, disabled:false, draggable:false, floating:false, hideMode:'display', autoShow:false, autoRender:false, allowDomMove:true, rendered:false, componentLayoutCounter:0, shrinkWrap:2, weight:0, maskOnDisable:true, _isLayoutRoot:false, contentPaddingProperty:'padding', 
+horizontalPosProp:'left', borderBoxCls:Ext.baseCSSPrefix + 'border-box', constructor:function(config) {
   var me = this, i, len, xhooks;
   if (config) {
     Ext.apply(me, config);
@@ -18856,7 +18464,7 @@ borderBoxCls:'x-border-box', constructor:function(config) {
   var me = this, uiCls = me.uiCls || [];
   return Ext.Array.contains(uiCls, cls);
 }, frameElementsArray:['tl', 'tc', 'tr', 'ml', 'mc', 'mr', 'bl', 'bc', 'br'], addUIClsToElement:function(cls) {
-  var me = this, baseClsUi = me.baseCls + '-' + me.ui + '-' + cls, result = ['x-' + cls, me.baseCls + '-' + cls, baseClsUi], frameElementsArray, frameElementsLength, i, el, frameElement;
+  var me = this, baseClsUi = me.baseCls + '-' + me.ui + '-' + cls, result = [Ext.baseCSSPrefix + cls, me.baseCls + '-' + cls, baseClsUi], frameElementsArray, frameElementsLength, i, el, frameElement;
   if (me.rendered && me.frame && !Ext.supports.CSS3BorderRadius) {
     frameElementsArray = me.frameElementsArray;
     frameElementsLength = frameElementsArray.length;
@@ -18870,7 +18478,7 @@ borderBoxCls:'x-border-box', constructor:function(config) {
   }
   return result;
 }, removeUIClsFromElement:function(cls) {
-  var me = this, baseClsUi = me.baseCls + '-' + me.ui + '-' + cls, result = ['x-' + cls, me.baseCls + '-' + cls, baseClsUi], frameElementsArray, frameElementsLength, i, el, frameElement;
+  var me = this, baseClsUi = me.baseCls + '-' + me.ui + '-' + cls, result = [Ext.baseCSSPrefix + cls, me.baseCls + '-' + cls, baseClsUi], frameElementsArray, frameElementsLength, i, el, frameElement;
   if (me.rendered && me.frame && !Ext.supports.CSS3BorderRadius) {
     frameElementsArray = me.frameElementsArray;
     frameElementsLength = frameElementsArray.length;
@@ -19845,7 +19453,7 @@ borderBoxCls:'x-border-box', constructor:function(config) {
   this.el.setXY(xy, animate);
 }, setY:function(y, animate) {
   this.el.setY(y, animate);
-}}, 1, 0, 0, 0, 0, [['positionable', Ext.util.Positionable], ['observable', Ext.util.Observable], ['animate', Ext.util.Animate], ['elementCt', Ext.util.ElementContainer], ['renderable', Ext.util.Renderable], ['state', Ext.state.Stateful]], [Ext, 'AbstractComponent'], function() {
+}}, function() {
   var AbstractComponent = this;
   AbstractComponent.createAlias({on:'addListener', prev:'previousSibling', next:'nextSibling'});
   Ext.resumeLayouts = function(flush) {
@@ -19860,7 +19468,7 @@ borderBoxCls:'x-border-box', constructor:function(config) {
     AbstractComponent.resumeLayouts(true);
   };
 });
-Ext.cmd.derive('Ext.AbstractPlugin', Ext.Base, {disabled:false, isPlugin:true, constructor:function(config) {
+Ext.define('Ext.AbstractPlugin', {disabled:false, isPlugin:true, constructor:function(config) {
   this.pluginConfig = config;
   Ext.apply(this, config);
 }, clonePlugin:function(overrideCfg) {
@@ -19881,8 +19489,8 @@ Ext.cmd.derive('Ext.AbstractPlugin', Ext.Base, {disabled:false, isPlugin:true, c
     }
     cls.prototype.ptype = alias.split('plugin.')[1];
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext, 'AbstractPlugin'], 0);
-Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActivated:function() {
+}});
+Ext.define('Ext.data.flash.BinaryXhr', {statics:{flashPluginActivated:function() {
   Ext.data.flash.BinaryXhr.flashPluginActive = true;
   Ext.data.flash.BinaryXhr.flashPlugin = document.getElementById('ext-flash-polyfill');
   Ext.globalEvents.fireEvent('flashready');
@@ -20029,8 +19637,8 @@ Ext.cmd.derive('Ext.data.flash.BinaryXhr', Ext.Base, {statics:{flashPluginActiva
     delete Ext.data.flash.BinaryXhr.liveConnections[me.javascriptId];
   }
   me.setReadyState(state);
-}}, 1, 0, 0, 0, 0, 0, [Ext.data.flash, 'BinaryXhr'], 0);
-Ext.cmd.derive('Ext.data.Connection', Ext.Base, {statics:{requestId:0}, url:null, async:true, method:null, username:'', password:'', disableCaching:true, withCredentials:false, binary:false, cors:false, isXdr:false, defaultXdrContentType:'text/plain', disableCachingParam:'_dc', timeout:30000, useDefaultHeader:true, defaultPostHeader:'application/x-www-form-urlencoded; charset\x3dUTF-8', useDefaultXhrHeader:true, defaultXhrHeader:'XMLHttpRequest', constructor:function(config) {
+}});
+Ext.define('Ext.data.Connection', {mixins:{observable:Ext.util.Observable}, statics:{requestId:0}, url:null, async:true, method:null, username:'', password:'', disableCaching:true, withCredentials:false, binary:false, cors:false, isXdr:false, defaultXdrContentType:'text/plain', disableCachingParam:'_dc', timeout:30000, useDefaultHeader:true, defaultPostHeader:'application/x-www-form-urlencoded; charset\x3dUTF-8', useDefaultXhrHeader:true, defaultXhrHeader:'XMLHttpRequest', constructor:function(config) {
   config = config || {};
   Ext.apply(this, config);
   this.requests = {};
@@ -20098,7 +19706,7 @@ Ext.cmd.derive('Ext.data.Connection', Ext.Base, {statics:{requestId:0}, url:null
     form.appendChild(hiddenItem);
     hiddens.push(hiddenItem);
   }, hiddenItem, obj, value, name, vLen, v, hLen, h;
-  Ext.fly(frame).set({id:id, name:id, cls:'x-hide-display', src:Ext.SSL_SECURE_URL});
+  Ext.fly(frame).set({id:id, name:id, cls:Ext.baseCSSPrefix + 'hide-display', src:Ext.SSL_SECURE_URL});
   document.body.appendChild(frame);
   if (document.frames) {
     document.frames[id].name = id;
@@ -20510,9 +20118,9 @@ Ext.cmd.derive('Ext.data.Connection', Ext.Base, {statics:{requestId:0}, url:null
   this.self.vbScriptInjected = true;
 }, nativeBinaryPostSupport:function() {
   return Ext.isChrome || Ext.isSafari && Ext.isDefined(window.Uint8Array) || Ext.isGecko && Ext.isDefined(window.Uint8Array);
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.data, 'Connection'], 0);
-Ext.cmd.derive('Ext.Ajax', Ext.data.Connection, {singleton:true, autoAbort:false}, 0, 0, 0, 0, 0, 0, [Ext, 'Ajax'], 0);
-Ext.cmd.derive('Ext.util.Floating', Ext.Base, {focusOnToFront:true, shadow:'sides', constrain:false, constructor:function(dom) {
+}});
+Ext.define('Ext.Ajax', {extend:Ext.data.Connection, singleton:true, autoAbort:false});
+Ext.define('Ext.util.Floating', {focusOnToFront:true, shadow:'sides', constrain:false, constructor:function(dom) {
   var me = this;
   me.fixed = me.fixed && !(Ext.isIE6 || Ext.isIEQuirks);
   me.el = new Ext.dom.Layer(Ext.apply({preventSync:true, hideMode:me.hideMode, hidden:me.hidden, shadow:typeof me.shadow != 'undefined' ? me.shadow : 'sides', shadowOffset:me.shadowOffset, constrain:false, fixed:me.fixed, shim:me.shim === false ? false : undefined}, me.floating), dom);
@@ -20660,8 +20268,9 @@ Ext.cmd.derive('Ext.util.Floating', Ext.Base, {focusOnToFront:true, shadow:'side
   newBox.x = newPosition[0];
   newBox.y = newPosition[1];
   me.setBox(newBox, animate);
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Floating'], 0);
-Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'top', DIRECTION_RIGHT:'right', DIRECTION_BOTTOM:'bottom', DIRECTION_LEFT:'left', VERTICAL_DIRECTION_Re:/^(?:top|bottom)$/, INVALID_ID_CHARS_Re:/[\.,\s]/g}, resizeHandles:'all', floating:false, defaultAlign:'tl-bl?', toFrontOnShow:true, hideMode:'display', offsetsCls:'x-hide-offsets', bubbleEvents:[], defaultComponentLayoutType:'autocomponent', constructor:function(config) {
+}});
+Ext.define('Ext.Component', {alias:['widget.component', 'widget.box'], extend:Ext.AbstractComponent, mixins:{floating:Ext.util.Floating}, statics:{DIRECTION_TOP:'top', DIRECTION_RIGHT:'right', DIRECTION_BOTTOM:'bottom', DIRECTION_LEFT:'left', VERTICAL_DIRECTION_Re:/^(?:top|bottom)$/, INVALID_ID_CHARS_Re:/[\.,\s]/g}, resizeHandles:'all', floating:false, defaultAlign:'tl-bl?', toFrontOnShow:true, hideMode:'display', offsetsCls:Ext.baseCSSPrefix + 'hide-offsets', bubbleEvents:[], defaultComponentLayoutType:'autocomponent', 
+constructor:function(config) {
   var me = this;
   config = config || {};
   if (config.initialConfig) {
@@ -20674,13 +20283,13 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
       config = {applyTo:config, id:config.id || config};
     }
   }
-  Ext.AbstractComponent.prototype.constructor.call(this, config);
+  me.callParent([config]);
   if (me.baseAction) {
     me.baseAction.addComponent(me);
   }
 }, initComponent:function() {
   var me = this;
-  Ext.AbstractComponent.prototype.initComponent.call(this);
+  me.callParent();
   if (me.listeners) {
     me.on(me.listeners);
     me.listeners = null;
@@ -20688,7 +20297,7 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
   me.enableBubble(me.bubbleEvents);
 }, afterRender:function() {
   var me = this;
-  Ext.AbstractComponent.prototype.afterRender.call(this);
+  me.callParent();
   if (!(me.x && me.y) && (me.pageX || me.pageY)) {
     me.setPagePosition(me.pageX, me.pageY);
   }
@@ -20716,20 +20325,20 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
 }, beforeRender:function() {
   var me = this, floating = me.floating, cls;
   if (floating) {
-    me.addCls('x-layer');
+    me.addCls(Ext.baseCSSPrefix + 'layer');
     cls = floating.cls;
     if (cls) {
       me.addCls(cls);
     }
   }
-  return Ext.AbstractComponent.prototype.beforeRender.call(this);
+  return me.callParent();
 }, beforeLayout:function() {
-  Ext.AbstractComponent.prototype.beforeLayout.apply(this, arguments);
+  this.callParent(arguments);
   if (this.floating) {
     this.onBeforeFloatLayout();
   }
 }, afterComponentLayout:function() {
-  Ext.AbstractComponent.prototype.afterComponentLayout.apply(this, arguments);
+  this.callParent(arguments);
   if (this.floating) {
     this.onAfterFloatLayout();
   }
@@ -20739,7 +20348,7 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
   if (this.floating) {
     this.makeFloating(dom);
   } else {
-    Ext.AbstractComponent.prototype.wrapPrimaryEl.apply(this, arguments);
+    this.callParent(arguments);
   }
 }, initResizable:function(resizable) {
   var me = this;
@@ -20782,7 +20391,7 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
   }
   return me.loadMask;
 }, beforeSetPosition:function() {
-  var me = this, pos = Ext.AbstractComponent.prototype.beforeSetPosition.apply(this, arguments), adj;
+  var me = this, pos = me.callParent(arguments), adj;
   if (pos) {
     adj = me.adjustPosition(pos.x, pos.y);
     pos.x = adj.x;
@@ -20930,7 +20539,7 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
 }, onShowVeto:Ext.emptyFn, beforeShow:Ext.emptyFn, onShow:function() {
   var me = this;
   me.el.show();
-  Ext.AbstractComponent.prototype.onShow.apply(this, arguments);
+  me.callParent(arguments);
   if (me.floating) {
     if (me.maximized) {
       me.fitContainer();
@@ -21034,7 +20643,7 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
     Ext.destroy(me.dd, me.resizer, me.proxy, me.proxyWrap, me.resizerComponent);
   }
   delete me.focusTask;
-  Ext.AbstractComponent.prototype.onDestroy.call(this);
+  me.callParent();
 }, deleteMembers:function() {
   var args = arguments, len = args.length, i = 0;
   for (; i < len; ++i) {
@@ -21134,17 +20743,17 @@ Ext.cmd.derive('Ext.Component', Ext.AbstractComponent, {statics:{DIRECTION_TOP:'
   var me = this, target;
   if (!me.proxy) {
     target = Ext.getBody();
-    me.proxy = me.el.createProxy('x-proxy-el', target, true);
+    me.proxy = me.el.createProxy(Ext.baseCSSPrefix + 'proxy-el', target, true);
   }
   return me.proxy;
 }, fireHierarchyEvent:function(ename) {
   this.hierarchyEventSource.fireEvent(ename, this);
 }, onAdded:function() {
-  Ext.AbstractComponent.prototype.onAdded.apply(this, arguments);
+  this.callParent(arguments);
   if (this.hierarchyEventSource.hasListeners.added) {
     this.fireHierarchyEvent('added');
   }
-}}, 1, ['box', 'component'], ['component', 'box'], {'component':true, 'box':true}, ['widget.box', 'widget.component'], [['floating', Ext.util.Floating]], [Ext, 'Component'], function() {
+}}, function() {
   this.hierarchyEventSource = this.prototype.hierarchyEventSource = new Ext.util.Observable({events:{hide:true, show:true, collapse:true, expand:true, added:true}});
 });
 Ext.define('Ext.layout.container.border.Region', {override:'Ext.Component', initBorderRegion:function() {
@@ -21231,7 +20840,7 @@ Ext.define('Ext.layout.container.border.Region', {override:'Ext.Component', init
   }
   return old;
 }});
-Ext.cmd.derive('Ext.ElementLoader', Ext.Base, {statics:{Renderer:{Html:function(loader, response, active) {
+Ext.define('Ext.ElementLoader', {mixins:{observable:Ext.util.Observable}, statics:{Renderer:{Html:function(loader, response, active) {
   loader.getTarget().update(response.responseText, active.scripts === true);
   return true;
 }}}, url:null, params:null, baseParams:null, autoLoad:false, target:null, loadMask:false, ajaxOptions:null, scripts:false, isLoader:true, constructor:function(config) {
@@ -21336,8 +20945,8 @@ Ext.cmd.derive('Ext.ElementLoader', Ext.Base, {statics:{Renderer:{Html:function(
   delete me.target;
   me.abort();
   me.clearListeners();
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext, 'ElementLoader'], 0);
-Ext.cmd.derive('Ext.ComponentLoader', Ext.ElementLoader, {statics:{Renderer:{Data:function(loader, response, active) {
+}});
+Ext.define('Ext.ComponentLoader', {extend:Ext.ElementLoader, statics:{Renderer:{Data:function(loader, response, active) {
   var success = true;
   try {
     loader.getTarget().update(Ext.decode(response.responseText));
@@ -21392,14 +21001,14 @@ Ext.cmd.derive('Ext.ComponentLoader', Ext.ElementLoader, {statics:{Renderer:{Dat
     default:
       return Ext.ElementLoader.Renderer.Html;
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'ComponentLoader'], 0);
-Ext.cmd.derive('Ext.layout.SizeModel', Ext.Base, {constructor:function(config) {
+}});
+Ext.define('Ext.layout.SizeModel', {constructor:function(config) {
   var me = this, SizeModel = me.self, sizeModelsArray = SizeModel.sizeModelsArray, name;
   Ext.apply(me, config);
   me[name = me.name] = true;
   me.fixed = !(me.auto = me.natural || me.shrinkWrap);
   sizeModelsArray[me.ordinal = sizeModelsArray.length] = SizeModel[name] = SizeModel.sizeModels[name] = me;
-}, statics:{sizeModelsArray:[], sizeModels:{}}, calculated:false, configured:false, constrainedMax:false, constrainedMin:false, natural:false, shrinkWrap:false, calculatedFromConfigured:false, calculatedFromNatural:false, calculatedFromShrinkWrap:false, names:null}, 1, 0, 0, 0, 0, 0, [Ext.layout, 'SizeModel'], function() {
+}, statics:{sizeModelsArray:[], sizeModels:{}}, calculated:false, configured:false, constrainedMax:false, constrainedMin:false, natural:false, shrinkWrap:false, calculatedFromConfigured:false, calculatedFromNatural:false, calculatedFromShrinkWrap:false, names:null}, function() {
   var SizeModel = this, sizeModelsArray = SizeModel.sizeModelsArray, i, j, n, pairs, sizeModel;
   new SizeModel({name:'calculated'});
   new SizeModel({name:'configured', names:{width:'width', height:'height'}});
@@ -21419,7 +21028,7 @@ Ext.cmd.derive('Ext.layout.SizeModel', Ext.Base, {constructor:function(config) {
     }
   }
 });
-Ext.cmd.derive('Ext.layout.Layout', Ext.Base, {isLayout:true, initialized:false, running:false, autoSizePolicy:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, statics:{layoutsByType:{}, create:function(layout, defaultType) {
+Ext.define('Ext.layout.Layout', {isLayout:true, initialized:false, running:false, autoSizePolicy:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, statics:{layoutsByType:{}, create:function(layout, defaultType) {
   var ClassManager = Ext.ClassManager, layoutsByType = this.layoutsByType, alias, className, config, layoutClass, type, load;
   if (!layout || typeof layout === 'string') {
     type = layout || defaultType;
@@ -21546,7 +21155,7 @@ Ext.cmd.derive('Ext.layout.Layout', Ext.Base, {isLayout:true, initialized:false,
   var itemDom = item.el ? item.el.dom : Ext.getDom(item), targetDom = target && target.dom || target, parentNode = itemDom.parentNode, className;
   if (parentNode) {
     className = parentNode.className;
-    if (className && className.indexOf('x-resizable-wrap') !== -1) {
+    if (className && className.indexOf(Ext.baseCSSPrefix + 'resizable-wrap') !== -1) {
       itemDom = itemDom.parentNode;
     }
   }
@@ -21626,23 +21235,23 @@ Ext.cmd.derive('Ext.layout.Layout', Ext.Base, {isLayout:true, initialized:false,
   for (i = 0; i < length; ++i) {
     delete items[i].$i;
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.layout, 'Layout'], function() {
+}}, function() {
   var Layout = this;
   Layout.prototype.sizeModels = Layout.sizeModels = Ext.layout.SizeModel.sizeModels;
 });
-Ext.cmd.derive('Ext.layout.container.Container', Ext.layout.Layout, {alternateClassName:'Ext.layout.ContainerLayout', type:'container', beginCollapse:Ext.emptyFn, beginExpand:Ext.emptyFn, animatePolicy:null, childEls:['overflowPadderEl'], renderTpl:['{%this.renderBody(out,values)%}'], usesContainerHeight:true, usesContainerWidth:true, usesHeight:true, usesWidth:true, constructor:function() {
-  Ext.layout.Layout.prototype.constructor.apply(this, arguments);
+Ext.define('Ext.layout.container.Container', {alias:['layout.container'], extend:Ext.layout.Layout, alternateClassName:'Ext.layout.ContainerLayout', mixins:{elementCt:Ext.util.ElementContainer}, type:'container', beginCollapse:Ext.emptyFn, beginExpand:Ext.emptyFn, animatePolicy:null, childEls:['overflowPadderEl'], renderTpl:['{%this.renderBody(out,values)%}'], usesContainerHeight:true, usesContainerWidth:true, usesHeight:true, usesWidth:true, constructor:function() {
+  this.callParent(arguments);
   this.mixins.elementCt.constructor.call(this);
 }, destroy:function() {
-  Ext.layout.Layout.prototype.destroy.call(this);
+  this.callParent();
   this.mixins.elementCt.destroy.call(this);
 }, beginLayout:function(ownerContext) {
-  Ext.layout.Layout.prototype.beginLayout.apply(this, arguments);
+  this.callParent(arguments);
   ownerContext.targetContext = ownerContext.paddingContext = ownerContext.getEl('getTarget', this);
   this.cacheChildItems(ownerContext);
 }, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this;
-  Ext.layout.Layout.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (firstCycle) {
     if (me.usesContainerHeight) {
       ++ownerContext.consumersContainerHeight;
@@ -21686,7 +21295,7 @@ Ext.cmd.derive('Ext.layout.container.Container', Ext.layout.Layout, {alternateCl
   }
 }, finishRender:function() {
   var me = this, target, items;
-  Ext.layout.Layout.prototype.finishRender.call(this);
+  me.callParent();
   me.cacheElements();
   target = me.getRenderTarget();
   items = me.getLayoutItems();
@@ -21807,13 +21416,13 @@ Ext.cmd.derive('Ext.layout.container.Container', Ext.layout.Layout, {alternateCl
   renderTpl.renderItems = me.doRenderItems;
 }, getContentTarget:function() {
   return this.owner.getDefaultContentTarget();
-}}, 1, 0, 0, 0, ['layout.container'], [['elementCt', Ext.util.ElementContainer]], [Ext.layout.container, 'Container', Ext.layout, 'ContainerLayout'], 0);
-Ext.cmd.derive('Ext.layout.container.Auto', Ext.layout.container.Container, {type:'autocontainer', childEls:['outerCt', 'innerCt', 'clearEl'], reserveScrollbar:false, managePadding:true, manageOverflow:false, lastOverflowAdjust:{width:0, height:0}, renderTpl:['{% if (!(Ext.isIEQuirks || Ext.isIE7m)) { %}', '\x3cspan id\x3d"{ownerId}-outerCt" style\x3d"display:table;"\x3e', '\x3cdiv id\x3d"{ownerId}-innerCt" style\x3d"display:table-cell;height:100%;', 'vertical-align:top;{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', 
-'{%this.renderBody(out,values)%}', '\x3c/div\x3e', '\x3c/span\x3e', '{% } else if (values.shrinkWrapWidth) { %}', '\x3ctable id\x3d"{ownerId}-outerCt" class\x3d"' + Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" style\x3d"vertical-align:top;padding:0;', '{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', '{%this.renderBody(out,values)%}', '\x3cdiv id\x3d"{ownerId}-clearEl" class\x3d"', 'x-', 'clear"', 'role\x3d"presentation"\x3e\x3c/div\x3e', '\x3c/td\x3e', 
-'\x3c/tr\x3e', '\x3c/table\x3e', '{% } else { %}', '\x3cdiv id\x3d"{ownerId}-outerCt" style\x3d"zoom:1;{%this.renderPadding(out, values)%}"\x3e', '\x3cdiv id\x3d"{ownerId}-innerCt" style\x3d"zoom:1;height:100%;" class\x3d"{innerCtCls}"\x3e', '{%this.renderBody(out,values)%}', '\x3cdiv id\x3d"{ownerId}-clearEl" class\x3d"', 'x-', 'clear"', 'role\x3d"presentation"\x3e\x3c/div\x3e', '\x3c/div\x3e', '\x3c/div\x3e', '{% values.$layout.isShrinkWrapTpl \x3d false %}', '{% } %}'], tableTpl:['\x3ctable id\x3d"{ownerId}-outerCt" class\x3d"' + 
-Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" style\x3d"vertical-align:top;padding:0;', '{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', '\x3c/table\x3e'], isShrinkWrapTpl:true, beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.container.Auto', {alias:['layout.auto', 'layout.autocontainer'], extend:Ext.layout.container.Container, type:'autocontainer', childEls:['outerCt', 'innerCt', 'clearEl'], reserveScrollbar:false, managePadding:true, manageOverflow:false, lastOverflowAdjust:{width:0, height:0}, renderTpl:['{% if (!(Ext.isIEQuirks || Ext.isIE7m)) { %}', '\x3cspan id\x3d"{ownerId}-outerCt" style\x3d"display:table;"\x3e', '\x3cdiv id\x3d"{ownerId}-innerCt" style\x3d"display:table-cell;height:100%;', 
+'vertical-align:top;{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', '{%this.renderBody(out,values)%}', '\x3c/div\x3e', '\x3c/span\x3e', '{% } else if (values.shrinkWrapWidth) { %}', '\x3ctable id\x3d"{ownerId}-outerCt" class\x3d"' + Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" style\x3d"vertical-align:top;padding:0;', '{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', '{%this.renderBody(out,values)%}', '\x3cdiv id\x3d"{ownerId}-clearEl" class\x3d"', 
+Ext.baseCSSPrefix, 'clear"', 'role\x3d"presentation"\x3e\x3c/div\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', '\x3c/table\x3e', '{% } else { %}', '\x3cdiv id\x3d"{ownerId}-outerCt" style\x3d"zoom:1;{%this.renderPadding(out, values)%}"\x3e', '\x3cdiv id\x3d"{ownerId}-innerCt" style\x3d"zoom:1;height:100%;" class\x3d"{innerCtCls}"\x3e', '{%this.renderBody(out,values)%}', '\x3cdiv id\x3d"{ownerId}-clearEl" class\x3d"', Ext.baseCSSPrefix, 'clear"', 'role\x3d"presentation"\x3e\x3c/div\x3e', '\x3c/div\x3e', '\x3c/div\x3e', 
+'{% values.$layout.isShrinkWrapTpl \x3d false %}', '{% } %}'], tableTpl:['\x3ctable id\x3d"{ownerId}-outerCt" class\x3d"' + Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" style\x3d"vertical-align:top;padding:0;', '{%this.renderPadding(out, values)%}" class\x3d"{innerCtCls}"\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', '\x3c/table\x3e'], isShrinkWrapTpl:true, beginLayout:function(ownerContext) {
   var me = this, bottomPadding, overflowYStyle, overflowXStyle, needsTable;
-  Ext.layout.container.Container.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   me.initContextItems(ownerContext);
   if (!me.isShrinkWrapTpl) {
     if (ownerContext.widthModel.shrinkWrap) {
@@ -21850,7 +21459,7 @@ Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" sty
   }
 }, beginLayoutCycle:function(ownerContext) {
   var me = this, outerCt = me.outerCt, lastOuterCtWidth = me.lastOuterCtWidth || '', lastOuterCtHeight = me.lastOuterCtHeight || '', lastOuterCtTableLayout = me.lastOuterCtTableLayout || '', state = ownerContext.state, overflowXStyle, overflowYStyle, outerCtWidth, outerCtHeight, outerCtTableLayout, deferWidth, hierarchyStateInner;
-  Ext.layout.container.Container.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   outerCtWidth = outerCtHeight = outerCtTableLayout = '';
   if (!ownerContext.widthModel.shrinkWrap && me.isShrinkWrapTpl) {
     if (Ext.isIE7m && Ext.isStrict) {
@@ -21955,7 +21564,7 @@ Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" sty
   }
 }, finishedLayout:function(ownerContext) {
   var innerCt = this.innerCt;
-  Ext.layout.container.Container.prototype.finishedLayout.apply(this, arguments);
+  this.callParent(arguments);
   if (Ext.isIEQuirks || Ext.isIE8m) {
     innerCt.repaint();
   }
@@ -21965,14 +21574,14 @@ Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" sty
     innerCt.setStyle('position', '');
   }
 }, getContainerSize:function(ownerContext, inDom) {
-  var size = Ext.layout.container.Container.prototype.getContainerSize.apply(this, arguments), overflowAdjust = ownerContext.state.overflowAdjust;
+  var size = this.callParent(arguments), overflowAdjust = ownerContext.state.overflowAdjust;
   if (overflowAdjust) {
     size.width -= overflowAdjust.width;
     size.height -= overflowAdjust.height;
   }
   return size;
 }, getRenderData:function() {
-  var owner = this.owner, data = Ext.layout.container.Container.prototype.getRenderData.call(this);
+  var owner = this.owner, data = this.callParent();
   if ((Ext.isIEQuirks || Ext.isIE7m) && (owner.shrinkWrap & 1 || owner.floating && !owner.width)) {
     data.shrinkWrapWidth = true;
   }
@@ -21999,7 +21608,7 @@ Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" sty
   }
 }, initLayout:function() {
   var me = this, scrollbarWidth = Ext.getScrollbarSize().width, owner = me.owner;
-  Ext.layout.container.Container.prototype.initLayout.call(this);
+  me.callParent();
   if (scrollbarWidth && me.manageOverflow && !me.hasOwnProperty('lastOverflowAdjust')) {
     if (owner.autoScroll || me.reserveScrollbar) {
       me.lastOverflowAdjust = {width:scrollbarWidth, height:0};
@@ -22089,14 +21698,14 @@ Ext.plainTableCls + '"\x3e', '\x3ctr\x3e', '\x3ctd id\x3d"{ownerId}-innerCt" sty
     targetEl.setStyle(overflowStyleName, 'auto');
   }
 }, setupRenderTpl:function(renderTpl) {
-  Ext.layout.container.Container.prototype.setupRenderTpl.apply(this, arguments);
+  this.callParent(arguments);
   renderTpl.renderPadding = this.doRenderPadding;
 }, getContentTarget:function() {
   return this.innerCt;
-}}, 0, 0, 0, 0, ['layout.auto', 'layout.autocontainer'], 0, [Ext.layout.container, 'Auto'], function() {
+}}, function() {
   this.prototype.chromeCellMeasureBug = Ext.isChrome && Ext.chromeVersion >= 26;
 });
-Ext.cmd.derive('Ext.ZIndexManager', Ext.Base, {alternateClassName:'Ext.WindowGroup', statics:{zBase:9000}, constructor:function(container) {
+Ext.define('Ext.ZIndexManager', {alternateClassName:'Ext.WindowGroup', statics:{zBase:9000}, constructor:function(container) {
   var me = this;
   me.list = {};
   me.zIndexStack = [];
@@ -22186,10 +21795,10 @@ Ext.cmd.derive('Ext.ZIndexManager', Ext.Base, {alternateClassName:'Ext.WindowGro
   var me = this, zIndex = comp.el.getStyle('zIndex') - 4, maskTarget = comp.floatParent ? comp.floatParent.getTargetEl() : comp.container, mask = me.mask, shim = me.maskShim, viewSize;
   if (!mask) {
     if (Ext.isIE6) {
-      shim = me.maskShim = Ext.getBody().createChild({tag:'iframe', cls:'x-shim x-mask-shim'});
+      shim = me.maskShim = Ext.getBody().createChild({tag:'iframe', cls:Ext.baseCSSPrefix + 'shim ' + Ext.baseCSSPrefix + 'mask-shim'});
       shim.setVisibilityMode(Ext.Element.DISPLAY);
     }
-    mask = me.mask = Ext.getBody().createChild({cls:'x-mask', style:'height:0;width:0'});
+    mask = me.mask = Ext.getBody().createChild({cls:Ext.baseCSSPrefix + 'mask', style:'height:0;width:0'});
     mask.setVisibilityMode(Ext.Element.DISPLAY);
     mask.on('click', me._onMaskClick, me);
   }
@@ -22371,10 +21980,10 @@ Ext.cmd.derive('Ext.ZIndexManager', Ext.Base, {alternateClassName:'Ext.WindowGro
   delete me.list;
   delete me.container;
   delete me.targetEl;
-}}, 1, 0, 0, 0, 0, 0, [Ext, 'ZIndexManager', Ext, 'WindowGroup'], function() {
+}}, function() {
   Ext.WindowManager = Ext.WindowMgr = new this;
 });
-Ext.cmd.derive('Ext.Queryable', Ext.Base, {isQueryable:true, query:function(selector) {
+Ext.define('Ext.Queryable', {isQueryable:true, query:function(selector) {
   selector = selector || '*';
   return Ext.ComponentQuery.query(selector, this);
 }, queryBy:function(fn, scope) {
@@ -22402,11 +22011,11 @@ Ext.cmd.derive('Ext.Queryable', Ext.Base, {isQueryable:true, query:function(sele
   return this.query(selector)[0] || null;
 }, getRefItems:function() {
   return [];
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'Queryable'], 0);
-Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%this.renderContainer(out,values)%}', suspendLayout:false, autoDestroy:true, defaultType:'panel', detachOnRemove:true, isContainer:true, layoutCounter:0, baseCls:'x-container', defaultLayoutType:'auto', initComponent:function() {
+}});
+Ext.define('Ext.container.AbstractContainer', {extend:Ext.Component, mixins:{queryable:Ext.Queryable}, renderTpl:'{%this.renderContainer(out,values)%}', suspendLayout:false, autoDestroy:true, defaultType:'panel', detachOnRemove:true, isContainer:true, layoutCounter:0, baseCls:Ext.baseCSSPrefix + 'container', defaultLayoutType:'auto', initComponent:function() {
   var me = this;
   me.addEvents('afterlayout', 'beforeadd', 'beforeremove', 'add', 'remove');
-  Ext.Component.prototype.initComponent.call(this);
+  me.callParent();
   me.getLayout();
   me.initItems();
 }, initItems:function() {
@@ -22422,14 +22031,14 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
 }, getFocusEl:function() {
   return this.getTargetEl();
 }, finishRenderChildren:function() {
-  Ext.Component.prototype.finishRenderChildren.call(this);
+  this.callParent();
   var layout = this.getLayout();
   if (layout) {
     layout.finishRender();
   }
 }, beforeRender:function() {
   var me = this, layout = me.getLayout(), targetCls;
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   if (!layout.initialized) {
     layout.initLayout();
   }
@@ -22441,7 +22050,7 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
   this.addCls(targetCls);
 }, afterComponentLayout:function() {
   var floaters = this.floatingItems.items, floaterCount = floaters.length, i, floater;
-  Ext.Component.prototype.afterComponentLayout.apply(this, arguments);
+  this.callParent(arguments);
   for (i = 0; i < floaterCount; i++) {
     floater = floaters[i];
     if (!floater.rendered && floater.autoShow) {
@@ -22449,10 +22058,10 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
     }
   }
 }, onPosition:function() {
-  Ext.Component.prototype.onPosition.apply(this, arguments);
+  this.callParent(arguments);
   this.repositionFloatingItems();
 }, onResize:function() {
-  Ext.Component.prototype.onResize.apply(this, arguments);
+  this.callParent(arguments);
   this.repositionFloatingItems();
 }, repositionFloatingItems:function() {
   var floaters = this.floatingItems.items, floaterCount = floaters.length, i, floater;
@@ -22463,7 +22072,7 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
     }
   }
 }, setupRenderTpl:function(renderTpl) {
-  Ext.Component.prototype.setupRenderTpl.apply(this, arguments);
+  this.callParent(arguments);
   this.getLayout().setupRenderTpl(renderTpl);
 }, getDefaultContentTarget:function() {
   return this.el;
@@ -22738,7 +22347,7 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
   }
   return result;
 }, enable:function() {
-  Ext.Component.prototype.enable.apply(this, arguments);
+  this.callParent(arguments);
   var itemsToDisable = this.getChildItemsToDisable(), length = itemsToDisable.length, item, i;
   for (i = 0; i < length; i++) {
     item = itemsToDisable[i];
@@ -22748,7 +22357,7 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
   }
   return this;
 }, disable:function() {
-  Ext.Component.prototype.disable.apply(this, arguments);
+  this.callParent(arguments);
   var itemsToDisable = this.getChildItemsToDisable(), length = itemsToDisable.length, item, i;
   for (i = 0; i < length; i++) {
     item = itemsToDisable[i];
@@ -22773,9 +22382,9 @@ Ext.cmd.derive('Ext.container.AbstractContainer', Ext.Component, {renderTpl:'{%t
     }
   }
   Ext.destroy(me.layout);
-  Ext.Component.prototype.beforeDestroy.call(this);
-}}, 0, 0, ['component', 'box'], {'component':true, 'box':true}, 0, [['queryable', Ext.Queryable]], [Ext.container, 'AbstractContainer'], 0);
-Ext.cmd.derive('Ext.container.Container', Ext.container.AbstractContainer, {alternateClassName:'Ext.Container', getChildByElement:function(el, deep) {
+  me.callParent();
+}});
+Ext.define('Ext.container.Container', {extend:Ext.container.AbstractContainer, alias:'widget.container', alternateClassName:'Ext.Container', getChildByElement:function(el, deep) {
   var item, itemEl, i = 0, it = this.getRefItems(), ln = it.length;
   el = Ext.getDom(el);
   for (; i < ln; i++) {
@@ -22786,8 +22395,8 @@ Ext.cmd.derive('Ext.container.Container', Ext.container.AbstractContainer, {alte
     }
   }
   return null;
-}}, 0, ['container'], ['component', 'box', 'container'], {'component':true, 'box':true, 'container':true}, ['widget.container'], 0, [Ext.container, 'Container', Ext, 'Container'], 0);
-Ext.cmd.derive('Ext.util.KeyMap', Ext.Base, {alternateClassName:'Ext.KeyMap', eventName:'keydown', constructor:function(config) {
+}});
+Ext.define('Ext.util.KeyMap', {alternateClassName:'Ext.KeyMap', eventName:'keydown', constructor:function(config) {
   var me = this;
   if (arguments.length !== 1 || typeof config === 'string' || config.dom || config.tagName || config === document || config.isComponent) {
     me.legacyConstructor.apply(me, arguments);
@@ -22967,8 +22576,8 @@ Ext.cmd.derive('Ext.util.KeyMap', Ext.Base, {alternateClassName:'Ext.KeyMap', ev
     }
   }
   delete me.target;
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'KeyMap', Ext, 'KeyMap'], 0);
-Ext.cmd.derive('Ext.util.KeyNav', Ext.Base, {alternateClassName:'Ext.KeyNav', statics:{keyOptions:{left:37, right:39, up:38, down:40, space:32, pageUp:33, pageDown:34, del:46, backspace:8, home:36, end:35, enter:13, esc:27, tab:9}}, constructor:function(config) {
+}});
+Ext.define('Ext.util.KeyNav', {alternateClassName:'Ext.KeyNav', statics:{keyOptions:{left:37, right:39, up:38, down:40, space:32, pageUp:33, pageDown:34, del:46, backspace:8, home:36, end:35, enter:13, esc:27, tab:9}}, constructor:function(config) {
   var me = this;
   if (arguments.length === 2) {
     me.legacyConstructor.apply(me, arguments);
@@ -23034,8 +22643,8 @@ Ext.cmd.derive('Ext.util.KeyNav', Ext.Base, {alternateClassName:'Ext.KeyNav', st
   } else {
     return configuredEventName || this.eventName;
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'KeyNav', Ext, 'KeyNav'], 0);
-Ext.cmd.derive('Ext.FocusManager', Ext.Base, {singleton:true, alternateClassName:['Ext.FocusMgr'], enabled:false, focusElementCls:'x-focus-element', focusFrameCls:'x-focus-frame', whitelist:['textfield'], constructor:function(config) {
+}});
+Ext.define('Ext.FocusManager', {singleton:true, alternateClassName:['Ext.FocusMgr'], mixins:{observable:Ext.util.Observable}, enabled:false, focusElementCls:Ext.baseCSSPrefix + 'focus-element', focusFrameCls:Ext.baseCSSPrefix + 'focus-frame', whitelist:['textfield'], constructor:function(config) {
   var me = this, CQ = Ext.ComponentQuery;
   me.mixins.observable.constructor.call(me, config);
   me.addEvents('beforecomponentfocus', 'componentfocus', 'disable', 'enable');
@@ -23346,14 +22955,14 @@ Ext.cmd.derive('Ext.FocusManager', Ext.Base, {singleton:true, alternateClassName
     return true;
   }
   return false;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext, 'FocusManager', Ext, 'FocusMgr'], 0);
-Ext.cmd.derive('Ext.Img', Ext.Component, {autoEl:'img', baseCls:'x-img', src:'', alt:'', title:'', imgCls:'', initComponent:function() {
+}});
+Ext.define('Ext.Img', {extend:Ext.Component, alias:['widget.image', 'widget.imagecomponent'], autoEl:'img', baseCls:Ext.baseCSSPrefix + 'img', src:'', alt:'', title:'', imgCls:'', initComponent:function() {
   if (this.glyph) {
     this.autoEl = 'div';
   }
-  Ext.Component.prototype.initComponent.call(this);
+  this.callParent();
 }, getElConfig:function() {
-  var me = this, config = Ext.Component.prototype.getElConfig.call(this), glyphFontFamily = Ext._glyphFontFamily, glyph = me.glyph, img, glyphParts;
+  var me = this, config = me.callParent(), glyphFontFamily = Ext._glyphFontFamily, glyph = me.glyph, img, glyphParts;
   if (me.autoEl == 'img') {
     img = config;
   } else {
@@ -23386,13 +22995,13 @@ Ext.cmd.derive('Ext.Img', Ext.Component, {autoEl:'img', baseCls:'x-img', src:'',
   return config;
 }, onRender:function() {
   var me = this, el;
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   el = me.el;
   me.imgEl = me.autoEl == 'img' ? el : el.getById(me.id + '-img');
 }, onDestroy:function() {
   Ext.destroy(this.imgEl);
   this.imgEl = null;
-  Ext.Component.prototype.onDestroy.call(this);
+  this.callParent();
 }, setSrc:function(src) {
   var me = this, imgEl = me.imgEl;
   me.src = src;
@@ -23413,8 +23022,8 @@ Ext.cmd.derive('Ext.Img', Ext.Component, {autoEl:'img', baseCls:'x-img', src:'',
       dom.style = 'font-family:' + glyphFontFamily;
     }
   }
-}}, 0, ['image', 'imagecomponent'], ['component', 'box', 'image', 'imagecomponent'], {'component':true, 'box':true, 'image':true, 'imagecomponent':true}, ['widget.image', 'widget.imagecomponent'], 0, [Ext, 'Img'], 0);
-Ext.cmd.derive('Ext.util.Bindable', Ext.Base, {bindStore:function(store, initial, propertyName) {
+}});
+Ext.define('Ext.util.Bindable', {bindStore:function(store, initial, propertyName) {
   propertyName = propertyName || 'store';
   var me = this, oldStore = me[propertyName];
   if (!initial && oldStore) {
@@ -23446,9 +23055,9 @@ Ext.cmd.derive('Ext.util.Bindable', Ext.Base, {bindStore:function(store, initial
   }
   me.storeListeners = listeners;
   store.on(listeners);
-}, getStoreListeners:Ext.emptyFn, onUnbindStore:Ext.emptyFn, onBindStore:Ext.emptyFn}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Bindable'], 0);
-Ext.cmd.derive('Ext.LoadMask', Ext.Component, {msg:'Loading...', msgCls:'x-mask-loading', maskCls:'x-mask', useMsg:true, useTargetEl:false, baseCls:'x-mask-msg', childEls:['msgEl', 'msgTextEl'], renderTpl:['\x3cdiv id\x3d"{id}-msgEl" class\x3d"{[values.$comp.msgCls]} ', 'x-', 'mask-msg-inner{childElCls}"\x3e', '\x3cdiv id\x3d"{id}-msgTextEl" class\x3d"', 'x-', 'mask-msg-text', '{childElCls}"\x3e\x3c/div\x3e', '\x3c/div\x3e'], floating:{shadow:'frame'}, focusOnToFront:false, bringParentToFront:false, 
-constructor:function(config) {
+}, getStoreListeners:Ext.emptyFn, onUnbindStore:Ext.emptyFn, onBindStore:Ext.emptyFn});
+Ext.define('Ext.LoadMask', {extend:Ext.Component, alias:'widget.loadmask', mixins:{floating:Ext.util.Floating, bindable:Ext.util.Bindable}, msg:'Loading...', msgCls:Ext.baseCSSPrefix + 'mask-loading', maskCls:Ext.baseCSSPrefix + 'mask', useMsg:true, useTargetEl:false, baseCls:Ext.baseCSSPrefix + 'mask-msg', childEls:['msgEl', 'msgTextEl'], renderTpl:['\x3cdiv id\x3d"{id}-msgEl" class\x3d"{[values.$comp.msgCls]} ', Ext.baseCSSPrefix, 'mask-msg-inner{childElCls}"\x3e', '\x3cdiv id\x3d"{id}-msgTextEl" class\x3d"', 
+Ext.baseCSSPrefix, 'mask-msg-text', '{childElCls}"\x3e\x3c/div\x3e', '\x3c/div\x3e'], floating:{shadow:'frame'}, focusOnToFront:false, bringParentToFront:false, constructor:function(config) {
   var me = this, comp;
   if (arguments.length === 2) {
     if (Ext.isDefined(Ext.global.console)) {
@@ -23470,7 +23079,7 @@ constructor:function(config) {
   if (!this.isElement) {
     me.bindComponent(comp);
   }
-  Ext.Component.prototype.constructor.call(this, config);
+  me.callParent([config]);
   if (me.store) {
     me.bindStore(me.store, true);
   }
@@ -23517,7 +23126,7 @@ constructor:function(config) {
   delete me.activeOwner;
   delete me.floatOwner;
 }, afterRender:function() {
-  Ext.Component.prototype.afterRender.apply(this, arguments);
+  this.callParent(arguments);
   this.container = this.floatParent.getContentTarget();
 }, onContainerShow:function(container) {
   if (this.isActiveContainer(container)) {
@@ -23570,7 +23179,7 @@ constructor:function(config) {
   }
   return result;
 }, onDisable:function() {
-  Ext.Component.prototype.onDisable.apply(this, arguments);
+  this.callParent(arguments);
   if (this.loading) {
     this.onLoad();
   }
@@ -23608,7 +23217,7 @@ constructor:function(config) {
   return me.maskEl || (me.maskEl = me.el.insertSibling({cls:me.maskCls, style:{zIndex:me.el.getStyle('zIndex') - 2}}, 'before'));
 }, onShow:function() {
   var me = this, msgEl = me.msgEl;
-  Ext.Component.prototype.onShow.apply(this, arguments);
+  me.callParent(arguments);
   me.loading = true;
   if (me.useMsg) {
     msgEl.show();
@@ -23623,9 +23232,9 @@ constructor:function(config) {
     return;
   }
   delete this.showNext;
-  return Ext.Component.prototype.hide.apply(this, arguments);
+  return this.callParent(arguments);
 }, onHide:function() {
-  Ext.Component.prototype.onHide.call(this);
+  this.callParent();
   this.getMaskEl().hide();
 }, show:function() {
   if (this.isElement) {
@@ -23633,9 +23242,9 @@ constructor:function(config) {
     this.fireEvent('show', this);
     return;
   }
-  return Ext.Component.prototype.show.apply(this, arguments);
+  return this.callParent(arguments);
 }, afterShow:function() {
-  Ext.Component.prototype.afterShow.apply(this, arguments);
+  this.callParent(arguments);
   this.sizeMask();
 }, setZIndex:function(index) {
   var me = this, owner = me.activeOwner;
@@ -23653,9 +23262,9 @@ constructor:function(config) {
     me.ownerCt.unmask();
   }
   Ext.destroy(me.maskEl);
-  Ext.Component.prototype.onDestroy.call(this);
-}}, 1, ['loadmask'], ['component', 'box', 'loadmask'], {'component':true, 'box':true, 'loadmask':true}, ['widget.loadmask'], [['floating', Ext.util.Floating], ['bindable', Ext.util.Bindable]], [Ext, 'LoadMask'], 0);
-Ext.cmd.derive('Ext.data.association.Association', Ext.Base, {alternateClassName:'Ext.data.Association', primaryKey:'id', associationKeyFunction:null, defaultReaderType:'json', isAssociation:true, initialConfig:null, statics:{AUTO_ID:1000, create:function(association) {
+  me.callParent();
+}});
+Ext.define('Ext.data.association.Association', {alternateClassName:'Ext.data.Association', primaryKey:'id', associationKeyFunction:null, defaultReaderType:'json', isAssociation:true, initialConfig:null, statics:{AUTO_ID:1000, create:function(association) {
   if (Ext.isString(association)) {
     association = {type:association};
   }
@@ -23704,8 +23313,8 @@ Ext.cmd.derive('Ext.data.association.Association', Ext.Base, {alternateClassName
     me.reader = Ext.createByAlias('reader.' + reader.type, reader);
   }
   return me.reader || null;
-}}, 1, 0, 0, 0, 0, 0, [Ext.data.association, 'Association', Ext.data, 'Association'], 0);
-Ext.cmd.derive('Ext.ModelManager', Ext.AbstractManager, {alternateClassName:'Ext.ModelMgr', singleton:true, typeName:'mtype', associationStack:[], registerType:function(name, config) {
+}});
+Ext.define('Ext.ModelManager', {extend:Ext.AbstractManager, alternateClassName:'Ext.ModelMgr', singleton:true, typeName:'mtype', associationStack:[], registerType:function(name, config) {
   var proto = config.prototype, model;
   if (proto && proto.isModel) {
     model = config;
@@ -23743,7 +23352,7 @@ Ext.cmd.derive('Ext.ModelManager', Ext.AbstractManager, {alternateClassName:'Ext
 }, create:function(config, name, id) {
   var Con = typeof name == 'function' ? name : this.types[name || config.name];
   return new Con(config, id);
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'ModelManager', Ext, 'ModelMgr'], function() {
+}}, function() {
   Ext.regModel = function() {
     if (Ext.isDefined(Ext.global.console)) {
       Ext.global.console.warn('Ext.regModel has been deprecated. Models can now be created by extending Ext.data.Model: Ext.define("MyModel", {extend: "Ext.data.Model", fields: []});.');
@@ -23751,9 +23360,9 @@ Ext.cmd.derive('Ext.ModelManager', Ext.AbstractManager, {alternateClassName:'Ext
     return this.ModelManager.registerType.apply(this.ModelManager, arguments);
   };
 });
-Ext.cmd.derive('Ext.layout.component.Component', Ext.layout.Layout, {type:'component', isComponentLayout:true, nullBox:{}, usesContentHeight:true, usesContentWidth:true, usesHeight:true, usesWidth:true, beginLayoutCycle:function(ownerContext, firstCycle) {
+Ext.define('Ext.layout.component.Component', {extend:Ext.layout.Layout, type:'component', isComponentLayout:true, nullBox:{}, usesContentHeight:true, usesContentWidth:true, usesHeight:true, usesWidth:true, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this, owner = me.owner, ownerCtContext = ownerContext.ownerCtContext, heightModel = ownerContext.heightModel, widthModel = ownerContext.widthModel, body = owner.el.dom === document.body, lastBox = owner.lastBox || me.nullBox, lastSize = owner.el.lastBox || me.nullBox, dirty = !body, ownerLayout, v, widthName, heightName;
-  Ext.layout.Layout.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (firstCycle) {
     if (me.usesContentWidth) {
       ++ownerContext.consumersContentWidth;
@@ -23826,7 +23435,7 @@ Ext.cmd.derive('Ext.layout.component.Component', Ext.layout.Layout, {type:'compo
   lastBox.width = props.width;
   lastBox.height = props.height;
   lastBox.invalid = false;
-  Ext.layout.Layout.prototype.finishedLayout.apply(this, arguments);
+  me.callParent(arguments);
 }, notifyOwner:function(ownerContext) {
   var me = this, currentSize = me.lastComponentSize, prevSize = ownerContext.previousSize, args = [currentSize.width, currentSize.height];
   if (prevSize) {
@@ -24019,10 +23628,10 @@ Ext.cmd.derive('Ext.layout.component.Component', Ext.layout.Layout, {type:'compo
   return ownerContext.el.getHeight();
 }, measureOwnerWidth:function(ownerContext) {
   return ownerContext.el.getWidth();
-}}, 0, 0, 0, 0, 0, 0, [Ext.layout.component, 'Component'], 0);
-Ext.cmd.derive('Ext.layout.component.Auto', Ext.layout.component.Component, {type:'autocomponent', setHeightInDom:false, setWidthInDom:false, waitForOuterHeightInDom:false, waitForOuterWidthInDom:false, beginLayoutCycle:function(ownerContext, firstCycle) {
+}});
+Ext.define('Ext.layout.component.Auto', {alias:'layout.autocomponent', extend:Ext.layout.component.Component, type:'autocomponent', setHeightInDom:false, setWidthInDom:false, waitForOuterHeightInDom:false, waitForOuterWidthInDom:false, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this, lastWidthModel = me.lastWidthModel, lastHeightModel = me.lastHeightModel, el = me.owner.el;
-  Ext.layout.component.Component.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (lastWidthModel && lastWidthModel.fixed && ownerContext.widthModel.shrinkWrap) {
     el.setWidth(null);
   }
@@ -24112,10 +23721,10 @@ Ext.cmd.derive('Ext.layout.component.Auto', Ext.layout.component.Component, {typ
     }
     ownerContext.setWidth(width, dirty);
   }
-}}, 0, 0, 0, 0, ['layout.autocomponent'], 0, [Ext.layout.component, 'Auto'], 0);
-Ext.cmd.derive('Ext.layout.component.ProgressBar', Ext.layout.component.Auto, {type:'progressbar', beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.ProgressBar', {alias:['layout.progressbar'], extend:Ext.layout.component.Auto, type:'progressbar', beginLayout:function(ownerContext) {
   var me = this, i, textEls;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (!ownerContext.textEls) {
     textEls = me.owner.textEl;
     if (textEls.isComposite) {
@@ -24130,7 +23739,7 @@ Ext.cmd.derive('Ext.layout.component.ProgressBar', Ext.layout.component.Auto, {t
   }
 }, calculate:function(ownerContext) {
   var me = this, i, textEls, width;
-  Ext.layout.component.Auto.prototype.calculate.apply(this, arguments);
+  me.callParent(arguments);
   if (Ext.isNumber(width = ownerContext.getProp('width'))) {
     width -= ownerContext.getBorderInfo().width;
     textEls = ownerContext.textEls;
@@ -24140,17 +23749,17 @@ Ext.cmd.derive('Ext.layout.component.ProgressBar', Ext.layout.component.Auto, {t
   } else {
     me.done = false;
   }
-}}, 0, 0, 0, 0, ['layout.progressbar'], 0, [Ext.layout.component, 'ProgressBar'], 0);
-Ext.cmd.derive('Ext.ProgressBar', Ext.Component, {baseCls:'x-progress', animate:false, text:'', waitTimer:null, childEls:['bar'], renderTpl:['\x3ctpl if\x3d"internalText"\x3e', '\x3cdiv class\x3d"{baseCls}-text {baseCls}-text-back"\x3e{text}\x3c/div\x3e', '\x3c/tpl\x3e', '\x3cdiv id\x3d"{id}-bar" class\x3d"{baseCls}-bar {baseCls}-bar-{ui}" style\x3d"width:{percentage}%"\x3e', '\x3ctpl if\x3d"internalText"\x3e', '\x3cdiv class\x3d"{baseCls}-text"\x3e', '\x3cdiv\x3e{text}\x3c/div\x3e', '\x3c/div\x3e', 
-'\x3c/tpl\x3e', '\x3c/div\x3e'], componentLayout:'progressbar', initComponent:function() {
-  Ext.Component.prototype.initComponent.call(this);
+}});
+Ext.define('Ext.ProgressBar', {extend:Ext.Component, alias:'widget.progressbar', baseCls:Ext.baseCSSPrefix + 'progress', animate:false, text:'', waitTimer:null, childEls:['bar'], renderTpl:['\x3ctpl if\x3d"internalText"\x3e', '\x3cdiv class\x3d"{baseCls}-text {baseCls}-text-back"\x3e{text}\x3c/div\x3e', '\x3c/tpl\x3e', '\x3cdiv id\x3d"{id}-bar" class\x3d"{baseCls}-bar {baseCls}-bar-{ui}" style\x3d"width:{percentage}%"\x3e', '\x3ctpl if\x3d"internalText"\x3e', '\x3cdiv class\x3d"{baseCls}-text"\x3e', 
+'\x3cdiv\x3e{text}\x3c/div\x3e', '\x3c/div\x3e', '\x3c/tpl\x3e', '\x3c/div\x3e'], componentLayout:'progressbar', initComponent:function() {
+  this.callParent();
   this.addEvents('update');
 }, initRenderData:function() {
   var me = this;
-  return Ext.apply(Ext.Component.prototype.initRenderData.call(this), {internalText:!me.hasOwnProperty('textEl'), text:me.text || '\x26#160;', percentage:me.value ? me.value * 100 : 0});
+  return Ext.apply(me.callParent(), {internalText:!me.hasOwnProperty('textEl'), text:me.text || '\x26#160;', percentage:me.value ? me.value * 100 : 0});
 }, onRender:function() {
   var me = this;
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   if (me.textEl) {
     me.textEl = Ext.get(me.textEl);
     me.updateText(me.text);
@@ -24231,10 +23840,10 @@ Ext.cmd.derive('Ext.ProgressBar', Ext.Component, {baseCls:'x-progress', animate:
       bar.stopAnimation();
     }
   }
-  Ext.Component.prototype.onDestroy.call(this);
-}}, 0, ['progressbar'], ['component', 'box', 'progressbar'], {'component':true, 'box':true, 'progressbar':true}, ['widget.progressbar'], 0, [Ext, 'ProgressBar'], 0);
-Ext.cmd.derive('Ext.ShadowPool', Ext.Base, {singleton:true, markup:function() {
-  return Ext.String.format('\x3cdiv class\x3d"{0}{1}-shadow" role\x3d"presentation"\x3e\x3c/div\x3e', 'x-', Ext.isIE && !Ext.supports.CSS3BoxShadow ? 'ie' : 'css');
+  me.callParent();
+}});
+Ext.define('Ext.ShadowPool', {singleton:true, markup:function() {
+  return Ext.String.format('\x3cdiv class\x3d"{0}{1}-shadow" role\x3d"presentation"\x3e\x3c/div\x3e', Ext.baseCSSPrefix, Ext.isIE && !Ext.supports.CSS3BoxShadow ? 'ie' : 'css');
 }(), shadows:[], pull:function() {
   var sh = this.shadows.shift();
   if (!sh) {
@@ -24250,8 +23859,8 @@ Ext.cmd.derive('Ext.ShadowPool', Ext.Base, {singleton:true, markup:function() {
     shadows[s].remove();
   }
   this.shadows = [];
-}}, 0, 0, 0, 0, 0, 0, [Ext, 'ShadowPool'], 0);
-Ext.cmd.derive('Ext.Shadow', Ext.Base, {localXYNames:{get:'getLocalXY', set:'setLocalXY'}, constructor:function(config) {
+}});
+Ext.define('Ext.Shadow', {localXYNames:{get:'getLocalXY', set:'setLocalXY'}, constructor:function(config) {
   var me = this, adjusts, offset, rad;
   Ext.apply(me, config);
   if (!Ext.isString(me.mode)) {
@@ -24373,8 +23982,8 @@ Ext.cmd.derive('Ext.Shadow', Ext.Base, {localXYNames:{get:'getLocalXY', set:'set
     this.opacity = opacity;
     this.el.setOpacity(opacity);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext, 'Shadow'], 0);
-Ext.cmd.derive('Ext.app.EventDomain', Ext.Base, {statics:{instances:{}}, isEventDomain:true, constructor:function() {
+}});
+Ext.define('Ext.app.EventDomain', {statics:{instances:{}}, isEventDomain:true, constructor:function() {
   var me = this;
   Ext.app.EventDomain.instances[me.type] = me;
   me.bus = {};
@@ -24465,15 +24074,15 @@ Ext.cmd.derive('Ext.app.EventDomain', Ext.Base, {statics:{instances:{}}, isEvent
       }
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.app, 'EventDomain'], 0);
-Ext.cmd.derive('Ext.app.domain.Component', Ext.app.EventDomain, {singleton:true, type:'component', constructor:function() {
+}});
+Ext.define('Ext.app.domain.Component', {extend:Ext.app.EventDomain, singleton:true, type:'component', constructor:function() {
   var me = this;
   me.callParent();
   me.monitor(Ext.Component);
 }, match:function(target, selector) {
   return target.is(selector);
-}}, 1, 0, 0, 0, 0, 0, [Ext.app.domain, 'Component'], 0);
-Ext.cmd.derive('Ext.app.EventBus', Ext.Base, {singleton:true, constructor:function() {
+}});
+Ext.define('Ext.app.EventBus', {singleton:true, constructor:function() {
   var me = this, domains = Ext.app.EventDomain.instances;
   me.callParent();
   me.domains = domains;
@@ -24492,8 +24101,8 @@ Ext.cmd.derive('Ext.app.EventBus', Ext.Base, {singleton:true, constructor:functi
   for (domain in domains) {
     domains[domain].unlisten(controllerId);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.app, 'EventBus'], 0);
-Ext.cmd.derive('Ext.data.StoreManager', Ext.util.MixedCollection, {alternateClassName:['Ext.StoreMgr', 'Ext.data.StoreMgr', 'Ext.StoreManager'], singleton:true, register:function() {
+}});
+Ext.define('Ext.data.StoreManager', {extend:Ext.util.MixedCollection, alternateClassName:['Ext.StoreMgr', 'Ext.data.StoreMgr', 'Ext.StoreManager'], singleton:true, register:function() {
   for (var i = 0, s; s = arguments[i]; i++) {
     this.add(s);
   }
@@ -24523,7 +24132,7 @@ Ext.cmd.derive('Ext.data.StoreManager', Ext.util.MixedCollection, {alternateClas
   }
 }, getKey:function(o) {
   return o.storeId;
-}}, 0, 0, 0, 0, 0, 0, [Ext.data, 'StoreManager', Ext, 'StoreMgr', Ext.data, 'StoreMgr', Ext, 'StoreManager'], function() {
+}}, function() {
   Ext.regStore = function(name, config) {
     var store;
     if (Ext.isObject(name)) {
@@ -24542,7 +24151,7 @@ Ext.cmd.derive('Ext.data.StoreManager', Ext.util.MixedCollection, {alternateClas
     return Ext.data.StoreManager.lookup(name);
   };
 });
-Ext.cmd.derive('Ext.app.domain.Global', Ext.app.EventDomain, {singleton:true, type:'global', constructor:function() {
+Ext.define('Ext.app.domain.Global', {extend:Ext.app.EventDomain, singleton:true, type:'global', constructor:function() {
   var me = this;
   me.callParent();
   me.monitor(Ext.globalEvents);
@@ -24550,15 +24159,15 @@ Ext.cmd.derive('Ext.app.domain.Global', Ext.app.EventDomain, {singleton:true, ty
   this.callParent([{global:listeners}, controller]);
 }, match:function() {
   return true;
-}}, 1, 0, 0, 0, 0, 0, [Ext.app.domain, 'Global'], 0);
-Ext.cmd.derive('Ext.data.ResultSet', Ext.Base, {loaded:true, count:0, total:0, success:false, constructor:function(config) {
+}});
+Ext.define('Ext.data.ResultSet', {loaded:true, count:0, total:0, success:false, constructor:function(config) {
   Ext.apply(this, config);
   this.totalRecords = this.total;
   if (config.count === undefined) {
     this.count = this.records.length;
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.data, 'ResultSet'], 0);
-Ext.cmd.derive('Ext.data.reader.Reader', Ext.Base, {alternateClassName:['Ext.data.Reader', 'Ext.data.DataReader'], totalProperty:'total', successProperty:'success', root:'', implicitIncludes:true, readRecordsOnFailure:true, isReader:true, applyDefaults:true, lastFieldGeneration:null, constructor:function(config) {
+}});
+Ext.define('Ext.data.reader.Reader', {alternateClassName:['Ext.data.Reader', 'Ext.data.DataReader'], mixins:{observable:Ext.util.Observable}, totalProperty:'total', successProperty:'success', root:'', implicitIncludes:true, readRecordsOnFailure:true, isReader:true, applyDefaults:true, lastFieldGeneration:null, constructor:function(config) {
   var me = this;
   me.mixins.observable.constructor.call(me, config);
   me.fieldCount = 0;
@@ -24739,11 +24348,11 @@ Ext.cmd.derive('Ext.data.reader.Reader', Ext.Base, {alternateClassName:['Ext.dat
   delete me.getTotal;
   delete me.getSuccess;
   delete me.getMessage;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.data.reader, 'Reader', Ext.data, 'Reader', Ext.data, 'DataReader'], function() {
+}}, function() {
   var proto = this.prototype;
   Ext.apply(proto, {nullResultSet:new Ext.data.ResultSet({total:0, count:0, records:[], success:true, message:''}), recordDataExtractorTemplate:new Ext.XTemplate(proto.recordDataExtractorTemplate)});
 });
-Ext.cmd.derive('Ext.data.reader.Json', Ext.data.reader.Reader, {alternateClassName:'Ext.data.JsonReader', root:'', metaProperty:'metaData', useSimpleAccessors:false, readRecords:function(data) {
+Ext.define('Ext.data.reader.Json', {extend:Ext.data.reader.Reader, alternateClassName:'Ext.data.JsonReader', alias:'reader.json', root:'', metaProperty:'metaData', useSimpleAccessors:false, readRecords:function(data) {
   var me = this, meta;
   if (me.getMeta) {
     meta = me.getMeta(data);
@@ -24756,7 +24365,7 @@ Ext.cmd.derive('Ext.data.reader.Json', Ext.data.reader.Reader, {alternateClassNa
     }
   }
   me.jsonData = data;
-  return Ext.data.reader.Reader.prototype.readRecords.call(this, data);
+  return me.callParent([data]);
 }, getResponseData:function(response) {
   var data, error;
   try {
@@ -24770,7 +24379,7 @@ Ext.cmd.derive('Ext.data.reader.Json', Ext.data.reader.Reader, {alternateClassNa
   }
 }, buildExtractors:function() {
   var me = this, metaProp = me.metaProperty;
-  Ext.data.reader.Reader.prototype.buildExtractors.apply(this, arguments);
+  me.callParent(arguments);
   if (me.root) {
     me.getRoot = me.createAccessor(me.root);
   } else {
@@ -24793,7 +24402,7 @@ Ext.cmd.derive('Ext.data.reader.Json', Ext.data.reader.Reader, {alternateClassNa
   } else {
     data = root;
   }
-  return Ext.data.reader.Reader.prototype.extractData.call(this, data);
+  return this.callParent([data]);
 }, createAccessor:function() {
   var re = /[\[\.]/;
   return function(expr) {
@@ -24843,8 +24452,8 @@ Ext.cmd.derive('Ext.data.reader.Json', Ext.data.reader.Reader, {alternateClassNa
     }
     return result;
   };
-}()}, 0, 0, 0, 0, ['reader.json'], 0, [Ext.data.reader, 'Json', Ext.data, 'JsonReader'], 0);
-Ext.cmd.derive('Ext.data.writer.Writer', Ext.Base, {alternateClassName:['Ext.data.DataWriter', 'Ext.data.Writer'], writeAllFields:true, nameProperty:'name', writeRecordId:true, isWriter:true, constructor:function(config) {
+}()});
+Ext.define('Ext.data.writer.Writer', {alias:'writer.base', alternateClassName:['Ext.data.DataWriter', 'Ext.data.Writer'], writeAllFields:true, nameProperty:'name', writeRecordId:true, isWriter:true, constructor:function(config) {
   Ext.apply(this, config);
 }, write:function(request) {
   var operation = request.operation, records = operation.records || [], len = records.length, i = 0, data = [];
@@ -24898,8 +24507,8 @@ Ext.cmd.derive('Ext.data.writer.Writer', Ext.Base, {alternateClassName:['Ext.dat
       data[name] = value;
     }
   }
-}}, 1, 0, 0, 0, ['writer.base'], 0, [Ext.data.writer, 'Writer', Ext.data, 'DataWriter', Ext.data, 'Writer'], 0);
-Ext.cmd.derive('Ext.data.writer.Json', Ext.data.writer.Writer, {alternateClassName:'Ext.data.JsonWriter', root:undefined, encode:false, allowSingle:true, expandData:false, getExpandedData:function(data) {
+}});
+Ext.define('Ext.data.writer.Json', {extend:Ext.data.writer.Writer, alternateClassName:'Ext.data.JsonWriter', alias:'writer.json', root:undefined, encode:false, allowSingle:true, expandData:false, getExpandedData:function(data) {
   var dataLength = data.length, i = 0, item, prop, nameParts, j, tempObj, toObject = function(name, value) {
     var o = {};
     o[name] = value;
@@ -24947,8 +24556,8 @@ Ext.cmd.derive('Ext.data.writer.Json', Ext.data.writer.Writer, {alternateClassNa
     }
   }
   return request;
-}}, 0, 0, 0, 0, ['writer.json'], 0, [Ext.data.writer, 'Json', Ext.data, 'JsonWriter'], 0);
-Ext.cmd.derive('Ext.data.proxy.Proxy', Ext.Base, {alternateClassName:['Ext.data.DataProxy', 'Ext.data.Proxy'], batchOrder:'create,update,destroy', batchActions:true, defaultReaderType:'json', defaultWriterType:'json', isProxy:true, isSynchronous:false, constructor:function(config) {
+}});
+Ext.define('Ext.data.proxy.Proxy', {alias:'proxy.proxy', alternateClassName:['Ext.data.DataProxy', 'Ext.data.Proxy'], mixins:{observable:Ext.util.Observable}, batchOrder:'create,update,destroy', batchActions:true, defaultReaderType:'json', defaultWriterType:'json', isProxy:true, isSynchronous:false, constructor:function(config) {
   var me = this;
   config = config || {};
   me.proxyConfig = config;
@@ -25065,8 +24674,8 @@ Ext.cmd.derive('Ext.data.proxy.Proxy', Ext.Base, {alternateClassName:['Ext.data.
   }
 }, clone:function() {
   return new this.self(this.proxyConfig);
-}}, 1, 0, 0, 0, ['proxy.proxy'], [['observable', Ext.util.Observable]], [Ext.data.proxy, 'Proxy', Ext.data, 'DataProxy', Ext.data, 'Proxy'], 0);
-Ext.cmd.derive('Ext.data.Operation', Ext.Base, {synchronous:true, action:undefined, filters:undefined, sorters:undefined, groupers:undefined, start:undefined, limit:undefined, batch:undefined, callback:undefined, scope:undefined, started:false, running:false, complete:false, success:undefined, exception:false, error:undefined, actionCommitRecordsRe:/^(?:create|update)$/i, actionSkipSyncRe:/^destroy$/i, constructor:function(config) {
+}});
+Ext.define('Ext.data.Operation', {synchronous:true, action:undefined, filters:undefined, sorters:undefined, groupers:undefined, start:undefined, limit:undefined, batch:undefined, callback:undefined, scope:undefined, started:false, running:false, complete:false, success:undefined, exception:false, error:undefined, actionCommitRecordsRe:/^(?:create|update)$/i, actionSkipSyncRe:/^destroy$/i, constructor:function(config) {
   Ext.apply(this, config || {});
 }, commitRecords:function(serverRecords) {
   var me = this, commitRecords = me.actionCommitRecordsRe.test(me.action), mc, index, clientRecords, serverRec, clientRec, i, len, modifiedFields, recordModifiedFields;
@@ -25158,8 +24767,8 @@ Ext.cmd.derive('Ext.data.Operation', Ext.Base, {synchronous:true, action:undefin
   this.batch = batch;
 }, allowWrite:function() {
   return this.action != 'read';
-}}, 1, 0, 0, 0, 0, 0, [Ext.data, 'Operation'], 0);
-Ext.cmd.derive('Ext.data.AbstractStore', Ext.Base, {statics:{create:function(store) {
+}});
+Ext.define('Ext.data.AbstractStore', {mixins:{observable:Ext.util.Observable, sortable:Ext.util.Sortable}, statics:{create:function(store) {
   if (!store.isStore) {
     if (!store.type) {
       store.type = 'store';
@@ -25496,13 +25105,13 @@ Ext.cmd.derive('Ext.data.AbstractStore', Ext.Base, {statics:{create:function(sto
   this.autoSyncSuspended = true;
 }, resumeAutoSync:function() {
   this.autoSyncSuspended = false;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable], ['sortable', Ext.util.Sortable]], [Ext.data, 'AbstractStore'], 0);
-Ext.cmd.derive('Ext.app.domain.Store', Ext.app.EventDomain, {singleton:true, type:'store', idProperty:'storeId', constructor:function() {
+}});
+Ext.define('Ext.app.domain.Store', {extend:Ext.app.EventDomain, singleton:true, type:'store', idProperty:'storeId', constructor:function() {
   var me = this;
   me.callParent();
   me.monitor(Ext.data.AbstractStore);
-}}, 1, 0, 0, 0, 0, 0, [Ext.app.domain, 'Store'], 0);
-Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:'getModel', upper:'Model'}, view:{getter:'getView', upper:'View'}, controller:{getter:'getController', upper:'Controller'}, store:{getter:'getStore', upper:'Store'}}, controllerRegex:/^(.*)\.controller\./, createGetter:function(baseGetter, name) {
+}});
+Ext.define('Ext.app.Controller', {mixins:{observable:Ext.util.Observable}, statics:{strings:{model:{getter:'getModel', upper:'Model'}, view:{getter:'getView', upper:'View'}, controller:{getter:'getController', upper:'Controller'}, store:{getter:'getStore', upper:'Store'}}, controllerRegex:/^(.*)\.controller\./, createGetter:function(baseGetter, name) {
   return function() {
     return this[baseGetter](name);
   };
@@ -25543,7 +25152,7 @@ Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:
       absoluteName = name;
     } else {
       if (!namespace) {
-        Ext.log.warn('Cannot find namespace for ' + kind + ' ' + name + ', assuming it is fully qualified class name');
+        Ext.log.warn('Cannot find namespace for ' + kind + ' ' + name + ', ' + 'assuming it is fully qualified class name');
       }
       if (namespace) {
         absoluteName = namespace + '.' + kind + '.' + name;
@@ -25564,7 +25173,7 @@ Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:
     if (namespace) {
       proto.$namespace = namespace;
     } else {
-      Ext.log.warn('Missing namespace for ' + className + ', please define it in namespaces property of your Application class.');
+      Ext.log.warn('Missing namespace for ' + className + ', please define it ' + 'in namespaces property of your Application class.');
     }
     Controller.processDependencies(proto, requires, namespace, 'model', data.models);
     Controller.processDependencies(proto, requires, namespace, 'view', data.views);
@@ -25679,8 +25288,8 @@ Ext.cmd.derive('Ext.app.Controller', Ext.Base, {statics:{strings:{model:{getter:
   return name && Ext.ClassManager.get(name.absoluteName);
 }, getApplication:function() {
   return this.application;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.app, 'Controller'], 0);
-Ext.cmd.derive('Ext.container.DockingContainer', Ext.Base, {isDockingContainer:true, defaultDockWeights:{top:{render:1, visual:1}, left:{render:3, visual:5}, right:{render:5, visual:7}, bottom:{render:7, visual:3}}, dockOrder:{top:-1, left:-1, right:1, bottom:1}, horizontalDocks:0, addDocked:function(items, pos) {
+}});
+Ext.define('Ext.container.DockingContainer', {isDockingContainer:true, defaultDockWeights:{top:{render:1, visual:1}, left:{render:3, visual:5}, right:{render:5, visual:7}, bottom:{render:7, visual:3}}, dockOrder:{top:-1, left:-1, right:1, bottom:1}, horizontalDocks:0, addDocked:function(items, pos) {
   var me = this, i = 0, item, length;
   items = me.prepareItems(items);
   length = items.length;
@@ -25782,9 +25391,9 @@ Ext.cmd.derive('Ext.container.DockingContainer', Ext.Base, {isDockingContainer:t
   return item;
 }, setupDockingRenderTpl:function(renderTpl) {
   renderTpl.renderDockedItems = this.doRenderDockedItems;
-}}, 0, 0, 0, 0, 0, 0, [Ext.container, 'DockingContainer'], 0);
+}});
 Ext.define('Ext.toolbar.Fill', {extend:Ext.Component, alias:'widget.tbfill', alternateClassName:'Ext.Toolbar.Fill', isFill:true, flex:1});
-Ext.cmd.derive('Ext.layout.container.boxOverflow.None', Ext.Base, {alternateClassName:'Ext.layout.boxOverflow.None', constructor:function(layout, config) {
+Ext.define('Ext.layout.container.boxOverflow.None', {alternateClassName:'Ext.layout.boxOverflow.None', constructor:function(layout, config) {
   this.layout = layout;
   Ext.apply(this, config);
 }, handleOverflow:Ext.emptyFn, clearOverflow:Ext.emptyFn, beginLayout:Ext.emptyFn, beginLayoutCycle:Ext.emptyFn, calculate:function(ownerContext) {
@@ -25829,10 +25438,10 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.None', Ext.Base, {alternateClas
   return type;
 }, getPrefixConfig:Ext.emptyFn, getSuffixConfig:Ext.emptyFn, getOverflowCls:function() {
   return '';
-}}, 1, 0, 0, 0, 0, 0, [Ext.layout.container.boxOverflow, 'None', Ext.layout.boxOverflow, 'None'], 0);
+}});
 Ext.define('Ext.toolbar.Item', {extend:Ext.Component, alias:'widget.tbitem', alternateClassName:'Ext.Toolbar.Item', enable:Ext.emptyFn, disable:Ext.emptyFn, focus:Ext.emptyFn});
-Ext.define('Ext.toolbar.Separator', {extend:Ext.toolbar.Item, alias:'widget.tbseparator', alternateClassName:'Ext.Toolbar.Separator', baseCls:'x-toolbar-separator', focusable:false});
-Ext.cmd.derive('Ext.button.Manager', Ext.Base, {singleton:true, alternateClassName:'Ext.ButtonToggleManager', groups:{}, pressedButton:null, buttonSelector:'.x-btn', init:function() {
+Ext.define('Ext.toolbar.Separator', {extend:Ext.toolbar.Item, alias:'widget.tbseparator', alternateClassName:'Ext.Toolbar.Separator', baseCls:Ext.baseCSSPrefix + 'toolbar-separator', focusable:false});
+Ext.define('Ext.button.Manager', {singleton:true, alternateClassName:'Ext.ButtonToggleManager', groups:{}, pressedButton:null, buttonSelector:'.' + Ext.baseCSSPrefix + 'btn', init:function() {
   var me = this;
   if (!me.initialized) {
     Ext.getDoc().on({keydown:me.onDocumentKeyDown, mouseup:me.onDocumentMouseUp, scope:me});
@@ -25897,8 +25506,8 @@ Ext.cmd.derive('Ext.button.Manager', Ext.Base, {singleton:true, alternateClassNa
     }
   }
   return null;
-}}, 0, 0, 0, 0, 0, 0, [Ext.button, 'Manager', Ext, 'ButtonToggleManager'], 0);
-Ext.cmd.derive('Ext.menu.Manager', Ext.Base, {singleton:true, alternateClassName:'Ext.menu.MenuMgr', menuSelector:'.x-menu', menus:{}, groups:{}, attached:false, lastShow:new Date, init:function() {
+}});
+Ext.define('Ext.menu.Manager', {singleton:true, alternateClassName:'Ext.menu.MenuMgr', menuSelector:'.' + Ext.baseCSSPrefix + 'menu', menus:{}, groups:{}, attached:false, lastShow:new Date, init:function() {
   var me = this;
   me.active = new Ext.util.MixedCollection;
   Ext.getDoc().addKeyListener(27, function() {
@@ -26018,13 +25627,13 @@ Ext.cmd.derive('Ext.menu.Manager', Ext.Base, {singleton:true, alternateClassName
       }
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.menu, 'Manager', Ext.menu, 'MenuMgr'], 0);
-Ext.cmd.derive('Ext.util.ClickRepeater', Ext.util.Observable, {constructor:function(el, config) {
+}});
+Ext.define('Ext.util.ClickRepeater', {extend:Ext.util.Observable, constructor:function(el, config) {
   var me = this;
   me.el = Ext.get(el);
   me.el.unselectable();
   Ext.apply(me, config);
-  Ext.util.Observable.prototype.constructor.call(this);
+  me.callParent();
   me.addEvents('mousedown', 'click', 'mouseup');
   if (!me.disabled) {
     me.disabled = true;
@@ -26114,10 +25723,10 @@ Ext.cmd.derive('Ext.util.ClickRepeater', Ext.util.Observable, {constructor:funct
     this.el.removeCls(this.pressedCls);
   }
   this.fireEvent('mouseup', this, e);
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'ClickRepeater'], 0);
-Ext.cmd.derive('Ext.layout.component.Button', Ext.layout.component.Auto, {type:'button', htmlRE:/<.*>/, beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.Button', {alias:['layout.button'], extend:Ext.layout.component.Auto, type:'button', htmlRE:/<.*>/, beginLayout:function(ownerContext) {
   var me = this, owner = me.owner, text = owner.text;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   ownerContext.btnWrapContext = ownerContext.getEl('btnWrap');
   ownerContext.btnElContext = ownerContext.getEl('btnEl');
   ownerContext.btnInnerElContext = ownerContext.getEl('btnInnerEl');
@@ -26129,7 +25738,7 @@ Ext.cmd.derive('Ext.layout.component.Button', Ext.layout.component.Auto, {type:'
   }
 }, beginLayoutCycle:function(ownerContext) {
   var owner = this.owner, lastWidthModel = this.lastWidthModel;
-  Ext.layout.component.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  this.callParent(arguments);
   if (lastWidthModel && !this.lastWidthModel.shrinkWrap && ownerContext.widthModel.shrinkWrap) {
     owner.btnWrap.setStyle('height', '');
     owner.btnEl.setStyle('height', '');
@@ -26137,7 +25746,7 @@ Ext.cmd.derive('Ext.layout.component.Button', Ext.layout.component.Auto, {type:'
   }
 }, calculate:function(ownerContext) {
   var me = this, owner = me.owner, btnElContext = ownerContext.btnElContext, btnInnerElContext = ownerContext.btnInnerElContext, btnWrapContext = ownerContext.btnWrapContext, mmax = Math.max, ownerHeight, contentHeight, btnElHeight, innerElHeight;
-  Ext.layout.component.Auto.prototype.calculate.apply(this, arguments);
+  me.callParent(arguments);
   if (ownerContext.heightModel.shrinkWrap) {
     btnElHeight = owner.btnEl.getHeight();
     if (ownerContext.isHtmlText) {
@@ -26188,8 +25797,8 @@ Ext.cmd.derive('Ext.layout.component.Button', Ext.layout.component.Auto, {type:'
   if (this.owner.getFrameInfo().table) {
     ownerContext.btnInnerElContext.setWidth(width - ownerContext.getFrameInfo().width - ownerContext.getPaddingInfo().width - ownerContext.btnWrapContext.getPaddingInfo().width);
   }
-}}, 0, 0, 0, 0, ['layout.button'], 0, [Ext.layout.component, 'Button'], 0);
-Ext.cmd.derive('Ext.util.TextMetrics', Ext.Base, {statics:{shared:null, measure:function(el, text, fixedWidth) {
+}});
+Ext.define('Ext.util.TextMetrics', {statics:{shared:null, measure:function(el, text, fixedWidth) {
   var me = this, shared = me.shared;
   if (!shared) {
     shared = me.shared = new me(el, fixedWidth);
@@ -26202,7 +25811,7 @@ Ext.cmd.derive('Ext.util.TextMetrics', Ext.Base, {statics:{shared:null, measure:
   Ext.destroy(me.shared);
   me.shared = null;
 }}, constructor:function(bindTo, fixedWidth) {
-  var me = this, measure = Ext.getBody().createChild({cls:'x-textmetrics'});
+  var me = this, measure = Ext.getBody().createChild({cls:Ext.baseCSSPrefix + 'textmetrics'});
   me.measure = measure;
   if (bindTo) {
     me.bind(bindTo);
@@ -26235,19 +25844,19 @@ Ext.cmd.derive('Ext.util.TextMetrics', Ext.Base, {statics:{shared:null, measure:
   me.measure.remove();
   delete me.el;
   delete me.measure;
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'TextMetrics'], function() {
+}}, function() {
   Ext.Element.addMethods({getTextWidth:function(text, min, max) {
     return Ext.Number.constrain(Ext.util.TextMetrics.measure(this.dom, Ext.value(text, this.dom.innerHTML, true)).width, min || 0, max || 1000000);
   }});
 });
-Ext.cmd.derive('Ext.button.Button', Ext.Component, {alternateClassName:'Ext.Button', isButton:true, componentLayout:'button', hidden:false, disabled:false, pressed:false, tabIndex:0, enableToggle:false, menuAlign:'tl-bl?', showEmptyMenu:false, textAlign:'center', clickEvent:'click', preventDefault:true, handleMouseEvents:true, tooltipType:'qtip', baseCls:'x-btn', pressedCls:'pressed', overCls:'over', focusCls:'focus', menuActiveCls:'menu-active', hrefTarget:'_blank', childEls:['btnEl', 'btnWrap', 
-'btnInnerEl', 'btnIconEl'], renderTpl:['\x3cspan id\x3d"{id}-btnWrap" class\x3d"{baseCls}-wrap', '\x3ctpl if\x3d"splitCls"\x3e {splitCls}\x3c/tpl\x3e', '{childElCls}" unselectable\x3d"on"\x3e', '\x3cspan id\x3d"{id}-btnEl" class\x3d"{baseCls}-button"\x3e', '\x3cspan id\x3d"{id}-btnInnerEl" class\x3d"{baseCls}-inner {innerCls}', '{childElCls}" unselectable\x3d"on"\x3e', '{text}', '\x3c/span\x3e', '\x3cspan role\x3d"img" id\x3d"{id}-btnIconEl" class\x3d"{baseCls}-icon-el {iconCls}', '{childElCls} {glyphCls}" unselectable\x3d"on" style\x3d"', 
-'\x3ctpl if\x3d"iconUrl"\x3ebackground-image:url({iconUrl});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e\x3ctpl if\x3d"iconCls || iconUrl"\x3e\x26#160;\x3c/tpl\x3e', '\x3c/span\x3e', '\x3c/span\x3e', '\x3c/span\x3e', '\x3ctpl if\x3d"closable"\x3e', '\x3cspan id\x3d"{id}-closeEl" class\x3d"{baseCls}-close-btn" title\x3d"{closeText}" tabIndex\x3d"0"\x3e\x3c/span\x3e', '\x3c/tpl\x3e'], 
-scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arrowAlign:'right', arrowCls:'arrow', maskOnDisable:false, shrinkWrap:3, frame:true, _triggerRegion:{}, initComponent:function() {
+Ext.define('Ext.button.Button', {alias:'widget.button', extend:Ext.Component, mixins:{queryable:Ext.Queryable}, alternateClassName:'Ext.Button', isButton:true, componentLayout:'button', hidden:false, disabled:false, pressed:false, tabIndex:0, enableToggle:false, menuAlign:'tl-bl?', showEmptyMenu:false, textAlign:'center', clickEvent:'click', preventDefault:true, handleMouseEvents:true, tooltipType:'qtip', baseCls:Ext.baseCSSPrefix + 'btn', pressedCls:'pressed', overCls:'over', focusCls:'focus', menuActiveCls:'menu-active', 
+hrefTarget:'_blank', childEls:['btnEl', 'btnWrap', 'btnInnerEl', 'btnIconEl'], renderTpl:['\x3cspan id\x3d"{id}-btnWrap" class\x3d"{baseCls}-wrap', '\x3ctpl if\x3d"splitCls"\x3e {splitCls}\x3c/tpl\x3e', '{childElCls}" unselectable\x3d"on"\x3e', '\x3cspan id\x3d"{id}-btnEl" class\x3d"{baseCls}-button"\x3e', '\x3cspan id\x3d"{id}-btnInnerEl" class\x3d"{baseCls}-inner {innerCls}', '{childElCls}" unselectable\x3d"on"\x3e', '{text}', '\x3c/span\x3e', '\x3cspan role\x3d"img" id\x3d"{id}-btnIconEl" class\x3d"{baseCls}-icon-el {iconCls}', 
+'{childElCls} {glyphCls}" unselectable\x3d"on" style\x3d"', '\x3ctpl if\x3d"iconUrl"\x3ebackground-image:url({iconUrl});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e\x3ctpl if\x3d"iconCls || iconUrl"\x3e\x26#160;\x3c/tpl\x3e', '\x3c/span\x3e', '\x3c/span\x3e', '\x3c/span\x3e', '\x3ctpl if\x3d"closable"\x3e', '\x3cspan id\x3d"{id}-closeEl" class\x3d"{baseCls}-close-btn" title\x3d"{closeText}" tabIndex\x3d"0"\x3e\x3c/span\x3e', 
+'\x3c/tpl\x3e'], scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arrowAlign:'right', arrowCls:'arrow', maskOnDisable:false, shrinkWrap:3, frame:true, _triggerRegion:{}, initComponent:function() {
   var me = this;
   me.autoEl = {tag:'a', role:'button', hidefocus:'on', unselectable:'on'};
   me.addCls('x-unselectable');
-  Ext.Component.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   me.addEvents('click', 'toggle', 'mouseover', 'mouseout', 'menushow', 'menuhide', 'menutriggerover', 'menutriggerout', 'textchange', 'iconchange', 'glyphchange');
   if (me.menu) {
     me.split = true;
@@ -26273,7 +25882,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
 }, getFocusEl:function() {
   return this.el;
 }, onDisable:function() {
-  Ext.Component.prototype.onDisable.apply(this, arguments);
+  this.callParent(arguments);
 }, setComponentCls:function() {
   var me = this, cls = me.getComponentCls();
   if (!Ext.isEmpty(me.oldCls)) {
@@ -26308,14 +25917,14 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
       autoEl.target = hrefTarget;
     }
   }
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   me.oldCls = me.getComponentCls();
   me.addClsWithUI(me.oldCls);
   Ext.applyIf(me.renderData, me.getTemplateArgs());
 }, onRender:function() {
   var me = this, addOnclick, btn, btnListeners;
   me.doc = Ext.getDoc();
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   btn = me.el;
   if (me.tooltip) {
     me.setTooltip(me.tooltip, true);
@@ -26473,7 +26082,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
     Ext.destroy(me.menu);
   }
   Ext.destroy(me.btnInnerEl, me.repeater);
-  Ext.Component.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, onDestroy:function() {
   var me = this;
   if (me.rendered) {
@@ -26483,7 +26092,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
     delete me.keyMap;
   }
   Ext.button.Manager.unregister(me);
-  Ext.Component.prototype.onDestroy.call(this);
+  me.callParent();
 }, setHandler:function(handler, scope) {
   this.handler = handler;
   this.scope = scope;
@@ -26649,7 +26258,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
   me.fireEvent('menutriggerout', me, me.menu, e);
 }, enable:function(silent) {
   var me = this;
-  Ext.Component.prototype.enable.apply(this, arguments);
+  me.callParent(arguments);
   me.removeClsWithUI('disabled');
   if (me.rendered) {
     me.el.dom.setAttribute('tabIndex', me.tabIndex);
@@ -26657,7 +26266,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
   return me;
 }, disable:function(silent) {
   var me = this;
-  Ext.Component.prototype.disable.apply(this, arguments);
+  me.callParent(arguments);
   me.addClsWithUI('disabled');
   me.removeClsWithUI(me.overCls);
   if (me.rendered) {
@@ -26679,7 +26288,7 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
   if (me.scale && !ui.match(me.scale)) {
     ui = ui + '-' + me.scale;
   }
-  Ext.Component.prototype.setUI.call(this, ui);
+  me.callParent([ui]);
 }, onMouseDown:function(e) {
   var me = this;
   if (Ext.isIE) {
@@ -26716,17 +26325,17 @@ scale:'small', allowedScales:['small', 'medium', 'large'], iconAlign:'left', arr
     e.stopEvent();
     return false;
   }
-}}, 0, ['button'], ['component', 'box', 'button'], {'component':true, 'box':true, 'button':true}, ['widget.button'], [['queryable', Ext.Queryable]], [Ext.button, 'Button', Ext, 'Button'], 0);
-Ext.cmd.derive('Ext.layout.container.boxOverflow.Menu', Ext.layout.container.boxOverflow.None, {alternateClassName:'Ext.layout.boxOverflow.Menu', noItemsMenuText:'\x3cdiv class\x3d"x-toolbar-no-items"\x3e(None)\x3c/div\x3e', constructor:function(layout) {
+}});
+Ext.define('Ext.layout.container.boxOverflow.Menu', {extend:Ext.layout.container.boxOverflow.None, alternateClassName:'Ext.layout.boxOverflow.Menu', noItemsMenuText:'\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 'toolbar-no-items"\x3e(None)\x3c/div\x3e', constructor:function(layout) {
   var me = this;
-  Ext.layout.container.boxOverflow.None.prototype.constructor.apply(this, arguments);
-  me.triggerButtonCls = me.triggerButtonCls || 'x-box-menu-after';
+  me.callParent(arguments);
+  me.triggerButtonCls = me.triggerButtonCls || Ext.baseCSSPrefix + 'box-menu-after';
   me.menuItems = [];
 }, beginLayout:function(ownerContext) {
-  Ext.layout.container.boxOverflow.None.prototype.beginLayout.apply(this, arguments);
+  this.callParent(arguments);
   this.clearOverflow(ownerContext);
 }, beginLayoutCycle:function(ownerContext, firstCycle) {
-  Ext.layout.container.boxOverflow.None.prototype.beginLayoutCycle.apply(this, arguments);
+  this.callParent(arguments);
   if (!firstCycle) {
     this.clearOverflow(ownerContext);
     this.layout.cacheChildItems(ownerContext);
@@ -26736,12 +26345,12 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Menu', Ext.layout.container.box
 }, getSuffixConfig:function() {
   var me = this, layout = me.layout, owner = layout.owner, oid = owner.id;
   me.menu = new Ext.menu.Menu({listeners:{scope:me, beforeshow:me.beforeMenuShow}});
-  me.menuTrigger = new Ext.button.Button({id:oid + '-menu-trigger', cls:Ext.layout.container.Box.prototype.innerCls + ' ' + me.triggerButtonCls + ' x-toolbar-item', plain:owner.usePlainButtons, ownerCt:owner, ownerLayout:layout, iconCls:'x-' + me.getOwnerType(owner) + '-more-icon', ui:owner instanceof Ext.toolbar.Toolbar ? 'default-toolbar' : 'default', menu:me.menu, showEmptyMenu:true, getSplitCls:function() {
+  me.menuTrigger = new Ext.button.Button({id:oid + '-menu-trigger', cls:Ext.layout.container.Box.prototype.innerCls + ' ' + me.triggerButtonCls + ' ' + Ext.baseCSSPrefix + 'toolbar-item', plain:owner.usePlainButtons, ownerCt:owner, ownerLayout:layout, iconCls:Ext.baseCSSPrefix + me.getOwnerType(owner) + '-more-icon', ui:owner instanceof Ext.toolbar.Toolbar ? 'default-toolbar' : 'default', menu:me.menu, showEmptyMenu:true, getSplitCls:function() {
     return '';
   }});
   return me.menuTrigger.getRenderTree();
 }, getOverflowCls:function() {
-  return 'x-' + this.layout.direction + '-box-overflow-body';
+  return Ext.baseCSSPrefix + this.layout.direction + '-box-overflow-body';
 }, handleOverflow:function(ownerContext) {
   var me = this, layout = me.layout, names = layout.names, plan = ownerContext.state.boxPlan, posArgs = [null, null];
   me.showTrigger(ownerContext);
@@ -26894,8 +26503,8 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Menu', Ext.layout.container.box
     delete trigger.ownerCt;
   }
   Ext.destroy(this.menu, trigger);
-}}, 1, 0, 0, 0, 0, 0, [Ext.layout.container.boxOverflow, 'Menu', Ext.layout.boxOverflow, 'Menu'], 0);
-Ext.cmd.derive('Ext.layout.container.boxOverflow.Scroller', Ext.layout.container.boxOverflow.None, {alternateClassName:'Ext.layout.boxOverflow.Scroller', animateScroll:false, scrollIncrement:20, wheelIncrement:10, scrollRepeatInterval:60, scrollDuration:400, scrollerCls:'x-box-scroller', constructor:function(layout, config) {
+}});
+Ext.define('Ext.layout.container.boxOverflow.Scroller', {extend:Ext.layout.container.boxOverflow.None, alternateClassName:'Ext.layout.boxOverflow.Scroller', mixins:{observable:Ext.util.Observable}, animateScroll:false, scrollIncrement:20, wheelIncrement:10, scrollRepeatInterval:60, scrollDuration:400, scrollerCls:Ext.baseCSSPrefix + 'box-scroller', constructor:function(layout, config) {
   var me = this;
   me.layout = layout;
   Ext.apply(me, config || {});
@@ -26918,9 +26527,9 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Scroller', Ext.layout.container
   }
   return {cls:cls, cn:{id:owner.id + layout.names.afterScrollerSuffix, cls:me.scrollerCls + ' ' + me.afterScrollerCls, style:'display:none'}};
 }, getOverflowCls:function() {
-  return 'x-' + this.layout.direction + '-box-overflow-body';
+  return Ext.baseCSSPrefix + this.layout.direction + '-box-overflow-body';
 }, initCSSClasses:function() {
-  var me = this, prefix = 'x-', layout = me.layout, names = layout.names, beforeXName = names.beforeX, afterXName = names.afterX, type = me.getOwnerType(layout.owner);
+  var me = this, prefix = Ext.baseCSSPrefix, layout = me.layout, names = layout.names, beforeXName = names.beforeX, afterXName = names.afterX, type = me.getOwnerType(layout.owner);
   me.beforeCtCls = me.beforeCtCls || prefix + 'box-scroller-' + beforeXName;
   me.afterCtCls = me.afterCtCls || prefix + 'box-scroller-' + afterXName;
   me.beforeScrollerCls = me.beforeScrollerCls || prefix + type + '-scroll-' + beforeXName;
@@ -26928,7 +26537,7 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Scroller', Ext.layout.container
 }, beginLayout:function(ownerContext) {
   var layout = this.layout;
   ownerContext.innerCtScrollPos = this.getScrollPosition();
-  Ext.layout.container.boxOverflow.None.prototype.beginLayout.apply(this, arguments);
+  this.callParent(arguments);
 }, completeLayout:function(ownerContext) {
   var me = this, plan = ownerContext.state.boxPlan, names = me.layout.names, last;
   if (plan && plan.tooNarrow) {
@@ -26936,7 +26545,7 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Scroller', Ext.layout.container
     me.scrollSize = last.props[names.x] + last.props[names.width];
     me.updateScrollButtons();
   }
-  Ext.layout.container.boxOverflow.None.prototype.completeLayout.apply(this, arguments);
+  this.callParent(arguments);
 }, finishedLayout:function(ownerContext) {
   var me = this, layout = me.layout, scrollPos = Math.min(me.getMaxScrollPosition(), ownerContext.innerCtScrollPos);
   layout.innerCt[layout.names.setScrollLeft](scrollPos);
@@ -27072,8 +26681,8 @@ Ext.cmd.derive('Ext.layout.container.boxOverflow.Scroller', Ext.layout.container
 }, getItemVisibility:function(item) {
   var me = this, box = me.getItem(item).getBox(true, true), layout = me.layout, names = layout.names, itemStart = box[names.x], itemEnd = itemStart + box[names.width], scrollStart = me.getScrollPosition(), scrollEnd = scrollStart + layout.innerCt[names.getWidth]();
   return {hiddenStart:itemStart < scrollStart, hiddenEnd:itemEnd > scrollEnd, fullyVisible:itemStart > scrollStart && itemEnd < scrollEnd};
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.layout.container.boxOverflow, 'Scroller', Ext.layout.boxOverflow, 'Scroller'], 0);
-Ext.cmd.derive('Ext.util.Offset', Ext.Base, {statics:{fromObject:function(obj) {
+}});
+Ext.define('Ext.util.Offset', {statics:{fromObject:function(obj) {
   return new this(obj.x, obj.y);
 }}, constructor:function(x, y) {
   this.x = x != null && !isNaN(x) ? x : 0;
@@ -27102,8 +26711,8 @@ Ext.cmd.derive('Ext.util.Offset', Ext.Base, {statics:{fromObject:function(obj) {
   }
 }, isZero:function() {
   return this.x == 0 && this.y == 0;
-}}, 3, 0, 0, 0, 0, 0, [Ext.util, 'Offset'], 0);
-Ext.cmd.derive('Ext.util.Region', Ext.Base, {statics:{getRegion:function(el) {
+}});
+Ext.define('Ext.util.Region', {statics:{getRegion:function(el) {
   return Ext.fly(el).getRegion();
 }, from:function(o) {
   return new this(o.top, o.right, o.bottom, o.left);
@@ -27264,10 +26873,10 @@ Ext.cmd.derive('Ext.util.Region', Ext.Base, {statics:{getRegion:function(el) {
   return me;
 }, equals:function(region) {
   return this.top == region.top && this.right == region.right && this.bottom == region.bottom && this.left == region.left;
-}}, 3, 0, 0, 0, 0, 0, [Ext.util, 'Region'], 0);
-Ext.cmd.derive('Ext.dd.DragDropManager', Ext.Base, {singleton:true, alternateClassName:['Ext.dd.DragDropMgr', 'Ext.dd.DDM'], ids:{}, handleIds:{}, dragCurrent:null, dragOvers:{}, deltaX:0, deltaY:0, preventDefault:true, stopPropagation:true, initialized:false, locked:false, init:function() {
+}});
+Ext.define('Ext.dd.DragDropManager', {singleton:true, alternateClassName:['Ext.dd.DragDropMgr', 'Ext.dd.DDM'], ids:{}, handleIds:{}, dragCurrent:null, dragOvers:{}, deltaX:0, deltaY:0, preventDefault:true, stopPropagation:true, initialized:false, locked:false, init:function() {
   this.initialized = true;
-}, POINT:0, INTERSECT:1, mode:0, notifyOccluded:false, dragCls:'x-dd-drag-current', _execOnAll:function(sMethod, args) {
+}, POINT:0, INTERSECT:1, mode:0, notifyOccluded:false, dragCls:Ext.baseCSSPrefix + 'dd-drag-current', _execOnAll:function(sMethod, args) {
   var i, j, oDD;
   for (i in this.ids) {
     for (j in this.ids[i]) {
@@ -27774,14 +27383,14 @@ Ext.cmd.derive('Ext.dd.DragDropManager', Ext.Base, {singleton:true, alternateCla
     }
   }
   return false;
-}}, 0, 0, 0, 0, 0, 0, [Ext.dd, 'DragDropManager', Ext.dd, 'DragDropMgr', Ext.dd, 'DDM'], function() {
+}}, function() {
   this._addListeners();
 });
-Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alternateClassName:'Ext.layout.BoxLayout', defaultMargins:{top:0, right:0, bottom:0, left:0}, padding:0, pack:'start', flex:undefined, stretchMaxPartner:undefined, alignRoundingMethod:'round', type:'box', scrollOffset:0, itemCls:'x-box-item', targetCls:'x-box-layout-ct', targetElCls:'x-box-target', innerCls:'x-box-inner', availableSpaceOffset:0, reserveOffset:true, manageMargins:true, createsInnerCt:true, childEls:['innerCt', 
-'targetEl'], renderTpl:['{%var oc,l\x3dvalues.$comp.layout,oh\x3dl.overflowHandler;', 'if (oh.getPrefixConfig!\x3d\x3dExt.emptyFn) {', 'if(oc\x3doh.getPrefixConfig())dh.generateMarkup(oc, out)', '}%}', '\x3cdiv id\x3d"{ownerId}-innerCt" class\x3d"{[l.innerCls]} {[oh.getOverflowCls()]}" role\x3d"presentation"\x3e', '\x3cdiv id\x3d"{ownerId}-targetEl" class\x3d"{targetElCls}"\x3e', '{%this.renderBody(out, values)%}', '\x3c/div\x3e', '\x3c/div\x3e', '{%if (oh.getSuffixConfig!\x3d\x3dExt.emptyFn) {', 
-'if(oc\x3doh.getSuffixConfig())dh.generateMarkup(oc, out)', '}%}', {disableFormats:true, definitions:'var dh\x3dExt.DomHelper;'}], constructor:function(config) {
+Ext.define('Ext.layout.container.Box', {alias:['layout.box'], extend:Ext.layout.container.Container, alternateClassName:'Ext.layout.BoxLayout', defaultMargins:{top:0, right:0, bottom:0, left:0}, padding:0, pack:'start', flex:undefined, stretchMaxPartner:undefined, alignRoundingMethod:'round', type:'box', scrollOffset:0, itemCls:Ext.baseCSSPrefix + 'box-item', targetCls:Ext.baseCSSPrefix + 'box-layout-ct', targetElCls:Ext.baseCSSPrefix + 'box-target', innerCls:Ext.baseCSSPrefix + 'box-inner', availableSpaceOffset:0, 
+reserveOffset:true, manageMargins:true, createsInnerCt:true, childEls:['innerCt', 'targetEl'], renderTpl:['{%var oc,l\x3dvalues.$comp.layout,oh\x3dl.overflowHandler;', 'if (oh.getPrefixConfig!\x3d\x3dExt.emptyFn) {', 'if(oc\x3doh.getPrefixConfig())dh.generateMarkup(oc, out)', '}%}', '\x3cdiv id\x3d"{ownerId}-innerCt" class\x3d"{[l.innerCls]} {[oh.getOverflowCls()]}" role\x3d"presentation"\x3e', '\x3cdiv id\x3d"{ownerId}-targetEl" class\x3d"{targetElCls}"\x3e', '{%this.renderBody(out, values)%}', 
+'\x3c/div\x3e', '\x3c/div\x3e', '{%if (oh.getSuffixConfig!\x3d\x3dExt.emptyFn) {', 'if(oc\x3doh.getSuffixConfig())dh.generateMarkup(oc, out)', '}%}', {disableFormats:true, definitions:'var dh\x3dExt.DomHelper;'}], constructor:function(config) {
   var me = this, type;
-  Ext.layout.container.Container.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   me.flexSortFn = Ext.Function.bind(me.flexSort, me);
   me.initOverflowHandler();
   type = typeof me.padding;
@@ -27862,7 +27471,7 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
     smp = Ext.getCmp(smp) || owner.query(smp)[0];
   }
   ownerContext.stretchMaxPartner = smp && ownerContext.context.getCmp(smp);
-  Ext.layout.container.Container.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   ownerContext.innerCtContext = ownerContext.getEl('innerCt', me);
   me.scrollParallel = owner.scrollFlags[names.x];
   me.scrollPerpendicular = owner.scrollFlags[names.y];
@@ -27874,7 +27483,7 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
 }, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this, align = me.align, names = ownerContext.boxNames, pack = me.pack, heightModelName = names.heightModel;
   me.overflowHandler.beginLayoutCycle(ownerContext, firstCycle);
-  Ext.layout.container.Container.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   ownerContext.parallelSizeModel = ownerContext[names.widthModel];
   ownerContext.perpendicularSizeModel = ownerContext[heightModelName];
   ownerContext.boxOptions = {align:align = {stretch:align == 'stretch', stretchmax:align == 'stretchmax', center:align == names.center, bottom:align == names.afterY}, pack:pack = {center:pack == 'center', end:pack == 'end'}};
@@ -28214,7 +27823,7 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
   }
 }, finishedLayout:function(ownerContext) {
   this.overflowHandler.finishedLayout(ownerContext);
-  Ext.layout.container.Container.prototype.finishedLayout.apply(this, arguments);
+  this.callParent(arguments);
   this.targetEl.setWidth(ownerContext.innerCtContext.props.width);
 }, publishInnerCtSize:function(ownerContext, reservedSpace) {
   var me = this, names = ownerContext.boxNames, heightName = names.height, widthName = names.width, align = ownerContext.boxOptions.align, dock = me.owner.dock, padding = me.padding, plan = ownerContext.state.boxPlan, targetSize = plan.targetSize, height = targetSize[heightName], innerCtContext = ownerContext.innerCtContext, innerCtWidth = (ownerContext.parallelSizeModel.shrinkWrap || plan.tooNarrow && me.scrollParallel ? ownerContext.state.contentWidth - ownerContext.targetContext.getPaddingInfo()[widthName] : 
@@ -28237,7 +27846,7 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
   }
 }, onRemove:function(comp) {
   var me = this;
-  Ext.layout.container.Container.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
   if (me.overflowHandler) {
     me.overflowHandler.onRemove(comp);
   }
@@ -28264,21 +27873,22 @@ Ext.cmd.derive('Ext.layout.container.Box', Ext.layout.container.Container, {alte
   return this.innerCt;
 }, calculateChildBox:Ext.deprecated(), calculateChildBoxes:Ext.deprecated(), updateChildBoxes:Ext.deprecated(), destroy:function() {
   Ext.destroy(this.innerCt, this.overflowHandler);
-  Ext.layout.container.Container.prototype.destroy.apply(this, arguments);
+  this.callParent(arguments);
 }, getRenderData:function() {
-  var data = Ext.layout.container.Container.prototype.getRenderData.call(this);
+  var data = this.callParent();
   data.targetElCls = this.targetElCls;
   return data;
-}}, 1, 0, 0, 0, ['layout.box'], 0, [Ext.layout.container, 'Box', Ext.layout, 'BoxLayout'], 0);
-Ext.cmd.derive('Ext.layout.container.HBox', Ext.layout.container.Box, {alternateClassName:'Ext.layout.HBoxLayout', align:'top', constrainAlign:false, type:'hbox', direction:'horizontal', horizontal:true, names:{beforeX:'left', beforeScrollX:'left', beforeScrollerSuffix:'-before-scroller', afterScrollerSuffix:'-after-scroller', leftCap:'Left', afterX:'right', width:'width', contentWidth:'contentWidth', minWidth:'minWidth', maxWidth:'maxWidth', widthCap:'Width', widthModel:'widthModel', widthIndex:0, 
-x:'x', scrollLeft:'scrollLeft', overflowX:'overflowX', hasOverflowX:'hasOverflowX', invalidateScrollX:'invalidateScrollX', parallelMargins:'lr', center:'middle', beforeY:'top', afterY:'bottom', height:'height', contentHeight:'contentHeight', minHeight:'minHeight', maxHeight:'maxHeight', heightCap:'Height', heightModel:'heightModel', heightIndex:1, y:'y', overflowY:'overflowY', hasOverflowY:'hasOverflowY', invalidateScrollY:'invalidateScrollY', perpendicularMargins:'tb', getWidth:'getWidth', getHeight:'getHeight', 
-setWidth:'setWidth', setHeight:'setHeight', gotWidth:'gotWidth', gotHeight:'gotHeight', setContentWidth:'setContentWidth', setContentHeight:'setContentHeight', setWidthInDom:'setWidthInDom', setHeightInDom:'setHeightInDom', getScrollLeft:'getScrollLeft', setScrollLeft:'setScrollLeft', scrollTo:'scrollTo'}, sizePolicy:{flex:{'':{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, stretch:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}, stretchmax:{readsWidth:0, readsHeight:1, setsWidth:1, 
-setsHeight:1}}, '':{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, stretch:{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, stretchmax:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:1}}}, 0, 0, 0, 0, ['layout.hbox'], 0, [Ext.layout.container, 'HBox', Ext.layout, 'HBoxLayout'], 0);
-Ext.cmd.derive('Ext.layout.container.VBox', Ext.layout.container.Box, {alternateClassName:'Ext.layout.VBoxLayout', align:'left', constrainAlign:false, type:'vbox', direction:'vertical', horizontal:false, names:{beforeX:'top', beforeScrollX:'top', beforeScrollerSuffix:'-before-scroller', afterScrollerSuffix:'-after-scroller', leftCap:'Top', afterX:'bottom', width:'height', contentWidth:'contentHeight', minWidth:'minHeight', maxWidth:'maxHeight', widthCap:'Height', widthModel:'heightModel', widthIndex:1, 
-x:'y', scrollLeft:'scrollTop', overflowX:'overflowY', hasOverflowX:'hasOverflowY', invalidateScrollX:'invalidateScrollY', parallelMargins:'tb', center:'center', beforeY:'left', afterY:'right', height:'width', contentHeight:'contentWidth', minHeight:'minWidth', maxHeight:'maxWidth', heightCap:'Width', heightModel:'widthModel', heightIndex:0, y:'x', overflowY:'overflowX', hasOverflowY:'hasOverflowX', invalidateScrollY:'invalidateScrollX', perpendicularMargins:'lr', getWidth:'getHeight', getHeight:'getWidth', 
-setWidth:'setHeight', setHeight:'setWidth', gotWidth:'gotHeight', gotHeight:'gotWidth', setContentWidth:'setContentHeight', setContentHeight:'setContentWidth', setWidthInDom:'setHeightInDom', setHeightInDom:'setWidthInDom', getScrollLeft:'getScrollTop', setScrollLeft:'setScrollTop', scrollTo:'scrollTo'}, sizePolicy:{flex:{'':{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, stretch:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}, stretchmax:{readsWidth:1, readsHeight:0, setsWidth:1, 
-setsHeight:1}}, '':{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, stretch:{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, stretchmax:{readsWidth:1, readsHeight:1, setsWidth:1, setsHeight:0}}}, 0, 0, 0, 0, ['layout.vbox'], 0, [Ext.layout.container, 'VBox', Ext.layout, 'VBoxLayout'], 0);
-Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget.toolbar', alternateClassName:'Ext.Toolbar', isToolbar:true, baseCls:'x-toolbar', ariaRole:'toolbar', defaultType:'button', vertical:false, enableOverflow:false, menuTriggerCls:'x-toolbar-more-icon', trackMenus:true, itemCls:'x-toolbar-item', statics:{shortcuts:{'-':'tbseparator', ' ':'tbspacer'}, shortcutsHV:{0:{'-\x3e':{xtype:'tbfill', height:0}}, 1:{'-\x3e':{xtype:'tbfill', width:0}}}}, initComponent:function() {
+}});
+Ext.define('Ext.layout.container.HBox', {alias:['layout.hbox'], extend:Ext.layout.container.Box, alternateClassName:'Ext.layout.HBoxLayout', align:'top', constrainAlign:false, type:'hbox', direction:'horizontal', horizontal:true, names:{beforeX:'left', beforeScrollX:'left', beforeScrollerSuffix:'-before-scroller', afterScrollerSuffix:'-after-scroller', leftCap:'Left', afterX:'right', width:'width', contentWidth:'contentWidth', minWidth:'minWidth', maxWidth:'maxWidth', widthCap:'Width', widthModel:'widthModel', 
+widthIndex:0, x:'x', scrollLeft:'scrollLeft', overflowX:'overflowX', hasOverflowX:'hasOverflowX', invalidateScrollX:'invalidateScrollX', parallelMargins:'lr', center:'middle', beforeY:'top', afterY:'bottom', height:'height', contentHeight:'contentHeight', minHeight:'minHeight', maxHeight:'maxHeight', heightCap:'Height', heightModel:'heightModel', heightIndex:1, y:'y', overflowY:'overflowY', hasOverflowY:'hasOverflowY', invalidateScrollY:'invalidateScrollY', perpendicularMargins:'tb', getWidth:'getWidth', 
+getHeight:'getHeight', setWidth:'setWidth', setHeight:'setHeight', gotWidth:'gotWidth', gotHeight:'gotHeight', setContentWidth:'setContentWidth', setContentHeight:'setContentHeight', setWidthInDom:'setWidthInDom', setHeightInDom:'setHeightInDom', getScrollLeft:'getScrollLeft', setScrollLeft:'setScrollLeft', scrollTo:'scrollTo'}, sizePolicy:{flex:{'':{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, stretch:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}, stretchmax:{readsWidth:0, 
+readsHeight:1, setsWidth:1, setsHeight:1}}, '':{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, stretch:{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, stretchmax:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:1}}});
+Ext.define('Ext.layout.container.VBox', {alias:['layout.vbox'], extend:Ext.layout.container.Box, alternateClassName:'Ext.layout.VBoxLayout', align:'left', constrainAlign:false, type:'vbox', direction:'vertical', horizontal:false, names:{beforeX:'top', beforeScrollX:'top', beforeScrollerSuffix:'-before-scroller', afterScrollerSuffix:'-after-scroller', leftCap:'Top', afterX:'bottom', width:'height', contentWidth:'contentHeight', minWidth:'minHeight', maxWidth:'maxHeight', widthCap:'Height', widthModel:'heightModel', 
+widthIndex:1, x:'y', scrollLeft:'scrollTop', overflowX:'overflowY', hasOverflowX:'hasOverflowY', invalidateScrollX:'invalidateScrollY', parallelMargins:'tb', center:'center', beforeY:'left', afterY:'right', height:'width', contentHeight:'contentWidth', minHeight:'minWidth', maxHeight:'maxWidth', heightCap:'Width', heightModel:'widthModel', heightIndex:0, y:'x', overflowY:'overflowX', hasOverflowY:'hasOverflowX', invalidateScrollY:'invalidateScrollX', perpendicularMargins:'lr', getWidth:'getHeight', 
+getHeight:'getWidth', setWidth:'setHeight', setHeight:'setWidth', gotWidth:'gotHeight', gotHeight:'gotWidth', setContentWidth:'setContentHeight', setContentHeight:'setContentWidth', setWidthInDom:'setHeightInDom', setHeightInDom:'setWidthInDom', getScrollLeft:'getScrollTop', setScrollLeft:'setScrollTop', scrollTo:'scrollTo'}, sizePolicy:{flex:{'':{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, stretch:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}, stretchmax:{readsWidth:1, readsHeight:0, 
+setsWidth:1, setsHeight:1}}, '':{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, stretch:{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, stretchmax:{readsWidth:1, readsHeight:1, setsWidth:1, setsHeight:0}}});
+Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget.toolbar', alternateClassName:'Ext.Toolbar', isToolbar:true, baseCls:Ext.baseCSSPrefix + 'toolbar', ariaRole:'toolbar', defaultType:'button', vertical:false, enableOverflow:false, menuTriggerCls:Ext.baseCSSPrefix + 'toolbar-more-icon', trackMenus:true, itemCls:Ext.baseCSSPrefix + 'toolbar-item', statics:{shortcuts:{'-':'tbseparator', ' ':'tbspacer'}, shortcutsHV:{0:{'-\x3e':{xtype:'tbfill', height:0}}, 1:{'-\x3e':{xtype:'tbfill', 
+width:0}}}}, initComponent:function() {
   var me = this;
   if (!me.layout && me.enableOverflow) {
     me.layout = {overflowHandler:'Menu'};
@@ -28293,10 +27903,10 @@ Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget
   if (me.ui === 'footer') {
     me.ignoreBorderManagement = true;
   }
-  Ext.container.Container.prototype.initComponent.call(this);
+  me.callParent();
   me.addEvents('overflowchange');
 }, getRefItems:function(deep) {
-  var me = this, items = Ext.container.Container.prototype.getRefItems.apply(this, arguments), layout = me.layout, handler;
+  var me = this, items = me.callParent(arguments), layout = me.layout, handler;
   if (deep && me.enableOverflow) {
     handler = layout.overflowHandler;
     if (handler && handler.menu) {
@@ -28320,10 +27930,10 @@ Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget
     this.applyDefaults(c);
     args = [c];
   }
-  return Ext.container.Container.prototype.lookupComponent.apply(this, args);
+  return this.callParent(args);
 }, applyDefaults:function(c) {
   if (!Ext.isString(c)) {
-    c = Ext.container.Container.prototype.applyDefaults.apply(this, arguments);
+    c = this.callParent(arguments);
   }
   return c;
 }, trackMenu:function(item, remove) {
@@ -28346,12 +27956,12 @@ Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget
   if (component instanceof Ext.toolbar.Separator) {
     component.setUI(me.vertical ? 'vertical' : 'horizontal');
   }
-  Ext.container.Container.prototype.onBeforeAdd.apply(this, arguments);
+  me.callParent(arguments);
 }, onAdd:function(component) {
-  Ext.container.Container.prototype.onAdd.apply(this, arguments);
+  this.callParent(arguments);
   this.trackMenu(component);
 }, onRemove:function(c) {
-  Ext.container.Container.prototype.onRemove.apply(this, arguments);
+  this.callParent(arguments);
   this.trackMenu(c, true);
 }, getChildItemsToDisable:function() {
   return this.items.getRange();
@@ -28366,10 +27976,10 @@ Ext.define('Ext.toolbar.Toolbar', {extend:Ext.container.Container, alias:'widget
 }, onButtonMenuHide:function(btn) {
   delete this.activeMenuBtn;
 }});
-Ext.cmd.derive('Ext.panel.AbstractPanel', Ext.container.Container, {baseCls:'x-panel', isPanel:true, contentPaddingProperty:'bodyPadding', shrinkWrapDock:false, componentLayout:'dock', childEls:['body'], renderTpl:['{% this.renderDockedItems(out,values,0); %}', Ext.isIE7m || Ext.isIEQuirks ? '\x3cdiv style\x3d"position:relative"\x3e\x3c/div\x3e' : '', '\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body\x3ctpl if\x3d"bodyCls"\x3e {bodyCls}\x3c/tpl\x3e', ' {baseCls}-body-{ui}\x3ctpl if\x3d"uiCls"\x3e', 
-'\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e', '\x3c/tpl\x3e{childElCls}"', '\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values);%}', '\x3c/div\x3e', '{% this.renderDockedItems(out,values,1); %}'], bodyPosProps:{x:'x', y:'y'}, border:true, emptyArray:[], initComponent:function() {
+Ext.define('Ext.panel.AbstractPanel', {extend:Ext.container.Container, mixins:{docking:Ext.container.DockingContainer}, baseCls:Ext.baseCSSPrefix + 'panel', isPanel:true, contentPaddingProperty:'bodyPadding', shrinkWrapDock:false, componentLayout:'dock', childEls:['body'], renderTpl:['{% this.renderDockedItems(out,values,0); %}', Ext.isIE7m || Ext.isIEQuirks ? '\x3cdiv style\x3d"position:relative"\x3e\x3c/div\x3e' : '', '\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body\x3ctpl if\x3d"bodyCls"\x3e {bodyCls}\x3c/tpl\x3e', 
+' {baseCls}-body-{ui}\x3ctpl if\x3d"uiCls"\x3e', '\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e', '\x3c/tpl\x3e{childElCls}"', '\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values);%}', '\x3c/div\x3e', '{% this.renderDockedItems(out,values,1); %}'], bodyPosProps:{x:'x', y:'y'}, border:true, emptyArray:[], initComponent:function() {
   this.initBorderProps();
-  Ext.container.Container.prototype.initComponent.call(this);
+  this.callParent();
 }, initBorderProps:function() {
   var me = this;
   if (me.frame && me.border && me.bodyBorder === undefined) {
@@ -28380,18 +27990,18 @@ Ext.cmd.derive('Ext.panel.AbstractPanel', Ext.container.Container, {baseCls:'x-p
   }
 }, beforeDestroy:function() {
   this.destroyDockedItems();
-  Ext.container.Container.prototype.beforeDestroy.call(this);
+  this.callParent();
 }, initItems:function() {
-  Ext.container.Container.prototype.initItems.call(this);
+  this.callParent();
   this.initDockingItems();
 }, initRenderData:function() {
-  var me = this, data = Ext.container.Container.prototype.initRenderData.call(this);
+  var me = this, data = me.callParent();
   me.initBodyStyles();
   me.protoBody.writeTo(data);
   delete me.protoBody;
   return data;
 }, getComponent:function(comp) {
-  var component = Ext.container.Container.prototype.getComponent.apply(this, arguments);
+  var component = this.callParent(arguments);
   if (component === undefined && !Ext.isNumber(comp)) {
     component = this.getDockedComponent(comp);
   }
@@ -28446,34 +28056,34 @@ Ext.cmd.derive('Ext.panel.AbstractPanel', Ext.container.Container, {baseCls:'x-p
   body.removeCls(cls);
   return me;
 }, addUIClsToElement:function(cls) {
-  var me = this, result = Ext.container.Container.prototype.addUIClsToElement.apply(this, arguments);
-  me.addBodyCls(['x-' + cls, me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls]);
+  var me = this, result = me.callParent(arguments);
+  me.addBodyCls([Ext.baseCSSPrefix + cls, me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls]);
   return result;
 }, removeUIClsFromElement:function(cls) {
-  var me = this, result = Ext.container.Container.prototype.removeUIClsFromElement.apply(this, arguments);
-  me.removeBodyCls(['x-' + cls, me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls]);
+  var me = this, result = me.callParent(arguments);
+  me.removeBodyCls([Ext.baseCSSPrefix + cls, me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls]);
   return result;
 }, addUIToElement:function() {
   var me = this;
-  Ext.container.Container.prototype.addUIToElement.apply(this, arguments);
+  me.callParent(arguments);
   me.addBodyCls(me.baseCls + '-body-' + me.ui);
 }, removeUIFromElement:function() {
   var me = this;
-  Ext.container.Container.prototype.removeUIFromElement.apply(this, arguments);
+  me.callParent(arguments);
   me.removeBodyCls(me.baseCls + '-body-' + me.ui);
 }, getTargetEl:function() {
   return this.body;
 }, applyTargetCls:function(targetCls) {
   this.getProtoBody().addCls(targetCls);
 }, getRefItems:function(deep) {
-  var items = Ext.container.Container.prototype.getRefItems.apply(this, arguments);
+  var items = this.callParent(arguments);
   return this.getDockingRefItems(deep, items);
 }, setupRenderTpl:function(renderTpl) {
-  Ext.container.Container.prototype.setupRenderTpl.apply(this, arguments);
+  this.callParent(arguments);
   this.setupDockingRenderTpl(renderTpl);
-}}, 0, 0, ['component', 'box', 'container'], {'component':true, 'box':true, 'container':true}, 0, [['docking', Ext.container.DockingContainer]], [Ext.panel, 'AbstractPanel'], 0);
-Ext.cmd.derive('Ext.panel.Header', Ext.container.Container, {isHeader:true, defaultType:'tool', indicateDrag:false, weight:-1, componentLayout:'body', childEls:['body'], renderTpl:['\x3cdiv id\x3d"{id}-body" class\x3d"{headerCls}-body {baseCls}-body {bodyCls} {bodyTargetCls}', '\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e"', '\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values)%}', '\x3c/div\x3e'], headingTpl:['\x3cspan id\x3d"{id}-textEl" class\x3d"{headerCls}-text {cls}-text {cls}-text-{ui}" unselectable\x3d"on"\x3e{title}\x3c/span\x3e'], 
-shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
+}});
+Ext.define('Ext.panel.Header', {extend:Ext.container.Container, alias:'widget.header', isHeader:true, defaultType:'tool', indicateDrag:false, weight:-1, componentLayout:'body', childEls:['body'], renderTpl:['\x3cdiv id\x3d"{id}-body" class\x3d"{headerCls}-body {baseCls}-body {bodyCls} {bodyTargetCls}', '\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e"', '\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values)%}', '\x3c/div\x3e'], 
+headingTpl:['\x3cspan id\x3d"{id}-textEl" class\x3d"{headerCls}-text {cls}-text {cls}-text-{ui}" unselectable\x3d"on"\x3e{title}\x3c/span\x3e'], shrinkWrap:3, titlePosition:0, headerCls:Ext.baseCSSPrefix + 'header', initComponent:function() {
   var me = this, hasPosition = me.hasOwnProperty('titlePosition'), items = me.items, titlePosition = hasPosition ? me.titlePosition : items ? items.length : 0, uiClasses = [me.orientation, me.getDockName()], ownerCt = me.ownerCt;
   me.addEvents('click', 'dblclick');
   me.indicateDragCls = me.headerCls + '-draggable';
@@ -28501,7 +28111,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   me.layout = me.orientation == 'vertical' ? {type:'vbox', align:'center', alignRoundingMethod:'ceil'} : {type:'hbox', align:'middle', alignRoundingMethod:'floor'};
   Ext.Array.push(items, me.tools);
   me.tools.length = 0;
-  Ext.container.Container.prototype.initComponent.call(this);
+  me.callParent();
   if (items.length < titlePosition) {
     titlePosition = items.length;
   }
@@ -28521,7 +28131,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   me.iconCmp = new Ext.Img(cfg);
 }, beforeRender:function() {
   this.protoEl.unselectable();
-  Ext.container.Container.prototype.beforeRender.call(this);
+  this.callParent();
 }, afterLayout:function() {
   var me = this, frameBR, frameTR, frameTL, xPos;
   if (me.orientation === 'vertical') {
@@ -28539,7 +28149,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
     }
   }
 }, beforeLayout:function() {
-  Ext.container.Container.prototype.beforeLayout.call(this);
+  this.callParent();
   this.syncBeforeAfterTitleClasses();
 }, adjustTitlePosition:function() {
   var titleCmp = this.titleCmp, titleEl;
@@ -28552,7 +28162,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
     this.titleCmp.el.setVertical(90);
   }
 }, addUIClsToElement:function(cls) {
-  var me = this, result = Ext.container.Container.prototype.addUIClsToElement.apply(this, arguments), classes = [me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls], array, i;
+  var me = this, result = me.callParent(arguments), classes = [me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls], array, i;
   if (me.bodyCls) {
     array = me.bodyCls.split(' ');
     for (i = 0; i < classes.length; i++) {
@@ -28566,7 +28176,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   }
   return result;
 }, removeUIClsFromElement:function(cls) {
-  var me = this, result = Ext.container.Container.prototype.removeUIClsFromElement.apply(this, arguments), classes = [me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls], array, i;
+  var me = this, result = me.callParent(arguments), classes = [me.baseCls + '-body-' + cls, me.baseCls + '-body-' + me.ui + '-' + cls], array, i;
   if (me.bodyCls) {
     array = me.bodyCls.split(' ');
     for (i = 0; i < classes.length; i++) {
@@ -28577,7 +28187,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   return result;
 }, addUIToElement:function() {
   var me = this, array, cls;
-  Ext.container.Container.prototype.addUIToElement.apply(this, arguments);
+  me.callParent(arguments);
   cls = me.baseCls + '-body-' + me.ui;
   if (me.rendered) {
     if (me.bodyCls) {
@@ -28601,7 +28211,7 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   }
 }, removeUIFromElement:function() {
   var me = this, array, cls;
-  Ext.container.Container.prototype.removeUIFromElement.apply(this, arguments);
+  me.callParent(arguments);
   cls = me.baseCls + '-body-' + me.ui;
   if (me.rendered) {
     if (me.bodyCls) {
@@ -28742,23 +28352,23 @@ shrinkWrap:3, titlePosition:0, headerCls:'x-header', initComponent:function() {
   }
 }, onAdd:function(component, index) {
   var tools = this.tools;
-  Ext.container.Container.prototype.onAdd.apply(this, arguments);
+  this.callParent(arguments);
   if (component.isTool) {
     tools.push(component);
     tools[component.type] = component;
   }
 }, initRenderData:function() {
-  return Ext.applyIf(Ext.container.Container.prototype.initRenderData.call(this), {bodyCls:this.bodyCls, bodyTargetCls:this.bodyTargetCls, headerCls:this.headerCls});
+  return Ext.applyIf(this.callParent(), {bodyCls:this.bodyCls, bodyTargetCls:this.bodyTargetCls, headerCls:this.headerCls});
 }, getDockName:function() {
   return this.dock;
 }, getFramingInfoCls:function() {
-  var me = this, cls = Ext.container.Container.prototype.getFramingInfoCls.call(this), owner = me.ownerCt;
+  var me = this, cls = me.callParent(), owner = me.ownerCt;
   if (!me.expanding && (owner && owner.collapsed) || me.isCollapsedExpander) {
     cls += '-' + owner.collapsedCls;
   }
   return cls + '-' + me.dock;
-}}, 0, ['header'], ['component', 'box', 'container', 'header'], {'component':true, 'box':true, 'container':true, 'header':true}, ['widget.header'], 0, [Ext.panel, 'Header'], 0);
-Ext.cmd.derive('Ext.dd.DragDrop', Ext.Base, {constructor:function(id, sGroup, config) {
+}});
+Ext.define('Ext.dd.DragDrop', {constructor:function(id, sGroup, config) {
   if (id) {
     this.init(id, sGroup, config);
   }
@@ -29045,8 +28655,8 @@ Ext.cmd.derive('Ext.dd.DragDrop', Ext.Base, {constructor:function(id, sGroup, co
   }
 }, toString:function() {
   return 'DragDrop ' + this.id;
-}}, 3, 0, 0, 0, 0, 0, [Ext.dd, 'DragDrop'], 0);
-Ext.cmd.derive('Ext.dd.DD', Ext.dd.DragDrop, {constructor:function(id, sGroup, config) {
+}});
+Ext.define('Ext.dd.DD', {extend:Ext.dd.DragDrop, constructor:function(id, sGroup, config) {
   if (id) {
     this.init(id, sGroup, config);
   }
@@ -29122,7 +28732,7 @@ Ext.cmd.derive('Ext.dd.DD', Ext.dd.DragDrop, {constructor:function(id, sGroup, c
   y = this.getTick(y, this.yTicks);
   return {x:x, y:y};
 }, applyConfig:function() {
-  Ext.dd.DragDrop.prototype.applyConfig.call(this);
+  this.callParent();
   this.scroll = this.config.scroll !== false;
 }, b4MouseDown:function(e) {
   this.autoOffset(e.getPageX(), e.getPageY());
@@ -29134,8 +28744,8 @@ Ext.cmd.derive('Ext.dd.DD', Ext.dd.DragDrop, {constructor:function(id, sGroup, c
   return el.getLocalX();
 }, setLocalXY:function(el, x, y) {
   el.setLocalXY(x, y);
-}}, 3, 0, 0, 0, 0, 0, [Ext.dd, 'DD'], 0);
-Ext.cmd.derive('Ext.dd.DDProxy', Ext.dd.DD, {statics:{dragElId:'ygddfdiv'}, constructor:function(id, sGroup, config) {
+}});
+Ext.define('Ext.dd.DDProxy', {extend:Ext.dd.DD, statics:{dragElId:'ygddfdiv'}, constructor:function(id, sGroup, config) {
   if (id) {
     this.init(id, sGroup, config);
     this.initFrame();
@@ -29163,7 +28773,7 @@ Ext.cmd.derive('Ext.dd.DDProxy', Ext.dd.DD, {statics:{dragElId:'ygddfdiv'}, cons
 }, initFrame:function() {
   this.createFrame();
 }, applyConfig:function() {
-  Ext.dd.DD.prototype.applyConfig.call(this);
+  this.callParent();
   this.resizeFrame = this.config.resizeFrame !== false;
   this.centerFrame = this.config.centerFrame;
   this.setDragElId(this.config.dragElId || Ext.dd.DDProxy.dragElId);
@@ -29201,21 +28811,21 @@ Ext.cmd.derive('Ext.dd.DDProxy', Ext.dd.DD, {statics:{dragElId:'ygddfdiv'}, cons
 }, afterDrag:function() {
 }, toString:function() {
   return 'DDProxy ' + this.id;
-}}, 3, 0, 0, 0, 0, 0, [Ext.dd, 'DDProxy'], 0);
-Ext.cmd.derive('Ext.dd.StatusProxy', Ext.Component, {animRepair:false, childEls:['ghost'], renderTpl:['\x3cdiv class\x3d"x-dd-drop-icon"\x3e\x3c/div\x3e\x3cdiv id\x3d"{id}-ghost" class\x3d"x-dd-drag-ghost"\x3e\x3c/div\x3e'], repairCls:'x-dd-drag-repair', constructor:function(config) {
+}});
+Ext.define('Ext.dd.StatusProxy', {extend:Ext.Component, animRepair:false, childEls:['ghost'], renderTpl:['\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 'dd-drop-icon"\x3e\x3c/div\x3e' + '\x3cdiv id\x3d"{id}-ghost" class\x3d"' + Ext.baseCSSPrefix + 'dd-drag-ghost"\x3e\x3c/div\x3e'], repairCls:Ext.baseCSSPrefix + 'dd-drag-repair', constructor:function(config) {
   var me = this;
   config = config || {};
-  Ext.apply(me, {hideMode:'visibility', hidden:true, floating:true, id:me.id || Ext.id(), cls:'x-dd-drag-proxy ' + this.dropNotAllowed, shadow:config.shadow || false, renderTo:Ext.getDetachedBody()});
-  Ext.Component.prototype.constructor.apply(this, arguments);
+  Ext.apply(me, {hideMode:'visibility', hidden:true, floating:true, id:me.id || Ext.id(), cls:Ext.baseCSSPrefix + 'dd-drag-proxy ' + this.dropNotAllowed, shadow:config.shadow || false, renderTo:Ext.getDetachedBody()});
+  me.callParent(arguments);
   this.dropStatus = this.dropNotAllowed;
-}, dropAllowed:'x-dd-drop-ok', dropNotAllowed:'x-dd-drop-nodrop', setStatus:function(cssClass) {
+}, dropAllowed:Ext.baseCSSPrefix + 'dd-drop-ok', dropNotAllowed:Ext.baseCSSPrefix + 'dd-drop-nodrop', setStatus:function(cssClass) {
   cssClass = cssClass || this.dropNotAllowed;
   if (this.dropStatus != cssClass) {
     this.el.replaceCls(this.dropStatus, cssClass);
     this.dropStatus = cssClass;
   }
 }, reset:function(clearGhost) {
-  var me = this, clsPrefix = 'x-dd-drag-proxy ';
+  var me = this, clsPrefix = Ext.baseCSSPrefix + 'dd-drag-proxy ';
   me.el.replaceCls(clsPrefix + me.dropAllowed, clsPrefix + me.dropNotAllowed);
   me.dropStatus = me.dropNotAllowed;
   if (clearGhost) {
@@ -29236,7 +28846,7 @@ Ext.cmd.derive('Ext.dd.StatusProxy', Ext.Component, {animRepair:false, childEls:
 }, getGhost:function() {
   return this.ghost;
 }, hide:function(clear) {
-  Ext.Component.prototype.hide.call(this);
+  this.callParent();
   if (clear) {
     this.reset(true);
   }
@@ -29266,8 +28876,8 @@ Ext.cmd.derive('Ext.dd.StatusProxy', Ext.Component, {animRepair:false, childEls:
   }
   delete me.callback;
   delete me.scope;
-}}, 1, 0, ['component', 'box'], {'component':true, 'box':true}, 0, 0, [Ext.dd, 'StatusProxy'], 0);
-Ext.cmd.derive('Ext.dd.DragSource', Ext.dd.DDProxy, {dropAllowed:'x-dd-drop-ok', dropNotAllowed:'x-dd-drop-nodrop', animRepair:true, repairHighlightColor:'c3daf9', constructor:function(el, config) {
+}});
+Ext.define('Ext.dd.DragSource', {extend:Ext.dd.DDProxy, dropAllowed:Ext.baseCSSPrefix + 'dd-drop-ok', dropNotAllowed:Ext.baseCSSPrefix + 'dd-drop-nodrop', animRepair:true, repairHighlightColor:'c3daf9', constructor:function(el, config) {
   this.el = Ext.get(el);
   if (!this.dragData) {
     this.dragData = {};
@@ -29276,7 +28886,7 @@ Ext.cmd.derive('Ext.dd.DragSource', Ext.dd.DDProxy, {dropAllowed:'x-dd-drop-ok',
   if (!this.proxy) {
     this.proxy = new Ext.dd.StatusProxy({id:this.el.id + '-drag-status-proxy', animRepair:this.animRepair});
   }
-  Ext.dd.DDProxy.prototype.constructor.call(this, this.el.dom, this.ddGroup || this.group, {dragElId:this.proxy.id, resizeFrame:false, isTarget:false, scroll:this.scroll === true});
+  this.callParent([this.el.dom, this.ddGroup || this.group, {dragElId:this.proxy.id, resizeFrame:false, isTarget:false, scroll:this.scroll === true}]);
   this.dragging = false;
 }, getDragData:function(e) {
   return this.dragData;
@@ -29384,13 +28994,13 @@ Ext.cmd.derive('Ext.dd.DragSource', Ext.dd.DDProxy, {dropAllowed:'x-dd-drop-ok',
   if (data && this.onBeforeDrag(data, e) !== false) {
     this.dragData = data;
     this.proxy.stop();
-    Ext.dd.DDProxy.prototype.handleMouseDown.apply(this, arguments);
+    this.callParent(arguments);
   }
 }, onBeforeDrag:function(data, e) {
   return true;
 }, onStartDrag:Ext.emptyFn, alignElWithMouse:function() {
   this.proxy.ensureAttachedToBody(true);
-  return Ext.dd.DDProxy.prototype.alignElWithMouse.apply(this, arguments);
+  return this.callParent(arguments);
 }, startDrag:function(x, y) {
   this.proxy.reset();
   this.proxy.hidden = false;
@@ -29419,10 +29029,10 @@ Ext.cmd.derive('Ext.dd.DragSource', Ext.dd.DDProxy, {dropAllowed:'x-dd-drop-ok',
 }, autoOffset:function(x, y) {
   this.setDelta(-12, -20);
 }, destroy:function() {
-  Ext.dd.DDProxy.prototype.destroy.call(this);
+  this.callParent();
   Ext.destroy(this.proxy);
-}}, 1, 0, 0, 0, 0, 0, [Ext.dd, 'DragSource'], 0);
-Ext.cmd.derive('Ext.panel.Proxy', Ext.Base, {alternateClassName:'Ext.dd.PanelProxy', moveOnDrag:true, constructor:function(panel, config) {
+}});
+Ext.define('Ext.panel.Proxy', {alternateClassName:'Ext.dd.PanelProxy', moveOnDrag:true, constructor:function(panel, config) {
   var me = this;
   me.panel = panel;
   me.id = me.panel.id + '-ddproxy';
@@ -29450,7 +29060,7 @@ Ext.cmd.derive('Ext.panel.Proxy', Ext.Base, {alternateClassName:'Ext.dd.PanelPro
     me.panel.el.setVisibilityMode(Ext.Element.DISPLAY);
     me.ghost = me.panel.ghost();
     if (me.insertProxy) {
-      me.proxy = me.panel.el.insertSibling({cls:'x-panel-dd-spacer'});
+      me.proxy = me.panel.el.insertSibling({cls:Ext.baseCSSPrefix + 'panel-dd-spacer'});
       me.proxy.setSize(panelSize);
     }
   }
@@ -29461,14 +29071,14 @@ Ext.cmd.derive('Ext.panel.Proxy', Ext.Base, {alternateClassName:'Ext.dd.PanelPro
   if (this.proxy) {
     parentNode.insertBefore(this.proxy.dom, before);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.panel, 'Proxy', Ext.dd, 'PanelProxy'], 0);
-Ext.cmd.derive('Ext.panel.DD', Ext.dd.DragSource, {constructor:function(panel, cfg) {
+}});
+Ext.define('Ext.panel.DD', {extend:Ext.dd.DragSource, constructor:function(panel, cfg) {
   var me = this;
   me.panel = panel;
   me.dragData = {panel:panel};
   me.panelProxy = new Ext.panel.Proxy(panel, cfg);
   me.proxy = me.panelProxy.proxy;
-  Ext.dd.DragSource.prototype.constructor.call(this, panel.el, cfg);
+  me.callParent([panel.el, cfg]);
   me.setupEl(panel);
 }, setupEl:function(panel) {
   var me = this, header = panel.header, el = panel.body;
@@ -29515,11 +29125,11 @@ Ext.cmd.derive('Ext.panel.DD', Ext.dd.DragSource, {constructor:function(panel, c
       me.afterInvalidDrop(e, id);
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.panel, 'DD'], 0);
-Ext.cmd.derive('Ext.layout.component.Dock', Ext.layout.component.Component, {alternateClassName:'Ext.layout.component.AbstractDock', type:'dock', horzAxisProps:{name:'horz', oppositeName:'vert', dockBegin:'left', dockEnd:'right', horizontal:true, marginBegin:'margin-left', maxSize:'maxWidth', minSize:'minWidth', pos:'x', setSize:'setWidth', shrinkWrapDock:'shrinkWrapDockWidth', size:'width', sizeModel:'widthModel'}, vertAxisProps:{name:'vert', oppositeName:'horz', dockBegin:'top', dockEnd:'bottom', 
-horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHeight', pos:'y', setSize:'setHeight', shrinkWrapDock:'shrinkWrapDockHeight', size:'height', sizeModel:'heightModel'}, initializedBorders:-1, horizontalCollapsePolicy:{width:true, x:true}, verticalCollapsePolicy:{height:true, y:true}, finishRender:function() {
+}});
+Ext.define('Ext.layout.component.Dock', {extend:Ext.layout.component.Component, alias:'layout.dock', alternateClassName:'Ext.layout.component.AbstractDock', type:'dock', horzAxisProps:{name:'horz', oppositeName:'vert', dockBegin:'left', dockEnd:'right', horizontal:true, marginBegin:'margin-left', maxSize:'maxWidth', minSize:'minWidth', pos:'x', setSize:'setWidth', shrinkWrapDock:'shrinkWrapDockWidth', size:'width', sizeModel:'widthModel'}, vertAxisProps:{name:'vert', oppositeName:'horz', dockBegin:'top', 
+dockEnd:'bottom', horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHeight', pos:'y', setSize:'setHeight', shrinkWrapDock:'shrinkWrapDockHeight', size:'height', sizeModel:'heightModel'}, initializedBorders:-1, horizontalCollapsePolicy:{width:true, x:true}, verticalCollapsePolicy:{height:true, y:true}, finishRender:function() {
   var me = this, target, items;
-  Ext.layout.component.Component.prototype.finishRender.call(this);
+  me.callParent();
   target = me.getRenderTarget();
   items = me.getDockedItems();
   me.finishRenderItems(target, items);
@@ -29527,7 +29137,8 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   return true;
 }, isItemShrinkWrap:function(item) {
   return true;
-}, noBorderClasses:['x-docked-noborder-top', 'x-docked-noborder-right', 'x-docked-noborder-bottom', 'x-docked-noborder-left'], noBorderClassesSides:{top:'x-docked-noborder-top', right:'x-docked-noborder-right', bottom:'x-docked-noborder-bottom', left:'x-docked-noborder-left'}, borderWidthProps:{top:'border-top-width', right:'border-right-width', bottom:'border-bottom-width', left:'border-left-width'}, handleItemBorders:function() {
+}, noBorderClasses:[Ext.baseCSSPrefix + 'docked-noborder-top', Ext.baseCSSPrefix + 'docked-noborder-right', Ext.baseCSSPrefix + 'docked-noborder-bottom', Ext.baseCSSPrefix + 'docked-noborder-left'], noBorderClassesSides:{top:Ext.baseCSSPrefix + 'docked-noborder-top', right:Ext.baseCSSPrefix + 'docked-noborder-right', bottom:Ext.baseCSSPrefix + 'docked-noborder-bottom', left:Ext.baseCSSPrefix + 'docked-noborder-left'}, borderWidthProps:{top:'border-top-width', right:'border-right-width', bottom:'border-bottom-width', 
+left:'border-left-width'}, handleItemBorders:function() {
   var me = this, owner = me.owner, borders, docked, lastItems = me.lastDockedItems, oldBorders = me.borders, currentGeneration = owner.dockedItems.generation, noBorderClassesSides = me.noBorderClassesSides, borderWidthProps = me.borderWidthProps, i, ln, item, dock, side, collapsed = me.collapsed;
   if (me.initializedBorders == currentGeneration || owner.border && !owner.manageBodyBorders) {
     return;
@@ -29616,7 +29227,7 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   ownerContext.shrinkWrapDockWidth = shrinkWrapDock & 2 && ownerContext.widthModel.shrinkWrap;
 }, beginLayout:function(ownerContext) {
   var me = this, owner = me.owner, docked = me.getLayoutItems(), layoutContext = ownerContext.context, dockedItemCount = docked.length, dockedItems, i, item, itemContext, offsets, collapsed, dock;
-  Ext.layout.component.Component.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   collapsed = owner.getCollapsed();
   if (collapsed !== me.lastCollapsedState && Ext.isDefined(me.lastCollapsedState)) {
     if (me.owner.collapsed) {
@@ -29646,7 +29257,7 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   ownerContext.bodyContext = ownerContext.getEl('body');
 }, beginLayoutCycle:function(ownerContext) {
   var me = this, docked = ownerContext.dockedItems, len = docked.length, owner = me.owner, frameBody = owner.frameBody, lastHeightModel = me.lastHeightModel, i, item, dock;
-  Ext.layout.component.Component.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (me.owner.manageHeight) {
     if (me.lastBodyDisplay) {
       owner.body.dom.style.display = me.lastBodyDisplay = '';
@@ -30026,7 +29637,7 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   }
 }, finishedLayout:function(ownerContext) {
   var me = this, target = ownerContext.target;
-  Ext.layout.component.Component.prototype.finishedLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (!ownerContext.animatePolicy) {
     if (ownerContext.isCollapsingOrExpanding === 1) {
       target.afterCollapse(false);
@@ -30133,7 +29744,7 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   var me = this, dockedItemCount = items.length, itemIndex = 0, correctPosition = 0, staticNodeCount = 0, targetNodes = me.getRenderTarget().dom.childNodes, targetChildCount = targetNodes.length, i, j, targetChildNode, item;
   for (i = 0, j = 0; i < targetChildCount; i++) {
     targetChildNode = targetNodes[i];
-    if (Ext.fly(targetChildNode).hasCls('x-resizable-handle')) {
+    if (Ext.fly(targetChildNode).hasCls(Ext.baseCSSPrefix + 'resizable-handle')) {
       break;
     }
     for (j = 0; j < dockedItemCount; j++) {
@@ -30198,13 +29809,13 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
   }
   return policy.stretch;
 }, configureItem:function(item, pos) {
-  Ext.layout.component.Component.prototype.configureItem.apply(this, arguments);
-  item.addCls('x-docked');
+  this.callParent(arguments);
+  item.addCls(Ext.baseCSSPrefix + 'docked');
   item.addClsWithUI(this.getDockCls(item.dock));
 }, getDockCls:function(dock) {
   return 'docked-' + dock;
 }, afterRemove:function(item) {
-  Ext.layout.component.Component.prototype.afterRemove.apply(this, arguments);
+  this.callParent(arguments);
   if (this.itemCls) {
     item.el.removeCls(this.itemCls + '-' + item.dock);
   }
@@ -30222,8 +29833,8 @@ horizontal:false, marginBegin:'margin-top', maxSize:'maxHeight', minSize:'minHei
     map[ui] = table = [0, baseCls + 'l', baseCls + 'b', baseCls + 'bl', baseCls + 'r', baseCls + 'rl', baseCls + 'rb', baseCls + 'rbl', baseCls + 't', baseCls + 'tl', baseCls + 'tb', baseCls + 'tbl', baseCls + 'tr', baseCls + 'trl', baseCls + 'trb', baseCls + 'trbl'];
   }
   return table;
-}}, 0, 0, 0, 0, ['layout.dock'], 0, [Ext.layout.component, 'Dock', Ext.layout.component, 'AbstractDock'], 0);
-Ext.cmd.derive('Ext.util.Memento', Ext.Base, function() {
+}});
+Ext.define('Ext.util.Memento', function() {
   function captureOne(src, target, prop, prefix) {
     src[prefix ? prefix + prop : prop] = target[prop];
   }
@@ -30283,9 +29894,9 @@ Ext.cmd.derive('Ext.util.Memento', Ext.Base, function() {
       delete me.data;
     }
   }};
-}(), 1, 0, 0, 0, 0, 0, [Ext.util, 'Memento'], 0);
-Ext.cmd.derive('Ext.panel.Panel', Ext.panel.AbstractPanel, {alternateClassName:'Ext.Panel', collapsedCls:'collapsed', animCollapse:Ext.enableFx, minButtonWidth:75, collapsed:false, collapseFirst:true, hideCollapseTool:false, titleCollapse:undefined, floatable:true, collapsible:undefined, closable:false, closeAction:'destroy', placeholderCollapseHideMode:Ext.Element.VISIBILITY, preventHeader:false, header:undefined, headerPosition:'top', frame:false, frameHeader:true, manageHeight:true, constrain:false, 
-constrainHeader:false, initComponent:function() {
+}());
+Ext.define('Ext.panel.Panel', {extend:Ext.panel.AbstractPanel, alias:'widget.panel', alternateClassName:'Ext.Panel', collapsedCls:'collapsed', animCollapse:Ext.enableFx, minButtonWidth:75, collapsed:false, collapseFirst:true, hideCollapseTool:false, titleCollapse:undefined, floatable:true, collapsible:undefined, closable:false, closeAction:'destroy', placeholderCollapseHideMode:Ext.Element.VISIBILITY, preventHeader:false, header:undefined, headerPosition:'top', frame:false, frameHeader:true, manageHeight:true, 
+constrain:false, constrainHeader:false, initComponent:function() {
   var me = this;
   me.addEvents('beforeclose', 'close', 'beforeexpand', 'beforecollapse', 'expand', 'collapse', 'titlechange', 'iconchange', 'iconclschange', 'glyphchange', 'float', 'unfloat');
   if (me.collapsible) {
@@ -30298,13 +29909,13 @@ constrainHeader:false, initComponent:function() {
     me.setUI(me.ui + '-framed');
   }
   me.bridgeToolbars();
-  Ext.panel.AbstractPanel.prototype.initComponent.call(this);
+  me.callParent();
   me.collapseDirection = me.collapseDirection || me.headerPosition || Ext.Component.DIRECTION_TOP;
   me.hiddenOnCollapse = new Ext.dom.CompositeElement;
 }, beforeDestroy:function() {
   var me = this;
   Ext.destroy(me.placeholder, me.ghostPanel, me.dd);
-  Ext.panel.AbstractPanel.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, initAria:function() {
   this.callParent();
   this.initHeaderAria();
@@ -30452,13 +30063,13 @@ constrainHeader:false, initComponent:function() {
 }, isPlaceHolderCollapse:function() {
   return this.collapseMode == 'placeholder';
 }, onBoxReady:function() {
-  Ext.panel.AbstractPanel.prototype.onBoxReady.call(this);
+  this.callParent();
   if (this.collapsed) {
     this.setHiddenDocked();
   }
 }, beforeRender:function() {
   var me = this, wasCollapsed;
-  Ext.panel.AbstractPanel.prototype.beforeRender.call(this);
+  me.callParent();
   me.initTools();
   if (!(me.preventHeader || me.header === false)) {
     me.updateHeader();
@@ -30539,7 +30150,7 @@ constrainHeader:false, initComponent:function() {
   }
 }, setUI:function(ui) {
   var me = this;
-  Ext.panel.AbstractPanel.prototype.setUI.apply(this, arguments);
+  me.callParent(arguments);
   if (me.header && me.header.rendered) {
     me.header.setUI(ui);
   }
@@ -30553,13 +30164,13 @@ constrainHeader:false, initComponent:function() {
   if (me.collapsed && me.placeholder) {
     return me.placeholder.isVisible(deep);
   }
-  return Ext.panel.AbstractPanel.prototype.isVisible.apply(this, arguments);
+  return me.callParent(arguments);
 }, onHide:function() {
   var me = this;
   if (me.collapsed && me.placeholder) {
     me.placeholder.hide();
   } else {
-    Ext.panel.AbstractPanel.prototype.onHide.apply(this, arguments);
+    me.callParent(arguments);
   }
 }, onShow:function() {
   var me = this;
@@ -30567,14 +30178,14 @@ constrainHeader:false, initComponent:function() {
     me.setHiddenState(true);
     me.placeholderCollapse();
   } else {
-    Ext.panel.AbstractPanel.prototype.onShow.apply(this, arguments);
+    me.callParent(arguments);
   }
 }, onRemoved:function(destroying) {
   var me = this;
   if (me.placeholder && !destroying) {
     me.ownerCt.remove(me.placeholder, false);
   }
-  Ext.panel.AbstractPanel.prototype.onRemoved.apply(this, arguments);
+  me.callParent(arguments);
 }, addTool:function(tools) {
   if (!Ext.isArray(tools)) {
     tools = [tools];
@@ -30628,7 +30239,7 @@ constrainHeader:false, initComponent:function() {
   }
   return me.collapsed;
 }, getState:function() {
-  var me = this, state = Ext.panel.AbstractPanel.prototype.getState.call(this), memento;
+  var me = this, state = me.callParent(), memento;
   state = me.addPropertyToState(state, 'collapsed');
   if (me.collapsed) {
     memento = me.collapseMemento;
@@ -30685,7 +30296,7 @@ constrainHeader:false, initComponent:function() {
   var me = this, collapseDir = direction || me.collapseDirection, reExpander = me.reExpander || me.findReExpander(collapseDir);
   me.expandDirection = me.getOppositeDirection(collapseDir);
   if (!reExpander) {
-    me.reExpander = reExpander = me.createReExpander(collapseDir, {dock:collapseDir, cls:'x-docked ' + me.baseCls + '-' + me.ui + '-collapsed', isCollapsedExpander:true});
+    me.reExpander = reExpander = me.createReExpander(collapseDir, {dock:collapseDir, cls:Ext.baseCSSPrefix + 'docked ' + me.baseCls + '-' + me.ui + '-collapsed', isCollapsedExpander:true});
     me.dockedItems.insert(0, reExpander);
   }
   return reExpander;
@@ -30810,7 +30421,7 @@ constrainHeader:false, initComponent:function() {
   me.animCollapse = animate;
   me.isCollapsingOrExpanding = flags;
   if (animate) {
-    me.addCls('x-animating-size');
+    me.addCls(Ext.baseCSSPrefix + 'animating-size');
   }
   if (ownerLayout && !animate) {
     ownerLayout.onContentChange(me);
@@ -30824,7 +30435,7 @@ constrainHeader:false, initComponent:function() {
   me.isCollapsingOrExpanding = 0;
   me.updateCollapseTool();
   if (animated) {
-    me.removeCls('x-animating-size');
+    me.removeCls(Ext.baseCSSPrefix + 'animating-size');
   }
   if (ownerLayout && animated) {
     ownerLayout.onContentChange(me);
@@ -30861,11 +30472,11 @@ constrainHeader:false, initComponent:function() {
       me.placeholder = placeholder = me.lookupComponent(placeholder);
     }
     Ext.applyIf(placeholder, {margins:me.margins, placeholderFor:me});
-    placeholder.addCls(['x-region-collapsed-placeholder', 'x-region-collapsed-' + collapseDir + '-placeholder', me.collapsedCls]);
+    placeholder.addCls([Ext.baseCSSPrefix + 'region-collapsed-placeholder', Ext.baseCSSPrefix + 'region-collapsed-' + collapseDir + '-placeholder', me.collapsedCls]);
   }
   return placeholder;
 }, placeholderCollapse:function(direction, animate) {
-  var me = this, ownerCt = me.ownerCt, collapseDir = direction || me.collapseDirection, floatCls = 'x-border-region-slide-in', placeholder = me.getPlaceholder(collapseDir), slideInDirection;
+  var me = this, ownerCt = me.ownerCt, collapseDir = direction || me.collapseDirection, floatCls = Ext.baseCSSPrefix + 'border-region-slide-in', placeholder = me.getPlaceholder(collapseDir), slideInDirection;
   me.isCollapsingOrExpanding = 1;
   me.setHiddenState(true);
   me.collapsed = collapseDir;
@@ -30906,7 +30517,7 @@ constrainHeader:false, initComponent:function() {
   }
   return me;
 }, floatCollapsedPanel:function() {
-  var me = this, placeholder = me.placeholder, ps = placeholder.getSize(), myBox, floatCls = 'x-border-region-slide-in', collapsed = me.collapsed, layoutOwner = me.ownerCt || me, slideDirection;
+  var me = this, placeholder = me.placeholder, ps = placeholder.getSize(), myBox, floatCls = Ext.baseCSSPrefix + 'border-region-slide-in', collapsed = me.collapsed, layoutOwner = me.ownerCt || me, slideDirection;
   if (me.isSliding) {
     return;
   }
@@ -30968,7 +30579,7 @@ constrainHeader:false, initComponent:function() {
   if (this.floatedFromCollapse) {
     return true;
   }
-  return Ext.panel.AbstractPanel.prototype.isLayoutRoot.call(this);
+  return this.callParent();
 }, slideOutFloatedPanel:function() {
   var me = this, compEl = this.el, collapseDirection;
   if (me.isSliding || me.isDestroyed) {
@@ -30982,7 +30593,7 @@ constrainHeader:false, initComponent:function() {
   }
   compEl.slideOut(collapseDirection, {preserveScroll:true, duration:Ext.Number.from(me.animCollapse, Ext.fx.Anim.prototype.duration), listeners:{afteranimate:function() {
     me.slideOutFloatedPanelEnd();
-    me.el.removeCls('x-border-region-slide-in');
+    me.el.removeCls(Ext.baseCSSPrefix + 'border-region-slide-in');
   }}});
 }, slideOutFloatedPanelBegin:function() {
   var me = this, placeholderEl = me.placeholder.el, el = me.el;
@@ -31024,7 +30635,7 @@ constrainHeader:false, initComponent:function() {
   me.collapsed = false;
   return me.doCollapseExpand(2, animate);
 }, placeholderExpand:function(animate) {
-  var me = this, collapseDir = me.collapsed, floatCls = 'x-border-region-slide-in', finalPos, floatedPos, center = me.ownerLayout ? me.ownerLayout.centerRegion : null;
+  var me = this, collapseDir = me.collapsed, floatCls = Ext.baseCSSPrefix + 'border-region-slide-in', finalPos, floatedPos, center = me.ownerLayout ? me.ownerLayout.centerRegion : null;
   if (Ext.AbstractComponent.layoutSuspendCount) {
     animate = false;
   }
@@ -31083,7 +30694,7 @@ constrainHeader:false, initComponent:function() {
   me.isCollapsingOrExpanding = 0;
   me.updateCollapseTool();
   if (animated) {
-    me.removeCls('x-animating-size');
+    me.removeCls(Ext.baseCSSPrefix + 'animating-size');
   }
   if (ownerLayout && animated) {
     ownerLayout.onContentChange(me);
@@ -31192,7 +30803,7 @@ constrainHeader:false, initComponent:function() {
         }
       }
     }
-    ghostPanel.header.addCls('x-header-ghost');
+    ghostPanel.header.addCls(Ext.baseCSSPrefix + 'header-ghost');
   }
   ghostPanel.setPagePosition(box.x, box.y);
   ghostPanel.setSize(box.width, box.height);
@@ -31224,23 +30835,23 @@ constrainHeader:false, initComponent:function() {
     this.floatingDescendants.show();
   }
 }, initResizable:function() {
-  Ext.panel.AbstractPanel.prototype.initResizable.apply(this, arguments);
+  this.callParent(arguments);
   if (this.collapsed) {
     this.resizer.disable();
   }
 }, convertCollapseDir:function(collapseDir) {
   return collapseDir.substr(0, 1);
-}}, 0, ['panel'], ['component', 'box', 'container', 'panel'], {'component':true, 'box':true, 'container':true, 'panel':true}, ['widget.panel'], 0, [Ext.panel, 'Panel', Ext, 'Panel'], function() {
+}}, function() {
   this.prototype.animCollapse = Ext.enableFx;
 });
-Ext.cmd.derive('Ext.tip.Tip', Ext.panel.Panel, {alternateClassName:'Ext.Tip', minWidth:40, maxWidth:500, shadow:'sides', defaultAlign:'tl-bl?', constrainPosition:true, autoRender:true, hidden:true, baseCls:'x-tip', floating:{shadow:true, shim:true}, focusOnToFront:false, closeAction:'hide', ariaRole:'tooltip', alwaysFramed:true, frameHeader:false, initComponent:function() {
+Ext.define('Ext.tip.Tip', {extend:Ext.panel.Panel, alternateClassName:'Ext.Tip', minWidth:40, maxWidth:500, shadow:'sides', defaultAlign:'tl-bl?', constrainPosition:true, autoRender:true, hidden:true, baseCls:Ext.baseCSSPrefix + 'tip', floating:{shadow:true, shim:true}, focusOnToFront:false, closeAction:'hide', ariaRole:'tooltip', alwaysFramed:true, frameHeader:false, initComponent:function() {
   var me = this;
   me.floating = Ext.apply({}, {shadow:me.shadow, constrain:me.constrainPosition}, me.self.prototype.floating);
-  Ext.panel.Panel.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   me.constrain = me.constrain || me.constrainPosition;
 }, showAt:function(xy) {
   var me = this;
-  Ext.panel.Panel.prototype.showAt.apply(this, arguments);
+  this.callParent(arguments);
   if (me.isVisible()) {
     me.setPagePosition(xy[0], xy[1]);
     if (me.constrainPosition || me.constrain) {
@@ -31252,18 +30863,18 @@ Ext.cmd.derive('Ext.tip.Tip', Ext.panel.Panel, {alternateClassName:'Ext.Tip', mi
   var me = this;
   me.draggable = {el:me.getDragEl(), delegate:me.header.el, constrain:me, constrainTo:me.el.dom.parentNode};
   Ext.Component.prototype.initDraggable.call(me);
-}, ghost:undefined, unghost:undefined}, 0, 0, ['component', 'box', 'container', 'panel'], {'component':true, 'box':true, 'container':true, 'panel':true}, 0, 0, [Ext.tip, 'Tip', Ext, 'Tip'], 0);
-Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip', autoHide:true, showDelay:500, hideDelay:200, dismissDelay:5000, trackMouse:false, anchorToTarget:true, anchorOffset:0, targetCounter:0, quickShowInterval:250, initComponent:function() {
+}, ghost:undefined, unghost:undefined});
+Ext.define('Ext.tip.ToolTip', {extend:Ext.tip.Tip, alias:'widget.tooltip', alternateClassName:'Ext.ToolTip', autoHide:true, showDelay:500, hideDelay:200, dismissDelay:5000, trackMouse:false, anchorToTarget:true, anchorOffset:0, targetCounter:0, quickShowInterval:250, initComponent:function() {
   var me = this;
-  Ext.tip.Tip.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   me.lastActive = new Date;
   me.setTarget(me.target);
   me.origAnchor = me.anchor;
 }, onRender:function(ct, position) {
   var me = this;
-  Ext.tip.Tip.prototype.onRender.apply(this, arguments);
-  me.anchorCls = 'x-tip-anchor-' + me.getAnchorPosition();
-  me.anchorEl = me.el.createChild({cls:'x-tip-anchor ' + me.anchorCls});
+  me.callParent(arguments);
+  me.anchorCls = Ext.baseCSSPrefix + 'tip-anchor-' + me.getAnchorPosition();
+  me.anchorEl = me.el.createChild({cls:Ext.baseCSSPrefix + 'tip-anchor ' + me.anchorCls});
 }, setTarget:function(target) {
   var me = this, t = Ext.get(target), tg;
   if (me.target) {
@@ -31362,7 +30973,7 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
         return me.getTargetXY();
       }
     }
-    me.anchorCls = 'x-tip-anchor-' + me.getAnchorPosition();
+    me.anchorCls = Ext.baseCSSPrefix + 'tip-anchor-' + me.getAnchorPosition();
     me.anchorEl.addCls(me.anchorCls);
     me.targetCounter = 0;
     return axy;
@@ -31476,7 +31087,7 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   this.show();
   delete this.fromDelayShow;
 }, onShowVeto:function() {
-  Ext.tip.Tip.prototype.onShowVeto.call(this);
+  this.callParent();
   delete this.triggerElement;
   this.clearTimer('show');
 }, onTargetOut:function(e) {
@@ -31503,11 +31114,11 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   if (me.anchorEl) {
     me.anchorEl.hide();
   }
-  Ext.tip.Tip.prototype.hide.apply(this, arguments);
+  me.callParent(arguments);
   delete me.triggerElement;
 }, show:function() {
   var me = this;
-  Ext.tip.Tip.prototype.show.call(this);
+  this.callParent();
   if (this.hidden === false) {
     me.setPagePosition(-10000, -10000);
     if (me.anchor) {
@@ -31529,7 +31140,7 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   me.clearTimers();
   me.calledFromShowAt = true;
   if (!me.isVisible()) {
-    Ext.tip.Tip.prototype.showAt.apply(this, arguments);
+    this.callParent(arguments);
   }
   if (me.isVisible()) {
     me.setPagePosition(xy[0], xy[1]);
@@ -31579,7 +31190,7 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   me.anchorEl.setStyle('z-index', parseInt(me.el.getZIndex(), 10) || 0 + 1).setVisibilityMode(Ext.Element.DISPLAY);
 }, setPagePosition:function(x, y) {
   var me = this;
-  Ext.tip.Tip.prototype.setPagePosition.apply(this, arguments);
+  me.callParent(arguments);
   if (me.anchor) {
     me.syncAnchor();
   }
@@ -31596,11 +31207,11 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   me.clearTimer('hide');
 }, onShow:function() {
   var me = this;
-  Ext.tip.Tip.prototype.onShow.call(this);
+  me.callParent();
   me.mon(Ext.getDoc(), 'mousedown', me.onDocMouseDown, me);
 }, onHide:function() {
   var me = this;
-  Ext.tip.Tip.prototype.onHide.call(this);
+  me.callParent();
   me.mun(Ext.getDoc(), 'mousedown', me.onDocMouseDown, me);
 }, onDocMouseDown:function(e) {
   var me = this;
@@ -31613,7 +31224,7 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
     this.enable();
   }
 }, onDisable:function() {
-  Ext.tip.Tip.prototype.onDisable.call(this);
+  this.callParent();
   this.clearTimers();
   this.hide();
 }, beforeDestroy:function() {
@@ -31624,16 +31235,16 @@ Ext.cmd.derive('Ext.tip.ToolTip', Ext.tip.Tip, {alternateClassName:'Ext.ToolTip'
   delete me.target;
   delete me.anchorTarget;
   delete me.triggerElement;
-  Ext.tip.Tip.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, onDestroy:function() {
   Ext.getDoc().un('mousedown', this.onDocMouseDown, this);
-  Ext.tip.Tip.prototype.onDestroy.call(this);
-}}, 0, ['tooltip'], ['component', 'box', 'container', 'panel', 'tooltip'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tooltip':true}, ['widget.tooltip'], 0, [Ext.tip, 'ToolTip', Ext, 'ToolTip'], 0);
-Ext.cmd.derive('Ext.tip.QuickTip', Ext.tip.ToolTip, {alternateClassName:'Ext.QuickTip', interceptTitles:false, title:'\x26#160;', tagConfig:{namespace:'data-', attribute:'qtip', width:'qwidth', target:'target', title:'qtitle', hide:'hide', cls:'qclass', align:'qalign', anchor:'anchor', showDelay:'qshowDelay'}, initComponent:function() {
+  this.callParent();
+}});
+Ext.define('Ext.tip.QuickTip', {extend:Ext.tip.ToolTip, alias:'widget.quicktip', alternateClassName:'Ext.QuickTip', interceptTitles:false, title:'\x26#160;', tagConfig:{namespace:'data-', attribute:'qtip', width:'qwidth', target:'target', title:'qtitle', hide:'hide', cls:'qclass', align:'qalign', anchor:'anchor', showDelay:'qshowDelay'}, initComponent:function() {
   var me = this;
   me.target = me.target || Ext.getDoc();
   me.targets = me.targets || {};
-  Ext.tip.ToolTip.prototype.initComponent.call(this);
+  me.callParent();
 }, register:function(config) {
   var configs = Ext.isArray(config) ? config : arguments, i = 0, len = configs.length, target, j, targetLen;
   for (; i < len; i++) {
@@ -31789,7 +31400,7 @@ Ext.cmd.derive('Ext.tip.QuickTip', Ext.tip.ToolTip, {alternateClassName:'Ext.Qui
     delete me.activeTarget;
     return;
   }
-  Ext.tip.ToolTip.prototype.show.apply(this, arguments);
+  me.callParent(arguments);
 }, showAt:function(xy) {
   var me = this, target = me.activeTarget, header = me.header, cls;
   if (target) {
@@ -31836,12 +31447,12 @@ Ext.cmd.derive('Ext.tip.QuickTip', Ext.tip.ToolTip, {alternateClassName:'Ext.Qui
     }
     me.resumeLayouts(true);
   }
-  Ext.tip.ToolTip.prototype.showAt.call(this, xy);
+  me.callParent([xy]);
 }, hide:function() {
   delete this.activeTarget;
-  Ext.tip.ToolTip.prototype.hide.call(this);
-}}, 0, ['quicktip'], ['component', 'box', 'container', 'panel', 'tooltip', 'quicktip'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tooltip':true, 'quicktip':true}, ['widget.quicktip'], 0, [Ext.tip, 'QuickTip', Ext, 'QuickTip'], 0);
-Ext.cmd.derive('Ext.tip.QuickTipManager', Ext.Base, {singleton:true, alternateClassName:'Ext.QuickTips', disabled:false, init:function(autoRender, config) {
+  this.callParent();
+}});
+Ext.define('Ext.tip.QuickTipManager', {singleton:true, alternateClassName:'Ext.QuickTips', disabled:false, init:function(autoRender, config) {
   var me = this;
   if (!me.tip) {
     if (!Ext.isReady) {
@@ -31907,8 +31518,8 @@ Ext.cmd.derive('Ext.tip.QuickTipManager', Ext.Base, {singleton:true, alternateCl
 }, tips:function() {
   var tip = this.tip;
   tip.register.apply(tip, arguments);
-}}, 0, 0, 0, 0, 0, 0, [Ext.tip, 'QuickTipManager', Ext, 'QuickTips'], 0);
-Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enableQuickTips:true, appFolder:'app', appProperty:'app', namespaces:[], autoCreateViewport:false, paths:null, onClassExtended:function(cls, data, hooks) {
+}});
+Ext.define('Ext.app.Application', {extend:Ext.app.Controller, scope:undefined, enableQuickTips:true, appFolder:'app', appProperty:'app', namespaces:[], autoCreateViewport:false, paths:null, onClassExtended:function(cls, data, hooks) {
   var Controller = Ext.app.Controller, proto = cls.prototype, requires = [], onBeforeClassCreated, paths, namespace, ns, appFolder;
   namespace = data.name || cls.superclass.name;
   appFolder = data.appFolder || cls.superclass.appFolder;
@@ -31954,7 +31565,7 @@ Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enab
   if (Ext.isEmpty(me.name)) {
     Ext.Error.raise('[Ext.app.Application] Name property is required');
   }
-  Ext.app.Controller.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   me.doInit(me);
   me.initNamespace();
   me.initControllers();
@@ -32029,14 +31640,14 @@ Ext.cmd.derive('Ext.app.Application', Ext.app.Controller, {scope:undefined, enab
   return controller;
 }, getApplication:function() {
   return this;
-}}, 1, 0, 0, 0, 0, 0, [Ext.app, 'Application'], 0);
-Ext.cmd.derive('Ext.app.domain.Controller', Ext.app.EventDomain, {singleton:true, type:'controller', idProperty:'id', constructor:function() {
+}});
+Ext.define('Ext.app.domain.Controller', {extend:Ext.app.EventDomain, singleton:true, type:'controller', idProperty:'id', constructor:function() {
   var me = this;
   me.callParent();
   me.monitor(Ext.app.Controller);
-}}, 1, 0, 0, 0, 0, 0, [Ext.app.domain, 'Controller'], 0);
-Ext.cmd.derive('Ext.button.Split', Ext.button.Button, {alternateClassName:'Ext.SplitButton', arrowCls:'split', split:true, initComponent:function() {
-  Ext.button.Button.prototype.initComponent.call(this);
+}});
+Ext.define('Ext.button.Split', {alias:'widget.splitbutton', extend:Ext.button.Button, alternateClassName:'Ext.SplitButton', arrowCls:'split', split:true, initComponent:function() {
+  this.callParent();
   this.addEvents('arrowclick');
 }, setArrowHandler:function(handler, scope) {
   this.arrowHandler = handler;
@@ -32056,8 +31667,8 @@ Ext.cmd.derive('Ext.button.Split', Ext.button.Button, {alternateClassName:'Ext.S
       me.fireHandler(e);
     }
   }
-}}, 0, ['splitbutton'], ['component', 'box', 'button', 'splitbutton'], {'component':true, 'box':true, 'button':true, 'splitbutton':true}, ['widget.splitbutton'], 0, [Ext.button, 'Split', Ext, 'SplitButton'], 0);
-Ext.cmd.derive('Ext.container.Monitor', Ext.Base, {target:null, selector:'', scope:null, addHandler:null, removeHandler:null, disabled:0, constructor:function(config) {
+}});
+Ext.define('Ext.container.Monitor', {target:null, selector:'', scope:null, addHandler:null, removeHandler:null, disabled:0, constructor:function(config) {
   Ext.apply(this, config);
 }, bind:function(target) {
   var me = this;
@@ -32165,12 +31776,12 @@ Ext.cmd.derive('Ext.container.Monitor', Ext.Base, {target:null, selector:'', sco
   return items;
 }, invalidateItems:function() {
   this.items = null;
-}}, 1, 0, 0, 0, 0, 0, [Ext.container, 'Monitor'], 0);
-Ext.cmd.derive('Ext.container.Viewport', Ext.container.Container, {alternateClassName:'Ext.Viewport', isViewport:true, ariaRole:'application', preserveElOnDestroy:true, viewportCls:'x-viewport', initComponent:function() {
+}});
+Ext.define('Ext.container.Viewport', {extend:Ext.container.Container, alias:'widget.viewport', alternateClassName:'Ext.Viewport', isViewport:true, ariaRole:'application', preserveElOnDestroy:true, viewportCls:Ext.baseCSSPrefix + 'viewport', initComponent:function() {
   var me = this, html = document.body.parentNode, el = me.el = Ext.getBody();
   Ext.getScrollbarSize();
   me.width = me.height = undefined;
-  Ext.container.Container.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   Ext.fly(html).addCls(me.viewportCls);
   if (me.autoScroll) {
     Ext.fly(html).setStyle(me.getOverflowStyle());
@@ -32184,12 +31795,12 @@ Ext.cmd.derive('Ext.container.Viewport', Ext.container.Container, {alternateClas
   this.el.addCls(targetCls);
 }, onRender:function() {
   var me = this;
-  Ext.container.Container.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   me.width = Ext.Element.getViewportWidth();
   me.height = Ext.Element.getViewportHeight();
 }, afterFirstLayout:function() {
   var me = this;
-  Ext.container.Container.prototype.afterFirstLayout.apply(this, arguments);
+  me.callParent(arguments);
   setTimeout(function() {
     Ext.EventManager.onWindowResize(me.fireResize, me);
   }, 1);
@@ -32198,15 +31809,15 @@ Ext.cmd.derive('Ext.container.Viewport', Ext.container.Container, {alternateClas
     this.setSize(width, height);
   }
 }, initHierarchyState:function(hierarchyState) {
-  Ext.container.Container.prototype.initHierarchyState.call(this, this.hierarchyState = Ext.rootHierarchyState);
+  this.callParent([this.hierarchyState = Ext.rootHierarchyState]);
 }, beforeDestroy:function() {
   var me = this;
   me.removeUIFromElement();
   me.el.removeCls(me.baseCls);
   Ext.fly(document.body.parentNode).removeCls(me.viewportCls);
-  Ext.container.Container.prototype.beforeDestroy.call(this);
-}}, 0, ['viewport'], ['component', 'box', 'container', 'viewport'], {'component':true, 'box':true, 'container':true, 'viewport':true}, ['widget.viewport'], 0, [Ext.container, 'Viewport', Ext, 'Viewport'], 0);
-Ext.cmd.derive('Ext.data.IdGenerator', Ext.Base, {isGenerator:true, constructor:function(config) {
+  me.callParent();
+}});
+Ext.define('Ext.data.IdGenerator', {isGenerator:true, constructor:function(config) {
   var me = this;
   Ext.apply(me, config);
   if (me.id) {
@@ -32232,8 +31843,8 @@ Ext.cmd.derive('Ext.data.IdGenerator', Ext.Base, {isGenerator:true, constructor:
     generator = Ext.create('idgen.' + type, config);
   }
   return generator;
-}}}, 1, 0, 0, 0, 0, 0, [Ext.data, 'IdGenerator'], 0);
-Ext.cmd.derive('Ext.data.SortTypes', Ext.Base, {singleton:true, none:Ext.identityFn, stripTagsRE:/<\/?[^>]+>/gi, asText:function(s) {
+}}});
+Ext.define('Ext.data.SortTypes', {singleton:true, none:Ext.identityFn, stripTagsRE:/<\/?[^>]+>/gi, asText:function(s) {
   return String(s).replace(this.stripTagsRE, '');
 }, asUCText:function(s) {
   return String(s).toUpperCase().replace(this.stripTagsRE, '');
@@ -32253,8 +31864,8 @@ Ext.cmd.derive('Ext.data.SortTypes', Ext.Base, {singleton:true, none:Ext.identit
 }, asInt:function(s) {
   var val = parseInt(String(s).replace(/,/g, ''), 10);
   return isNaN(val) ? 0 : val;
-}}, 0, 0, 0, 0, 0, 0, [Ext.data, 'SortTypes'], 0);
-Ext.cmd.derive('Ext.data.Types', Ext.Base, {singleton:true}, 0, 0, 0, 0, 0, 0, [Ext.data, 'Types'], function() {
+}});
+Ext.define('Ext.data.Types', {singleton:true}, function() {
   var st = Ext.data.SortTypes;
   Ext.apply(Ext.data.Types, {stripRe:/[\$,%]/g, AUTO:{sortType:st.none, type:'auto'}, STRING:{convert:function(v) {
     var defaultValue = this.useNull ? null : '';
@@ -32293,7 +31904,7 @@ Ext.cmd.derive('Ext.data.Types', Ext.Base, {singleton:true}, 0, 0, 0, 0, 0, 0, [
   }, sortType:st.asDate, type:'date'}});
   Ext.apply(Ext.data.Types, {BOOLEAN:this.BOOL, INTEGER:this.INT, NUMBER:this.FLOAT});
 });
-Ext.cmd.derive('Ext.data.Field', Ext.Base, {isField:true, constructor:function(config) {
+Ext.define('Ext.data.Field', {alias:'data.field', isField:true, constructor:function(config) {
   var me = this, types = Ext.data.Types, st;
   if (Ext.isString(config)) {
     config = {name:config};
@@ -32324,8 +31935,8 @@ Ext.cmd.derive('Ext.data.Field', Ext.Base, {isField:true, constructor:function(c
   if (config.convert) {
     me.hasCustomConvert = true;
   }
-}, dateFormat:null, dateReadFormat:null, dateWriteFormat:null, useNull:false, defaultValue:'', mapping:null, sortType:null, sortDir:'ASC', allowBlank:true, persist:true}, 1, 0, 0, 0, ['data.field'], 0, [Ext.data, 'Field'], 0);
-Ext.cmd.derive('Ext.data.Errors', Ext.util.MixedCollection, {isValid:function() {
+}, dateFormat:null, dateReadFormat:null, dateWriteFormat:null, useNull:false, defaultValue:'', mapping:null, sortType:null, sortDir:'ASC', allowBlank:true, persist:true});
+Ext.define('Ext.data.Errors', {extend:Ext.util.MixedCollection, isValid:function() {
   return this.length === 0;
 }, getByField:function(fieldName) {
   var errors = [], error, i;
@@ -32336,8 +31947,8 @@ Ext.cmd.derive('Ext.data.Errors', Ext.util.MixedCollection, {isValid:function() 
     }
   }
   return errors;
-}}, 0, 0, 0, 0, 0, 0, [Ext.data, 'Errors'], 0);
-Ext.cmd.derive('Ext.data.validations', Ext.Base, {singleton:true, presenceMessage:'must be present', lengthMessage:'is the wrong length', formatMessage:'is the wrong format', inclusionMessage:'is not included in the list of acceptable values', exclusionMessage:'is not an acceptable value', emailMessage:'is not a valid email address', emailRe:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, presence:function(config, value) {
+}});
+Ext.define('Ext.data.validations', {singleton:true, presenceMessage:'must be present', lengthMessage:'is the wrong length', formatMessage:'is the wrong format', inclusionMessage:'is not included in the list of acceptable values', exclusionMessage:'is not an acceptable value', emailMessage:'is not a valid email address', emailRe:/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/, presence:function(config, value) {
   if (arguments.length === 1) {
     value = config;
   }
@@ -32360,8 +31971,8 @@ Ext.cmd.derive('Ext.data.validations', Ext.Base, {singleton:true, presenceMessag
   return config.list && Ext.Array.indexOf(config.list, value) != -1;
 }, exclusion:function(config, value) {
   return config.list && Ext.Array.indexOf(config.list, value) == -1;
-}}, 0, 0, 0, 0, 0, 0, [Ext.data, 'validations'], 0);
-Ext.cmd.derive('Ext.data.Model', Ext.Base, {alternateClassName:'Ext.data.Record', compareConvertFields:function(f1, f2) {
+}});
+Ext.define('Ext.data.Model', {alternateClassName:'Ext.data.Record', mixins:{observable:Ext.util.Observable}, compareConvertFields:function(f1, f2) {
   var f1SpecialConvert = f1.convert && f1.type && f1.convert !== f1.type.convert, f2SpecialConvert = f2.convert && f2.type && f2.convert !== f2.type.convert;
   if (f1SpecialConvert && !f2SpecialConvert) {
     return 1;
@@ -33017,11 +32628,11 @@ Ext.cmd.derive('Ext.data.Model', Ext.Base, {alternateClassName:'Ext.data.Record'
     }
   }
   return associationData;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.data, 'Model', Ext.data, 'Record'], 0);
-Ext.cmd.derive('Ext.data.proxy.Server', Ext.data.proxy.Proxy, {alternateClassName:'Ext.data.ServerProxy', pageParam:'page', startParam:'start', limitParam:'limit', groupParam:'group', groupDirectionParam:'groupDir', sortParam:'sort', filterParam:'filter', directionParam:'dir', idParam:'id', simpleSortMode:false, simpleGroupMode:false, noCache:true, cacheString:'_dc', timeout:30000, constructor:function(config) {
+}});
+Ext.define('Ext.data.proxy.Server', {extend:Ext.data.proxy.Proxy, alias:'proxy.server', alternateClassName:'Ext.data.ServerProxy', pageParam:'page', startParam:'start', limitParam:'limit', groupParam:'group', groupDirectionParam:'groupDir', sortParam:'sort', filterParam:'filter', directionParam:'dir', idParam:'id', simpleSortMode:false, simpleGroupMode:false, noCache:true, cacheString:'_dc', timeout:30000, constructor:function(config) {
   var me = this;
   config = config || {};
-  Ext.data.proxy.Proxy.prototype.constructor.call(this, config);
+  me.callParent([config]);
   me.extraParams = config.extraParams || {};
   me.api = Ext.apply({}, config.api || me.api);
   me.nocache = me.noCache;
@@ -33136,8 +32747,8 @@ Ext.cmd.derive('Ext.data.proxy.Server', Ext.data.proxy.Proxy, {alternateClassNam
   Ext.Error.raise('The doRequest function has not been implemented on your Ext.data.proxy.Server subclass. See src/data/ServerProxy.js for details');
 }, afterRequest:Ext.emptyFn, onDestroy:function() {
   Ext.destroy(this.reader, this.writer);
-}}, 1, 0, 0, 0, ['proxy.server'], 0, [Ext.data.proxy, 'Server', Ext.data, 'ServerProxy'], 0);
-Ext.cmd.derive('Ext.data.proxy.Ajax', Ext.data.proxy.Server, {alternateClassName:['Ext.data.HttpProxy', 'Ext.data.AjaxProxy'], actionMethods:{create:'POST', read:'GET', update:'POST', destroy:'POST'}, binary:false, doRequest:function(operation, callback, scope) {
+}});
+Ext.define('Ext.data.proxy.Ajax', {extend:Ext.data.proxy.Server, alias:'proxy.ajax', alternateClassName:['Ext.data.HttpProxy', 'Ext.data.AjaxProxy'], actionMethods:{create:'POST', read:'GET', update:'POST', destroy:'POST'}, binary:false, doRequest:function(operation, callback, scope) {
   var writer = this.getWriter(), request = this.buildRequest(operation);
   if (operation.allowWrite()) {
     request = writer.write(request);
@@ -33152,14 +32763,14 @@ Ext.cmd.derive('Ext.data.proxy.Ajax', Ext.data.proxy.Server, {alternateClassName
   return function(options, success, response) {
     me.processResponse(success, operation, request, response, callback, scope);
   };
-}}, 0, 0, 0, 0, ['proxy.ajax'], 0, [Ext.data.proxy, 'Ajax', Ext.data, 'HttpProxy', Ext.data, 'AjaxProxy'], function() {
+}}, function() {
   Ext.data.HttpProxy = this;
 });
-Ext.cmd.derive('Ext.data.proxy.Client', Ext.data.proxy.Proxy, {alternateClassName:'Ext.data.ClientProxy', isSynchronous:true, clear:function() {
+Ext.define('Ext.data.proxy.Client', {extend:Ext.data.proxy.Proxy, alternateClassName:'Ext.data.ClientProxy', isSynchronous:true, clear:function() {
   Ext.Error.raise("The Ext.data.proxy.Client subclass that you are using has not defined a 'clear' function. See src/data/ClientProxy.js for details.");
-}}, 0, 0, 0, 0, 0, 0, [Ext.data.proxy, 'Client', Ext.data, 'ClientProxy'], 0);
-Ext.cmd.derive('Ext.data.proxy.Memory', Ext.data.proxy.Client, {alternateClassName:'Ext.data.MemoryProxy', constructor:function(config) {
-  Ext.data.proxy.Client.prototype.constructor.call(this, config);
+}});
+Ext.define('Ext.data.proxy.Memory', {extend:Ext.data.proxy.Client, alias:'proxy.memory', alternateClassName:'Ext.data.MemoryProxy', constructor:function(config) {
+  this.callParent([config]);
   this.setReader(this.reader);
 }, updateOperation:function(operation, callback, scope) {
   var i = 0, recs = operation.getRecords(), len = recs.length;
@@ -33205,10 +32816,10 @@ Ext.cmd.derive('Ext.data.proxy.Memory', Ext.data.proxy.Client, {alternateClassNa
     me.fireEvent('exception', me, null, operation);
   }
   Ext.callback(callback, scope || me, [operation]);
-}, clear:Ext.emptyFn}, 1, 0, 0, 0, ['proxy.memory'], 0, [Ext.data.proxy, 'Memory', Ext.data, 'MemoryProxy'], 0);
-Ext.cmd.derive('Ext.util.LruCache', Ext.util.HashMap, {constructor:function(config) {
+}, clear:Ext.emptyFn});
+Ext.define('Ext.util.LruCache', {extend:Ext.util.HashMap, constructor:function(config) {
   Ext.apply(this, config);
-  Ext.util.HashMap.prototype.constructor.call(this, config);
+  this.callParent([config]);
 }, add:function(key, newValue) {
   var me = this, existingKey = me.findKey(newValue), entry;
   if (existingKey) {
@@ -33224,7 +32835,7 @@ Ext.cmd.derive('Ext.util.LruCache', Ext.util.HashMap, {constructor:function(conf
     me.first = entry;
   }
   me.last = entry;
-  Ext.util.HashMap.prototype.add.call(this, key, entry);
+  me.callParent([key, entry]);
   me.prune();
   return newValue;
 }, insertBefore:function(key, newValue, sibling) {
@@ -33258,10 +32869,10 @@ Ext.cmd.derive('Ext.util.LruCache', Ext.util.HashMap, {constructor:function(conf
   }
 }, removeAtKey:function(key) {
   this.unlinkEntry(this.map[key]);
-  return Ext.util.HashMap.prototype.removeAtKey.apply(this, arguments);
+  return this.callParent(arguments);
 }, clear:function(initial) {
   this.first = this.last = null;
-  return Ext.util.HashMap.prototype.clear.apply(this, arguments);
+  return this.callParent(arguments);
 }, unlinkEntry:function(entry) {
   if (entry) {
     if (entry.next) {
@@ -33326,11 +32937,11 @@ Ext.cmd.derive('Ext.util.LruCache', Ext.util.HashMap, {constructor:function(conf
       me.removeAtKey(me.first.key);
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'LruCache'], 0);
-Ext.cmd.derive('Ext.data.PageMap', Ext.util.LruCache, {clear:function(initial) {
+}});
+Ext.define('Ext.data.PageMap', {extend:Ext.util.LruCache, clear:function(initial) {
   var me = this;
   me.pageMapGeneration = (me.pageMapGeneration || 0) + 1;
-  Ext.util.LruCache.prototype.clear.apply(this, arguments);
+  me.callParent(arguments);
 }, forEach:function(fn, scope) {
   var me = this, pageNumbers = Ext.Object.getKeys(me.map), pageCount = pageNumbers.length, i, j, pageNumber, page, pageSize;
   for (i = 0; i < pageCount; i++) {
@@ -33383,7 +32994,7 @@ Ext.cmd.derive('Ext.data.PageMap', Ext.util.LruCache, {clear:function(initial) {
     me.fireEvent('pageAdded', pageNumber, page);
   }
 }, getCount:function() {
-  var result = Ext.util.LruCache.prototype.getCount.call(this);
+  var result = this.callParent();
   if (result) {
     result = (result - 1) * this.pageSize + this.last.value.length;
   }
@@ -33437,9 +33048,9 @@ Ext.cmd.derive('Ext.data.PageMap', Ext.util.LruCache, {clear:function(initial) {
     result[i].index = start++;
   }
   return result;
-}}, 0, 0, 0, 0, 0, 0, [Ext.data, 'PageMap'], 0);
-Ext.cmd.derive('Ext.data.Group', Ext.util.Observable, {key:undefined, dirty:true, constructor:function() {
-  Ext.util.Observable.prototype.constructor.apply(this, arguments);
+}});
+Ext.define('Ext.data.Group', {extend:Ext.util.Observable, key:undefined, dirty:true, constructor:function() {
+  this.callParent(arguments);
   this.records = [];
 }, contains:function(record) {
   return Ext.Array.indexOf(this.records, record) !== -1;
@@ -33473,8 +33084,8 @@ Ext.cmd.derive('Ext.data.Group', Ext.util.Observable, {key:undefined, dirty:true
     me.aggregate.isSummary = true;
   }
   return me.aggregate;
-}}, 1, 0, 0, 0, 0, 0, [Ext.data, 'Group'], 0);
-Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remoteFilter:false, remoteGroup:false, groupField:undefined, groupDir:'ASC', trailingBufferZone:25, leadingBufferZone:200, pageSize:undefined, currentPage:1, clearOnPageLoad:true, loading:false, sortOnFilter:true, buffered:false, purgePageCount:5, clearRemovedOnLoad:true, defaultPageSize:25, defaultViewSize:100, addRecordsOptions:{addRecords:true}, statics:{recordIdFn:function(record) {
+}});
+Ext.define('Ext.data.Store', {extend:Ext.data.AbstractStore, alias:'store.store', remoteSort:false, remoteFilter:false, remoteGroup:false, groupField:undefined, groupDir:'ASC', trailingBufferZone:25, leadingBufferZone:200, pageSize:undefined, currentPage:1, clearOnPageLoad:true, loading:false, sortOnFilter:true, buffered:false, purgePageCount:5, clearRemovedOnLoad:true, defaultPageSize:25, defaultViewSize:100, addRecordsOptions:{addRecords:true}, statics:{recordIdFn:function(record) {
   return record.internalId;
 }, recordIndexFn:function(record) {
   return record.index;
@@ -33502,7 +33113,7 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
   me.groupers = new Ext.util.MixedCollection(false, Ext.data.Store.grouperIdFn);
   me.groupers.addAll(me.decodeGroupers(groupers));
   me.groups = new Ext.util.MixedCollection(false, Ext.data.Store.groupIdFn);
-  Ext.data.AbstractStore.prototype.constructor.call(this, config);
+  me.callParent([config]);
   if (me.buffered) {
     me.data = new Ext.data.PageMap({store:me, keyFn:Ext.data.Store.recordIdFn, pageSize:me.pageSize, maxSize:me.purgePageCount, listeners:{clear:me.onPageMapClear, scope:me}});
     me.pageRequests = {};
@@ -33971,7 +33582,7 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
     options.limit = me.viewSize || me.defaultViewSize;
     return me.loadToPrefetch(options);
   }
-  return Ext.data.AbstractStore.prototype.load.call(this, options);
+  return me.callParent([options]);
 }, reload:function(options) {
   var me = this, startIdx, endIdx, startPage, endPage, i, waitForReload, bufferZone, records, count = me.getCount();
   if (!options) {
@@ -34001,7 +33612,7 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
       }
     }
   } else {
-    return Ext.data.AbstractStore.prototype.reload.apply(this, arguments);
+    return me.callParent(arguments);
   }
 }, onProxyLoad:function(operation) {
   var me = this, resultSet = operation.getResultSet(), records = operation.getRecords(), successful = operation.wasSuccessful();
@@ -34395,7 +34006,7 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
   if (me.buffered && me.remoteSort) {
     me.data.clear();
   }
-  return Ext.data.AbstractStore.prototype.sort.apply(this, arguments);
+  return me.callParent(arguments);
 }, doSort:function(sorterFn) {
   var me = this, range, ln, i;
   if (me.remoteSort) {
@@ -34618,7 +34229,7 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
     snapshot.updateKey(oldInternalId, newId);
   }
   this.data.updateKey(oldInternalId, newId);
-  Ext.data.AbstractStore.prototype.onIdChanged.apply(this, arguments);
+  this.callParent(arguments);
 }, commitChanges:function() {
   var me = this, recs = me.getModifiedRecords(), len = recs.length, i = 0;
   for (; i < len; i++) {
@@ -34646,10 +34257,10 @@ Ext.cmd.derive('Ext.data.Store', Ext.data.AbstractStore, {remoteSort:false, remo
     rec.reject();
   }
   me.removed.length = 0;
-}}, 1, 0, 0, 0, ['store.store'], 0, [Ext.data, 'Store'], function() {
+}}, function() {
   Ext.regStore('ext-empty-store', {fields:[], proxy:'memory'});
 });
-Ext.cmd.derive('Ext.data.reader.Array', Ext.data.reader.Json, {alternateClassName:'Ext.data.ArrayReader', totalProperty:undefined, successProperty:undefined, createFieldAccessExpression:function(field, fieldVarName, dataName) {
+Ext.define('Ext.data.reader.Array', {extend:Ext.data.reader.Json, alternateClassName:'Ext.data.ArrayReader', alias:'reader.array', totalProperty:undefined, successProperty:undefined, createFieldAccessExpression:function(field, fieldVarName, dataName) {
   var index = field.mapping == null ? field.originalIndex : field.mapping, result;
   if (typeof index === 'function') {
     result = fieldVarName + '.mapping(' + dataName + ', this)';
@@ -34660,10 +34271,10 @@ Ext.cmd.derive('Ext.data.reader.Array', Ext.data.reader.Json, {alternateClassNam
     result = dataName + '[' + index + ']';
   }
   return result;
-}}, 0, 0, 0, 0, ['reader.array'], 0, [Ext.data.reader, 'Array', Ext.data, 'ArrayReader'], 0);
-Ext.cmd.derive('Ext.data.ArrayStore', Ext.data.Store, {constructor:function(config) {
+}});
+Ext.define('Ext.data.ArrayStore', {extend:Ext.data.Store, alias:'store.array', constructor:function(config) {
   config = Ext.apply({proxy:{type:'memory', reader:'array'}}, config);
-  Ext.data.Store.prototype.constructor.call(this, config);
+  this.callParent([config]);
 }, loadData:function(data, append) {
   if (this.expandData === true) {
     var r = [], i = 0, ln = data.length;
@@ -34672,11 +34283,11 @@ Ext.cmd.derive('Ext.data.ArrayStore', Ext.data.Store, {constructor:function(conf
     }
     data = r;
   }
-  Ext.data.Store.prototype.loadData.call(this, data, append);
-}}, 1, 0, 0, 0, ['store.array'], 0, [Ext.data, 'ArrayStore'], function() {
+  this.callParent([data, append]);
+}}, function() {
   Ext.data.SimpleStore = Ext.data.ArrayStore;
 });
-Ext.cmd.derive('Ext.data.Batch', Ext.Base, {autoStart:false, pauseOnException:false, current:-1, total:0, isRunning:false, isComplete:false, hasException:false, constructor:function(config) {
+Ext.define('Ext.data.Batch', {mixins:{observable:Ext.util.Observable}, autoStart:false, pauseOnException:false, current:-1, total:0, isRunning:false, isComplete:false, hasException:false, constructor:function(config) {
   var me = this;
   me.mixins.observable.constructor.call(me, config);
   me.operations = [];
@@ -34729,12 +34340,12 @@ Ext.cmd.derive('Ext.data.Batch', Ext.Base, {autoStart:false, pauseOnException:fa
     me.proxy[operation.action](operation, onProxyReturn, me);
   }
   return me;
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.data, 'Batch'], 0);
-Ext.cmd.derive('Ext.data.Request', Ext.Base, {action:undefined, params:undefined, method:'GET', url:undefined, constructor:function(config) {
+}});
+Ext.define('Ext.data.Request', {action:undefined, params:undefined, method:'GET', url:undefined, constructor:function(config) {
   Ext.apply(this, config);
-}}, 1, 0, 0, 0, 0, 0, [Ext.data, 'Request'], 0);
-Ext.cmd.derive('Ext.data.association.BelongsTo', Ext.data.association.Association, {alternateClassName:'Ext.data.BelongsToAssociation', constructor:function(config) {
-  Ext.data.association.Association.prototype.constructor.apply(this, arguments);
+}});
+Ext.define('Ext.data.association.BelongsTo', {extend:Ext.data.association.Association, alternateClassName:'Ext.data.BelongsToAssociation', alias:'association.belongsto', constructor:function(config) {
+  this.callParent(arguments);
   var me = this, ownerProto = me.ownerModel.prototype, associatedName = me.associatedName, getterName = me.getterName || 'get' + associatedName, setterName = me.setterName || 'set' + associatedName;
   Ext.applyIf(me, {name:associatedName, foreignKey:associatedName.toLowerCase() + '_id', instanceName:associatedName + 'BelongsToInstance', associationKey:associatedName.toLowerCase()});
   ownerProto[getterName] = me.createGetter();
@@ -34792,10 +34403,10 @@ Ext.cmd.derive('Ext.data.association.BelongsTo', Ext.data.association.Associatio
   };
 }, read:function(record, reader, associationData) {
   record[this.instanceName] = reader.read([associationData]).records[0];
-}}, 1, 0, 0, 0, ['association.belongsto'], 0, [Ext.data.association, 'BelongsTo', Ext.data, 'BelongsToAssociation'], 0);
-Ext.cmd.derive('Ext.util.Inflector', Ext.Base, {singleton:true, plurals:[[/(quiz)$/i, '$1zes'], [/^(ox)$/i, '$1en'], [/([m|l])ouse$/i, '$1ice'], [/(matr|vert|ind)ix|ex$/i, '$1ices'], [/(x|ch|ss|sh)$/i, '$1es'], [/([^aeiouy]|qu)y$/i, '$1ies'], [/(hive)$/i, '$1s'], [/(?:([^f])fe|([lr])f)$/i, '$1$2ves'], [/sis$/i, 'ses'], [/([ti])um$/i, '$1a'], [/(buffal|tomat|potat)o$/i, '$1oes'], [/(bu)s$/i, '$1ses'], [/(alias|status|sex)$/i, '$1es'], [/(octop|vir)us$/i, '$1i'], [/(ax|test)is$/i, '$1es'], [/^person$/, 
-'people'], [/^man$/, 'men'], [/^(child)$/, '$1ren'], [/s$/i, 's'], [/$/, 's']], singulars:[[/(quiz)zes$/i, '$1'], [/(matr)ices$/i, '$1ix'], [/(vert|ind)ices$/i, '$1ex'], [/^(ox)en/i, '$1'], [/(alias|status)es$/i, '$1'], [/(octop|vir)i$/i, '$1us'], [/(cris|ax|test)es$/i, '$1is'], [/(shoe)s$/i, '$1'], [/(o)es$/i, '$1'], [/(bus)es$/i, '$1'], [/([m|l])ice$/i, '$1ouse'], [/(x|ch|ss|sh)es$/i, '$1'], [/(m)ovies$/i, '$1ovie'], [/(s)eries$/i, '$1eries'], [/([^aeiouy]|qu)ies$/i, '$1y'], [/([lr])ves$/i, '$1f'], 
-[/(tive)s$/i, '$1'], [/(hive)s$/i, '$1'], [/([^f])ves$/i, '$1fe'], [/(^analy)ses$/i, '$1sis'], [/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i, '$1$2sis'], [/([ti])a$/i, '$1um'], [/(n)ews$/i, '$1ews'], [/people$/i, 'person'], [/s$/i, '']], uncountable:['sheep', 'fish', 'series', 'species', 'money', 'rice', 'information', 'equipment', 'grass', 'mud', 'offspring', 'deer', 'means'], singular:function(matcher, replacer) {
+}});
+Ext.define('Ext.util.Inflector', {singleton:true, plurals:[[/(quiz)$/i, '$1zes'], [/^(ox)$/i, '$1en'], [/([m|l])ouse$/i, '$1ice'], [/(matr|vert|ind)ix|ex$/i, '$1ices'], [/(x|ch|ss|sh)$/i, '$1es'], [/([^aeiouy]|qu)y$/i, '$1ies'], [/(hive)$/i, '$1s'], [/(?:([^f])fe|([lr])f)$/i, '$1$2ves'], [/sis$/i, 'ses'], [/([ti])um$/i, '$1a'], [/(buffal|tomat|potat)o$/i, '$1oes'], [/(bu)s$/i, '$1ses'], [/(alias|status|sex)$/i, '$1es'], [/(octop|vir)us$/i, '$1i'], [/(ax|test)is$/i, '$1es'], [/^person$/, 'people'], 
+[/^man$/, 'men'], [/^(child)$/, '$1ren'], [/s$/i, 's'], [/$/, 's']], singulars:[[/(quiz)zes$/i, '$1'], [/(matr)ices$/i, '$1ix'], [/(vert|ind)ices$/i, '$1ex'], [/^(ox)en/i, '$1'], [/(alias|status)es$/i, '$1'], [/(octop|vir)i$/i, '$1us'], [/(cris|ax|test)es$/i, '$1is'], [/(shoe)s$/i, '$1'], [/(o)es$/i, '$1'], [/(bus)es$/i, '$1'], [/([m|l])ice$/i, '$1ouse'], [/(x|ch|ss|sh)es$/i, '$1'], [/(m)ovies$/i, '$1ovie'], [/(s)eries$/i, '$1eries'], [/([^aeiouy]|qu)ies$/i, '$1y'], [/([lr])ves$/i, '$1f'], [/(tive)s$/i, 
+'$1'], [/(hive)s$/i, '$1'], [/([^f])ves$/i, '$1fe'], [/(^analy)ses$/i, '$1sis'], [/((a)naly|(b)a|(d)iagno|(p)arenthe|(p)rogno|(s)ynop|(t)he)ses$/i, '$1$2sis'], [/([ti])a$/i, '$1um'], [/(n)ews$/i, '$1ews'], [/people$/i, 'person'], [/s$/i, '']], uncountable:['sheep', 'fish', 'series', 'species', 'money', 'rice', 'information', 'equipment', 'grass', 'mud', 'offspring', 'deer', 'means'], singular:function(matcher, replacer) {
   this.singulars.unshift([matcher, replacer]);
 }, plural:function(matcher, replacer) {
   this.plurals.unshift([matcher, replacer]);
@@ -34849,7 +34460,7 @@ Ext.cmd.derive('Ext.util.Inflector', Ext.Base, {singleton:true, plurals:[[/(quiz
         return number + 'th';
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Inflector'], function() {
+}}, function() {
   var irregulars = {alumnus:'alumni', cactus:'cacti', focus:'foci', nucleus:'nuclei', radius:'radii', stimulus:'stimuli', ellipsis:'ellipses', paralysis:'paralyses', oasis:'oases', appendix:'appendices', index:'indexes', beau:'beaux', bureau:'bureaux', tableau:'tableaux', woman:'women', child:'children', man:'men', corpus:'corpora', criterion:'criteria', curriculum:'curricula', genus:'genera', memorandum:'memoranda', phenomenon:'phenomena', foot:'feet', goose:'geese', tooth:'teeth', antenna:'antennae', 
   formula:'formulae', nebula:'nebulae', vertebra:'vertebrae', vita:'vitae'}, singular;
   for (singular in irregulars) {
@@ -34857,9 +34468,9 @@ Ext.cmd.derive('Ext.util.Inflector', Ext.Base, {singleton:true, plurals:[[/(quiz
     this.singular(irregulars[singular], singular);
   }
 });
-Ext.cmd.derive('Ext.data.association.HasMany', Ext.data.association.Association, {alternateClassName:'Ext.data.HasManyAssociation', constructor:function(config) {
+Ext.define('Ext.data.association.HasMany', {extend:Ext.data.association.Association, alternateClassName:'Ext.data.HasManyAssociation', alias:'association.hasmany', constructor:function(config) {
   var me = this, ownerProto, name;
-  Ext.data.association.Association.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   me.name = me.name || Ext.util.Inflector.pluralize(me.associatedName.toLowerCase());
   ownerProto = me.ownerModel.prototype;
   name = me.name;
@@ -34897,9 +34508,9 @@ Ext.cmd.derive('Ext.data.association.HasMany', Ext.data.association.Association,
       items[i][inverse.instanceName] = record;
     }
   }
-}}, 1, 0, 0, 0, ['association.hasmany'], 0, [Ext.data.association, 'HasMany', Ext.data, 'HasManyAssociation'], 0);
-Ext.cmd.derive('Ext.data.association.HasOne', Ext.data.association.Association, {alternateClassName:'Ext.data.HasOneAssociation', constructor:function(config) {
-  Ext.data.association.Association.prototype.constructor.apply(this, arguments);
+}});
+Ext.define('Ext.data.association.HasOne', {extend:Ext.data.association.Association, alternateClassName:'Ext.data.HasOneAssociation', alias:'association.hasone', constructor:function(config) {
+  this.callParent(arguments);
   var me = this, ownerProto = me.ownerModel.prototype, associatedName = me.associatedName, getterName = me.getterName || 'get' + associatedName, setterName = me.setterName || 'set' + associatedName;
   Ext.applyIf(me, {name:associatedName, foreignKey:associatedName.toLowerCase() + '_id', instanceName:associatedName + 'HasOneInstance', associationKey:associatedName.toLowerCase()});
   ownerProto[getterName] = me.createGetter();
@@ -34963,16 +34574,16 @@ Ext.cmd.derive('Ext.data.association.HasOne', Ext.data.association.Association, 
   if (inverse) {
     newRecord[inverse.instanceName] = record;
   }
-}}, 1, 0, 0, 0, ['association.hasone'], 0, [Ext.data.association, 'HasOne', Ext.data, 'HasOneAssociation'], 0);
-Ext.cmd.derive('Ext.dd.DDTarget', Ext.dd.DragDrop, {constructor:function(id, sGroup, config) {
+}});
+Ext.define('Ext.dd.DDTarget', {extend:Ext.dd.DragDrop, constructor:function(id, sGroup, config) {
   if (id) {
     this.initTarget(id, sGroup, config);
   }
 }, getDragEl:Ext.emptyFn, isValidHandleChild:Ext.emptyFn, startDrag:Ext.emptyFn, endDrag:Ext.emptyFn, onDrag:Ext.emptyFn, onDragDrop:Ext.emptyFn, onDragEnter:Ext.emptyFn, onDragOut:Ext.emptyFn, onDragOver:Ext.emptyFn, onInvalidDrop:Ext.emptyFn, onMouseDown:Ext.emptyFn, onMouseUp:Ext.emptyFn, setXConstraint:Ext.emptyFn, setYConstraint:Ext.emptyFn, resetConstraints:Ext.emptyFn, clearConstraints:Ext.emptyFn, clearTicks:Ext.emptyFn, setInitPosition:Ext.emptyFn, setDragElId:Ext.emptyFn, setHandleElId:Ext.emptyFn, 
 setOuterHandleElId:Ext.emptyFn, addInvalidHandleClass:Ext.emptyFn, addInvalidHandleId:Ext.emptyFn, addInvalidHandleType:Ext.emptyFn, removeInvalidHandleClass:Ext.emptyFn, removeInvalidHandleId:Ext.emptyFn, removeInvalidHandleType:Ext.emptyFn, toString:function() {
   return 'DDTarget ' + this.id;
-}}, 3, 0, 0, 0, 0, 0, [Ext.dd, 'DDTarget'], 0);
-Ext.cmd.derive('Ext.dd.DragTracker', Ext.Base, {active:false, trackOver:false, tolerance:5, autoStart:false, constructor:function(config) {
+}});
+Ext.define('Ext.dd.DragTracker', {mixins:{observable:Ext.util.Observable}, active:false, trackOver:false, tolerance:5, autoStart:false, constructor:function(config) {
   var me = this;
   Ext.apply(me, config);
   me.addEvents('mouseover', 'mouseout', 'mousedown', 'mouseup', 'mousemove', 'beforedragstart', 'dragstart', 'dragend', 'drag');
@@ -35167,10 +34778,10 @@ Ext.cmd.derive('Ext.dd.DragTracker', Ext.Base, {active:false, trackOver:false, t
     xy[1] += constrainTo.top - dr.top;
   }
   return xy;
-}}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.dd, 'DragTracker'], 0);
-Ext.cmd.derive('Ext.dd.DragZone', Ext.dd.DragSource, {constructor:function(el, config) {
+}}});
+Ext.define('Ext.dd.DragZone', {extend:Ext.dd.DragSource, constructor:function(el, config) {
   var me = this, scroll = me.containerScroll;
-  Ext.dd.DragSource.prototype.constructor.call(this, el, config);
+  me.callParent([el, config]);
   if (scroll) {
     el = me.scrollEl || el;
     el = Ext.get(el);
@@ -35188,12 +34799,12 @@ Ext.cmd.derive('Ext.dd.DragZone', Ext.dd.DragSource, {constructor:function(el, c
 }, getRepairXY:function(e) {
   return Ext.fly(this.dragData.ddel).getXY();
 }, destroy:function() {
-  Ext.dd.DragSource.prototype.destroy.call(this);
+  this.callParent();
   if (this.containerScroll) {
     Ext.dd.ScrollManager.unregister(this.scrollEl || this.el);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.dd, 'DragZone'], 0);
-Ext.cmd.derive('Ext.dd.ScrollManager', Ext.Base, {singleton:true, constructor:function() {
+}});
+Ext.define('Ext.dd.ScrollManager', {singleton:true, constructor:function() {
   var ddm = Ext.dd.DragDropManager;
   ddm.fireEvents = Ext.Function.createSequence(ddm.fireEvents, this.onFire, this);
   ddm.stopDrag = Ext.Function.createSequence(ddm.stopDrag, this.onStop, this);
@@ -35306,15 +34917,15 @@ Ext.cmd.derive('Ext.dd.ScrollManager', Ext.Base, {singleton:true, constructor:fu
       els[id]._region = els[id].getRegion();
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.dd, 'ScrollManager'], 0);
-Ext.cmd.derive('Ext.dd.DropTarget', Ext.dd.DDTarget, {constructor:function(el, config) {
+}});
+Ext.define('Ext.dd.DropTarget', {extend:Ext.dd.DDTarget, constructor:function(el, config) {
   this.el = Ext.get(el);
   Ext.apply(this, config);
   if (this.containerScroll) {
     Ext.dd.ScrollManager.register(this.el);
   }
-  Ext.dd.DDTarget.prototype.constructor.call(this, this.el.dom, this.ddGroup || this.group, {isTarget:true});
-}, dropAllowed:'x-dd-drop-ok', dropNotAllowed:'x-dd-drop-nodrop', isTarget:true, isNotifyTarget:true, notifyEnter:function(dd, e, data) {
+  this.callParent([this.el.dom, this.ddGroup || this.group, {isTarget:true}]);
+}, dropAllowed:Ext.baseCSSPrefix + 'dd-drop-ok', dropNotAllowed:Ext.baseCSSPrefix + 'dd-drop-nodrop', isTarget:true, isNotifyTarget:true, notifyEnter:function(dd, e, data) {
   if (this.overClass) {
     this.el.addCls(this.overClass);
   }
@@ -35328,12 +34939,12 @@ Ext.cmd.derive('Ext.dd.DropTarget', Ext.dd.DDTarget, {constructor:function(el, c
 }, notifyDrop:function(dd, e, data) {
   return false;
 }, destroy:function() {
-  Ext.dd.DDTarget.prototype.destroy.call(this);
+  this.callParent();
   if (this.containerScroll) {
     Ext.dd.ScrollManager.unregister(this.el);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.dd, 'DropTarget'], 0);
-Ext.cmd.derive('Ext.dd.Registry', Ext.Base, {singleton:true, constructor:function() {
+}});
+Ext.define('Ext.dd.Registry', {singleton:true, constructor:function() {
   this.elements = {};
   this.handles = {};
   this.autoIdSeed = 0;
@@ -35390,8 +35001,8 @@ Ext.cmd.derive('Ext.dd.Registry', Ext.Base, {singleton:true, constructor:functio
 }, getTargetFromEvent:function(e) {
   var t = e.getTarget();
   return t ? this.elements[t.id] || this.handles[t.id] : null;
-}}, 1, 0, 0, 0, 0, 0, [Ext.dd, 'Registry'], 0);
-Ext.cmd.derive('Ext.dd.DropZone', Ext.dd.DropTarget, {getTargetFromEvent:function(e) {
+}});
+Ext.define('Ext.dd.DropZone', {extend:Ext.dd.DropTarget, getTargetFromEvent:function(e) {
   return Ext.dd.Registry.getTargetFromEvent(e);
 }, onNodeEnter:function(n, dd, e, data) {
 }, onNodeOver:function(n, dd, e, data) {
@@ -35436,10 +35047,10 @@ Ext.cmd.derive('Ext.dd.DropZone', Ext.dd.DropTarget, {getTargetFromEvent:functio
   return result;
 }, triggerCacheRefresh:function() {
   Ext.dd.DDM.refreshCache(this.groups);
-}}, 0, 0, 0, 0, 0, 0, [Ext.dd, 'DropZone'], 0);
-Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', statics:{shims:[]}, isLayer:true, localXYNames:{get:'getLocalXY', set:'setLocalXY'}, constructor:function(config, existingEl) {
+}});
+Ext.define('Ext.dom.Layer', {extend:Ext.Element, alternateClassName:'Ext.Layer', statics:{shims:[]}, isLayer:true, localXYNames:{get:'getLocalXY', set:'setLocalXY'}, constructor:function(config, existingEl) {
   config = config || {};
-  var me = this, dh = Ext.DomHelper, cp = config.parentEl, pel = cp ? Ext.getDom(cp) : document.body, hm = config.hideMode, cls = 'x-' + (config.fixed && !(Ext.isIE6 || Ext.isIEQuirks) ? 'fixed-layer' : 'layer');
+  var me = this, dh = Ext.DomHelper, cp = config.parentEl, pel = cp ? Ext.getDom(cp) : document.body, hm = config.hideMode, cls = Ext.baseCSSPrefix + (config.fixed && !(Ext.isIE6 || Ext.isIEQuirks) ? 'fixed-layer' : 'layer');
   me.el = me;
   if (existingEl) {
     me.dom = Ext.getDom(existingEl);
@@ -35594,7 +35205,7 @@ Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', st
   return me;
 }, remove:function() {
   this.hideUnders();
-  Ext.dom.Element.prototype.remove.call(this);
+  this.callParent();
 }, beginUpdate:function() {
   this.updating = true;
 }, endUpdate:function() {
@@ -35645,7 +35256,7 @@ Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', st
   if (!visible) {
     me.hideUnders(true);
   }
-  Ext.dom.Element.prototype.setVisible.call(this, visible, animate, duration, callback, easing);
+  me.callParent([visible, animate, duration, callback, easing]);
   if (!animate) {
     cb();
   }
@@ -35670,20 +35281,20 @@ Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', st
   this.callParent(arguments);
   return this.sync();
 }, setLocalX:function() {
-  Ext.dom.Element.prototype.setLocalX.apply(this, arguments);
+  this.callParent(arguments);
   return this.sync();
 }, setLocalXY:function() {
-  Ext.dom.Element.prototype.setLocalXY.apply(this, arguments);
+  this.callParent(arguments);
   return this.sync();
 }, setLocalY:function() {
-  Ext.dom.Element.prototype.setLocalY.apply(this, arguments);
+  this.callParent(arguments);
   return this.sync();
 }, setXY:function(xy, animate, duration, callback, easing) {
   var me = this;
   callback = me.createCB(callback);
   me.fixDisplay();
   me.beforeAction();
-  Ext.dom.Element.prototype.setXY.call(this, xy, animate, duration, callback, easing);
+  me.callParent([xy, animate, duration, callback, easing]);
   if (!animate) {
     callback();
   }
@@ -35757,8 +35368,8 @@ Ext.cmd.derive('Ext.dom.Layer', Ext.Element, {alternateClassName:'Ext.Layer', st
   if (shadow) {
     shadow.setOpacity(opacity);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.dom, 'Layer', Ext, 'Layer'], 0);
-Ext.cmd.derive('Ext.form.action.Action', Ext.Base, {alternateClassName:'Ext.form.Action', submitEmptyText:true, constructor:function(config) {
+}});
+Ext.define('Ext.form.action.Action', {alternateClassName:'Ext.form.Action', submitEmptyText:true, constructor:function(config) {
   if (config) {
     Ext.apply(this, config);
   }
@@ -35785,8 +35396,8 @@ Ext.cmd.derive('Ext.form.action.Action', Ext.Base, {alternateClassName:'Ext.form
 }, createCallback:function() {
   var me = this, undef, form = me.form;
   return {success:me.onSuccess, failure:me.onFailure, scope:me, timeout:this.timeout * 1000 || form.timeout * 1000, upload:form.fileUpload ? me.onSuccess : undef};
-}, statics:{CLIENT_INVALID:'client', SERVER_INVALID:'server', CONNECT_FAILURE:'connect', LOAD_FAILURE:'load'}}, 1, 0, 0, 0, 0, 0, [Ext.form.action, 'Action', Ext.form, 'Action'], 0);
-Ext.cmd.derive('Ext.form.action.Load', Ext.form.action.Action, {alternateClassName:'Ext.form.Action.Load', type:'load', run:function() {
+}, statics:{CLIENT_INVALID:'client', SERVER_INVALID:'server', CONNECT_FAILURE:'connect', LOAD_FAILURE:'load'}});
+Ext.define('Ext.form.action.Load', {extend:Ext.form.action.Action, alternateClassName:'Ext.form.Action.Load', alias:'formaction.load', type:'load', run:function() {
   Ext.Ajax.request(Ext.apply(this.createCallback(), {method:this.getMethod(), url:this.getUrl(), headers:this.headers, params:this.getParams()}));
 }, onSuccess:function(response) {
   var result = this.processResponse(response), form = this.form;
@@ -35806,8 +35417,8 @@ Ext.cmd.derive('Ext.form.action.Load', Ext.form.action.Action, {alternateClassNa
     return {success:rs.success, data:data};
   }
   return Ext.decode(response.responseText);
-}}, 0, 0, 0, 0, ['formaction.load'], 0, [Ext.form.action, 'Load', Ext.form.Action, 'Load'], 0);
-Ext.cmd.derive('Ext.form.action.Submit', Ext.form.action.Action, {alternateClassName:'Ext.form.Action.Submit', type:'submit', run:function() {
+}});
+Ext.define('Ext.form.action.Submit', {extend:Ext.form.action.Action, alternateClassName:'Ext.form.Action.Submit', alias:'formaction.submit', type:'submit', run:function() {
   var me = this, form = me.form;
   if (me.clientValidation === false || form.isValid()) {
     me.doSubmit();
@@ -35840,7 +35451,7 @@ Ext.cmd.derive('Ext.form.action.Submit', Ext.form.action.Action, {alternateClass
     Ext.removeNode(formEl);
   }
 }, getParams:function(useModelValues) {
-  var falseVal = false, configParams = Ext.form.action.Action.prototype.getParams.call(this), fieldParams = this.form.getValues(falseVal, falseVal, this.submitEmptyText !== falseVal, useModelValues);
+  var falseVal = false, configParams = this.callParent(), fieldParams = this.form.getValues(falseVal, falseVal, this.submitEmptyText !== falseVal, useModelValues);
   return Ext.apply({}, fieldParams, configParams);
 }, buildForm:function() {
   var me = this, fieldsSpec = [], formSpec, formEl, basicForm = me.form, params = me.getParams(), uploadFields = [], uploadEls = [], fields = basicForm.getFields().items, i, len = fields.length, field, key, value, v, vLen, el;
@@ -35910,11 +35521,11 @@ Ext.cmd.derive('Ext.form.action.Submit', Ext.form.action.Action, {alternateClass
     }
   }
   return result;
-}}, 0, 0, 0, 0, ['formaction.submit'], 0, [Ext.form.action, 'Submit', Ext.form.Action, 'Submit'], 0);
-Ext.cmd.derive('Ext.util.ComponentDragger', Ext.dd.DragTracker, {autoStart:500, constructor:function(comp, config) {
+}});
+Ext.define('Ext.util.ComponentDragger', {extend:Ext.dd.DragTracker, autoStart:500, constructor:function(comp, config) {
   this.comp = comp;
   this.initialConstrainTo = config.constrainTo;
-  Ext.dd.DragTracker.prototype.constructor.call(this, config);
+  this.callParent([config]);
 }, onStart:function(e) {
   var me = this, comp = me.comp;
   me.startPosition = comp.getXY();
@@ -35964,12 +35575,12 @@ Ext.cmd.derive('Ext.util.ComponentDragger', Ext.dd.DragTracker, {autoStart:500, 
   if (comp.endDrag) {
     comp.endDrag();
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'ComponentDragger'], 0);
-Ext.cmd.derive('Ext.window.Window', Ext.panel.Panel, {alternateClassName:'Ext.Window', baseCls:'x-window', resizable:true, draggable:true, constrain:false, constrainHeader:false, plain:false, minimizable:false, maximizable:false, minHeight:50, minWidth:50, expandOnShow:true, collapsible:false, closable:true, hidden:true, autoRender:true, hideMode:'offsets', floating:true, itemCls:'x-window-item', initialAlphaNum:/^[a-z0-9]/, overlapHeader:true, ignoreHeaderBorderManagement:true, alwaysFramed:true, 
-isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
+}});
+Ext.define('Ext.window.Window', {extend:Ext.panel.Panel, alternateClassName:'Ext.Window', alias:'widget.window', baseCls:Ext.baseCSSPrefix + 'window', resizable:true, draggable:true, constrain:false, constrainHeader:false, plain:false, minimizable:false, maximizable:false, minHeight:50, minWidth:50, expandOnShow:true, collapsible:false, closable:true, hidden:true, autoRender:true, hideMode:'offsets', floating:true, itemCls:Ext.baseCSSPrefix + 'window-item', initialAlphaNum:/^[a-z0-9]/, overlapHeader:true, 
+ignoreHeaderBorderManagement:true, alwaysFramed:true, isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   var me = this;
   me.frame = false;
-  Ext.panel.Panel.prototype.initComponent.call(this);
+  me.callParent();
   me.addEvents('resize', 'maximize', 'minimize', 'restore');
   if (me.plain) {
     me.addClsWithUI('plain');
@@ -35980,11 +35591,11 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   me.addStateEvents(['maximize', 'restore', 'resize', 'dragend']);
 }, getElConfig:function() {
   var me = this, elConfig;
-  elConfig = Ext.panel.Panel.prototype.getElConfig.call(this);
+  elConfig = me.callParent();
   elConfig.tabIndex = -1;
   return elConfig;
 }, getState:function() {
-  var me = this, state = Ext.panel.Panel.prototype.getState.call(this) || {}, maximized = !!me.maximized, ghostBox = me.ghostBox, pos;
+  var me = this, state = me.callParent() || {}, maximized = !!me.maximized, ghostBox = me.ghostBox, pos;
   state.maximized = maximized;
   if (maximized) {
     pos = me.restorePos;
@@ -36011,14 +35622,14 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   }
 }, onRender:function(ct, position) {
   var me = this;
-  Ext.panel.Panel.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   me.focusEl = me.el;
   if (me.maximizable) {
     me.header.on({scope:me, dblclick:me.toggleMaximize});
   }
 }, afterRender:function() {
   var me = this, header = me.header, keyMap;
-  Ext.panel.Panel.prototype.afterRender.call(this);
+  me.callParent();
   if (me.maximized) {
     me.maximized = false;
     me.maximize();
@@ -36038,7 +35649,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
 }, initDraggable:function() {
   this.initSimpleDraggable();
 }, initResizable:function() {
-  Ext.panel.Panel.prototype.initResizable.apply(this, arguments);
+  this.callParent(arguments);
   if (this.maximized) {
     this.resizer.disable();
   }
@@ -36054,10 +35665,10 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
     me.hide();
     Ext.destroy(me.keyMap);
   }
-  Ext.panel.Panel.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, addTools:function() {
   var me = this;
-  Ext.panel.Panel.prototype.addTools.call(this);
+  me.callParent();
   if (me.minimizable) {
     me.addTool({type:'minimize', handler:Ext.Function.bind(me.minimize, me, [])});
   }
@@ -36092,13 +35703,13 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
 }, onFocus:function() {
   var me = this, focusDescendant;
   if (Ext.FocusManager && Ext.FocusManager.enabled || (focusDescendant = me.getDefaultFocus()) === me) {
-    Ext.panel.Panel.prototype.onFocus.apply(this, arguments);
+    me.callParent(arguments);
   } else {
     focusDescendant.focus();
   }
 }, onShow:function() {
   var me = this;
-  Ext.panel.Panel.prototype.onShow.apply(this, arguments);
+  me.callParent(arguments);
   if (me.expandOnShow) {
     me.expand(false);
   }
@@ -36122,7 +35733,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   if (me.keyMap) {
     me.keyMap.disable();
   }
-  Ext.panel.Panel.prototype.afterHide.apply(this, arguments);
+  me.callParent(arguments);
 }, onWindowResize:function() {
   var me = this, sizeModel;
   if (me.maximized) {
@@ -36150,7 +35761,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   if (me.resizer) {
     me.resizer.disable();
   }
-  Ext.panel.Panel.prototype.afterCollapse.apply(this, arguments);
+  me.callParent(arguments);
 }, afterExpand:function() {
   var me = this, header = me.header, tools = me.tools, changed;
   if (header) {
@@ -36169,7 +35780,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   if (me.resizer) {
     me.resizer.enable();
   }
-  Ext.panel.Panel.prototype.afterExpand.apply(this, arguments);
+  me.callParent(arguments);
 }, maximize:function(animate) {
   var me = this, header = me.header, tools = me.tools, changed;
   if (!me.maximized) {
@@ -36205,8 +35816,8 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
     if (me.resizer) {
       me.resizer.disable();
     }
-    me.el.addCls('x-window-maximized');
-    me.container.addCls('x-window-maximized-ct');
+    me.el.addCls(Ext.baseCSSPrefix + 'window-maximized');
+    me.container.addCls(Ext.baseCSSPrefix + 'window-maximized-ct');
     me.syncMonitorWindowResize();
     me.fitContainer(animate = animate || !!me.animateTarget ? {callback:function() {
       me.fireEvent('maximize', me);
@@ -36220,7 +35831,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   var me = this, tools = me.tools, header = me.header, newBox = me.restoreSize, changed;
   if (me.maximized) {
     me.hasSavedRestore = null;
-    me.removeCls('x-window-maximized');
+    me.removeCls(Ext.baseCSSPrefix + 'window-maximized');
     if (header) {
       header.suspendLayouts();
       if (tools.restore) {
@@ -36254,7 +35865,7 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
     if (me.resizer) {
       me.resizer.enable();
     }
-    me.container.removeCls('x-window-maximized-ct');
+    me.container.removeCls(Ext.baseCSSPrefix + 'window-maximized-ct');
     me.syncMonitorWindowResize();
     if (!animate) {
       me.el.enableShadow(true);
@@ -36277,14 +35888,15 @@ isRootCfg:{isRoot:true}, isWindow:true, initComponent:function() {
   }
 }, toggleMaximize:function() {
   return this[this.maximized ? 'restore' : 'maximize']();
-}}, 0, ['window'], ['component', 'box', 'container', 'panel', 'window'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true}, ['widget.window'], 0, [Ext.window, 'Window', Ext, 'Window'], 0);
-Ext.cmd.derive('Ext.form.Labelable', Ext.Base, {autoEl:{tag:'table', cellpadding:0}, childEls:['labelCell', 'labelEl', 'bodyEl', 'sideErrorCell', 'errorEl', 'inputRow'], labelableRenderTpl:['\x3ctr role\x3d"presentation" id\x3d"{id}-inputRow" \x3ctpl if\x3d"inFormLayout"\x3eid\x3d"{id}"\x3c/tpl\x3e class\x3d"{inputRowCls}"\x3e', '\x3ctpl if\x3d"labelOnLeft"\x3e', '\x3ctd role\x3d"presentation" id\x3d"{id}-labelCell" style\x3d"{labelCellStyle}" {labelCellAttrs}\x3e', '{beforeLabelTpl}', '\x3clabel id\x3d"{id}-labelEl" {labelAttrTpl}\x3ctpl if\x3d"inputId"\x3e for\x3d"{inputId}"\x3c/tpl\x3e class\x3d"{labelCls}"', 
+}});
+Ext.define('Ext.form.Labelable', {autoEl:{tag:'table', cellpadding:0}, childEls:['labelCell', 'labelEl', 'bodyEl', 'sideErrorCell', 'errorEl', 'inputRow'], labelableRenderTpl:['\x3ctr role\x3d"presentation" id\x3d"{id}-inputRow" \x3ctpl if\x3d"inFormLayout"\x3eid\x3d"{id}"\x3c/tpl\x3e class\x3d"{inputRowCls}"\x3e', '\x3ctpl if\x3d"labelOnLeft"\x3e', '\x3ctd role\x3d"presentation" id\x3d"{id}-labelCell" style\x3d"{labelCellStyle}" {labelCellAttrs}\x3e', '{beforeLabelTpl}', '\x3clabel id\x3d"{id}-labelEl" {labelAttrTpl}\x3ctpl if\x3d"inputId"\x3e for\x3d"{inputId}"\x3c/tpl\x3e class\x3d"{labelCls}"', 
 '\x3ctpl if\x3d"labelStyle"\x3e style\x3d"{labelStyle}"\x3c/tpl\x3e', ' unselectable\x3d"on"', '\x3e', '{beforeLabelTextTpl}', '\x3ctpl if\x3d"fieldLabel"\x3e{fieldLabel}{labelSeparator}\x3c/tpl\x3e', '{afterLabelTextTpl}', '\x3c/label\x3e', '{afterLabelTpl}', '\x3c/td\x3e', '\x3c/tpl\x3e', '\x3ctd role\x3d"presentation" class\x3d"{baseBodyCls} {fieldBodyCls} {extraFieldBodyCls}" id\x3d"{id}-bodyEl" colspan\x3d"{bodyColspan}" role\x3d"presentation"\x3e', '{beforeBodyEl}', '\x3ctpl if\x3d"labelAlign\x3d\x3d\'top\'"\x3e', 
 '{beforeLabelTpl}', '\x3cdiv role\x3d"presentation" id\x3d"{id}-labelCell" style\x3d"{labelCellStyle}"\x3e', '\x3clabel id\x3d"{id}-labelEl" {labelAttrTpl}\x3ctpl if\x3d"inputId"\x3e for\x3d"{inputId}"\x3c/tpl\x3e class\x3d"{labelCls}"', '\x3ctpl if\x3d"labelStyle"\x3e style\x3d"{labelStyle}"\x3c/tpl\x3e', ' unselectable\x3d"on"', '\x3e', '{beforeLabelTextTpl}', '\x3ctpl if\x3d"fieldLabel"\x3e{fieldLabel}{labelSeparator}\x3c/tpl\x3e', '{afterLabelTextTpl}', '\x3c/label\x3e', '\x3c/div\x3e', '{afterLabelTpl}', 
 '\x3c/tpl\x3e', '{beforeSubTpl}', '{[values.$comp.getSubTplMarkup(values)]}', '{afterSubTpl}', '\x3ctpl if\x3d"msgTarget\x3d\x3d\x3d\'side\'"\x3e', '{afterBodyEl}', '\x3c/td\x3e', '\x3ctd role\x3d"presentation" id\x3d"{id}-sideErrorCell" vAlign\x3d"{[values.labelAlign\x3d\x3d\x3d\'top\' \x26\x26 !values.hideLabel ? \'bottom\' : \'middle\']}" style\x3d"{[values.autoFitErrors ? \'display:none\' : \'\']}" width\x3d"{errorIconWidth}"\x3e', '\x3cdiv role\x3d"presentation" id\x3d"{id}-errorEl" class\x3d"{errorMsgCls}" style\x3d"display:none"\x3e\x3c/div\x3e', 
 '\x3c/td\x3e', '\x3ctpl elseif\x3d"msgTarget\x3d\x3d\'under\'"\x3e', '\x3cdiv role\x3d"presentation" id\x3d"{id}-errorEl" class\x3d"{errorMsgClass}" colspan\x3d"2" style\x3d"display:none"\x3e\x3c/div\x3e', '{afterBodyEl}', '\x3c/td\x3e', '\x3c/tpl\x3e', '\x3c/tr\x3e', {disableFormats:true}], activeErrorsTpl:undefined, htmlActiveErrorsTpl:['\x3ctpl if\x3d"errors \x26\x26 errors.length"\x3e', '\x3cul class\x3d"{listCls}"\x3e\x3ctpl for\x3d"errors"\x3e\x3cli role\x3d"alert"\x3e{.}\x3c/li\x3e\x3c/tpl\x3e\x3c/ul\x3e', 
-'\x3c/tpl\x3e'], plaintextActiveErrorsTpl:['\x3ctpl if\x3d"errors \x26\x26 errors.length"\x3e', '\x3ctpl for\x3d"errors"\x3e\x3ctpl if\x3d"xindex \x26gt; 1"\x3e\n\x3c/tpl\x3e{.}\x3c/tpl\x3e', '\x3c/tpl\x3e'], isFieldLabelable:true, formItemCls:'x-form-item', labelCls:'x-form-item-label', errorMsgCls:'x-form-error-msg', baseBodyCls:'x-form-item-body', inputRowCls:'x-form-item-input-row', fieldBodyCls:'', clearCls:'x-clear', invalidCls:'x-form-invalid', fieldLabel:undefined, labelAlign:'left', labelWidth:100, 
-labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMark:false, autoFitErrors:true, msgTarget:'qtip', noWrap:true, labelableInsertions:['beforeBodyEl', 'afterBodyEl', 'beforeLabelTpl', 'afterLabelTpl', 'beforeSubTpl', 'afterSubTpl', 'beforeLabelTextTpl', 'afterLabelTextTpl', 'labelAttrTpl'], labelableRenderProps:['allowBlank', 'id', 'labelAlign', 'fieldBodyCls', 'extraFieldBodyCls', 'baseBodyCls', 'clearCls', 'labelSeparator', 'msgTarget', 'inputRowCls'], initLabelable:function() {
+'\x3c/tpl\x3e'], plaintextActiveErrorsTpl:['\x3ctpl if\x3d"errors \x26\x26 errors.length"\x3e', '\x3ctpl for\x3d"errors"\x3e\x3ctpl if\x3d"xindex \x26gt; 1"\x3e\n\x3c/tpl\x3e{.}\x3c/tpl\x3e', '\x3c/tpl\x3e'], isFieldLabelable:true, formItemCls:Ext.baseCSSPrefix + 'form-item', labelCls:Ext.baseCSSPrefix + 'form-item-label', errorMsgCls:Ext.baseCSSPrefix + 'form-error-msg', baseBodyCls:Ext.baseCSSPrefix + 'form-item-body', inputRowCls:Ext.baseCSSPrefix + 'form-item-input-row', fieldBodyCls:'', clearCls:Ext.baseCSSPrefix + 
+'clear', invalidCls:Ext.baseCSSPrefix + 'form-invalid', fieldLabel:undefined, labelAlign:'left', labelWidth:100, labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMark:false, autoFitErrors:true, msgTarget:'qtip', noWrap:true, labelableInsertions:['beforeBodyEl', 'afterBodyEl', 'beforeLabelTpl', 'afterLabelTpl', 'beforeSubTpl', 'afterSubTpl', 'beforeLabelTextTpl', 'afterLabelTextTpl', 'labelAttrTpl'], labelableRenderProps:['allowBlank', 'id', 'labelAlign', 'fieldBodyCls', 
+'extraFieldBodyCls', 'baseBodyCls', 'clearCls', 'labelSeparator', 'msgTarget', 'inputRowCls'], initLabelable:function() {
   var me = this, padding = me.padding;
   if (padding) {
     me.padding = undefined;
@@ -36342,7 +35954,7 @@ labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMar
 }, getLabelableRenderData:function() {
   var me = this, data, tempEl, topLabel = me.labelAlign === 'top';
   if (!Ext.form.Labelable.errorIconWidth) {
-    tempEl = Ext.getBody().createChild({style:'position:absolute', cls:'x-form-invalid-icon'});
+    tempEl = Ext.getBody().createChild({style:'position:absolute', cls:Ext.baseCSSPrefix + 'form-invalid-icon'});
     Ext.form.Labelable.errorIconWidth = tempEl.getWidth() + tempEl.getMargin('l');
     tempEl.remove();
   }
@@ -36354,7 +35966,7 @@ labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMar
   var me = this;
   me.setFieldDefaults(me.getHierarchyState().fieldDefaults);
   if (me.ownerLayout) {
-    me.addCls('x-' + me.ownerLayout.type + '-form-item');
+    me.addCls(Ext.baseCSSPrefix + me.ownerLayout.type + '-form-item');
   }
 }, onRender:function() {
   var me = this, margins, side, style = {};
@@ -36397,13 +36009,13 @@ labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMar
   return hideLabelCell ? 'display:none;' : '';
 }, getErrorMsgCls:function() {
   var me = this, hideLabelCell = me.hideLabel || !me.fieldLabel && me.hideEmptyLabel;
-  return me.errorMsgCls + (!hideLabelCell && me.labelAlign === 'top' ? ' x-lbl-top-err-icon' : '');
+  return me.errorMsgCls + (!hideLabelCell && me.labelAlign === 'top' ? ' ' + Ext.baseCSSPrefix + 'lbl-top-err-icon' : '');
 }, getLabelCellAttrs:function() {
   var me = this, labelAlign = me.labelAlign, result = '';
   if (labelAlign !== 'top') {
     result = 'valign\x3d"top" halign\x3d"' + labelAlign + '" width\x3d"' + (me.labelWidth + me.labelPad) + '"';
   }
-  return result + ' class\x3d"x-field-label-cell"';
+  return result + ' class\x3d"' + Ext.baseCSSPrefix + 'field-label-cell"';
 }, getLabelStyle:function() {
   var me = this, labelPad = me.labelPad, labelStyle = '';
   if (me.labelAlign !== 'top') {
@@ -36457,8 +36069,8 @@ labelPad:5, labelSeparator:':', hideLabel:false, hideEmptyLabel:true, preventMar
       this[key] = defaults[key];
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [Ext.form, 'Labelable'], 0);
-Ext.cmd.derive('Ext.form.field.Field', Ext.Base, {isFormField:true, disabled:false, submitValue:true, validateOnChange:true, suspendCheckChange:0, initField:function() {
+}});
+Ext.define('Ext.form.field.Field', {isFormField:true, disabled:false, submitValue:true, validateOnChange:true, suspendCheckChange:0, initField:function() {
   this.addEvents('change', 'validitychange', 'dirtychange');
   this.initValue();
   var badNames = ['tagName', 'nodeName', 'children', 'childNodes'], name = this.name;
@@ -36558,10 +36170,10 @@ Ext.cmd.derive('Ext.form.field.Field', Ext.Base, {isFormField:true, disabled:fal
   return false;
 }, extractFileInput:function() {
   return null;
-}, markInvalid:Ext.emptyFn, clearInvalid:Ext.emptyFn}, 0, 0, 0, 0, 0, 0, [Ext.form.field, 'Field'], 0);
-Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {type:'field', naturalSizingProp:'size', beginLayout:function(ownerContext) {
+}, markInvalid:Ext.emptyFn, clearInvalid:Ext.emptyFn});
+Ext.define('Ext.layout.component.field.Field', {extend:Ext.layout.component.Auto, alias:'layout.field', type:'field', naturalSizingProp:'size', beginLayout:function(ownerContext) {
   var me = this, owner = me.owner;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   ownerContext.labelStrategy = me.getLabelStrategy();
   ownerContext.errorStrategy = me.getErrorStrategy();
   ownerContext.labelContext = ownerContext.getEl('labelEl');
@@ -36575,7 +36187,7 @@ Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {t
   ownerContext.errorStrategy.prepare(ownerContext, owner);
 }, beginLayoutCycle:function(ownerContext) {
   var me = this, owner = me.owner, widthModel = ownerContext.widthModel, ownerNaturalSize = owner[me.naturalSizingProp], width;
-  Ext.layout.component.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (widthModel.shrinkWrap) {
     me.beginLayoutShrinkWrap(ownerContext);
   } else {
@@ -36616,7 +36228,7 @@ Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {t
   owner.bodyEl.setStyle('width', '');
 }, finishedLayout:function(ownerContext) {
   var owner = this.owner;
-  Ext.layout.component.Auto.prototype.finishedLayout.apply(this, arguments);
+  this.callParent(arguments);
   ownerContext.labelStrategy.finishedLayout(ownerContext, owner);
   ownerContext.errorStrategy.finishedLayout(ownerContext, owner);
 }, calculateOwnerHeightFromContentHeight:function(ownerContext, contentHeight) {
@@ -36661,7 +36273,7 @@ Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {t
       }
     }
   }
-  var applyIf = Ext.applyIf, emptyFn = Ext.emptyFn, iconCls = 'x-form-invalid-icon', iconWidth, base = {prepare:function(ownerContext, owner) {
+  var applyIf = Ext.applyIf, emptyFn = Ext.emptyFn, iconCls = Ext.baseCSSPrefix + 'form-invalid-icon', iconWidth, base = {prepare:function(ownerContext, owner) {
     var el = owner.errorEl;
     if (el) {
       el.setDisplayed(false);
@@ -36688,7 +36300,7 @@ Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {t
     owner.bodyEl.dom.colSpan = owner.getBodyColspan();
     Ext.layout.component.field.Field.initTip();
   }, onFocus:showTip}, base), under:applyIf({prepare:function(ownerContext, owner) {
-    var errorEl = owner.errorEl, cls = 'x-form-invalid-under';
+    var errorEl = owner.errorEl, cls = Ext.baseCSSPrefix + 'form-invalid-under';
     errorEl.addCls(cls);
     errorEl.setDisplayed(owner.hasActiveError());
   }, getHeight:function(ownerContext) {
@@ -36726,12 +36338,13 @@ Ext.cmd.derive('Ext.layout.component.field.Field', Ext.layout.component.Auto, {t
     tip.destroy();
     delete this.tip;
   }
-}}}, 0, 0, 0, 0, ['layout.field'], 0, [Ext.layout.component.field, 'Field'], 0);
-Ext.cmd.derive('Ext.form.field.Base', Ext.Component, {alternateClassName:['Ext.form.Field', 'Ext.form.BaseField'], fieldSubTpl:['\x3cinput id\x3d"{id}" type\x3d"{type}" {inputAttrTpl}', ' size\x3d"1"', '\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"value"\x3e value\x3d"{[Ext.util.Format.htmlEncode(values.value)]}"\x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', '{%if (values.maxLength !\x3d\x3d undefined){%} maxlength\x3d"{maxLength}"{%}%}', 
-'\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {editableCls} {inputCls}" autocomplete\x3d"off"/\x3e', {disableFormats:true}], subTplInsertions:['inputAttrTpl'], inputType:'text', invalidText:'The value in this field is invalid', fieldCls:'x-form-field', 
-focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!document.documentMode || document.documentMode < 9) ? ['change', 'propertychange', 'keyup'] : ['change', 'input', 'textInput', 'keyup', 'dragdrop'], checkChangeBuffer:50, componentLayout:'field', readOnly:false, readOnlyCls:'x-form-readonly', validateOnBlur:true, hasFocus:false, baseCls:'x-field', maskOnDisable:false, stretchInputElFixed:true, initComponent:function() {
+}}});
+Ext.define('Ext.form.field.Base', {extend:Ext.Component, mixins:{labelable:Ext.form.Labelable, field:Ext.form.field.Field}, alias:'widget.field', alternateClassName:['Ext.form.Field', 'Ext.form.BaseField'], fieldSubTpl:['\x3cinput id\x3d"{id}" type\x3d"{type}" {inputAttrTpl}', ' size\x3d"1"', '\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"value"\x3e value\x3d"{[Ext.util.Format.htmlEncode(values.value)]}"\x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', 
+'{%if (values.maxLength !\x3d\x3d undefined){%} maxlength\x3d"{maxLength}"{%}%}', '\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {editableCls} {inputCls}" autocomplete\x3d"off"/\x3e', {disableFormats:true}], subTplInsertions:['inputAttrTpl'], inputType:'text', 
+invalidText:'The value in this field is invalid', fieldCls:Ext.baseCSSPrefix + 'form-field', focusCls:'form-focus', dirtyCls:Ext.baseCSSPrefix + 'form-dirty', checkChangeEvents:Ext.isIE && (!document.documentMode || document.documentMode < 9) ? ['change', 'propertychange', 'keyup'] : ['change', 'input', 'textInput', 'keyup', 'dragdrop'], checkChangeBuffer:50, componentLayout:'field', readOnly:false, readOnlyCls:Ext.baseCSSPrefix + 'form-readonly', validateOnBlur:true, hasFocus:false, baseCls:Ext.baseCSSPrefix + 
+'field', maskOnDisable:false, stretchInputElFixed:true, initComponent:function() {
   var me = this;
-  Ext.Component.prototype.initComponent.call(this);
+  me.callParent();
   me.subTplData = me.subTplData || {};
   me.addEvents('specialkey', 'writeablechange');
   me.initLabelable();
@@ -36742,17 +36355,17 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
   if (me.readOnly) {
     me.addCls(me.readOnlyCls);
   }
-  me.addCls('x-form-type-' + me.inputType);
+  me.addCls(Ext.baseCSSPrefix + 'form-type-' + me.inputType);
 }, getInputId:function() {
   return this.inputId || (this.inputId = this.id + '-inputEl');
 }, getSubTplData:function() {
   var me = this, type = me.inputType, inputId = me.getInputId(), data;
-  data = Ext.apply({id:inputId, cmpId:me.id, name:me.name || inputId, disabled:me.disabled, readOnly:me.readOnly, value:me.getRawValue(), type:type, fieldCls:me.fieldCls, fieldStyle:me.getFieldStyle(), tabIdx:me.tabIndex, inputCls:me.inputCls, typeCls:'x-form-' + (type === 'password' ? 'text' : type)}, me.subTplData);
+  data = Ext.apply({id:inputId, cmpId:me.id, name:me.name || inputId, disabled:me.disabled, readOnly:me.readOnly, value:me.getRawValue(), type:type, fieldCls:me.fieldCls, fieldStyle:me.getFieldStyle(), tabIdx:me.tabIndex, inputCls:me.inputCls, typeCls:Ext.baseCSSPrefix + 'form-' + (type === 'password' ? 'text' : type)}, me.subTplData);
   me.getInsertionRenderData(data, me.subTplInsertions);
   return data;
 }, applyRenderSelectors:function() {
   var me = this;
-  Ext.Component.prototype.applyRenderSelectors.call(this);
+  me.callParent();
   me.addChildEls('inputEl');
   me.inputEl = me.el.getById(me.getInputId());
 }, getSubTplMarkup:function() {
@@ -36762,9 +36375,9 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
   if (!me.hasOwnProperty('renderTpl')) {
     me.renderTpl = me.getTpl('labelableRenderTpl');
   }
-  return Ext.Component.prototype.initRenderTpl.call(this);
+  return me.callParent();
 }, initRenderData:function() {
-  return Ext.applyIf(Ext.Component.prototype.initRenderData.call(this), this.getLabelableRenderData());
+  return Ext.applyIf(this.callParent(), this.getLabelableRenderData());
 }, setFieldStyle:function(style) {
   var me = this, inputEl = me.inputEl;
   if (inputEl) {
@@ -36774,7 +36387,7 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
 }, getFieldStyle:function() {
   return Ext.isObject(this.fieldStyle) ? Ext.DomHelper.generateStyles(this.fieldStyle) : this.fieldStyle || '';
 }, onRender:function() {
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  this.callParent(arguments);
   this.renderActiveError();
 }, getFocusEl:function() {
   return this.inputEl;
@@ -36816,13 +36429,13 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
   return me.mixins.field.setValue.call(me, value);
 }, onBoxReady:function() {
   var me = this;
-  Ext.Component.prototype.onBoxReady.call(this);
+  me.callParent();
   if (me.setReadOnlyOnBoxReady) {
     me.setReadOnly(me.readOnly);
   }
 }, onDisable:function() {
   var me = this, inputEl = me.inputEl;
-  Ext.Component.prototype.onDisable.call(this);
+  me.callParent();
   if (inputEl) {
     inputEl.dom.disabled = true;
     if (me.hasActiveError()) {
@@ -36832,7 +36445,7 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
   }
 }, onEnable:function() {
   var me = this, inputEl = me.inputEl;
-  Ext.Component.prototype.onEnable.call(this);
+  me.callParent();
   if (inputEl) {
     inputEl.dom.disabled = false;
     if (me.needsValidateOnEnable) {
@@ -36875,13 +36488,13 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
       me.mon(inputEl, event, onChangeEvent);
     }
   }
-  Ext.Component.prototype.initEvents.call(this);
+  me.callParent();
 }, doComponentLayout:function() {
   var me = this, inputEl = me.inputEl, usesPropertychange = me.usesPropertychange, ename = 'propertychange', onChangeEvent = me.onChangeEvent;
   if (usesPropertychange) {
     me.mun(inputEl, ename, onChangeEvent);
   }
-  Ext.Component.prototype.doComponentLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (usesPropertychange) {
     me.mon(inputEl, ename, onChangeEvent);
   }
@@ -36934,26 +36547,26 @@ focusCls:'form-focus', dirtyCls:'x-form-dirty', checkChangeEvents:Ext.isIE && (!
   me.mixins.labelable.renderActiveError.call(me);
 }, getActionEl:function() {
   return this.inputEl || this.el;
-}}, 0, ['field'], ['component', 'box', 'field'], {'component':true, 'box':true, 'field':true}, ['widget.field'], [['labelable', Ext.form.Labelable], ['field', Ext.form.field.Field]], [Ext.form.field, 'Base', Ext.form, 'Field', Ext.form, 'BaseField'], 0);
-Ext.cmd.derive('Ext.form.field.VTypes', Ext.Base, function() {
+}});
+Ext.define('Ext.form.field.VTypes', function() {
   var alpha = /^[a-zA-Z_]+$/, alphanum = /^[a-zA-Z0-9_]+$/, email = /^(")?(?:[^\."])(?:(?:[\.])?(?:[\w\-!#$%&'*+/=?^_`{|}~]))*\1@(\w[\-\w]*\.){1,5}([A-Za-z]){2,6}$/, url = /(((^https?)|(^ftp)):\/\/((([\-\w]+\.)+\w{2,3}(\/[%\-\w]+(\.\w{2,})?)*(([\w\-\.\?\\\/+@&#;`~=%!]*)(\.\w{2,})?)*)|(localhost|LOCALHOST))\/?)/i;
   return {singleton:true, alternateClassName:'Ext.form.VTypes', 'email':function(v) {
     return email.test(v);
   }, 'emailText':'This field should be an e-mail address in the format "user@example.com"', 'emailMask':/[\w.\-@'"!#$%&'*+/=?^_`{|}~]/i, 'url':function(v) {
     return url.test(v);
-  }, 'urlText':'This field should be a URL in the format "http://www.example.com"', 'alpha':function(v) {
+  }, 'urlText':'This field should be a URL in the format "http:/' + '/www.example.com"', 'alpha':function(v) {
     return alpha.test(v);
   }, 'alphaText':'This field should only contain letters and _', 'alphaMask':/[a-z_]/i, 'alphanum':function(v) {
     return alphanum.test(v);
   }, 'alphanumText':'This field should only contain letters, numbers and _', 'alphanumMask':/[a-z0-9_]/i};
-}(), 0, 0, 0, 0, 0, 0, [Ext.form.field, 'VTypes', Ext.form, 'VTypes'], 0);
-Ext.cmd.derive('Ext.layout.component.field.Text', Ext.layout.component.field.Field, {type:'textfield', canGrowWidth:true, beginLayoutCycle:function(ownerContext) {
-  Ext.layout.component.field.Field.prototype.beginLayoutCycle.apply(this, arguments);
+}());
+Ext.define('Ext.layout.component.field.Text', {extend:Ext.layout.component.field.Field, alias:'layout.textfield', type:'textfield', canGrowWidth:true, beginLayoutCycle:function(ownerContext) {
+  this.callParent(arguments);
   if (ownerContext.heightModel.shrinkWrap) {
     ownerContext.inputContext.el.setStyle('height', '');
   }
 }, measureContentWidth:function(ownerContext) {
-  var me = this, owner = me.owner, width = Ext.layout.component.field.Field.prototype.measureContentWidth.apply(this, arguments), inputContext = ownerContext.inputContext, inputEl, value, calcWidth, max, min;
+  var me = this, owner = me.owner, width = me.callParent(arguments), inputContext = ownerContext.inputContext, inputEl, value, calcWidth, max, min;
   if (owner.grow && me.canGrowWidth && !ownerContext.state.growHandled) {
     inputEl = owner.inputEl;
     value = Ext.util.Format.htmlEncode(inputEl.dom.value || (owner.hasFocus ? '' : owner.emptyText) || '');
@@ -36979,17 +36592,17 @@ Ext.cmd.derive('Ext.layout.component.field.Text', Ext.layout.component.field.Fie
       width -= ieInputWidthAdjustment;
     }
   }
-  Ext.layout.component.field.Field.prototype.beginLayoutFixed.apply(this, arguments);
+  me.callParent(arguments);
 }, adjustIEInputPadding:function(ownerContext) {
   this.owner.bodyEl.setStyle('padding-right', this.ieInputWidthAdjustment + 'px');
-}}, 0, 0, 0, 0, ['layout.textfield'], 0, [Ext.layout.component.field, 'Text'], 0);
-Ext.cmd.derive('Ext.form.field.Text', Ext.form.field.Base, {alternateClassName:['Ext.form.TextField', 'Ext.form.Text'], size:20, growMin:30, growMax:800, growAppend:'W', allowBlank:true, validateBlank:false, allowOnlyWhitespace:true, minLength:0, maxLength:Number.MAX_VALUE, minLengthText:'The minimum length for this field is {0}', maxLengthText:'The maximum length for this field is {0}', blankText:'This field is required', regexText:'', emptyCls:'x-form-empty-field', requiredCls:'x-form-required-field', 
-componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:function() {
+}});
+Ext.define('Ext.form.field.Text', {extend:Ext.form.field.Base, alias:'widget.textfield', alternateClassName:['Ext.form.TextField', 'Ext.form.Text'], size:20, growMin:30, growMax:800, growAppend:'W', allowBlank:true, validateBlank:false, allowOnlyWhitespace:true, minLength:0, maxLength:Number.MAX_VALUE, minLengthText:'The minimum length for this field is {0}', maxLengthText:'The maximum length for this field is {0}', blankText:'This field is required', regexText:'', emptyCls:Ext.baseCSSPrefix + 'form-empty-field', 
+requiredCls:Ext.baseCSSPrefix + 'form-required-field', componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:function() {
   var me = this;
   if (me.allowOnlyWhitespace === false) {
     me.allowBlank = false;
   }
-  Ext.form.field.Base.prototype.initComponent.call(this);
+  me.callParent();
   me.addEvents('autosize', 'keydown', 'keyup', 'keypress');
   me.addStateEvents('change');
   me.setGrowSizePolicy();
@@ -36999,7 +36612,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
 }, initEvents:function() {
   var me = this, el = me.inputEl;
-  Ext.form.field.Base.prototype.initEvents.call(this);
+  me.callParent();
   if (me.selectOnFocus || me.emptyText) {
     me.mon(el, 'mousedown', me.onMouseDown, me);
   }
@@ -37012,7 +36625,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
 }, isEqual:function(value1, value2) {
   return this.isEqualAsString(value1, value2);
 }, onChange:function(newVal, oldVal) {
-  Ext.form.field.Base.prototype.onChange.apply(this, arguments);
+  this.callParent(arguments);
   this.autoSize();
 }, getSubTplData:function() {
   var me = this, value = me.getRawValue(), isEmpty = me.emptyText && value.length < 1, maxLength = me.maxLength, placeholder;
@@ -37031,10 +36644,10 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
       me.valueContainsPlaceholder = true;
     }
   }
-  return Ext.apply(Ext.form.field.Base.prototype.getSubTplData.call(this), {maxLength:maxLength, readOnly:me.readOnly, placeholder:placeholder, value:value, fieldCls:me.fieldCls + (isEmpty && (placeholder || value) ? ' ' + me.emptyCls : '') + (me.allowBlank ? '' : ' ' + me.requiredCls)});
+  return Ext.apply(me.callParent(), {maxLength:maxLength, readOnly:me.readOnly, placeholder:placeholder, value:value, fieldCls:me.fieldCls + (isEmpty && (placeholder || value) ? ' ' + me.emptyCls : '') + (me.allowBlank ? '' : ' ' + me.requiredCls)});
 }, afterRender:function() {
   this.autoSize();
-  Ext.form.field.Base.prototype.afterRender.call(this);
+  this.callParent();
 }, onMouseDown:function(e) {
   var me = this;
   if (!me.hasFocus) {
@@ -37051,12 +36664,12 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
   return value;
 }, onDisable:function() {
-  Ext.form.field.Base.prototype.onDisable.call(this);
+  this.callParent();
   if (Ext.isIE) {
     this.inputEl.dom.unselectable = 'on';
   }
 }, onEnable:function() {
-  Ext.form.field.Base.prototype.onEnable.call(this);
+  this.callParent();
   if (Ext.isIE) {
     this.inputEl.dom.unselectable = '';
   }
@@ -37067,7 +36680,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
 }, onKeyPress:function(e) {
   this.fireEvent('keypress', this, e);
 }, reset:function() {
-  Ext.form.field.Base.prototype.reset.call(this);
+  this.callParent();
   this.applyEmptyText();
 }, applyEmptyText:function() {
   var me = this, emptyText = me.emptyText, isEmpty;
@@ -37087,7 +36700,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
     me.autoSize();
   }
 }, afterFirstLayout:function() {
-  Ext.form.field.Base.prototype.afterFirstLayout.call(this);
+  this.callParent();
   if (Ext.isIE && this.disabled) {
     var el = this.inputEl;
     if (el) {
@@ -37096,7 +36709,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
 }, beforeFocus:function() {
   var me = this, inputEl = me.inputEl, emptyText = me.emptyText, isEmpty;
-  Ext.form.field.Base.prototype.beforeFocus.apply(this, arguments);
+  me.callParent(arguments);
   if (emptyText && !Ext.supports.Placeholder && (inputEl.dom.value === me.emptyText && me.valueContainsPlaceholder)) {
     me.setRawValue('');
     isEmpty = true;
@@ -37127,12 +36740,12 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
 }, onFocus:function() {
   var me = this;
-  Ext.form.field.Base.prototype.onFocus.apply(this, arguments);
+  me.callParent(arguments);
   if (me.emptyText) {
     me.autoSize();
   }
 }, postBlur:function() {
-  Ext.form.field.Base.prototype.postBlur.apply(this, arguments);
+  this.callParent(arguments);
   this.applyEmptyText();
 }, filterKeys:function(e) {
   if (e.ctrlKey && !e.altKey) {
@@ -37149,14 +36762,14 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
     e.stopEvent();
   }
 }, getState:function() {
-  return this.addPropertyToState(Ext.form.field.Base.prototype.getState.call(this), 'value');
+  return this.addPropertyToState(this.callParent(), 'value');
 }, applyState:function(state) {
-  Ext.form.field.Base.prototype.applyState.apply(this, arguments);
+  this.callParent(arguments);
   if (state.hasOwnProperty('value')) {
     this.setValue(state.value);
   }
 }, getRawValue:function() {
-  var me = this, v = Ext.form.field.Base.prototype.getRawValue.call(this);
+  var me = this, v = me.callParent();
   if (v === me.emptyText && me.valueContainsPlaceholder) {
     v = '';
   }
@@ -37167,11 +36780,11 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
     inputEl.removeCls(me.emptyCls);
     me.valueContainsPlaceholder = false;
   }
-  Ext.form.field.Base.prototype.setValue.apply(this, arguments);
+  me.callParent(arguments);
   me.applyEmptyText();
   return me;
 }, getErrors:function(value) {
-  var me = this, errors = Ext.form.field.Base.prototype.getErrors.apply(this, arguments), validator = me.validator, vtype = me.vtype, vtypes = Ext.form.field.VTypes, regex = me.regex, format = Ext.String.format, msg, trimmed, isBlank;
+  var me = this, errors = me.callParent(arguments), validator = me.validator, vtype = me.vtype, vtypes = Ext.form.field.VTypes, regex = me.regex, format = Ext.String.format, msg, trimmed, isBlank;
   value = value || me.processRawValue(me.getRawValue());
   if (Ext.isFunction(validator)) {
     msg = validator.call(me, value);
@@ -37232,7 +36845,7 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
 }, afterComponentLayout:function() {
   var me = this, width;
-  Ext.form.field.Base.prototype.afterComponentLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (me.autoSizing) {
     width = me.inputEl.getWidth();
     if (width !== me.lastInputWidth) {
@@ -37243,17 +36856,17 @@ componentLayout:'textfield', valueContainsPlaceholder:false, initComponent:funct
   }
 }, onDestroy:function() {
   var me = this;
-  Ext.form.field.Base.prototype.onDestroy.call(this);
+  me.callParent();
   if (me.inputFocusTask) {
     me.inputFocusTask.cancel();
     me.inputFocusTask = null;
   }
-}}, 0, ['textfield'], ['component', 'box', 'field', 'textfield'], {'component':true, 'box':true, 'field':true, 'textfield':true}, ['widget.textfield'], 0, [Ext.form.field, 'Text', Ext.form, 'TextField', Ext.form, 'Text'], 0);
-Ext.cmd.derive('Ext.layout.component.field.TextArea', Ext.layout.component.field.Text, {type:'textareafield', canGrowWidth:false, naturalSizingProp:'cols', beginLayout:function(ownerContext) {
-  Ext.layout.component.field.Text.prototype.beginLayout.apply(this, arguments);
+}});
+Ext.define('Ext.layout.component.field.TextArea', {extend:Ext.layout.component.field.Text, alias:'layout.textareafield', type:'textareafield', canGrowWidth:false, naturalSizingProp:'cols', beginLayout:function(ownerContext) {
+  this.callParent(arguments);
   ownerContext.target.inputEl.setStyle('height', '');
 }, measureContentHeight:function(ownerContext) {
-  var me = this, owner = me.owner, height = Ext.layout.component.field.Text.prototype.measureContentHeight.apply(this, arguments), inputContext, inputEl, value, max, curWidth, calcHeight;
+  var me = this, owner = me.owner, height = me.callParent(arguments), inputContext, inputEl, value, max, curWidth, calcHeight;
   if (owner.grow && !ownerContext.state.growHandled) {
     inputContext = ownerContext.inputContext;
     inputEl = owner.inputEl;
@@ -37269,11 +36882,11 @@ Ext.cmd.derive('Ext.layout.component.field.TextArea', Ext.layout.component.field
     height = NaN;
   }
   return height;
-}}, 0, 0, 0, 0, ['layout.textareafield'], 0, [Ext.layout.component.field, 'TextArea'], 0);
-Ext.cmd.derive('Ext.form.field.TextArea', Ext.form.field.Text, {alternateClassName:'Ext.form.TextArea', fieldSubTpl:['\x3ctextarea id\x3d"{id}" {inputAttrTpl}', '\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"rows"\x3e rows\x3d"{rows}" \x3c/tpl\x3e', '\x3ctpl if\x3d"cols"\x3e cols\x3d"{cols}" \x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', '\x3ctpl if\x3d"size"\x3e size\x3d"{size}"\x3c/tpl\x3e', '\x3ctpl if\x3d"maxLength !\x3d\x3d undefined"\x3e maxlength\x3d"{maxLength}"\x3c/tpl\x3e', 
-'\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {inputCls}" ', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' autocomplete\x3d"off"\x3e\n', '\x3ctpl if\x3d"value"\x3e{[Ext.util.Format.htmlEncode(values.value)]}\x3c/tpl\x3e', '\x3c/textarea\x3e', {disableFormats:true}], growMin:60, growMax:1000, 
-growAppend:'\n-', cols:20, rows:4, enterIsSpecial:false, preventScrollbars:false, componentLayout:'textareafield', setGrowSizePolicy:Ext.emptyFn, returnRe:/\r/g, inputCls:'x-form-textarea', getSubTplData:function() {
-  var me = this, fieldStyle = me.getFieldStyle(), ret = Ext.form.field.Text.prototype.getSubTplData.call(this);
+}});
+Ext.define('Ext.form.field.TextArea', {extend:Ext.form.field.Text, alias:['widget.textareafield', 'widget.textarea'], alternateClassName:'Ext.form.TextArea', fieldSubTpl:['\x3ctextarea id\x3d"{id}" {inputAttrTpl}', '\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"rows"\x3e rows\x3d"{rows}" \x3c/tpl\x3e', '\x3ctpl if\x3d"cols"\x3e cols\x3d"{cols}" \x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', '\x3ctpl if\x3d"size"\x3e size\x3d"{size}"\x3c/tpl\x3e', 
+'\x3ctpl if\x3d"maxLength !\x3d\x3d undefined"\x3e maxlength\x3d"{maxLength}"\x3c/tpl\x3e', '\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {inputCls}" ', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' autocomplete\x3d"off"\x3e\n', '\x3ctpl if\x3d"value"\x3e{[Ext.util.Format.htmlEncode(values.value)]}\x3c/tpl\x3e', 
+'\x3c/textarea\x3e', {disableFormats:true}], growMin:60, growMax:1000, growAppend:'\n-', cols:20, rows:4, enterIsSpecial:false, preventScrollbars:false, componentLayout:'textareafield', setGrowSizePolicy:Ext.emptyFn, returnRe:/\r/g, inputCls:Ext.baseCSSPrefix + 'form-textarea', getSubTplData:function() {
+  var me = this, fieldStyle = me.getFieldStyle(), ret = me.callParent();
   if (me.grow) {
     if (me.preventScrollbars) {
       ret.fieldStyle = (fieldStyle || '') + ';overflow:hidden;height:' + me.growMin + 'px';
@@ -37283,7 +36896,7 @@ growAppend:'\n-', cols:20, rows:4, enterIsSpecial:false, preventScrollbars:false
   return ret;
 }, afterRender:function() {
   var me = this;
-  Ext.form.field.Text.prototype.afterRender.apply(this, arguments);
+  me.callParent(arguments);
   me.needsMaxCheck = me.enforceMaxLength && me.maxLength !== Number.MAX_VALUE && !Ext.supports.TextAreaMaxLength;
   if (me.needsMaxCheck) {
     me.inputEl.on('paste', me.onPaste, me);
@@ -37293,10 +36906,10 @@ growAppend:'\n-', cols:20, rows:4, enterIsSpecial:false, preventScrollbars:false
 }, transformOriginalValue:function(value) {
   return this.stripReturns(value);
 }, getValue:function() {
-  return this.stripReturns(Ext.form.field.Text.prototype.getValue.call(this));
+  return this.stripReturns(this.callParent());
 }, valueToRaw:function(value) {
   value = this.stripReturns(value);
-  return Ext.form.field.Text.prototype.valueToRaw.call(this, value);
+  return this.callParent([value]);
 }, stripReturns:function(value) {
   if (value && typeof value === 'string') {
     value = value.replace(this.returnRe, '');
@@ -37349,10 +36962,10 @@ growAppend:'\n-', cols:20, rows:4, enterIsSpecial:false, preventScrollbars:false
     task.cancel();
     this.pasteTask = null;
   }
-  Ext.form.field.Text.prototype.beforeDestroy.call(this);
-}}, 0, ['textarea', 'textareafield'], ['component', 'box', 'field', 'textfield', 'textareafield', 'textarea'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'textareafield':true, 'textarea':true}, ['widget.textarea', 'widget.textareafield'], 0, [Ext.form.field, 'TextArea', Ext.form, 'TextArea'], 0);
-Ext.cmd.derive('Ext.form.field.Display', Ext.form.field.Base, {alternateClassName:['Ext.form.DisplayField', 'Ext.form.Display'], fieldSubTpl:['\x3cdiv id\x3d"{id}" role\x3d"input" ', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' class\x3d"{fieldCls}"\x3e{value}\x3c/div\x3e', {compiled:true, disableFormats:true}], readOnly:true, fieldCls:'x-form-display-field', fieldBodyCls:'x-form-display-field-body', htmlEncode:false, noWrap:false, validateOnChange:false, initEvents:Ext.emptyFn, 
-submitValue:false, isDirty:function() {
+  this.callParent();
+}});
+Ext.define('Ext.form.field.Display', {extend:Ext.form.field.Base, alias:'widget.displayfield', alternateClassName:['Ext.form.DisplayField', 'Ext.form.Display'], fieldSubTpl:['\x3cdiv id\x3d"{id}" role\x3d"input" ', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', ' class\x3d"{fieldCls}"\x3e{value}\x3c/div\x3e', {compiled:true, disableFormats:true}], readOnly:true, fieldCls:Ext.baseCSSPrefix + 'form-display-field', fieldBodyCls:Ext.baseCSSPrefix + 'form-display-field-body', htmlEncode:false, 
+noWrap:false, validateOnChange:false, initEvents:Ext.emptyFn, submitValue:false, isDirty:function() {
   return false;
 }, isValid:function() {
   return true;
@@ -37378,13 +36991,13 @@ submitValue:false, isDirty:function() {
   }
   return display;
 }, getSubTplData:function() {
-  var ret = Ext.form.field.Base.prototype.getSubTplData.apply(this, arguments);
+  var ret = this.callParent(arguments);
   ret.value = this.getDisplayValue();
   return ret;
-}}, 0, ['displayfield'], ['component', 'box', 'field', 'displayfield'], {'component':true, 'box':true, 'field':true, 'displayfield':true}, ['widget.displayfield'], 0, [Ext.form.field, 'Display', Ext.form, 'DisplayField', Ext.form, 'Display'], 0);
-Ext.cmd.derive('Ext.layout.container.Anchor', Ext.layout.container.Auto, {alternateClassName:'Ext.layout.AnchorLayout', type:'anchor', defaultAnchor:'100%', parseAnchorRE:/^(r|right|b|bottom)$/i, manageOverflow:true, beginLayoutCycle:function(ownerContext) {
+}});
+Ext.define('Ext.layout.container.Anchor', {alias:'layout.anchor', extend:Ext.layout.container.Auto, alternateClassName:'Ext.layout.AnchorLayout', type:'anchor', defaultAnchor:'100%', parseAnchorRE:/^(r|right|b|bottom)$/i, manageOverflow:true, beginLayoutCycle:function(ownerContext) {
   var me = this, dimensions = 0, anchorSpec, childContext, childItems, i, length, target;
-  Ext.layout.container.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   childItems = ownerContext.childItems;
   length = childItems.length;
   for (i = 0; i < length; ++i) {
@@ -37477,7 +37090,7 @@ Ext.cmd.derive('Ext.layout.container.Anchor', Ext.layout.container.Auto, {altern
   return value;
 }, configureItem:function(item) {
   var me = this, owner = me.owner, anchor = item.anchor, anchorsArray, anchorWidth, anchorHeight;
-  Ext.layout.container.Auto.prototype.configureItem.apply(this, arguments);
+  me.callParent(arguments);
   if (!item.anchor && item.items && !Ext.isNumber(item.width) && !(Ext.isIE6 && Ext.isStrict)) {
     item.anchor = anchor = me.defaultAnchor;
   }
@@ -37508,9 +37121,9 @@ Ext.cmd.derive('Ext.layout.container.Anchor', Ext.layout.container.Auto, {altern
     }
   }
   return policy[key];
-}}, 0, 0, 0, 0, ['layout.anchor'], 0, [Ext.layout.container, 'Anchor', Ext.layout, 'AnchorLayout'], 0);
-Ext.cmd.derive('Ext.window.MessageBox', Ext.window.Window, {OK:1, YES:2, NO:4, CANCEL:8, OKCANCEL:9, YESNO:6, YESNOCANCEL:14, INFO:'x-message-box-info', WARNING:'x-message-box-warning', QUESTION:'x-message-box-question', ERROR:'x-message-box-error', hideMode:'offsets', closeAction:'hide', resizable:false, title:'\x26#160;', defaultMinWidth:250, defaultMaxWidth:600, defaultMinHeight:110, defaultMaxHeight:500, minWidth:null, maxWidth:null, minHeight:null, maxHeight:null, constrain:true, cls:['x-message-box'], 
-layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75, minProgressWidth:250, minPromptWidth:250, buttonText:{ok:'OK', yes:'Yes', no:'No', cancel:'Cancel'}, buttonIds:['ok', 'yes', 'no', 'cancel'], titleText:{confirm:'Confirm', prompt:'Prompt', wait:'Loading...', alert:'Attention'}, iconHeight:35, iconWidth:50, makeButton:function(btnIdx) {
+}});
+Ext.define('Ext.window.MessageBox', {extend:Ext.window.Window, alias:'widget.messagebox', OK:1, YES:2, NO:4, CANCEL:8, OKCANCEL:9, YESNO:6, YESNOCANCEL:14, INFO:Ext.baseCSSPrefix + 'message-box-info', WARNING:Ext.baseCSSPrefix + 'message-box-warning', QUESTION:Ext.baseCSSPrefix + 'message-box-question', ERROR:Ext.baseCSSPrefix + 'message-box-error', hideMode:'offsets', closeAction:'hide', resizable:false, title:'\x26#160;', defaultMinWidth:250, defaultMaxWidth:600, defaultMinHeight:110, defaultMaxHeight:500, 
+minWidth:null, maxWidth:null, minHeight:null, maxHeight:null, constrain:true, cls:[Ext.baseCSSPrefix + 'message-box'], layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75, minProgressWidth:250, minPromptWidth:250, buttonText:{ok:'OK', yes:'Yes', no:'No', cancel:'Cancel'}, buttonIds:['ok', 'yes', 'no', 'cancel'], titleText:{confirm:'Confirm', prompt:'Prompt', wait:'Loading...', alert:'Attention'}, iconHeight:35, iconWidth:50, makeButton:function(btnIdx) {
   var btnId = this.buttonIds[btnIdx];
   return new Ext.button.Button({handler:this.btnCallback, itemId:btnId, scope:this, text:this.buttonText[btnId], minWidth:75});
 }, btnCallback:function(btn) {
@@ -37533,10 +37146,10 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
   if (cls) {
     me.removeCls(cls);
   }
-  Ext.window.Window.prototype.hide.apply(this, arguments);
+  me.callParent(arguments);
 }, constructor:function(cfg) {
   var me = this;
-  Ext.window.Window.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   me.minWidth = me.defaultMinWidth = me.minWidth || me.defaultMinWidth;
   me.maxWidth = me.defaultMaxWidth = me.maxWidth || me.defaultMaxWidth;
   me.minHeight = me.defaultMinHeight = me.minHeight || me.defaultMinHeight;
@@ -37557,7 +37170,7 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
   me.bottomTb = new Ext.toolbar.Toolbar({id:baseId + '-toolbar', ui:'footer', dock:'bottom', layout:{pack:'center'}, items:[me.msgButtons[0], me.msgButtons[1], me.msgButtons[2], me.msgButtons[3]]});
   me.dockedItems = [me.bottomTb];
   me.on('close', me.onClose, me);
-  Ext.window.Window.prototype.initComponent.call(this);
+  me.callParent();
 }, onClose:function() {
   var btn = this.header.child('[type\x3dclose]');
   btn.itemId = 'cancel';
@@ -37724,10 +37337,10 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
   visibleFocusables = me.query('textfield:not([hidden]),textarea:not([hidden]),button:not([hidden])');
   me.preventFocusOnActivate = !visibleFocusables.length;
   me.hidden = true;
-  Ext.window.Window.prototype.show.call(this);
+  me.callParent();
   return me;
 }, onShow:function() {
-  Ext.window.Window.prototype.onShow.apply(this, arguments);
+  this.callParent(arguments);
   this.center();
 }, updateText:function(text) {
   this.msg.setValue(text);
@@ -37739,10 +37352,10 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
   if (icon) {
     iconCmp.show();
     iconCmp.setSize(width || me.iconWidth, height || me.iconHeight);
-    iconCmp.addCls('x-dlg-icon');
+    iconCmp.addCls(Ext.baseCSSPrefix + 'dlg-icon');
     iconCmp.addCls(me.messageIconCls = icon);
   } else {
-    iconCmp.removeCls('x-dlg-icon');
+    iconCmp.removeCls(Ext.baseCSSPrefix + 'dlg-icon');
     iconCmp.hide();
   }
   return me;
@@ -37754,7 +37367,7 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
   return this;
 }, onEsc:function() {
   if (this.closable !== false) {
-    Ext.window.Window.prototype.onEsc.apply(this, arguments);
+    this.callParent(arguments);
   }
 }, confirm:function(cfg, msg, fn, scope) {
   if (Ext.isString(cfg)) {
@@ -37781,10 +37394,10 @@ layout:{type:'vbox', align:'stretch'}, shrinkWrapDock:true, defaultTextHeight:75
     cfg = {title:cfg, msg:msg, progress:true, progressText:progressText};
   }
   return this.show(cfg);
-}}, 1, ['messagebox'], ['component', 'box', 'container', 'panel', 'window', 'messagebox'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'messagebox':true}, ['widget.messagebox'], 0, [Ext.window, 'MessageBox'], function() {
+}}, function() {
   Ext.MessageBox = Ext.Msg = new this;
 });
-Ext.cmd.derive('Ext.form.Basic', Ext.util.Observable, {alternateClassName:'Ext.form.BasicForm', constructor:function(owner, config) {
+Ext.define('Ext.form.Basic', {extend:Ext.util.Observable, alternateClassName:'Ext.form.BasicForm', constructor:function(owner, config) {
   var me = this, reader;
   me.owner = owner;
   me.checkValidityTask = new Ext.util.DelayedTask(me.checkValidity, me);
@@ -37810,7 +37423,7 @@ Ext.cmd.derive('Ext.form.Basic', Ext.util.Observable, {alternateClassName:'Ext.f
     me.errorReader = Ext.createByAlias('reader.' + reader.type, reader);
   }
   me.addEvents('beforeaction', 'actionfailed', 'actioncomplete', 'validitychange', 'dirtychange');
-  Ext.util.Observable.prototype.constructor.call(this);
+  me.callParent();
 }, initialize:function() {
   this.initialized = true;
   this.onValidityChange(!this.hasInvalidField());
@@ -37942,7 +37555,7 @@ Ext.cmd.derive('Ext.form.Basic', Ext.util.Observable, {alternateClassName:'Ext.f
 }, getRecord:function() {
   return this._record;
 }, beforeAction:function(action) {
-  var me = this, waitMsg = action.waitMsg, maskCls = 'x-mask-loading', fields = me.getFields().items, f, fLen = fields.length, field, waitMsgTarget;
+  var me = this, waitMsg = action.waitMsg, maskCls = Ext.baseCSSPrefix + 'mask-loading', fields = me.getFields().items, f, fLen = fields.length, field, waitMsgTarget;
   for (f = 0; f < fLen; f++) {
     field = fields[f];
     if (field.isFormField && field.syncValue) {
@@ -38120,8 +37733,8 @@ Ext.cmd.derive('Ext.form.Basic', Ext.util.Observable, {alternateClassName:'Ext.f
     Ext.applyIf(fields[f], obj);
   }
   return this;
-}}, 1, 0, 0, 0, 0, 0, [Ext.form, 'Basic', Ext.form, 'BasicForm'], 0);
-Ext.cmd.derive('Ext.form.FieldAncestor', Ext.Base, {xhooks:{initHierarchyState:function(hierarchyState) {
+}});
+Ext.define('Ext.form.FieldAncestor', {xhooks:{initHierarchyState:function(hierarchyState) {
   if (this.fieldDefaults) {
     if (hierarchyState.fieldDefaults) {
       hierarchyState.fieldDefaults = Ext.apply(Ext.Object.chain(hierarchyState.fieldDefaults), this.fieldDefaults);
@@ -38163,18 +37776,18 @@ Ext.cmd.derive('Ext.form.FieldAncestor', Ext.Base, {xhooks:{initHierarchyState:f
 }, onFieldValidityChange:Ext.emptyFn, onFieldErrorChange:Ext.emptyFn, beforeDestroy:function() {
   this.monitor.unbind();
   this.callParent();
-}}, 0, 0, 0, 0, 0, 0, [Ext.form, 'FieldAncestor'], 0);
-Ext.cmd.derive('Ext.layout.component.field.FieldContainer', Ext.layout.component.field.Field, {type:'fieldcontainer', waitForOuterHeightInDom:true, waitForOuterWidthInDom:true, beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.field.FieldContainer', {extend:Ext.layout.component.field.Field, alias:'layout.fieldcontainer', type:'fieldcontainer', waitForOuterHeightInDom:true, waitForOuterWidthInDom:true, beginLayout:function(ownerContext) {
   var owner = this.owner;
-  Ext.layout.component.field.Field.prototype.beginLayout.apply(this, arguments);
+  this.callParent(arguments);
   ownerContext.hasRawContent = true;
   owner.bodyEl.setStyle('height', '');
   owner.containerEl.setStyle('height', '');
   ownerContext.containerElContext = ownerContext.getEl('containerEl');
 }, measureContentHeight:function(ownerContext) {
-  return ownerContext.hasDomProp('containerLayoutDone') ? Ext.layout.component.field.Field.prototype.measureContentHeight.apply(this, arguments) : NaN;
+  return ownerContext.hasDomProp('containerLayoutDone') ? this.callParent(arguments) : NaN;
 }, measureContentWidth:function(ownerContext) {
-  return ownerContext.hasDomProp('containerLayoutDone') ? Ext.layout.component.field.Field.prototype.measureContentWidth.apply(this, arguments) : NaN;
+  return ownerContext.hasDomProp('containerLayoutDone') ? this.callParent(arguments) : NaN;
 }, publishInnerWidth:function(ownerContext, width) {
   var bodyContext = ownerContext.bodyCellContext, innerWidth = bodyContext.el.getWidth();
   bodyContext.setWidth(innerWidth, false);
@@ -38184,12 +37797,13 @@ Ext.cmd.derive('Ext.layout.component.field.FieldContainer', Ext.layout.component
   height -= this.measureLabelErrorHeight(ownerContext);
   bodyContext.setHeight(height);
   containerElContext.setHeight(height);
-}}, 0, 0, 0, 0, ['layout.fieldcontainer'], 0, [Ext.layout.component.field, 'FieldContainer'], 0);
-Ext.cmd.derive('Ext.form.FieldContainer', Ext.container.Container, {componentLayout:'fieldcontainer', componentCls:'x-form-fieldcontainer', customOverflowEl:'containerEl', childEls:['containerEl'], combineLabels:false, labelConnector:', ', combineErrors:false, maskOnDisable:false, invalidCls:'', fieldSubTpl:'\x3cdiv id\x3d"{id}-containerEl" class\x3d"{containerElCls}"\x3e{%this.renderContainer(out,values)%}\x3c/div\x3e', initComponent:function() {
+}});
+Ext.define('Ext.form.FieldContainer', {extend:Ext.container.Container, mixins:{labelable:Ext.form.Labelable, fieldAncestor:Ext.form.FieldAncestor}, alias:'widget.fieldcontainer', componentLayout:'fieldcontainer', componentCls:Ext.baseCSSPrefix + 'form-fieldcontainer', customOverflowEl:'containerEl', childEls:['containerEl'], combineLabels:false, labelConnector:', ', combineErrors:false, maskOnDisable:false, invalidCls:'', fieldSubTpl:'\x3cdiv id\x3d"{id}-containerEl" class\x3d"{containerElCls}"\x3e{%this.renderContainer(out,values)%}\x3c/div\x3e', 
+initComponent:function() {
   var me = this;
   me.initLabelable();
   me.initFieldAncestor();
-  Ext.container.Container.prototype.initComponent.call(this);
+  me.callParent();
   me.initMonitor();
 }, getOverflowEl:function() {
   return this.containerEl;
@@ -38198,7 +37812,7 @@ Ext.cmd.derive('Ext.form.FieldContainer', Ext.container.Container, {componentLay
   if (Ext.isGecko && me.layout.type === 'absolute' && !me.hideLabel && me.labelAlign !== 'top') {
     labelable.x += me.labelWidth + me.labelPad;
   }
-  Ext.container.Container.prototype.onAdd.apply(this, arguments);
+  me.callParent(arguments);
   if (me.combineLabels) {
     labelable.oldHideLabel = labelable.hideLabel;
     labelable.hideLabel = true;
@@ -38206,7 +37820,7 @@ Ext.cmd.derive('Ext.form.FieldContainer', Ext.container.Container, {componentLay
   me.updateLabel();
 }, onRemove:function(labelable, isDestroying) {
   var me = this;
-  Ext.container.Container.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
   if (!isDestroying) {
     if (me.combineLabels) {
       labelable.hideLabel = labelable.oldHideLabel;
@@ -38218,9 +37832,9 @@ Ext.cmd.derive('Ext.form.FieldContainer', Ext.container.Container, {componentLay
   if (!me.hasOwnProperty('renderTpl')) {
     me.renderTpl = me.getTpl('labelableRenderTpl');
   }
-  return Ext.container.Container.prototype.initRenderTpl.call(this);
+  return me.callParent();
 }, initRenderData:function() {
-  var me = this, data = Ext.container.Container.prototype.initRenderData.call(this);
+  var me = this, data = me.callParent();
   data.containerElCls = me.containerElCls;
   return Ext.applyIf(data, me.getLabelableRenderData());
 }, getFieldLabel:function() {
@@ -38279,11 +37893,11 @@ Ext.cmd.derive('Ext.form.FieldContainer', Ext.container.Container, {componentLay
 }, applyTargetCls:function(targetCls) {
   var containerElCls = this.containerElCls;
   this.containerElCls = containerElCls ? containerElCls + ' ' + targetCls : targetCls;
-}}, 0, ['fieldcontainer'], ['component', 'box', 'container', 'fieldcontainer'], {'component':true, 'box':true, 'container':true, 'fieldcontainer':true}, ['widget.fieldcontainer'], [['labelable', Ext.form.Labelable], ['fieldAncestor', Ext.form.FieldAncestor]], [Ext.form, 'FieldContainer'], 0);
-Ext.cmd.derive('Ext.layout.container.CheckboxGroup', Ext.layout.container.Container, {autoFlex:true, type:'checkboxgroup', createsInnerCt:true, childEls:['innerCt'], renderTpl:['\x3ctable id\x3d"{ownerId}-innerCt" class\x3d"' + Ext.plainTableCls + '" cellpadding\x3d"0"', 'role\x3d"presentation" style\x3d"{tableStyle}"\x3e\x3ctbody\x3e\x3ctr\x3e', '\x3ctpl for\x3d"columns"\x3e', '\x3ctd class\x3d"{parent.colCls}" valign\x3d"top" style\x3d"{style}"\x3e', '{% this.renderColumn(out,parent,xindex-1) %}', 
+}});
+Ext.define('Ext.layout.container.CheckboxGroup', {extend:Ext.layout.container.Container, alias:['layout.checkboxgroup'], autoFlex:true, type:'checkboxgroup', createsInnerCt:true, childEls:['innerCt'], renderTpl:['\x3ctable id\x3d"{ownerId}-innerCt" class\x3d"' + Ext.plainTableCls + '" cellpadding\x3d"0"', 'role\x3d"presentation" style\x3d"{tableStyle}"\x3e\x3ctbody\x3e\x3ctr\x3e', '\x3ctpl for\x3d"columns"\x3e', '\x3ctd class\x3d"{parent.colCls}" valign\x3d"top" style\x3d"{style}"\x3e', '{% this.renderColumn(out,parent,xindex-1) %}', 
 '\x3c/td\x3e', '\x3c/tpl\x3e', '\x3c/tr\x3e\x3c/tbody\x3e\x3c/table\x3e'], lastOwnerItemsGeneration:null, beginLayout:function(ownerContext) {
   var me = this, columns, numCols, i, width, cwidth, totalFlex = 0, flexedCols = 0, autoFlex = me.autoFlex, innerCtStyle = me.innerCt.dom.style;
-  Ext.layout.container.Container.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   columns = me.columnNodes;
   ownerContext.innerCtContext = ownerContext.getEl('innerCt', me);
   if (!ownerContext.widthModel.shrinkWrap) {
@@ -38334,7 +37948,7 @@ Ext.cmd.derive('Ext.layout.container.CheckboxGroup', Ext.layout.container.Contai
   }
 }, cacheElements:function() {
   var me = this;
-  Ext.layout.container.Container.prototype.cacheElements.call(this);
+  me.callParent();
   me.rowEl = me.innerCt.down('tr');
   me.columnNodes = me.rowEl.dom.childNodes;
 }, calculate:function(ownerContext) {
@@ -38384,7 +37998,7 @@ Ext.cmd.derive('Ext.layout.container.CheckboxGroup', Ext.layout.container.Contai
 }, getItemSizePolicy:function(item) {
   return this.autoSizePolicy;
 }, getRenderData:function() {
-  var me = this, data = Ext.layout.container.Container.prototype.getRenderData.call(this), owner = me.owner, i, columns = me.getColumnCount(), width, column, cwidth, autoFlex = me.autoFlex, totalFlex = 0, flexedCols = 0;
+  var me = this, data = me.callParent(), owner = me.owner, i, columns = me.getColumnCount(), width, column, cwidth, autoFlex = me.autoFlex, totalFlex = 0, flexedCols = 0;
   if (me.columnsArray) {
     for (i = 0; i < columns; i++) {
       width = me.owner.columns[i];
@@ -38419,11 +38033,11 @@ Ext.cmd.derive('Ext.layout.container.CheckboxGroup', Ext.layout.container.Contai
   me.columnsArray = Ext.isArray(owner.columns);
   me.autoColumns = !owner.columns || owner.columns === 'auto';
   me.vertical = owner.vertical;
-  Ext.layout.container.Container.prototype.initLayout.call(this);
+  me.callParent();
 }, isValidParent:function() {
   return true;
 }, setupRenderTpl:function(renderTpl) {
-  Ext.layout.container.Container.prototype.setupRenderTpl.apply(this, arguments);
+  this.callParent(arguments);
   renderTpl.renderColumn = this.doRenderColumn;
 }, renderChildren:function() {
   var me = this, generation = me.owner.items.generation;
@@ -38501,17 +38115,17 @@ Ext.cmd.derive('Ext.layout.container.CheckboxGroup', Ext.layout.container.Contai
 }, moveItem:function(item, rowIndex, columnIndex) {
   var me = this, column = me.columnNodes[columnIndex], targetNode = column.childNodes[rowIndex];
   column.insertBefore(item.el.dom, targetNode || null);
-}}, 0, 0, 0, 0, ['layout.checkboxgroup'], 0, [Ext.layout.container, 'CheckboxGroup'], 0);
-Ext.cmd.derive('Ext.form.CheckboxManager', Ext.util.MixedCollection, {singleton:true, getByName:function(name, formId) {
+}});
+Ext.define('Ext.form.CheckboxManager', {extend:Ext.util.MixedCollection, singleton:true, getByName:function(name, formId) {
   return this.filterBy(function(item) {
     return item.name == name && item.getFormId() == formId;
   });
-}}, 0, 0, 0, 0, 0, 0, [Ext.form, 'CheckboxManager'], 0);
-Ext.cmd.derive('Ext.form.field.Checkbox', Ext.form.field.Base, {alternateClassName:'Ext.form.Checkbox', componentLayout:'field', stretchInputElFixed:false, childEls:['boxLabelEl'], fieldSubTpl:['\x3ctpl if\x3d"boxLabel \x26\x26 boxLabelAlign \x3d\x3d \'before\'"\x3e', '{beforeBoxLabelTpl}', '\x3clabel id\x3d"{cmpId}-boxLabelEl" {boxLabelAttrTpl} class\x3d"{boxLabelCls} {boxLabelCls}-{boxLabelAlign}" for\x3d"{id}"\x3e', '{beforeBoxLabelTextTpl}', '{boxLabel}', '{afterBoxLabelTextTpl}', '\x3c/label\x3e', 
-'{afterBoxLabelTpl}', '\x3c/tpl\x3e', '\x3cinput type\x3d"{inputTypeAttr}" id\x3d"{id}" {inputAttrTpl}', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', '\x3ctpl if\x3d"ariaAttrs"\x3e {ariaAttrs}\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {inputCls} {childElCls}" autocomplete\x3d"off" hidefocus\x3d"true" /\x3e', '\x3ctpl if\x3d"boxLabel \x26\x26 boxLabelAlign \x3d\x3d \'after\'"\x3e', 
-'{beforeBoxLabelTpl}', '\x3clabel id\x3d"{cmpId}-boxLabelEl" {boxLabelAttrTpl} class\x3d"{boxLabelCls} {boxLabelCls}-{boxLabelAlign}" for\x3d"{id}"\x3e', '{beforeBoxLabelTextTpl}', '{boxLabel}', '{afterBoxLabelTextTpl}', '\x3c/label\x3e', '{afterBoxLabelTpl}', '\x3c/tpl\x3e', {disableFormats:true, compiled:true}], subTplInsertions:['beforeBoxLabelTpl', 'afterBoxLabelTpl', 'beforeBoxLabelTextTpl', 'afterBoxLabelTextTpl', 'boxLabelAttrTpl', 'inputAttrTpl'], isCheckbox:true, focusCls:'form-checkbox-focus', 
-extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked', boxLabelCls:'x-form-cb-label', boxLabelAlign:'after', inputValue:'on', checkChangeEvents:[], inputType:'checkbox', inputTypeAttr:'button', onRe:/^on$/i, inputCls:'x-form-cb', initComponent:function() {
-  Ext.form.field.Base.prototype.initComponent.apply(this, arguments);
+}});
+Ext.define('Ext.form.field.Checkbox', {extend:Ext.form.field.Base, alias:['widget.checkboxfield', 'widget.checkbox'], alternateClassName:'Ext.form.Checkbox', componentLayout:'field', stretchInputElFixed:false, childEls:['boxLabelEl'], fieldSubTpl:['\x3ctpl if\x3d"boxLabel \x26\x26 boxLabelAlign \x3d\x3d \'before\'"\x3e', '{beforeBoxLabelTpl}', '\x3clabel id\x3d"{cmpId}-boxLabelEl" {boxLabelAttrTpl} class\x3d"{boxLabelCls} {boxLabelCls}-{boxLabelAlign}" for\x3d"{id}"\x3e', '{beforeBoxLabelTextTpl}', 
+'{boxLabel}', '{afterBoxLabelTextTpl}', '\x3c/label\x3e', '{afterBoxLabelTpl}', '\x3c/tpl\x3e', '\x3cinput type\x3d"{inputTypeAttr}" id\x3d"{id}" {inputAttrTpl}', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', '\x3ctpl if\x3d"ariaAttrs"\x3e {ariaAttrs}\x3c/tpl\x3e', ' class\x3d"{fieldCls} {typeCls} {inputCls} {childElCls}" autocomplete\x3d"off" hidefocus\x3d"true" /\x3e', 
+'\x3ctpl if\x3d"boxLabel \x26\x26 boxLabelAlign \x3d\x3d \'after\'"\x3e', '{beforeBoxLabelTpl}', '\x3clabel id\x3d"{cmpId}-boxLabelEl" {boxLabelAttrTpl} class\x3d"{boxLabelCls} {boxLabelCls}-{boxLabelAlign}" for\x3d"{id}"\x3e', '{beforeBoxLabelTextTpl}', '{boxLabel}', '{afterBoxLabelTextTpl}', '\x3c/label\x3e', '{afterBoxLabelTpl}', '\x3c/tpl\x3e', {disableFormats:true, compiled:true}], subTplInsertions:['beforeBoxLabelTpl', 'afterBoxLabelTpl', 'beforeBoxLabelTextTpl', 'afterBoxLabelTextTpl', 'boxLabelAttrTpl', 
+'inputAttrTpl'], isCheckbox:true, focusCls:'form-checkbox-focus', extraFieldBodyCls:Ext.baseCSSPrefix + 'form-cb-wrap', checked:false, checkedCls:Ext.baseCSSPrefix + 'form-cb-checked', boxLabelCls:Ext.baseCSSPrefix + 'form-cb-label', boxLabelAlign:'after', inputValue:'on', checkChangeEvents:[], inputType:'checkbox', inputTypeAttr:'button', onRe:/^on$/i, inputCls:Ext.baseCSSPrefix + 'form-cb', initComponent:function() {
+  this.callParent(arguments);
   this.getManager().add(this);
 }, initValue:function() {
   var me = this, checked = !!me.checked;
@@ -38522,15 +38136,15 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
   if (me.isChecked(me.rawValue, me.inputValue)) {
     me.addCls(me.checkedCls);
   }
-  return Ext.form.field.Base.prototype.getElConfig.call(this);
+  return me.callParent();
 }, getFieldStyle:function() {
   return Ext.isObject(this.fieldStyle) ? Ext.DomHelper.generateStyles(this.fieldStyle) : this.fieldStyle || '';
 }, getSubTplData:function() {
   var me = this;
-  return Ext.apply(Ext.form.field.Base.prototype.getSubTplData.call(this), {disabled:me.readOnly || me.disabled, boxLabel:me.boxLabel, boxLabelCls:me.boxLabelCls, boxLabelAlign:me.boxLabelAlign, inputTypeAttr:me.inputTypeAttr});
+  return Ext.apply(me.callParent(), {disabled:me.readOnly || me.disabled, boxLabel:me.boxLabel, boxLabelCls:me.boxLabelCls, boxLabelAlign:me.boxLabelAlign, inputTypeAttr:me.inputTypeAttr});
 }, initEvents:function() {
   var me = this;
-  Ext.form.field.Base.prototype.initEvents.call(this);
+  me.callParent();
   me.mon(me.inputEl, 'click', me.onBoxClick, me);
 }, setBoxLabel:function(boxLabel) {
   var me = this;
@@ -38569,7 +38183,7 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
       box.setValue(Ext.Array.contains(checked, box.inputValue));
     }
   } else {
-    Ext.form.field.Base.prototype.setValue.apply(this, arguments);
+    me.callParent(arguments);
   }
   return me;
 }, valueToRaw:function(value) {
@@ -38579,7 +38193,7 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
   if (handler) {
     handler.call(me.scope || me, me, newVal);
   }
-  Ext.form.field.Base.prototype.onChange.apply(this, arguments);
+  me.callParent(arguments);
 }, resetOriginalValue:function(fromBoxInGroup) {
   var me = this, boxes, box, len, i;
   if (!fromBoxInGroup) {
@@ -38592,15 +38206,15 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
       }
     }
   }
-  Ext.form.field.Base.prototype.resetOriginalValue.call(this);
+  me.callParent();
 }, beforeDestroy:function() {
-  Ext.form.field.Base.prototype.beforeDestroy.call(this);
+  this.callParent();
   this.getManager().removeAtKey(this.id);
 }, getManager:function() {
   return Ext.form.CheckboxManager;
 }, onEnable:function() {
   var me = this, inputEl = me.inputEl;
-  Ext.form.field.Base.prototype.onEnable.call(this);
+  me.callParent();
   if (inputEl) {
     inputEl.dom.disabled = me.readOnly;
   }
@@ -38609,7 +38223,7 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
   if (inputEl) {
     inputEl.dom.disabled = !!readOnly || me.disabled;
   }
-  Ext.form.field.Base.prototype.setReadOnly.apply(this, arguments);
+  me.callParent(arguments);
 }, getFormId:function() {
   var me = this, form;
   if (!me.formId) {
@@ -38619,10 +38233,10 @@ extraFieldBodyCls:'x-form-cb-wrap', checked:false, checkedCls:'x-form-cb-checked
     }
   }
   return me.formId;
-}}, 0, ['checkbox', 'checkboxfield'], ['component', 'box', 'field', 'checkboxfield', 'checkbox'], {'component':true, 'box':true, 'field':true, 'checkboxfield':true, 'checkbox':true}, ['widget.checkbox', 'widget.checkboxfield'], 0, [Ext.form.field, 'Checkbox', Ext.form, 'Checkbox'], 0);
-Ext.cmd.derive('Ext.form.CheckboxGroup', Ext.form.FieldContainer, {columns:'auto', vertical:false, allowBlank:true, blankText:'You must select at least one item in this group', defaultType:'checkboxfield', groupCls:'x-form-check-group', extraFieldBodyCls:'x-form-checkboxgroup-body', layout:'checkboxgroup', componentCls:'x-form-checkboxgroup', initComponent:function() {
+}});
+Ext.define('Ext.form.CheckboxGroup', {extend:Ext.form.FieldContainer, mixins:{field:Ext.form.field.Field}, alias:'widget.checkboxgroup', columns:'auto', vertical:false, allowBlank:true, blankText:'You must select at least one item in this group', defaultType:'checkboxfield', groupCls:Ext.baseCSSPrefix + 'form-check-group', extraFieldBodyCls:Ext.baseCSSPrefix + 'form-checkboxgroup-body', layout:'checkboxgroup', componentCls:Ext.baseCSSPrefix + 'form-checkboxgroup', initComponent:function() {
   var me = this;
-  Ext.form.FieldContainer.prototype.initComponent.call(this);
+  me.callParent();
   me.initField();
 }, initValue:function() {
   var me = this, valueCfg = me.value;
@@ -38642,7 +38256,7 @@ Ext.cmd.derive('Ext.form.CheckboxGroup', Ext.form.FieldContainer, {columns:'auto
       }
     }
   }
-  Ext.form.FieldContainer.prototype.onAdd.apply(this, arguments);
+  me.callParent(arguments);
 }, onRemove:function(item) {
   var me = this, items, len, i;
   if (item.isCheckbox) {
@@ -38655,7 +38269,7 @@ Ext.cmd.derive('Ext.form.CheckboxGroup', Ext.form.FieldContainer, {columns:'auto
       }
     }
   }
-  Ext.form.FieldContainer.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
 }, isEqual:function(value1, value2) {
   var toQueryString = Ext.Object.toQueryString;
   return toQueryString(value1) === toQueryString(value2);
@@ -38766,22 +38380,22 @@ Ext.cmd.derive('Ext.form.CheckboxGroup', Ext.form.FieldContainer, {columns:'auto
     me.updateLayout();
   }
   return isValid;
-}}, 0, ['checkboxgroup'], ['component', 'box', 'container', 'fieldcontainer', 'checkboxgroup'], {'component':true, 'box':true, 'container':true, 'fieldcontainer':true, 'checkboxgroup':true}, ['widget.checkboxgroup'], [['field', Ext.form.field.Field]], [Ext.form, 'CheckboxGroup'], function() {
+}}, function() {
   this.borrow(Ext.form.field.Base, ['markInvalid', 'clearInvalid', 'setError']);
 });
-Ext.cmd.derive('Ext.form.FieldSet', Ext.container.Container, {collapsed:false, toggleOnTitleClick:true, baseCls:'x-fieldset', layout:'anchor', componentLayout:'fieldset', autoEl:'fieldset', childEls:['body'], renderTpl:['{%this.renderLegend(out,values);%}', '\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body {bodyTargetCls}"\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values);%}', '\x3c/div\x3e'], stateEvents:['collapse', 'expand'], maskOnDisable:false, 
-beforeDestroy:function() {
+Ext.define('Ext.form.FieldSet', {extend:Ext.container.Container, mixins:{fieldAncestor:Ext.form.FieldAncestor}, alias:'widget.fieldset', collapsed:false, toggleOnTitleClick:true, baseCls:Ext.baseCSSPrefix + 'fieldset', layout:'anchor', componentLayout:'fieldset', autoEl:'fieldset', childEls:['body'], renderTpl:['{%this.renderLegend(out,values);%}', '\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body {bodyTargetCls}"\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values);%}', 
+'\x3c/div\x3e'], stateEvents:['collapse', 'expand'], maskOnDisable:false, beforeDestroy:function() {
   var me = this, legend = me.legend;
   if (legend) {
     delete legend.ownerCt;
     legend.destroy();
     me.legend = null;
   }
-  Ext.container.Container.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, initComponent:function() {
   var me = this, baseCls = me.baseCls;
   me.initFieldAncestor();
-  Ext.container.Container.prototype.initComponent.call(this);
+  me.callParent();
   me.layout.managePadding = me.layout.manageOverflow = false;
   me.addEvents('beforeexpand', 'beforecollapse', 'expand', 'collapse');
   if (me.collapsed) {
@@ -38812,13 +38426,13 @@ beforeDestroy:function() {
   }
   return body;
 }, initRenderData:function() {
-  var me = this, data = Ext.container.Container.prototype.initRenderData.call(this);
+  var me = this, data = me.callParent();
   data.bodyTargetCls = me.bodyTargetCls;
   me.protoBody.writeTo(data);
   delete me.protoBody;
   return data;
 }, getState:function() {
-  var state = Ext.container.Container.prototype.getState.call(this);
+  var state = this.callParent();
   state = this.addPropertyToState(state, 'collapsed');
   return state;
 }, afterCollapse:Ext.emptyFn, afterExpand:Ext.emptyFn, collapsedHorizontal:function() {
@@ -38860,7 +38474,7 @@ beforeDestroy:function() {
   }
 }, finishRender:function() {
   var legend = this.legend;
-  Ext.container.Container.prototype.finishRender.call(this);
+  this.callParent();
   if (legend) {
     legend.finishRender();
   }
@@ -38932,7 +38546,7 @@ beforeDestroy:function() {
   }
   return me;
 }, getRefItems:function(deep) {
-  var refItems = Ext.container.Container.prototype.getRefItems.apply(this, arguments), legend = this.legend;
+  var refItems = this.callParent(arguments), legend = this.legend;
   if (legend) {
     refItems.unshift(legend);
     if (deep) {
@@ -38945,26 +38559,26 @@ beforeDestroy:function() {
 }, onCheckChange:function(cmp, checked) {
   this.setExpanded(checked);
 }, setupRenderTpl:function(renderTpl) {
-  Ext.container.Container.prototype.setupRenderTpl.apply(this, arguments);
+  this.callParent(arguments);
   renderTpl.renderLegend = this.doRenderLegend;
-}}, 0, ['fieldset'], ['component', 'box', 'container', 'fieldset'], {'component':true, 'box':true, 'container':true, 'fieldset':true}, ['widget.fieldset'], [['fieldAncestor', Ext.form.FieldAncestor]], [Ext.form, 'FieldSet'], 0);
-Ext.cmd.derive('Ext.form.Panel', Ext.panel.Panel, {alternateClassName:['Ext.FormPanel', 'Ext.form.FormPanel'], layout:'anchor', ariaRole:'form', basicFormConfigs:['api', 'baseParams', 'errorReader', 'jsonSubmit', 'method', 'paramOrder', 'paramsAsHash', 'reader', 'standardSubmit', 'timeout', 'trackResetOnLoad', 'url', 'waitMsgTarget', 'waitTitle'], initComponent:function() {
+}});
+Ext.define('Ext.form.Panel', {extend:Ext.panel.Panel, mixins:{fieldAncestor:Ext.form.FieldAncestor}, alias:'widget.form', alternateClassName:['Ext.FormPanel', 'Ext.form.FormPanel'], layout:'anchor', ariaRole:'form', basicFormConfigs:['api', 'baseParams', 'errorReader', 'jsonSubmit', 'method', 'paramOrder', 'paramsAsHash', 'reader', 'standardSubmit', 'timeout', 'trackResetOnLoad', 'url', 'waitMsgTarget', 'waitTitle'], initComponent:function() {
   var me = this;
   if (me.frame) {
     me.border = false;
   }
   me.initFieldAncestor();
-  Ext.panel.Panel.prototype.initComponent.call(this);
+  me.callParent();
   me.relayEvents(me.form, ['beforeaction', 'actionfailed', 'actioncomplete', 'validitychange', 'dirtychange']);
   if (me.pollForChanges) {
     me.startPolling(me.pollInterval || 500);
   }
 }, initItems:function() {
-  Ext.panel.Panel.prototype.initItems.call(this);
+  this.callParent();
   this.initMonitor();
   this.form = this.createForm();
 }, afterFirstLayout:function() {
-  Ext.panel.Panel.prototype.afterFirstLayout.apply(this, arguments);
+  this.callParent(arguments);
   this.form.initialize();
 }, createForm:function() {
   var cfg = {}, props = this.basicFormConfigs, len = props.length, i = 0, prop;
@@ -38992,7 +38606,7 @@ Ext.cmd.derive('Ext.form.Panel', Ext.panel.Panel, {alternateClassName:['Ext.Form
 }, beforeDestroy:function() {
   this.stopPolling();
   this.form.destroy();
-  Ext.panel.Panel.prototype.beforeDestroy.call(this);
+  this.callParent();
 }, load:function(options) {
   this.form.load(options);
 }, submit:function(options) {
@@ -39013,24 +38627,24 @@ Ext.cmd.derive('Ext.form.Panel', Ext.panel.Panel, {alternateClassName:['Ext.Form
   for (f = 0; f < fLen; f++) {
     fields[f].checkChange();
   }
-}}, 0, ['form'], ['component', 'box', 'container', 'panel', 'form'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true}, ['widget.form'], [['fieldAncestor', Ext.form.FieldAncestor]], [Ext.form, 'Panel', Ext, 'FormPanel', Ext.form, 'FormPanel'], 0);
-Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.Field, {type:'triggerfield', borderWidths:{}, beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.field.Trigger', {alias:'layout.triggerfield', extend:Ext.layout.component.field.Field, type:'triggerfield', borderWidths:{}, beginLayout:function(ownerContext) {
   var me = this, owner = me.owner, flags;
   ownerContext.triggerWrap = ownerContext.getEl('triggerWrap');
-  Ext.layout.component.field.Field.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   flags = owner.getTriggerStateFlags();
   if (flags != owner.lastTriggerStateFlags) {
     owner.lastTriggerStateFlags = flags;
     me.updateEditState();
   }
 }, beginLayoutCycle:function(ownerContext) {
-  Ext.layout.component.field.Field.prototype.beginLayoutCycle.apply(this, arguments);
+  this.callParent(arguments);
   if (ownerContext.widthModel.shrinkWrap && !this.owner.inputWidth) {
     ownerContext.inputContext.el.setStyle('width', '');
   }
 }, beginLayoutFixed:function(ownerContext, width, suffix) {
   var me = this, owner = ownerContext.target, ieInputWidthAdjustment = me.ieInputWidthAdjustment || 0, inputWidth = '100%', triggerWrap = owner.triggerWrap;
-  Ext.layout.component.field.Field.prototype.beginLayoutFixed.apply(this, arguments);
+  me.callParent(arguments);
   owner.inputCell.setStyle('width', '100%');
   if (ieInputWidthAdjustment) {
     me.adjustIEInputPadding(ownerContext);
@@ -39061,7 +38675,7 @@ Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.
   return borderWidths[ui] + owner.getTriggerWidth();
 }, beginLayoutShrinkWrap:function(ownerContext) {
   var owner = ownerContext.target, emptyString = '', inputWidth = owner.inputWidth, triggerWrap = owner.triggerWrap;
-  Ext.layout.component.field.Field.prototype.beginLayoutShrinkWrap.apply(this, arguments);
+  this.callParent(arguments);
   if (inputWidth) {
     triggerWrap.setStyle('width', inputWidth + 'px');
     inputWidth = inputWidth - this.getExtraWidth(ownerContext) + 'px';
@@ -39079,7 +38693,7 @@ Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.
   return inputEl.getTextWidth(value);
 }, publishOwnerWidth:function(ownerContext, width) {
   var owner = this.owner;
-  Ext.layout.component.field.Field.prototype.publishOwnerWidth.apply(this, arguments);
+  this.callParent(arguments);
   if (!owner.grow && !owner.inputWidth) {
     width -= this.getExtraWidth(ownerContext);
     if (owner.labelAlign != 'top') {
@@ -39090,7 +38704,7 @@ Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.
 }, publishInnerHeight:function(ownerContext, height) {
   ownerContext.inputContext.setHeight(height - this.measureLabelErrorHeight(ownerContext));
 }, measureContentWidth:function(ownerContext) {
-  var me = this, owner = me.owner, width = Ext.layout.component.field.Field.prototype.measureContentWidth.apply(this, arguments), inputContext = ownerContext.inputContext, calcWidth, max, min;
+  var me = this, owner = me.owner, width = me.callParent(arguments), inputContext = ownerContext.inputContext, calcWidth, max, min;
   if (owner.grow && !ownerContext.state.growHandled) {
     calcWidth = me.getTextWidth() + ownerContext.inputContext.getFrameInfo().width;
     max = owner.growMax;
@@ -39108,7 +38722,7 @@ Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.
   }
   return width;
 }, updateEditState:function() {
-  var me = this, owner = me.owner, inputEl = owner.inputEl, noeditCls = 'x-trigger-noedit', displayed, readOnly;
+  var me = this, owner = me.owner, inputEl = owner.inputEl, noeditCls = Ext.baseCSSPrefix + 'trigger-noedit', displayed, readOnly;
   if (me.owner.readOnly) {
     inputEl.addCls(noeditCls);
     readOnly = true;
@@ -39125,27 +38739,27 @@ Ext.cmd.derive('Ext.layout.component.field.Trigger', Ext.layout.component.field.
   }
   owner.triggerCell.setDisplayed(displayed);
   inputEl.dom.readOnly = readOnly;
-}}, 0, 0, 0, 0, ['layout.triggerfield'], 0, [Ext.layout.component.field, 'Trigger'], 0);
-Ext.cmd.derive('Ext.form.field.Trigger', Ext.form.field.Text, {alternateClassName:['Ext.form.TriggerField', 'Ext.form.TwinTriggerField', 'Ext.form.Trigger'], childEls:[{name:'triggerCell', select:'.x-trigger-cell'}, {name:'triggerEl', select:'.x-form-trigger'}, 'triggerWrap', 'inputCell'], triggerBaseCls:'x-form-trigger', triggerWrapCls:'x-form-trigger-wrap', triggerNoEditCls:'x-trigger-noedit', hideTrigger:false, editable:true, readOnly:false, repeatTriggerClick:false, autoSize:Ext.emptyFn, monitorTab:true, 
-mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', componentLayout:'triggerfield', initComponent:function() {
+}});
+Ext.define('Ext.form.field.Trigger', {extend:Ext.form.field.Text, alias:['widget.triggerfield', 'widget.trigger'], alternateClassName:['Ext.form.TriggerField', 'Ext.form.TwinTriggerField', 'Ext.form.Trigger'], childEls:[{name:'triggerCell', select:'.' + Ext.baseCSSPrefix + 'trigger-cell'}, {name:'triggerEl', select:'.' + Ext.baseCSSPrefix + 'form-trigger'}, 'triggerWrap', 'inputCell'], triggerBaseCls:Ext.baseCSSPrefix + 'form-trigger', triggerWrapCls:Ext.baseCSSPrefix + 'form-trigger-wrap', triggerNoEditCls:Ext.baseCSSPrefix + 
+'trigger-noedit', hideTrigger:false, editable:true, readOnly:false, repeatTriggerClick:false, autoSize:Ext.emptyFn, monitorTab:true, mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', componentLayout:'triggerfield', initComponent:function() {
   this.wrapFocusCls = this.triggerWrapCls + '-focus';
-  Ext.form.field.Text.prototype.initComponent.apply(this, arguments);
+  this.callParent(arguments);
 }, getSubTplMarkup:function(values) {
-  var me = this, childElCls = values.childElCls, field = Ext.form.field.Text.prototype.getSubTplMarkup.apply(this, arguments);
-  return '\x3ctable id\x3d"' + me.id + '-triggerWrap" class\x3d"x-form-trigger-wrap' + childElCls + '" cellpadding\x3d"0" cellspacing\x3d"0"\x3e\x3ctbody\x3e\x3ctr\x3e\x3ctd id\x3d"' + me.id + '-inputCell" class\x3d"x-form-trigger-input-cell' + childElCls + '"\x3e' + field + '\x3c/td\x3e' + me.getTriggerMarkup() + '\x3c/tr\x3e\x3c/tbody\x3e\x3c/table\x3e';
+  var me = this, childElCls = values.childElCls, field = me.callParent(arguments);
+  return '\x3ctable id\x3d"' + me.id + '-triggerWrap" class\x3d"' + Ext.baseCSSPrefix + 'form-trigger-wrap' + childElCls + '" cellpadding\x3d"0" cellspacing\x3d"0"\x3e\x3ctbody\x3e\x3ctr\x3e' + '\x3ctd id\x3d"' + me.id + '-inputCell" class\x3d"' + Ext.baseCSSPrefix + 'form-trigger-input-cell' + childElCls + '"\x3e' + field + '\x3c/td\x3e' + me.getTriggerMarkup() + '\x3c/tr\x3e\x3c/tbody\x3e\x3c/table\x3e';
 }, getSubTplData:function() {
-  var me = this, data = Ext.form.field.Text.prototype.getSubTplData.call(this), readOnly = me.readOnly === true, editable = me.editable !== false;
+  var me = this, data = me.callParent(), readOnly = me.readOnly === true, editable = me.editable !== false;
   return Ext.apply(data, {editableCls:readOnly || !editable ? ' ' + me.triggerNoEditCls : '', readOnly:!editable || readOnly});
 }, getLabelableRenderData:function() {
-  var me = this, triggerWrapCls = me.triggerWrapCls, result = Ext.form.field.Text.prototype.getLabelableRenderData.apply(this, arguments);
+  var me = this, triggerWrapCls = me.triggerWrapCls, result = me.callParent(arguments);
   return Ext.applyIf(result, {triggerWrapCls:triggerWrapCls, triggerMarkup:me.getTriggerMarkup()});
 }, getTriggerMarkup:function() {
-  var me = this, i = 0, hideTrigger = me.readOnly || me.hideTrigger, triggerCls, triggerBaseCls = me.triggerBaseCls, triggerConfigs = [], unselectableCls = Ext.dom.Element.unselectableCls, style = 'width:' + me.triggerWidth + 'px;' + (hideTrigger ? 'display:none;' : ''), cls = me.extraTriggerCls + ' x-trigger-cell ' + unselectableCls;
+  var me = this, i = 0, hideTrigger = me.readOnly || me.hideTrigger, triggerCls, triggerBaseCls = me.triggerBaseCls, triggerConfigs = [], unselectableCls = Ext.dom.Element.unselectableCls, style = 'width:' + me.triggerWidth + 'px;' + (hideTrigger ? 'display:none;' : ''), cls = me.extraTriggerCls + ' ' + Ext.baseCSSPrefix + 'trigger-cell ' + unselectableCls;
   if (!me.trigger1Cls) {
     me.trigger1Cls = me.triggerCls;
   }
   for (i = 0; (triggerCls = me['trigger' + (i + 1) + 'Cls']) || i < 1; i++) {
-    triggerConfigs.push({tag:'td', valign:'top', cls:cls, style:style, cn:{cls:['x-trigger-index-' + i, triggerBaseCls, triggerCls].join(' '), role:'button'}});
+    triggerConfigs.push({tag:'td', valign:'top', cls:cls, style:style, cn:{cls:[Ext.baseCSSPrefix + 'trigger-index-' + i, triggerBaseCls, triggerCls].join(' '), role:'button'}});
   }
   triggerConfigs[0].cn.cls += ' ' + triggerBaseCls + '-first';
   return Ext.DomHelper.markup(triggerConfigs);
@@ -39154,18 +38768,18 @@ mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', compon
 }, beforeRender:function() {
   var me = this, triggerBaseCls = me.triggerBaseCls, tempEl;
   if (!me.triggerWidth) {
-    tempEl = Ext.getBody().createChild({style:'position: absolute;', cls:'x-form-trigger'});
+    tempEl = Ext.getBody().createChild({style:'position: absolute;', cls:Ext.baseCSSPrefix + 'form-trigger'});
     Ext.form.field.Trigger.prototype.triggerWidth = tempEl.getWidth();
     tempEl.remove();
   }
-  Ext.form.field.Text.prototype.beforeRender.call(this);
-  if (triggerBaseCls != 'x-form-trigger') {
+  me.callParent();
+  if (triggerBaseCls != Ext.baseCSSPrefix + 'form-trigger') {
     me.addChildEls({name:'triggerEl', select:'.' + triggerBaseCls});
   }
   me.lastTriggerStateFlags = me.getTriggerStateFlags();
 }, onRender:function() {
   var me = this;
-  Ext.form.field.Text.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   me.doc = Ext.getDoc();
   me.initTrigger();
 }, getTriggerWidth:function() {
@@ -39186,7 +38800,7 @@ mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', compon
   }
 }, setReadOnly:function(readOnly) {
   var me = this, old = me.readOnly;
-  Ext.form.field.Text.prototype.setReadOnly.apply(this, arguments);
+  me.callParent(arguments);
   if (readOnly != old) {
     me.updateLayout();
   }
@@ -39212,10 +38826,10 @@ mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', compon
   var me = this;
   Ext.destroyMembers(me, 'triggerRepeater', 'triggerWrap', 'triggerEl');
   delete me.doc;
-  Ext.form.field.Text.prototype.onDestroy.call(this);
+  me.callParent();
 }, onFocus:function() {
   var me = this;
-  Ext.form.field.Text.prototype.onFocus.apply(this, arguments);
+  me.callParent(arguments);
   if (!me.mimicing) {
     me.bodyEl.addCls(me.wrapFocusCls);
     me.mimicing = true;
@@ -39270,13 +38884,13 @@ mimicing:false, triggerIndexRe:/trigger-index-(\d+)/, extraTriggerCls:'', compon
       }
     }
   }
-}, onTriggerWrapMouseup:Ext.emptyFn, onTriggerClick:Ext.emptyFn}, 0, ['trigger', 'triggerfield'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true}, ['widget.trigger', 'widget.triggerfield'], 0, [Ext.form.field, 'Trigger', Ext.form, 'TriggerField', Ext.form, 'TwinTriggerField', Ext.form, 'Trigger'], 0);
-Ext.cmd.derive('Ext.form.field.Picker', Ext.form.field.Trigger, {alternateClassName:'Ext.form.Picker', matchFieldWidth:true, pickerAlign:'tl-bl?', openCls:'x-pickerfield-open', editable:true, initComponent:function() {
-  Ext.form.field.Trigger.prototype.initComponent.call(this);
+}, onTriggerWrapMouseup:Ext.emptyFn, onTriggerClick:Ext.emptyFn});
+Ext.define('Ext.form.field.Picker', {extend:Ext.form.field.Trigger, alias:'widget.pickerfield', alternateClassName:'Ext.form.Picker', matchFieldWidth:true, pickerAlign:'tl-bl?', openCls:Ext.baseCSSPrefix + 'pickerfield-open', editable:true, initComponent:function() {
+  this.callParent();
   this.addEvents('expand', 'collapse', 'select');
 }, initEvents:function() {
   var me = this;
-  Ext.form.field.Trigger.prototype.initEvents.call(this);
+  me.callParent();
   me.keyNav = new Ext.util.KeyNav(me.inputEl, {down:me.onDownArrow, esc:{handler:me.onEsc, scope:me, defaultEventAction:false}, scope:me, forceKeyDown:true});
   if (!me.editable) {
     me.mon(me.inputEl, 'click', me.onTriggerClick, me);
@@ -39362,14 +38976,14 @@ Ext.cmd.derive('Ext.form.field.Picker', Ext.form.field.Trigger, {alternateClassN
   }
 }, triggerBlur:function() {
   var picker = this.picker;
-  Ext.form.field.Trigger.prototype.triggerBlur.apply(this, arguments);
+  this.callParent(arguments);
   if (picker && picker.isVisible()) {
     picker.hide();
   }
 }, mimicBlur:function(e) {
   var me = this, picker = me.picker;
   if (!picker || !e.within(picker.el, false, true) && !me.isEventWithinPickerLoadMask(e)) {
-    Ext.form.field.Trigger.prototype.mimicBlur.apply(this, arguments);
+    me.callParent(arguments);
   }
 }, onDestroy:function() {
   var me = this, picker = me.picker;
@@ -39379,12 +38993,12 @@ Ext.cmd.derive('Ext.form.field.Picker', Ext.form.field.Trigger, {alternateClassN
     delete picker.pickerField;
     picker.destroy();
   }
-  Ext.form.field.Trigger.prototype.onDestroy.call(this);
+  me.callParent();
 }, isEventWithinPickerLoadMask:function(e) {
   var loadMask = this.picker.loadMask;
   return loadMask ? e.within(loadMask.maskEl, false, true) || e.within(loadMask.el, false, true) : false;
-}}, 0, ['pickerfield'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger', 'pickerfield'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true, 'pickerfield':true}, ['widget.pickerfield'], 0, [Ext.form.field, 'Picker', Ext.form, 'Picker'], 0);
-Ext.cmd.derive('Ext.selection.Model', Ext.util.Observable, {alternateClassName:'Ext.AbstractSelectionModel', allowDeselect:undefined, toggleOnClick:true, selected:null, pruneRemoved:true, suspendChange:0, constructor:function(cfg) {
+}});
+Ext.define('Ext.selection.Model', {extend:Ext.util.Observable, alternateClassName:'Ext.AbstractSelectionModel', mixins:{bindable:Ext.util.Bindable}, allowDeselect:undefined, toggleOnClick:true, selected:null, pruneRemoved:true, suspendChange:0, constructor:function(cfg) {
   var me = this;
   cfg = cfg || {};
   Ext.apply(me, cfg);
@@ -39392,7 +39006,7 @@ Ext.cmd.derive('Ext.selection.Model', Ext.util.Observable, {alternateClassName:'
   me.modes = {SINGLE:true, SIMPLE:true, MULTI:true};
   me.setSelectionMode(cfg.mode || me.mode);
   me.selected = new Ext.util.MixedCollection(null, me.getSelectionId);
-  Ext.util.Observable.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
 }, bindStore:function(store, initial) {
   var me = this;
   me.mixins.bindable.bindStore.apply(me, arguments);
@@ -39937,10 +39551,10 @@ Ext.cmd.derive('Ext.selection.Model', Ext.util.Observable, {alternateClassName:'
   this.views = this.views || [];
   this.views.push(view);
   this.bindStore(view.getStore(), true);
-}, bindComponent:Ext.emptyFn}, 1, 0, 0, 0, 0, [['bindable', Ext.util.Bindable]], [Ext.selection, 'Model', Ext, 'AbstractSelectionModel'], 0);
-Ext.cmd.derive('Ext.selection.DataViewModel', Ext.selection.Model, {deselectOnContainerClick:true, enableKeyNav:true, constructor:function(cfg) {
+}, bindComponent:Ext.emptyFn});
+Ext.define('Ext.selection.DataViewModel', {extend:Ext.selection.Model, deselectOnContainerClick:true, enableKeyNav:true, constructor:function(cfg) {
   this.addEvents('beforedeselect', 'beforeselect', 'deselect', 'select');
-  Ext.selection.Model.prototype.constructor.apply(this, arguments);
+  this.callParent(arguments);
 }, bindComponent:function(view) {
   var me = this, eventListeners = {refresh:me.refresh, scope:me};
   me.view = view;
@@ -40008,13 +39622,13 @@ Ext.cmd.derive('Ext.selection.DataViewModel', Ext.selection.Model, {deselectOnCo
   }
 }, destroy:function() {
   Ext.destroy(this.keyNav);
-  Ext.selection.Model.prototype.destroy.call(this);
-}}, 1, 0, 0, 0, 0, 0, [Ext.selection, 'DataViewModel'], 0);
-Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getRecord:function(node) {
+  this.callParent();
+}});
+Ext.define('Ext.view.AbstractView', {extend:Ext.Component, mixins:{bindable:Ext.util.Bindable}, inheritableStatics:{getRecord:function(node) {
   return this.getBoundView(node).getRecord(node);
 }, getBoundView:function(node) {
   return Ext.getCmp(node.boundView);
-}}, deferInitialRefresh:true, itemCls:'x-dataview-item', loadingText:'Loading...', loadMask:true, loadingUseMsg:true, selectedItemCls:'x-item-selected', emptyText:'', deferEmptyText:true, trackOver:false, blockRefresh:false, preserveScrollOnRefresh:false, last:false, triggerEvent:'itemclick', triggerCtEvent:'containerclick', addCmpEvents:function() {
+}}, deferInitialRefresh:true, itemCls:Ext.baseCSSPrefix + 'dataview-item', loadingText:'Loading...', loadMask:true, loadingUseMsg:true, selectedItemCls:Ext.baseCSSPrefix + 'item-selected', emptyText:'', deferEmptyText:true, trackOver:false, blockRefresh:false, preserveScrollOnRefresh:false, last:false, triggerEvent:'itemclick', triggerCtEvent:'containerclick', addCmpEvents:function() {
 }, initComponent:function() {
   var me = this, isDef = Ext.isDefined, itemTpl = me.itemTpl, memberFn = {};
   if (itemTpl) {
@@ -40035,7 +39649,7 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
   if (!isDef(me.tpl) || !isDef(me.itemSelector)) {
     Ext.Error.raise({sourceClass:'Ext.view.View', tpl:me.tpl, itemSelector:me.itemSelector, msg:'DataView requires both tpl and itemSelector configurations to be defined.'});
   }
-  Ext.Component.prototype.initComponent.call(this);
+  me.callParent();
   me.tpl = me.getTpl('tpl');
   if (isDef(me.overCls) || isDef(me.overClass)) {
     if (Ext.isDefined(Ext.global.console)) {
@@ -40070,7 +39684,7 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
   me.on({scroll:me.onViewScroll, element:'el', scope:me});
 }, onRender:function() {
   var me = this, mask = me.loadMask, maskStore = me.getMaskStore(), cfg = {target:me, msg:me.loadingText, msgCls:me.loadingCls, useMsg:me.loadingUseMsg, store:maskStore};
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   if (mask && !maskStore.proxy.isSynchronous) {
     if (Ext.isObject(mask)) {
       cfg = Ext.apply(cfg, mask);
@@ -40080,13 +39694,13 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
   }
 }, finishRender:function() {
   var me = this;
-  Ext.Component.prototype.finishRender.apply(this, arguments);
+  me.callParent(arguments);
   if (!me.up('[collapsed],[hidden]')) {
     me.doFirstRefresh(me.dataSource);
   }
 }, onBoxReady:function() {
   var me = this;
-  Ext.Component.prototype.onBoxReady.apply(this, arguments);
+  me.callParent(arguments);
   if (!me.firstRefreshDone) {
     me.doFirstRefresh(me.dataSource);
   }
@@ -40108,10 +39722,10 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
     delete me.hasLoadingHeight;
   }
 }, beforeRender:function() {
-  Ext.Component.prototype.beforeRender.apply(this, arguments);
+  this.callParent(arguments);
   this.getSelectionModel().beforeViewRender(this);
 }, afterRender:function() {
-  Ext.Component.prototype.afterRender.apply(this, arguments);
+  this.callParent(arguments);
   this.getSelectionModel().bindComponent(this);
 }, getSelectionModel:function() {
   var me = this, mode = 'SINGLE';
@@ -40464,7 +40078,7 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
 }, onDestroy:function() {
   var me = this;
   me.all.clear();
-  Ext.Component.prototype.onDestroy.call(this);
+  me.callParent();
   me.bindStore(null);
   me.selModel.destroy();
 }, onItemSelect:function(record) {
@@ -40479,7 +40093,7 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
   }
 }, getItemSelector:function() {
   return this.itemSelector;
-}}, 0, 0, ['component', 'box'], {'component':true, 'box':true}, 0, [['bindable', Ext.util.Bindable]], [Ext.view, 'AbstractView'], function() {
+}}, function() {
   Ext.deprecate('extjs', '4.0', function() {
     Ext.view.AbstractView.override({getSelectionCount:function() {
       if (Ext.global.console) {
@@ -40506,9 +40120,9 @@ Ext.cmd.derive('Ext.view.AbstractView', Ext.Component, {inheritableStatics:{getR
     }});
   });
 });
-Ext.cmd.derive('Ext.view.View', Ext.view.AbstractView, {alternateClassName:'Ext.DataView', deferHighlight:Ext.isIE7m ? 100 : 0, mouseOverOutBuffer:20, inputTagRe:/^textarea$|^input$/i, inheritableStatics:{EventMap:{mousedown:'MouseDown', mouseup:'MouseUp', click:'Click', dblclick:'DblClick', contextmenu:'ContextMenu', mouseover:'MouseOver', mouseout:'MouseOut', mouseenter:'MouseEnter', mouseleave:'MouseLeave', keydown:'KeyDown', focus:'Focus'}}, initComponent:function() {
+Ext.define('Ext.view.View', {extend:Ext.view.AbstractView, alternateClassName:'Ext.DataView', alias:'widget.dataview', deferHighlight:Ext.isIE7m ? 100 : 0, mouseOverOutBuffer:20, inputTagRe:/^textarea$|^input$/i, inheritableStatics:{EventMap:{mousedown:'MouseDown', mouseup:'MouseUp', click:'Click', dblclick:'DblClick', contextmenu:'ContextMenu', mouseover:'MouseOver', mouseout:'MouseOut', mouseenter:'MouseEnter', mouseleave:'MouseLeave', keydown:'KeyDown', focus:'Focus'}}, initComponent:function() {
   var me = this;
-  Ext.view.AbstractView.prototype.initComponent.call(this);
+  me.callParent();
   if (me.mouseOverOutBuffer) {
     me.handleMouseOverOrOut = Ext.Function.createBuffered(me.handleMouseOverOrOut, me.mouseOverOutBuffer, me);
     me.lastMouseOverOutEvent = new Ext.EventObjectImpl;
@@ -40524,7 +40138,7 @@ Ext.cmd.derive('Ext.view.View', Ext.view.AbstractView, {alternateClassName:'Ext.
   return this.getTargetEl();
 }, afterRender:function() {
   var me = this, onMouseOverOut = me.mouseOverOutBuffer ? me.onMouseOverOut : me.handleMouseOverOrOut;
-  Ext.view.AbstractView.prototype.afterRender.call(this);
+  me.callParent();
   me.mon(me.getTargetEl(), {scope:me, freezeEvent:true, click:me.handleEvent, mousedown:me.handleEvent, mouseup:me.handleEvent, dblclick:me.handleEvent, contextmenu:me.handleEvent, keydown:me.handleEvent, mouseover:onMouseOverOut, mouseout:onMouseOverOut});
 }, onMouseOverOut:function(e) {
   var me = this;
@@ -40629,7 +40243,7 @@ onBeforeContainerKeyDown:Ext.emptyFn, setHighlightedItem:function(item) {
   var me = this, node, newNode, highlighted;
   if (me.viewReady) {
     node = me.getNode(record);
-    newNode = Ext.view.AbstractView.prototype.onUpdate.apply(this, arguments);
+    newNode = me.callParent(arguments);
     highlighted = me.highlightedItem;
     if (highlighted && highlighted === node) {
       delete me.highlightedItem;
@@ -40640,7 +40254,7 @@ onBeforeContainerKeyDown:Ext.emptyFn, setHighlightedItem:function(item) {
   }
 }, refresh:function() {
   this.clearHighlight();
-  Ext.view.AbstractView.prototype.refresh.apply(this, arguments);
+  this.callParent(arguments);
 }, focusNode:function(rec) {
   var me = this, node = me.getNode(rec, true), el = me.el, adjustmentY = 0, adjustmentX = 0, elRegion = el.getRegion(), nodeRegion;
   elRegion.bottom = elRegion.top + el.dom.clientHeight;
@@ -40666,10 +40280,10 @@ onBeforeContainerKeyDown:Ext.emptyFn, setHighlightedItem:function(item) {
     }
     el.focus();
   }
-}}, 0, ['dataview'], ['component', 'box', 'dataview'], {'component':true, 'box':true, 'dataview':true}, ['widget.dataview'], 0, [Ext.view, 'View', Ext, 'DataView'], 0);
-Ext.cmd.derive('Ext.layout.component.BoundList', Ext.layout.component.Auto, {type:'component', beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.BoundList', {extend:Ext.layout.component.Auto, alias:'layout.boundlist', type:'component', beginLayout:function(ownerContext) {
   var me = this, owner = me.owner, toolbar = owner.pagingToolbar;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (owner.floating) {
     ownerContext.savedXY = owner.getXY();
     owner.setXY([0, -9999]);
@@ -40680,7 +40294,7 @@ Ext.cmd.derive('Ext.layout.component.BoundList', Ext.layout.component.Auto, {typ
   ownerContext.listContext = ownerContext.getEl('listEl');
 }, beginLayoutCycle:function(ownerContext) {
   var owner = this.owner;
-  Ext.layout.component.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  this.callParent(arguments);
   if (ownerContext.heightModel.auto) {
     owner.el.setHeight('auto');
     owner.listEl.setHeight('auto');
@@ -40692,7 +40306,7 @@ Ext.cmd.derive('Ext.layout.component.BoundList', Ext.layout.component.Auto, {typ
   return true;
 }, finishedLayout:function(ownerContext) {
   var xy = ownerContext.savedXY;
-  Ext.layout.component.Auto.prototype.finishedLayout.apply(this, arguments);
+  this.callParent(arguments);
   if (xy) {
     this.owner.setXY(xy);
   }
@@ -40711,15 +40325,15 @@ Ext.cmd.derive('Ext.layout.component.BoundList', Ext.layout.component.Auto, {typ
     ownerContext.listContext.setHeight(height - ownerContext.getFrameInfo().height - toolbarHeight);
   }
 }, calculateOwnerHeightFromContentHeight:function(ownerContext) {
-  var height = Ext.layout.component.Auto.prototype.calculateOwnerHeightFromContentHeight.apply(this, arguments), toolbar = ownerContext.toolbarContext;
+  var height = this.callParent(arguments), toolbar = ownerContext.toolbarContext;
   if (toolbar) {
     height += toolbar.getProp('height');
   }
   return height;
-}}, 0, 0, 0, 0, ['layout.boundlist'], 0, [Ext.layout.component, 'BoundList'], 0);
-Ext.define('Ext.toolbar.TextItem', {extend:Ext.toolbar.Item, alias:'widget.tbtext', alternateClassName:'Ext.Toolbar.TextItem', text:'', renderTpl:'{text}', baseCls:'x-toolbar-text', beforeRender:function() {
+}});
+Ext.define('Ext.toolbar.TextItem', {extend:Ext.toolbar.Item, alias:'widget.tbtext', alternateClassName:'Ext.Toolbar.TextItem', text:'', renderTpl:'{text}', baseCls:Ext.baseCSSPrefix + 'toolbar-text', beforeRender:function() {
   var me = this;
-  Ext.toolbar.Item.prototype.beforeRender.call(this);
+  me.callParent();
   Ext.apply(me.renderData, {text:me.text});
 }, setText:function(text) {
   var me = this;
@@ -40729,13 +40343,13 @@ Ext.define('Ext.toolbar.TextItem', {extend:Ext.toolbar.Item, alias:'widget.tbtex
     me.updateLayout();
   }
 }});
-Ext.cmd.derive('Ext.form.field.Spinner', Ext.form.field.Trigger, {alternateClassName:'Ext.form.Spinner', trigger1Cls:'x-form-spinner-up', trigger2Cls:'x-form-spinner-down', spinUpEnabled:true, spinDownEnabled:true, keyNavEnabled:true, mouseWheelEnabled:true, repeatTriggerClick:true, onSpinUp:Ext.emptyFn, onSpinDown:Ext.emptyFn, triggerTpl:'\x3ctd style\x3d"{triggerStyle}" class\x3d"{triggerCls}"\x3e\x3cdiv class\x3d"x-trigger-index-0 x-form-trigger x-form-spinner-up {spinnerUpCls} {childElCls}" role\x3d"button"\x3e\x3c/div\x3e\x3cdiv class\x3d"x-trigger-index-1 x-form-trigger x-form-spinner-down {spinnerDownCls} {childElCls}" role\x3d"button"\x3e\x3c/div\x3e\x3c/td\x3e\x3c/tr\x3e', 
-initComponent:function() {
-  Ext.form.field.Trigger.prototype.initComponent.call(this);
+Ext.define('Ext.form.field.Spinner', {extend:Ext.form.field.Trigger, alias:'widget.spinnerfield', alternateClassName:'Ext.form.Spinner', trigger1Cls:Ext.baseCSSPrefix + 'form-spinner-up', trigger2Cls:Ext.baseCSSPrefix + 'form-spinner-down', spinUpEnabled:true, spinDownEnabled:true, keyNavEnabled:true, mouseWheelEnabled:true, repeatTriggerClick:true, onSpinUp:Ext.emptyFn, onSpinDown:Ext.emptyFn, triggerTpl:'\x3ctd style\x3d"{triggerStyle}" class\x3d"{triggerCls}"\x3e' + '\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 
+'trigger-index-0 ' + Ext.baseCSSPrefix + 'form-trigger ' + Ext.baseCSSPrefix + 'form-spinner-up {spinnerUpCls} {childElCls}" role\x3d"button"\x3e\x3c/div\x3e' + '\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 'trigger-index-1 ' + Ext.baseCSSPrefix + 'form-trigger ' + Ext.baseCSSPrefix + 'form-spinner-down {spinnerDownCls} {childElCls}" role\x3d"button"\x3e\x3c/div\x3e' + '\x3c/td\x3e' + '\x3c/tr\x3e', initComponent:function() {
+  this.callParent();
   this.addEvents('spin', 'spinup', 'spindown');
 }, onRender:function() {
   var me = this, triggers;
-  Ext.form.field.Trigger.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   triggers = me.triggerEl;
   me.spinUpEl = triggers.item(0);
   me.spinDownEl = triggers.item(1);
@@ -40748,12 +40362,12 @@ initComponent:function() {
   }
 }, getSubTplMarkup:function(values) {
   var me = this, childElCls = values.childElCls, field = Ext.form.field.Base.prototype.getSubTplMarkup.apply(me, arguments);
-  return '\x3ctable id\x3d"' + me.id + '-triggerWrap" class\x3d"x-form-trigger-wrap' + childElCls + '" cellpadding\x3d"0" cellspacing\x3d"0"\x3e\x3ctbody\x3e\x3ctr\x3e\x3ctd id\x3d"' + me.id + '-inputCell" class\x3d"x-form-trigger-input-cell' + childElCls + '"\x3e' + field + '\x3c/td\x3e' + me.getTriggerMarkup() + '\x3c/tbody\x3e\x3c/table\x3e';
+  return '\x3ctable id\x3d"' + me.id + '-triggerWrap" class\x3d"' + Ext.baseCSSPrefix + 'form-trigger-wrap' + childElCls + '" cellpadding\x3d"0" cellspacing\x3d"0"\x3e' + '\x3ctbody\x3e' + '\x3ctr\x3e\x3ctd id\x3d"' + me.id + '-inputCell" class\x3d"' + Ext.baseCSSPrefix + 'form-trigger-input-cell' + childElCls + '"\x3e' + field + '\x3c/td\x3e' + me.getTriggerMarkup() + '\x3c/tbody\x3e\x3c/table\x3e';
 }, getTriggerMarkup:function() {
   return this.getTpl('triggerTpl').apply(this.getTriggerData());
 }, getTriggerData:function() {
   var me = this, hideTrigger = me.readOnly || me.hideTrigger;
-  return {triggerCls:'x-trigger-cell', triggerStyle:hideTrigger ? 'display:none' : '', spinnerUpCls:!me.spinUpEnabled ? me.trigger1Cls + '-disabled' : '', spinnerDownCls:!me.spinDownEnabled ? me.trigger2Cls + '-disabled' : ''};
+  return {triggerCls:Ext.baseCSSPrefix + 'trigger-cell', triggerStyle:hideTrigger ? 'display:none' : '', spinnerUpCls:!me.spinUpEnabled ? me.trigger1Cls + '-disabled' : '', spinnerDownCls:!me.spinDownEnabled ? me.trigger2Cls + '-disabled' : ''};
 }, getTriggerWidth:function() {
   var me = this, totalTriggerWidth = 0;
   if (me.triggerWrap && !me.hideTrigger && !me.readOnly) {
@@ -40807,16 +40421,16 @@ initComponent:function() {
   }
 }, onDestroy:function() {
   Ext.destroyMembers(this, 'spinnerKeyNav', 'spinUpEl', 'spinDownEl');
-  Ext.form.field.Trigger.prototype.onDestroy.call(this);
-}}, 0, ['spinnerfield'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger', 'spinnerfield'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true, 'spinnerfield':true}, ['widget.spinnerfield'], 0, [Ext.form.field, 'Spinner', Ext.form, 'Spinner'], 0);
-Ext.cmd.derive('Ext.form.field.Number', Ext.form.field.Spinner, {alternateClassName:['Ext.form.NumberField', 'Ext.form.Number'], allowExponential:true, allowDecimals:true, decimalSeparator:'.', submitLocaleSeparator:true, decimalPrecision:2, minValue:Number.NEGATIVE_INFINITY, maxValue:Number.MAX_VALUE, step:1, minText:'The minimum value for this field is {0}', maxText:'The maximum value for this field is {0}', nanText:'{0} is not a valid number', negativeText:'The value cannot be negative', baseChars:'0123456789', 
-autoStripChars:false, initComponent:function() {
+  this.callParent();
+}});
+Ext.define('Ext.form.field.Number', {extend:Ext.form.field.Spinner, alias:'widget.numberfield', alternateClassName:['Ext.form.NumberField', 'Ext.form.Number'], allowExponential:true, allowDecimals:true, decimalSeparator:'.', submitLocaleSeparator:true, decimalPrecision:2, minValue:Number.NEGATIVE_INFINITY, maxValue:Number.MAX_VALUE, step:1, minText:'The minimum value for this field is {0}', maxText:'The maximum value for this field is {0}', nanText:'{0} is not a valid number', negativeText:'The value cannot be negative', 
+baseChars:'0123456789', autoStripChars:false, initComponent:function() {
   var me = this;
-  Ext.form.field.Spinner.prototype.initComponent.call(this);
+  me.callParent();
   me.setMinValue(me.minValue);
   me.setMaxValue(me.maxValue);
 }, getErrors:function(value) {
-  var me = this, errors = Ext.form.field.Spinner.prototype.getErrors.apply(this, arguments), format = Ext.String.format, num;
+  var me = this, errors = me.callParent(arguments), format = Ext.String.format, num;
   value = Ext.isDefined(value) ? value : this.processRawValue(this.getRawValue());
   if (value.length < 1) {
     return errors;
@@ -40851,14 +40465,14 @@ autoStripChars:false, initComponent:function() {
   value = isNaN(value) ? '' : String(value).replace('.', decimalSeparator);
   return value;
 }, getSubmitValue:function() {
-  var me = this, value = Ext.form.field.Spinner.prototype.getSubmitValue.call(this);
+  var me = this, value = me.callParent();
   if (!me.submitLocaleSeparator) {
     value = value.replace(me.decimalSeparator, '.');
   }
   return value;
 }, onChange:function() {
   this.toggleSpinners();
-  Ext.form.field.Spinner.prototype.onChange.apply(this, arguments);
+  this.callParent(arguments);
 }, toggleSpinners:function() {
   var me = this, value = me.getValue(), valueIsNull = value === null, enabled;
   if (me.spinUpEnabled || me.spinUpDisabledByToggle) {
@@ -40913,7 +40527,7 @@ autoStripChars:false, initComponent:function() {
     me.setValue(v);
   }
 }, setSpinUpEnabled:function(enabled, internal) {
-  Ext.form.field.Spinner.prototype.setSpinUpEnabled.apply(this, arguments);
+  this.callParent(arguments);
   if (!internal) {
     delete this.spinUpDisabledByToggle;
   } else {
@@ -40925,7 +40539,7 @@ autoStripChars:false, initComponent:function() {
     me.setSpinValue(Ext.Number.constrain(me.getValue() + me.step, me.minValue, me.maxValue));
   }
 }, setSpinDownEnabled:function(enabled, internal) {
-  Ext.form.field.Spinner.prototype.setSpinDownEnabled.apply(this, arguments);
+  this.callParent(arguments);
   if (!internal) {
     delete this.spinDownDisabledByToggle;
   } else {
@@ -40944,12 +40558,12 @@ autoStripChars:false, initComponent:function() {
     }
   }
   me.setValue(value);
-}}, 0, ['numberfield'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger', 'spinnerfield', 'numberfield'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true, 'spinnerfield':true, 'numberfield':true}, ['widget.numberfield'], 0, [Ext.form.field, 'Number', Ext.form, 'NumberField', Ext.form, 'Number'], 0);
-Ext.cmd.derive('Ext.toolbar.Paging', Ext.toolbar.Toolbar, {alternateClassName:'Ext.PagingToolbar', displayInfo:false, prependButtons:false, displayMsg:'Displaying {0} - {1} of {2}', emptyMsg:'No data to display', beforePageText:'Page', afterPageText:'of {0}', firstText:'First Page', prevText:'Previous Page', nextText:'Next Page', lastText:'Last Page', refreshText:'Refresh', inputItemWidth:30, getPagingItems:function() {
+}});
+Ext.define('Ext.toolbar.Paging', {extend:Ext.toolbar.Toolbar, alias:'widget.pagingtoolbar', alternateClassName:'Ext.PagingToolbar', mixins:{bindable:Ext.util.Bindable}, displayInfo:false, prependButtons:false, displayMsg:'Displaying {0} - {1} of {2}', emptyMsg:'No data to display', beforePageText:'Page', afterPageText:'of {0}', firstText:'First Page', prevText:'Previous Page', nextText:'Next Page', lastText:'Last Page', refreshText:'Refresh', inputItemWidth:30, getPagingItems:function() {
   var me = this;
-  return [{itemId:'first', tooltip:me.firstText, overflowText:me.firstText, iconCls:'x-tbar-page-first', disabled:true, handler:me.moveFirst, scope:me}, {itemId:'prev', tooltip:me.prevText, overflowText:me.prevText, iconCls:'x-tbar-page-prev', disabled:true, handler:me.movePrevious, scope:me}, '-', me.beforePageText, {xtype:'numberfield', itemId:'inputItem', name:'inputItem', cls:'x-tbar-page-number', allowDecimals:false, minValue:1, hideTrigger:true, enableKeyEvents:true, keyNavEnabled:false, selectOnFocus:true, 
-  submitValue:false, isFormField:false, width:me.inputItemWidth, margins:'-1 2 3 2', listeners:{scope:me, keydown:me.onPagingKeyDown, blur:me.onPagingBlur}}, {xtype:'tbtext', itemId:'afterTextItem', text:Ext.String.format(me.afterPageText, 1)}, '-', {itemId:'next', tooltip:me.nextText, overflowText:me.nextText, iconCls:'x-tbar-page-next', disabled:true, handler:me.moveNext, scope:me}, {itemId:'last', tooltip:me.lastText, overflowText:me.lastText, iconCls:'x-tbar-page-last', disabled:true, handler:me.moveLast, 
-  scope:me}, '-', {itemId:'refresh', tooltip:me.refreshText, overflowText:me.refreshText, iconCls:'x-tbar-loading', handler:me.doRefresh, scope:me}];
+  return [{itemId:'first', tooltip:me.firstText, overflowText:me.firstText, iconCls:Ext.baseCSSPrefix + 'tbar-page-first', disabled:true, handler:me.moveFirst, scope:me}, {itemId:'prev', tooltip:me.prevText, overflowText:me.prevText, iconCls:Ext.baseCSSPrefix + 'tbar-page-prev', disabled:true, handler:me.movePrevious, scope:me}, '-', me.beforePageText, {xtype:'numberfield', itemId:'inputItem', name:'inputItem', cls:Ext.baseCSSPrefix + 'tbar-page-number', allowDecimals:false, minValue:1, hideTrigger:true, 
+  enableKeyEvents:true, keyNavEnabled:false, selectOnFocus:true, submitValue:false, isFormField:false, width:me.inputItemWidth, margins:'-1 2 3 2', listeners:{scope:me, keydown:me.onPagingKeyDown, blur:me.onPagingBlur}}, {xtype:'tbtext', itemId:'afterTextItem', text:Ext.String.format(me.afterPageText, 1)}, '-', {itemId:'next', tooltip:me.nextText, overflowText:me.nextText, iconCls:Ext.baseCSSPrefix + 'tbar-page-next', disabled:true, handler:me.moveNext, scope:me}, {itemId:'last', tooltip:me.lastText, 
+  overflowText:me.lastText, iconCls:Ext.baseCSSPrefix + 'tbar-page-last', disabled:true, handler:me.moveLast, scope:me}, '-', {itemId:'refresh', tooltip:me.refreshText, overflowText:me.refreshText, iconCls:Ext.baseCSSPrefix + 'tbar-loading', handler:me.doRefresh, scope:me}];
 }, initComponent:function() {
   var me = this, pagingItems = me.getPagingItems(), userItems = me.items || me.buttons || [];
   if (me.prependButtons) {
@@ -40962,7 +40576,7 @@ Ext.cmd.derive('Ext.toolbar.Paging', Ext.toolbar.Toolbar, {alternateClassName:'E
     me.items.push('-\x3e');
     me.items.push({xtype:'tbtext', itemId:'displayItem'});
   }
-  Ext.toolbar.Toolbar.prototype.initComponent.call(this);
+  me.callParent();
   me.addEvents('change', 'beforechange');
   me.on('beforerender', me.onLoad, me, {single:true});
   me.bindStore(me.store || 'ext-empty-store', true);
@@ -41119,10 +40733,10 @@ Ext.cmd.derive('Ext.toolbar.Paging', Ext.toolbar.Toolbar, {alternateClassName:'E
   this.bindStore(store);
 }, onDestroy:function() {
   this.unbind();
-  Ext.toolbar.Toolbar.prototype.onDestroy.call(this);
-}}, 0, ['pagingtoolbar'], ['component', 'box', 'container', 'toolbar', 'pagingtoolbar'], {'component':true, 'box':true, 'container':true, 'toolbar':true, 'pagingtoolbar':true}, ['widget.pagingtoolbar'], [['bindable', Ext.util.Bindable]], [Ext.toolbar, 'Paging', Ext, 'PagingToolbar'], 0);
-Ext.cmd.derive('Ext.view.BoundList', Ext.view.View, {alternateClassName:'Ext.BoundList', pageSize:0, baseCls:'x-boundlist', itemCls:'x-boundlist-item', listItemCls:'', shadow:false, trackOver:true, refreshed:0, deferInitialRefresh:false, componentLayout:'boundlist', childEls:['listEl'], renderTpl:['\x3cdiv id\x3d"{id}-listEl" class\x3d"{baseCls}-list-ct ', Ext.dom.Element.unselectableCls, '" style\x3d"overflow:auto"\x3e\x3c/div\x3e', '{%', 'var me\x3dvalues.$comp, pagingToolbar\x3dme.pagingToolbar;', 
-'if (pagingToolbar) {', 'pagingToolbar.ownerLayout \x3d me.componentLayout;', 'Ext.DomHelper.generateMarkup(pagingToolbar.getRenderTree(), out);', '}', '%}', {disableFormats:true}], initComponent:function() {
+  this.callParent();
+}});
+Ext.define('Ext.view.BoundList', {extend:Ext.view.View, alias:'widget.boundlist', alternateClassName:'Ext.BoundList', mixins:{queryable:Ext.Queryable}, pageSize:0, baseCls:Ext.baseCSSPrefix + 'boundlist', itemCls:Ext.baseCSSPrefix + 'boundlist-item', listItemCls:'', shadow:false, trackOver:true, refreshed:0, deferInitialRefresh:false, componentLayout:'boundlist', childEls:['listEl'], renderTpl:['\x3cdiv id\x3d"{id}-listEl" class\x3d"{baseCls}-list-ct ', Ext.dom.Element.unselectableCls, '" style\x3d"overflow:auto"\x3e\x3c/div\x3e', 
+'{%', 'var me\x3dvalues.$comp, pagingToolbar\x3dme.pagingToolbar;', 'if (pagingToolbar) {', 'pagingToolbar.ownerLayout \x3d me.componentLayout;', 'Ext.DomHelper.generateMarkup(pagingToolbar.getRenderTree(), out);', '}', '%}', {disableFormats:true}], initComponent:function() {
   var me = this, baseCls = me.baseCls, itemCls = me.itemCls;
   me.selectedItemCls = baseCls + '-selected';
   if (me.trackOver) {
@@ -41142,22 +40756,22 @@ Ext.cmd.derive('Ext.view.BoundList', Ext.view.View, {alternateClassName:'Ext.Bou
   if (me.pageSize) {
     me.pagingToolbar = me.createPagingToolbar();
   }
-  Ext.view.View.prototype.initComponent.call(this);
+  me.callParent();
 }, beforeRender:function() {
   var me = this;
-  Ext.view.View.prototype.beforeRender.apply(this, arguments);
+  me.callParent(arguments);
   if (me.up('menu')) {
-    me.addCls('x-menu');
+    me.addCls(Ext.baseCSSPrefix + 'menu');
   }
 }, getRefOwner:function() {
-  return this.pickerField || Ext.view.View.prototype.getRefOwner.call(this);
+  return this.pickerField || this.callParent();
 }, getRefItems:function() {
   return this.pagingToolbar ? [this.pagingToolbar] : [];
 }, createPagingToolbar:function() {
   return Ext.widget('pagingtoolbar', {id:this.id + '-paging-toolbar', pageSize:this.pageSize, store:this.dataSource, border:false, ownerCt:this, ownerLayout:this.getComponentLayout()});
 }, finishRenderChildren:function() {
   var toolbar = this.pagingToolbar;
-  Ext.view.View.prototype.finishRenderChildren.apply(this, arguments);
+  this.callParent(arguments);
   if (toolbar) {
     toolbar.finishRender();
   }
@@ -41165,7 +40779,7 @@ Ext.cmd.derive('Ext.view.BoundList', Ext.view.View, {alternateClassName:'Ext.Bou
   var me = this, tpl = me.tpl, toolbar = me.pagingToolbar, rendered = me.rendered;
   tpl.field = me.pickerField;
   tpl.store = me.store;
-  Ext.view.View.prototype.refresh.call(this);
+  me.callParent();
   tpl.field = tpl.store = null;
   if (rendered && toolbar && toolbar.rendered && !me.preserveScrollOnRefresh) {
     me.el.appendChild(toolbar.el);
@@ -41175,7 +40789,7 @@ Ext.cmd.derive('Ext.view.BoundList', Ext.view.View, {alternateClassName:'Ext.Bou
   }
 }, bindStore:function(store, initial) {
   var toolbar = this.pagingToolbar;
-  Ext.view.View.prototype.bindStore.apply(this, arguments);
+  this.callParent(arguments);
   if (toolbar) {
     toolbar.bindStore(store, initial);
   }
@@ -41185,12 +40799,12 @@ Ext.cmd.derive('Ext.view.BoundList', Ext.view.View, {alternateClassName:'Ext.Bou
   return '{' + displayField + '}';
 }, onDestroy:function() {
   Ext.destroyMembers(this, 'pagingToolbar', 'listEl');
-  Ext.view.View.prototype.onDestroy.call(this);
-}}, 0, ['boundlist'], ['component', 'box', 'dataview', 'boundlist'], {'component':true, 'box':true, 'dataview':true, 'boundlist':true}, ['widget.boundlist'], [['queryable', Ext.Queryable]], [Ext.view, 'BoundList', Ext, 'BoundList'], 0);
-Ext.cmd.derive('Ext.view.BoundListKeyNav', Ext.util.KeyNav, {constructor:function(el, config) {
+  this.callParent();
+}});
+Ext.define('Ext.view.BoundListKeyNav', {extend:Ext.util.KeyNav, constructor:function(el, config) {
   var me = this;
   me.boundList = config.boundList;
-  Ext.util.KeyNav.prototype.constructor.call(this, el, Ext.apply({}, config, me.defaultHandlers));
+  me.callParent([el, Ext.apply({}, config, me.defaultHandlers)]);
 }, defaultHandlers:{up:function() {
   var me = this, boundList = me.boundList, allItems = boundList.all, oldItem = boundList.highlightedItem, oldItemIdx = oldItem ? boundList.indexOf(oldItem) : -1, newItemIdx = oldItemIdx > 0 ? oldItemIdx - 1 : allItems.getCount() - 1;
   me.highlightAt(newItemIdx);
@@ -41218,8 +40832,8 @@ Ext.cmd.derive('Ext.view.BoundListKeyNav', Ext.util.KeyNav, {constructor:functio
   if (highlighted) {
     selModel.selectWithEvent(boundList.getRecord(highlighted), e);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.view, 'BoundListKeyNav'], 0);
-Ext.cmd.derive('Ext.layout.component.field.ComboBox', Ext.layout.component.field.Trigger, {type:'combobox', startingWidth:null, getTextWidth:function() {
+}});
+Ext.define('Ext.layout.component.field.ComboBox', {extend:Ext.layout.component.field.Trigger, alias:'layout.combobox', type:'combobox', startingWidth:null, getTextWidth:function() {
   var me = this, owner = me.owner, store = owner.store, field = owner.displayField, storeLn = store.data.length, value = '', i = 0, n = 0, ln, item, width;
   for (; i < storeLn; i++) {
     item = store.getAt(i).data[field];
@@ -41229,7 +40843,7 @@ Ext.cmd.derive('Ext.layout.component.field.ComboBox', Ext.layout.component.field
       value = item;
     }
   }
-  width = Math.max(Ext.layout.component.field.Trigger.prototype.getTextWidth.apply(this, arguments), owner.inputEl.getTextWidth(value + owner.growAppend));
+  width = Math.max(me.callParent(arguments), owner.inputEl.getTextWidth(value + owner.growAppend));
   if (!me.startingWidth || owner.removingRecords) {
     me.startingWidth = width;
     if (width < owner.growMin) {
@@ -41238,16 +40852,16 @@ Ext.cmd.derive('Ext.layout.component.field.ComboBox', Ext.layout.component.field
     owner.removingRecords = false;
   }
   return width < me.startingWidth ? me.startingWidth : width;
-}}, 0, 0, 0, 0, ['layout.combobox'], 0, [Ext.layout.component.field, 'ComboBox'], 0);
-Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClassName:'Ext.form.ComboBox', componentLayout:'combobox', triggerCls:'x-form-arrow-trigger', hiddenName:'', hiddenDataCls:'x-hide-display x-form-data-hidden', fieldSubTpl:['\x3cdiv class\x3d"{hiddenDataCls}" role\x3d"presentation"\x3e\x3c/div\x3e', '\x3cinput id\x3d"{id}" type\x3d"{type}" {inputAttrTpl} class\x3d"{fieldCls} {typeCls} {editableCls}" autocomplete\x3d"off"', '\x3ctpl if\x3d"value"\x3e value\x3d"{[Ext.util.Format.htmlEncode(values.value)]}"\x3c/tpl\x3e', 
-'\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', '\x3ctpl if\x3d"size"\x3e size\x3d"{size}"\x3c/tpl\x3e', '\x3ctpl if\x3d"maxLength !\x3d\x3d undefined"\x3e maxlength\x3d"{maxLength}"\x3c/tpl\x3e', '\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', '\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', 
-'/\x3e', {compiled:true, disableFormats:true}], getSubTplData:function() {
+}});
+Ext.define('Ext.form.field.ComboBox', {extend:Ext.form.field.Picker, alternateClassName:'Ext.form.ComboBox', alias:['widget.combobox', 'widget.combo'], mixins:{bindable:Ext.util.Bindable}, componentLayout:'combobox', triggerCls:Ext.baseCSSPrefix + 'form-arrow-trigger', hiddenName:'', hiddenDataCls:Ext.baseCSSPrefix + 'hide-display ' + Ext.baseCSSPrefix + 'form-data-hidden', fieldSubTpl:['\x3cdiv class\x3d"{hiddenDataCls}" role\x3d"presentation"\x3e\x3c/div\x3e', '\x3cinput id\x3d"{id}" type\x3d"{type}" {inputAttrTpl} class\x3d"{fieldCls} {typeCls} {editableCls}" autocomplete\x3d"off"', 
+'\x3ctpl if\x3d"value"\x3e value\x3d"{[Ext.util.Format.htmlEncode(values.value)]}"\x3c/tpl\x3e', '\x3ctpl if\x3d"name"\x3e name\x3d"{name}"\x3c/tpl\x3e', '\x3ctpl if\x3d"placeholder"\x3e placeholder\x3d"{placeholder}"\x3c/tpl\x3e', '\x3ctpl if\x3d"size"\x3e size\x3d"{size}"\x3c/tpl\x3e', '\x3ctpl if\x3d"maxLength !\x3d\x3d undefined"\x3e maxlength\x3d"{maxLength}"\x3c/tpl\x3e', '\x3ctpl if\x3d"readOnly"\x3e readonly\x3d"readonly"\x3c/tpl\x3e', '\x3ctpl if\x3d"disabled"\x3e disabled\x3d"disabled"\x3c/tpl\x3e', 
+'\x3ctpl if\x3d"tabIdx"\x3e tabIndex\x3d"{tabIdx}"\x3c/tpl\x3e', '\x3ctpl if\x3d"fieldStyle"\x3e style\x3d"{fieldStyle}"\x3c/tpl\x3e', '/\x3e', {compiled:true, disableFormats:true}], getSubTplData:function() {
   var me = this;
   Ext.applyIf(me.subTplData, {hiddenDataCls:me.hiddenDataCls});
-  return Ext.form.field.Picker.prototype.getSubTplData.apply(this, arguments);
+  return me.callParent(arguments);
 }, afterRender:function() {
   var me = this;
-  Ext.form.field.Picker.prototype.afterRender.apply(this, arguments);
+  me.callParent(arguments);
   me.setHiddenValue(me.value);
 }, multiSelect:false, delimiter:', ', displayField:'text', triggerAction:'all', allQuery:'', queryParam:'query', queryMode:'remote', queryCaching:true, pageSize:0, anyMatch:false, caseSensitive:false, autoSelect:true, typeAhead:false, typeAheadDelay:250, selectOnTab:true, forceSelection:false, growToLongestValue:true, defaultListConfig:{loadingHeight:70, minWidth:70, maxHeight:300, shadow:'sides'}, ignoreSelection:0, removingRecords:null, resizeComboToGrow:function() {
   var me = this;
@@ -41301,13 +40915,13 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
     me.minChars = isLocalMode ? 0 : 4;
   }
   if (!me.displayTpl) {
-    me.displayTpl = new Ext.XTemplate('\x3ctpl for\x3d"."\x3e{[typeof values \x3d\x3d\x3d "string" ? values : values["' + me.displayField + '"]]}\x3ctpl if\x3d"xindex \x3c xcount"\x3e' + me.delimiter + '\x3c/tpl\x3e\x3c/tpl\x3e');
+    me.displayTpl = new Ext.XTemplate('\x3ctpl for\x3d"."\x3e' + '{[typeof values \x3d\x3d\x3d "string" ? values : values["' + me.displayField + '"]]}' + '\x3ctpl if\x3d"xindex \x3c xcount"\x3e' + me.delimiter + '\x3c/tpl\x3e' + '\x3c/tpl\x3e');
   } else {
     if (Ext.isString(me.displayTpl)) {
       me.displayTpl = new Ext.XTemplate(me.displayTpl);
     }
   }
-  Ext.form.field.Picker.prototype.initComponent.call(this);
+  me.callParent();
   me.doQueryTask = new Ext.util.DelayedTask(me.doRawQuery, me);
   if (me.store.getCount() > 0) {
     me.setValue(me.value);
@@ -41355,7 +40969,7 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
     }
   }
 }, resetToDefault:Ext.emptyFn, beforeReset:function() {
-  Ext.form.field.Picker.prototype.beforeReset.call(this);
+  this.callParent();
   if (this.queryFilter && !this.queryFilter.disabled) {
     this.queryFilter.disabled = true;
     this.store.filter();
@@ -41558,11 +41172,11 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
     }
   }
   if (me.enableKeyEvents) {
-    Ext.form.field.Picker.prototype.onKeyUp.apply(this, arguments);
+    me.callParent(arguments);
   }
 }, initEvents:function() {
   var me = this;
-  Ext.form.field.Picker.prototype.initEvents.call(this);
+  me.callParent();
   if (!me.enableKeyEvents) {
     me.mon(me.inputEl, 'keyup', me.onKeyUp, me);
   }
@@ -41570,10 +41184,10 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
 }, onDestroy:function() {
   Ext.destroy(this.listKeyNav);
   this.bindStore(null);
-  Ext.form.field.Picker.prototype.onDestroy.call(this);
+  this.callParent();
 }, onAdded:function() {
   var me = this;
-  Ext.form.field.Picker.prototype.onAdded.apply(this, arguments);
+  me.callParent(arguments);
   if (me.picker) {
     me.picker.ownerCt = me.up('[floating]');
     me.picker.registerWithOwnerCt();
@@ -41596,7 +41210,7 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
   if (picker.getHeight() > space - 5) {
     picker.setHeight(space - 5);
   }
-  Ext.form.field.Picker.prototype.alignPicker.call(this);
+  me.callParent();
 }, onListRefresh:function() {
   if (!this.expanding) {
     this.alignPicker();
@@ -41808,11 +41422,12 @@ Ext.cmd.derive('Ext.form.field.ComboBox', Ext.form.field.Picker, {alternateClass
   if (this.selectOnTab && keyNav) {
     keyNav.selectHighlighted(e);
   }
-}}, 0, ['combo', 'combobox'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger', 'pickerfield', 'combobox', 'combo'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true, 'pickerfield':true, 'combobox':true, 'combo':true}, ['widget.combo', 'widget.combobox'], [['bindable', Ext.util.Bindable]], [Ext.form.field, 'ComboBox', Ext.form, 'ComboBox'], 0);
-Ext.cmd.derive('Ext.picker.Month', Ext.Component, {alternateClassName:'Ext.MonthPicker', childEls:['bodyEl', 'prevEl', 'nextEl', 'buttonsEl', 'monthEl', 'yearEl'], renderTpl:['\x3cdiv id\x3d"{id}-bodyEl" class\x3d"{baseCls}-body"\x3e', '\x3cdiv id\x3d"{id}-monthEl" class\x3d"{baseCls}-months"\x3e', '\x3ctpl for\x3d"months"\x3e', '\x3cdiv class\x3d"{parent.baseCls}-item {parent.baseCls}-month"\x3e', '\x3ca style\x3d"{parent.monthStyle}" hidefocus\x3d"on" class\x3d"{parent.baseCls}-item-inner" href\x3d"#"\x3e{.}\x3c/a\x3e', 
+}});
+Ext.define('Ext.picker.Month', {extend:Ext.Component, alias:'widget.monthpicker', alternateClassName:'Ext.MonthPicker', childEls:['bodyEl', 'prevEl', 'nextEl', 'buttonsEl', 'monthEl', 'yearEl'], renderTpl:['\x3cdiv id\x3d"{id}-bodyEl" class\x3d"{baseCls}-body"\x3e', '\x3cdiv id\x3d"{id}-monthEl" class\x3d"{baseCls}-months"\x3e', '\x3ctpl for\x3d"months"\x3e', '\x3cdiv class\x3d"{parent.baseCls}-item {parent.baseCls}-month"\x3e', '\x3ca style\x3d"{parent.monthStyle}" hidefocus\x3d"on" class\x3d"{parent.baseCls}-item-inner" href\x3d"#"\x3e{.}\x3c/a\x3e', 
 '\x3c/div\x3e', '\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cdiv id\x3d"{id}-yearEl" class\x3d"{baseCls}-years"\x3e', '\x3cdiv class\x3d"{baseCls}-yearnav"\x3e', '\x3cdiv class\x3d"{baseCls}-yearnav-button-ct"\x3e', '\x3ca id\x3d"{id}-prevEl" class\x3d"{baseCls}-yearnav-button {baseCls}-yearnav-prev" href\x3d"#" hidefocus\x3d"on" \x3e\x3c/a\x3e', '\x3c/div\x3e', '\x3cdiv class\x3d"{baseCls}-yearnav-button-ct"\x3e', '\x3ca id\x3d"{id}-nextEl" class\x3d"{baseCls}-yearnav-button {baseCls}-yearnav-next" href\x3d"#" hidefocus\x3d"on" \x3e\x3c/a\x3e', 
-'\x3c/div\x3e', '\x3c/div\x3e', '\x3ctpl for\x3d"years"\x3e', '\x3cdiv class\x3d"{parent.baseCls}-item {parent.baseCls}-year"\x3e', '\x3ca hidefocus\x3d"on" class\x3d"{parent.baseCls}-item-inner" href\x3d"#"\x3e{.}\x3c/a\x3e', '\x3c/div\x3e', '\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cdiv class\x3d"x-clear"\x3e\x3c/div\x3e', '\x3c/div\x3e', '\x3ctpl if\x3d"showButtons"\x3e', '\x3cdiv id\x3d"{id}-buttonsEl" class\x3d"{baseCls}-buttons"\x3e{%', 'var me\x3dvalues.$comp, okBtn\x3dme.okBtn, cancelBtn\x3dme.cancelBtn;', 
-'okBtn.ownerLayout \x3d cancelBtn.ownerLayout \x3d me.componentLayout;', 'okBtn.ownerCt \x3d cancelBtn.ownerCt \x3d me;', 'Ext.DomHelper.generateMarkup(okBtn.getRenderTree(), out);', 'Ext.DomHelper.generateMarkup(cancelBtn.getRenderTree(), out);', '%}\x3c/div\x3e', '\x3c/tpl\x3e'], okText:'OK', cancelText:'Cancel', baseCls:'x-monthpicker', showButtons:true, measureWidth:35, measureMaxHeight:20, smallCls:'x-monthpicker-small', totalYears:10, yearOffset:5, monthOffset:6, initComponent:function() {
+'\x3c/div\x3e', '\x3c/div\x3e', '\x3ctpl for\x3d"years"\x3e', '\x3cdiv class\x3d"{parent.baseCls}-item {parent.baseCls}-year"\x3e', '\x3ca hidefocus\x3d"on" class\x3d"{parent.baseCls}-item-inner" href\x3d"#"\x3e{.}\x3c/a\x3e', '\x3c/div\x3e', '\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 'clear"\x3e\x3c/div\x3e', '\x3c/div\x3e', '\x3ctpl if\x3d"showButtons"\x3e', '\x3cdiv id\x3d"{id}-buttonsEl" class\x3d"{baseCls}-buttons"\x3e{%', 'var me\x3dvalues.$comp, okBtn\x3dme.okBtn, cancelBtn\x3dme.cancelBtn;', 
+'okBtn.ownerLayout \x3d cancelBtn.ownerLayout \x3d me.componentLayout;', 'okBtn.ownerCt \x3d cancelBtn.ownerCt \x3d me;', 'Ext.DomHelper.generateMarkup(okBtn.getRenderTree(), out);', 'Ext.DomHelper.generateMarkup(cancelBtn.getRenderTree(), out);', '%}\x3c/div\x3e', '\x3c/tpl\x3e'], okText:'OK', cancelText:'Cancel', baseCls:Ext.baseCSSPrefix + 'monthpicker', showButtons:true, measureWidth:35, measureMaxHeight:20, smallCls:Ext.baseCSSPrefix + 'monthpicker-small', totalYears:10, yearOffset:5, monthOffset:6, 
+initComponent:function() {
   var me = this;
   me.selectedCls = me.baseCls + '-selected';
   me.addEvents('cancelclick', 'monthclick', 'monthdblclick', 'okclick', 'select', 'yearclick', 'yeardblclick');
@@ -41825,10 +41440,10 @@ Ext.cmd.derive('Ext.picker.Month', Ext.Component, {alternateClassName:'Ext.Month
     me.okBtn = new Ext.button.Button({text:me.okText, handler:me.onOkClick, scope:me});
     me.cancelBtn = new Ext.button.Button({text:me.cancelText, handler:me.onCancelClick, scope:me});
   }
-  Ext.Component.prototype.initComponent.call(this);
+  this.callParent();
 }, beforeRender:function() {
   var me = this, i = 0, months = [], shortName = Ext.Date.getShortMonthName, monthLen = me.monthOffset, margin = me.monthMargin, style = '';
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   for (; i < monthLen; ++i) {
     months.push(shortName(i), shortName(i + monthLen));
   }
@@ -41838,7 +41453,7 @@ Ext.cmd.derive('Ext.picker.Month', Ext.Component, {alternateClassName:'Ext.Month
   Ext.apply(me.renderData, {months:months, years:me.getYears(), showButtons:me.showButtons, monthStyle:style});
 }, afterRender:function() {
   var me = this, body = me.bodyEl, buttonsEl = me.buttonsEl;
-  Ext.Component.prototype.afterRender.call(this);
+  me.callParent();
   me.mon(body, 'click', me.onBodyClick, me);
   me.mon(body, 'dblclick', me.onBodyClick, me);
   me.years = body.select('.' + me.baseCls + '-year a');
@@ -41970,19 +41585,19 @@ Ext.cmd.derive('Ext.picker.Month', Ext.Component, {alternateClassName:'Ext.Month
   var me = this;
   me.years = me.months = null;
   Ext.destroyMembers(me, 'backRepeater', 'nextRepeater', 'okBtn', 'cancelBtn');
-  Ext.Component.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, finishRenderChildren:function() {
   var me = this;
-  Ext.Component.prototype.finishRenderChildren.apply(this, arguments);
+  this.callParent(arguments);
   if (this.showButtons) {
     me.okBtn.finishRender();
     me.cancelBtn.finishRender();
   }
 }, onDestroy:function() {
   Ext.destroyMembers(this, 'okBtn', 'cancelBtn');
-  Ext.Component.prototype.onDestroy.call(this);
-}}, 0, ['monthpicker'], ['component', 'box', 'monthpicker'], {'component':true, 'box':true, 'monthpicker':true}, ['widget.monthpicker'], 0, [Ext.picker, 'Month', Ext, 'MonthPicker'], 0);
-Ext.cmd.derive('Ext.picker.Date', Ext.Component, {alternateClassName:'Ext.DatePicker', childEls:['innerEl', 'eventEl', 'prevEl', 'nextEl', 'middleBtnEl', 'footerEl'], border:true, renderTpl:['\x3cdiv id\x3d"{id}-innerEl" role\x3d"grid"\x3e', '\x3cdiv role\x3d"presentation" class\x3d"{baseCls}-header"\x3e', '\x3ca id\x3d"{id}-prevEl" class\x3d"{baseCls}-prev {baseCls}-arrow" href\x3d"#" role\x3d"button" title\x3d"{prevText}" hidefocus\x3d"on" \x3e\x3c/a\x3e', '\x3cdiv class\x3d"{baseCls}-month" id\x3d"{id}-middleBtnEl"\x3e{%this.renderMonthBtn(values, out)%}\x3c/div\x3e', 
+  this.callParent();
+}});
+Ext.define('Ext.picker.Date', {extend:Ext.Component, alias:'widget.datepicker', alternateClassName:'Ext.DatePicker', childEls:['innerEl', 'eventEl', 'prevEl', 'nextEl', 'middleBtnEl', 'footerEl'], border:true, renderTpl:['\x3cdiv id\x3d"{id}-innerEl" role\x3d"grid"\x3e', '\x3cdiv role\x3d"presentation" class\x3d"{baseCls}-header"\x3e', '\x3ca id\x3d"{id}-prevEl" class\x3d"{baseCls}-prev {baseCls}-arrow" href\x3d"#" role\x3d"button" title\x3d"{prevText}" hidefocus\x3d"on" \x3e\x3c/a\x3e', '\x3cdiv class\x3d"{baseCls}-month" id\x3d"{id}-middleBtnEl"\x3e{%this.renderMonthBtn(values, out)%}\x3c/div\x3e', 
 '\x3ca id\x3d"{id}-nextEl" class\x3d"{baseCls}-next {baseCls}-arrow" href\x3d"#" role\x3d"button" title\x3d"{nextText}" hidefocus\x3d"on" \x3e\x3c/a\x3e', '\x3c/div\x3e', '\x3ctable id\x3d"{id}-eventEl" class\x3d"{baseCls}-inner" cellspacing\x3d"0" role\x3d"grid"\x3e', '\x3cthead role\x3d"presentation"\x3e\x3ctr role\x3d"row"\x3e', '\x3ctpl for\x3d"dayNames"\x3e', '\x3cth role\x3d"columnheader" class\x3d"{parent.baseCls}-column-header" title\x3d"{.}"\x3e', '\x3cdiv class\x3d"{parent.baseCls}-column-header-inner"\x3e{.:this.firstInitial}\x3c/div\x3e', 
 '\x3c/th\x3e', '\x3c/tpl\x3e', '\x3c/tr\x3e\x3c/thead\x3e', '\x3ctbody role\x3d"presentation"\x3e\x3ctr role\x3d"row"\x3e', '\x3ctpl for\x3d"days"\x3e', '{#:this.isEndOfWeek}', '\x3ctd role\x3d"gridcell" id\x3d"{[Ext.id()]}"\x3e', '\x3ca role\x3d"presentation" hidefocus\x3d"on" class\x3d"{parent.baseCls}-date" href\x3d"#"\x3e\x3c/a\x3e', '\x3c/td\x3e', '\x3c/tpl\x3e', '\x3c/tr\x3e\x3c/tbody\x3e', '\x3c/table\x3e', '\x3ctpl if\x3d"showToday"\x3e', '\x3cdiv id\x3d"{id}-footerEl" role\x3d"presentation" class\x3d"{baseCls}-footer"\x3e{%this.renderTodayBtn(values, out)%}\x3c/div\x3e', 
 '\x3c/tpl\x3e', '\x3c/div\x3e', {firstInitial:function(value) {
@@ -41995,8 +41610,8 @@ Ext.cmd.derive('Ext.picker.Date', Ext.Component, {alternateClassName:'Ext.DatePi
   Ext.DomHelper.generateMarkup(values.$comp.todayBtn.getRenderTree(), out);
 }, renderMonthBtn:function(values, out) {
   Ext.DomHelper.generateMarkup(values.$comp.monthBtn.getRenderTree(), out);
-}}], todayText:'Today', ariaTitle:'Date Picker: {0}', ariaTitleDateFormat:'F d, Y', todayTip:'{0} (Spacebar)', minText:'This date is before the minimum date', maxText:'This date is after the maximum date', disabledDaysText:'Disabled', disabledDatesText:'Disabled', nextText:'Next Month (Control+Right)', prevText:'Previous Month (Control+Left)', monthYearText:'Choose a month (Control+Up/Down to move years)', monthYearFormat:'F Y', startDay:0, showToday:true, disableAnim:false, baseCls:'x-datepicker', 
-longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numDays:42, initComponent:function() {
+}}], todayText:'Today', ariaTitle:'Date Picker: {0}', ariaTitleDateFormat:'F d, Y', todayTip:'{0} (Spacebar)', minText:'This date is before the minimum date', maxText:'This date is after the maximum date', disabledDaysText:'Disabled', disabledDatesText:'Disabled', nextText:'Next Month (Control+Right)', prevText:'Previous Month (Control+Left)', monthYearText:'Choose a month (Control+Up/Down to move years)', monthYearFormat:'F Y', startDay:0, showToday:true, disableAnim:false, baseCls:Ext.baseCSSPrefix + 
+'datepicker', longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numDays:42, initComponent:function() {
   var me = this, clearTime = Ext.Date.clearTime;
   me.selectedCls = me.baseCls + '-selected';
   me.disabledCellCls = me.baseCls + '-disabled';
@@ -42012,39 +41627,39 @@ longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numD
     me.dayNames = Ext.Date.dayNames;
   }
   me.dayNames = me.dayNames.slice(me.startDay).concat(me.dayNames.slice(0, me.startDay));
-  Ext.Component.prototype.initComponent.call(this);
+  me.callParent();
   me.value = me.value ? clearTime(me.value, true) : clearTime(new Date);
   me.addEvents('select');
   me.initDisabledDays();
 }, beforeRender:function() {
   var me = this, days = new Array(me.numDays), today = Ext.Date.format(new Date, me.format);
   if (me.up('menu')) {
-    me.addCls('x-menu');
+    me.addCls(Ext.baseCSSPrefix + 'menu');
   }
   me.monthBtn = new Ext.button.Split({ownerCt:me, ownerLayout:me.getComponentLayout(), text:'', tooltip:me.monthYearText, listeners:{click:me.showMonthPicker, arrowclick:me.showMonthPicker, scope:me}});
   if (me.showToday) {
     me.todayBtn = new Ext.button.Button({ownerCt:me, ownerLayout:me.getComponentLayout(), text:Ext.String.format(me.todayText, today), tooltip:Ext.String.format(me.todayTip, today), tooltipType:'title', handler:me.selectToday, scope:me});
   }
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   Ext.applyIf(me, {renderData:{}});
   Ext.apply(me.renderData, {dayNames:me.dayNames, showToday:me.showToday, prevText:me.prevText, nextText:me.nextText, days:days});
   me.protoEl.unselectable();
 }, finishRenderChildren:function() {
   var me = this;
-  Ext.Component.prototype.finishRenderChildren.call(this);
+  me.callParent();
   me.monthBtn.finishRender();
   if (me.showToday) {
     me.todayBtn.finishRender();
   }
 }, onRender:function(container, position) {
   var me = this;
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   me.cells = me.eventEl.select('tbody td');
   me.textNodes = me.eventEl.query('tbody td a');
   me.mon(me.eventEl, {scope:me, mousewheel:me.handleMouseWheel, click:{fn:me.handleDateClick, delegate:'a.' + me.baseCls + '-date'}});
 }, initEvents:function() {
   var me = this, eDate = Ext.Date, day = eDate.DAY;
-  Ext.Component.prototype.initEvents.call(this);
+  me.callParent();
   me.prevRepeater = new Ext.util.ClickRepeater(me.prevEl, {handler:me.showPrevMonth, scope:me, preventDefault:true, stopDefault:true});
   me.nextRepeater = new Ext.util.ClickRepeater(me.nextEl, {handler:me.showNextMonth, scope:me, preventDefault:true, stopDefault:true});
   me.keyNav = new Ext.util.KeyNav(me.eventEl, Ext.apply({scope:me, left:function(e) {
@@ -42166,11 +41781,11 @@ longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numD
 }, focus:function() {
   this.update(this.activeDate);
 }, onEnable:function() {
-  Ext.Component.prototype.onEnable.call(this);
+  this.callParent();
   this.setDisabledStatus(false);
   this.update(this.activeDate);
 }, onDisable:function() {
-  Ext.Component.prototype.onDisable.call(this);
+  this.callParent();
   this.setDisabledStatus(true);
 }, setDisabledStatus:function(disabled) {
   var me = this;
@@ -42328,7 +41943,7 @@ longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numD
     if (value == today) {
       cls += ' ' + me.todayCls;
       cell.title = me.todayText;
-      me.todayElSpan = Ext.DomHelper.append(cell.firstChild, {tag:'span', cls:'x-hide-clip', html:me.todayText}, true);
+      me.todayElSpan = Ext.DomHelper.append(cell.firstChild, {tag:'span', cls:Ext.baseCSSPrefix + 'hide-clip', html:me.todayText}, true);
     }
     if (value == newDate) {
       cls += ' ' + me.selectedCls;
@@ -42397,15 +42012,15 @@ longDayFormat:'F d, Y', focusOnShow:false, focusOnSelect:true, initHour:12, numD
     delete me.textNodes;
     delete me.cells.elements;
   }
-  Ext.Component.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, onShow:function() {
-  Ext.Component.prototype.onShow.apply(this, arguments);
+  this.callParent(arguments);
   if (this.focusOnShow) {
     this.focus();
   }
-}}, 0, ['datepicker'], ['component', 'box', 'datepicker'], {'component':true, 'box':true, 'datepicker':true}, ['widget.datepicker'], 0, [Ext.picker, 'Date', Ext, 'DatePicker'], 0);
-Ext.cmd.derive('Ext.form.field.Date', Ext.form.field.Picker, {alternateClassName:['Ext.form.DateField', 'Ext.form.Date'], format:'m/d/Y', altFormats:'m/d/Y|n/j/Y|n/j/y|m/j/y|n/d/y|m/j/Y|n/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d|n-j|n/j', disabledDaysText:'Disabled', disabledDatesText:'Disabled', minText:'The date in this field must be equal to or after {0}', maxText:'The date in this field must be equal to or before {0}', invalidText:'{0} is not a valid date - it must be in the format {1}', triggerCls:'x-form-date-trigger', 
-showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFieldWidth:false, startDay:0, initComponent:function() {
+}});
+Ext.define('Ext.form.field.Date', {extend:Ext.form.field.Picker, alias:'widget.datefield', alternateClassName:['Ext.form.DateField', 'Ext.form.Date'], format:'m/d/Y', altFormats:'m/d/Y|n/j/Y|n/j/y|m/j/y|n/d/y|m/j/Y|n/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d|n-j|n/j', disabledDaysText:'Disabled', disabledDatesText:'Disabled', minText:'The date in this field must be equal to or after {0}', maxText:'The date in this field must be equal to or before {0}', invalidText:'{0} is not a valid date - it must be in the format {1}', 
+triggerCls:Ext.baseCSSPrefix + 'form-date-trigger', showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFieldWidth:false, startDay:0, initComponent:function() {
   var me = this, isString = Ext.isString, min, max;
   min = me.minValue;
   max = me.maxValue;
@@ -42417,13 +42032,13 @@ showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFie
   }
   me.disabledDatesRE = null;
   me.initDisabledDays();
-  Ext.form.field.Picker.prototype.initComponent.call(this);
+  me.callParent();
 }, initValue:function() {
   var me = this, value = me.value;
   if (Ext.isString(value)) {
     me.value = me.rawToValue(value);
   }
-  Ext.form.field.Picker.prototype.initValue.call(this);
+  me.callParent();
 }, initDisabledDays:function() {
   if (this.disabledDates) {
     var dd = this.disabledDates, len = dd.length - 1, re = '(?:', d, dLen = dd.length, date;
@@ -42464,7 +42079,7 @@ showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFie
     picker.setMaxDate(maxValue);
   }
 }, getErrors:function(value) {
-  var me = this, format = Ext.String.format, clearTime = Ext.Date.clearTime, errors = Ext.form.field.Picker.prototype.getErrors.apply(this, arguments), disabledDays = me.disabledDays, disabledDatesRE = me.disabledDatesRE, minValue = me.minValue, maxValue = me.maxValue, len = disabledDays ? disabledDays.length : 0, i = 0, svalue, fvalue, day, time;
+  var me = this, format = Ext.String.format, clearTime = Ext.Date.clearTime, errors = me.callParent(arguments), disabledDays = me.disabledDays, disabledDatesRE = me.disabledDatesRE, minValue = me.minValue, maxValue = me.maxValue, len = disabledDays ? disabledDays.length : 0, i = 0, svalue, fvalue, day, time;
   value = me.formatDate(value || me.processRawValue(me.getRawValue()));
   if (value === null || value.length < 1) {
     return errors;
@@ -42536,7 +42151,7 @@ showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFie
     me.collapse();
   }}});
 }, onDownArrow:function(e) {
-  Ext.form.field.Picker.prototype.onDownArrow.apply(this, arguments);
+  this.callParent(arguments);
   if (this.isExpanded) {
     this.getPicker().focus();
   }
@@ -42558,14 +42173,14 @@ showToday:true, useStrict:undefined, initTime:'12', initTimeFormat:'H', matchFie
   if (v) {
     me.setValue(v);
   }
-}}, 0, ['datefield'], ['component', 'box', 'field', 'textfield', 'triggerfield', 'trigger', 'pickerfield', 'datefield'], {'component':true, 'box':true, 'field':true, 'textfield':true, 'triggerfield':true, 'trigger':true, 'pickerfield':true, 'datefield':true}, ['widget.datefield'], 0, [Ext.form.field, 'Date', Ext.form, 'DateField', Ext.form, 'Date'], 0);
-Ext.cmd.derive('Ext.form.field.Hidden', Ext.form.field.Base, {alternateClassName:'Ext.form.Hidden', inputType:'hidden', hideLabel:true, hidden:true, initComponent:function() {
+}});
+Ext.define('Ext.form.field.Hidden', {extend:Ext.form.field.Base, alias:['widget.hiddenfield', 'widget.hidden'], alternateClassName:'Ext.form.Hidden', inputType:'hidden', hideLabel:true, hidden:true, initComponent:function() {
   this.formItemCls += '-hidden';
-  Ext.form.field.Base.prototype.initComponent.call(this);
+  this.callParent();
 }, isEqual:function(value1, value2) {
   return this.isEqualAsString(value1, value2);
-}, initEvents:Ext.emptyFn, setSize:Ext.emptyFn, setWidth:Ext.emptyFn, setHeight:Ext.emptyFn, setPosition:Ext.emptyFn, setPagePosition:Ext.emptyFn, markInvalid:Ext.emptyFn, clearInvalid:Ext.emptyFn}, 0, ['hidden', 'hiddenfield'], ['component', 'box', 'field', 'hiddenfield', 'hidden'], {'component':true, 'box':true, 'field':true, 'hiddenfield':true, 'hidden':true}, ['widget.hidden', 'widget.hiddenfield'], 0, [Ext.form.field, 'Hidden', Ext.form, 'Hidden'], 0);
-Ext.cmd.derive('Ext.grid.CellContext', Ext.Base, {isCellContext:true, constructor:function(view) {
+}, initEvents:Ext.emptyFn, setSize:Ext.emptyFn, setWidth:Ext.emptyFn, setHeight:Ext.emptyFn, setPosition:Ext.emptyFn, setPagePosition:Ext.emptyFn, markInvalid:Ext.emptyFn, clearInvalid:Ext.emptyFn});
+Ext.define('Ext.grid.CellContext', {isCellContext:true, constructor:function(view) {
   this.view = view;
 }, setPosition:function(row, col) {
   var me = this;
@@ -42610,15 +42225,15 @@ Ext.cmd.derive('Ext.grid.CellContext', Ext.Base, {isCellContext:true, constructo
       }
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.grid, 'CellContext'], 0);
-Ext.cmd.derive('Ext.grid.ColumnComponentLayout', Ext.layout.component.Auto, {type:'columncomponent', setWidthInDom:true, beginLayout:function(ownerContext) {
+}});
+Ext.define('Ext.grid.ColumnComponentLayout', {extend:Ext.layout.component.Auto, alias:'layout.columncomponent', type:'columncomponent', setWidthInDom:true, beginLayout:function(ownerContext) {
   var me = this;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   ownerContext.titleContext = ownerContext.getEl('titleEl');
   ownerContext.triggerContext = ownerContext.getEl('triggerEl');
 }, beginLayoutCycle:function(ownerContext) {
   var me = this, owner = me.owner;
-  Ext.layout.component.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (ownerContext.widthModel.shrinkWrap) {
     owner.el.setWidth('');
   }
@@ -42658,7 +42273,7 @@ Ext.cmd.derive('Ext.grid.ColumnComponentLayout', Ext.layout.component.Auto, {typ
 }, measureContentHeight:function(ownerContext) {
   return ownerContext.el.dom.offsetHeight;
 }, publishOwnerHeight:function(ownerContext, contentHeight) {
-  Ext.layout.component.Auto.prototype.publishOwnerHeight.apply(this, arguments);
+  this.callParent(arguments);
   if ((Ext.isIE6 || Ext.isIEQuirks) && ownerContext.triggerContext) {
     ownerContext.triggerContext.setHeight(contentHeight);
   }
@@ -42667,7 +42282,7 @@ Ext.cmd.derive('Ext.grid.ColumnComponentLayout', Ext.layout.component.Auto, {typ
     ownerContext.setProp('innerWidth', outerWidth - ownerContext.getBorderInfo().width, false);
   }
 }, calculateOwnerHeightFromContentHeight:function(ownerContext, contentHeight) {
-  var result = Ext.layout.component.Auto.prototype.calculateOwnerHeightFromContentHeight.apply(this, arguments);
+  var result = this.callParent(arguments);
   if (!ownerContext.hasRawContent) {
     if (this.owner.noWrap || ownerContext.hasDomProp('width')) {
       return contentHeight + this.owner.titleEl.getHeight() + ownerContext.getBorderInfo().height;
@@ -42686,13 +42301,13 @@ Ext.cmd.derive('Ext.grid.ColumnComponentLayout', Ext.layout.component.Auto, {typ
     }
   }
   return width;
-}}, 0, 0, 0, 0, ['layout.columncomponent'], 0, [Ext.grid, 'ColumnComponentLayout'], 0);
-Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridcolumn', reserveOffset:false, firstHeaderCls:'x-column-header-first', lastHeaderCls:'x-column-header-last', initLayout:function() {
+}});
+Ext.define('Ext.grid.ColumnLayout', {extend:Ext.layout.container.HBox, alias:'layout.gridcolumn', type:'gridcolumn', reserveOffset:false, firstHeaderCls:Ext.baseCSSPrefix + 'column-header-first', lastHeaderCls:Ext.baseCSSPrefix + 'column-header-last', initLayout:function() {
   if (!this.scrollbarWidth) {
     this.self.prototype.scrollbarWidth = Ext.getScrollbarSize().width;
   }
   this.grid = this.owner.up('[scrollerOwner]');
-  Ext.layout.container.HBox.prototype.initLayout.call(this);
+  this.callParent();
 }, beginLayout:function(ownerContext) {
   var me = this, owner = me.owner, grid = me.grid, view = grid.view, items = me.getVisibleItems(), len = items.length, firstCls = me.firstHeaderCls, lastCls = me.lastHeaderCls, i, item;
   if (grid.lockable) {
@@ -42714,14 +42329,14 @@ Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridco
       item.isLast = true;
     }
   }
-  Ext.layout.container.HBox.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (!owner.isColumn && Ext.getScrollbarSize().width && !grid.collapsed && view && view.rendered && (ownerContext.viewTable = view.body.dom)) {
     ownerContext.viewContext = ownerContext.context.getCmp(view);
   }
 }, roundFlex:function(width) {
   return Math.floor(width);
 }, calculate:function(ownerContext) {
-  Ext.layout.container.HBox.prototype.calculate.apply(this, arguments);
+  this.callParent(arguments);
   if (ownerContext.state.parallelDone && (!this.owner.forceFit || ownerContext.flexedItems.length)) {
     ownerContext.setProp('columnWidthsDone', true);
   }
@@ -42730,7 +42345,7 @@ Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridco
   }
 }, completeLayout:function(ownerContext) {
   var me = this, owner = me.owner, state = ownerContext.state;
-  Ext.layout.container.HBox.prototype.completeLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (!ownerContext.flexedItems.length && !state.flexesCalculated && owner.forceFit && me.convertWidthsToFlexes(ownerContext)) {
     me.cacheFlexes(ownerContext);
     ownerContext.invalidate({state:{flexesCalculated:true}});
@@ -42757,7 +42372,7 @@ Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridco
   if (me.owner.isColumn) {
     result = me.getColumnContainerSize(ownerContext);
   } else {
-    result = Ext.layout.container.HBox.prototype.getContainerSize.apply(this, arguments);
+    result = me.callParent(arguments);
     if (viewContext && !viewContext.heightModel.shrinkWrap && viewContext.target.componentLayout.ownerContext) {
       viewHeight = viewContext.getProp('height');
       if (isNaN(viewHeight)) {
@@ -42809,9 +42424,9 @@ Ext.cmd.derive('Ext.grid.ColumnLayout', Ext.layout.container.HBox, {type:'gridco
       size.width += Ext.getScrollbarSize().width;
     }
   }
-  return Ext.layout.container.HBox.prototype.publishInnerCtSize.apply(this, arguments);
-}}, 0, 0, 0, 0, ['layout.gridcolumn'], 0, [Ext.grid, 'ColumnLayout'], 0);
-Ext.cmd.derive('Ext.grid.ColumnManager', Ext.Base, {alternateClassName:['Ext.grid.ColumnModel'], columns:null, constructor:function(headerCt, secondHeaderCt) {
+  return me.callParent(arguments);
+}});
+Ext.define('Ext.grid.ColumnManager', {alternateClassName:['Ext.grid.ColumnModel'], columns:null, constructor:function(headerCt, secondHeaderCt) {
   if (!headerCt.isRootHeader) {
     Ext.Error.raise('ColumnManager must be passed an instantiated HeaderContainer');
   }
@@ -42860,11 +42475,11 @@ Ext.cmd.derive('Ext.grid.ColumnManager', Ext.Base, {alternateClassName:['Ext.gri
   if (this.rootColumns) {
     this.rootColumns.invalidate();
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.grid, 'ColumnManager', Ext.grid, 'ColumnModel'], function() {
+}}, function() {
   this.createAlias('indexOf', 'getHeaderIndex');
 });
-Ext.cmd.derive('Ext.panel.Table', Ext.panel.Panel, {extraBaseCls:'x-grid', extraBodyCls:'x-grid-body', layout:'fit', hasView:false, viewType:null, selType:'rowmodel', scroll:true, deferRowRender:true, sortableColumns:true, enableLocking:false, scrollerOwner:true, enableColumnMove:true, sealedColumns:false, enableColumnResize:true, rowLines:true, colLinesCls:'x-grid-with-col-lines', rowLinesCls:'x-grid-with-row-lines', noRowLinesCls:'x-grid-no-row-lines', hiddenHeaderCtCls:'x-grid-header-ct-hidden', 
-hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', emptyCls:'x-grid-empty', initComponent:function() {
+Ext.define('Ext.panel.Table', {extend:Ext.panel.Panel, alias:'widget.tablepanel', extraBaseCls:Ext.baseCSSPrefix + 'grid', extraBodyCls:Ext.baseCSSPrefix + 'grid-body', layout:'fit', hasView:false, viewType:null, selType:'rowmodel', scroll:true, deferRowRender:true, sortableColumns:true, enableLocking:false, scrollerOwner:true, enableColumnMove:true, sealedColumns:false, enableColumnResize:true, rowLines:true, colLinesCls:Ext.baseCSSPrefix + 'grid-with-col-lines', rowLinesCls:Ext.baseCSSPrefix + 
+'grid-with-row-lines', noRowLinesCls:Ext.baseCSSPrefix + 'grid-no-row-lines', hiddenHeaderCtCls:Ext.baseCSSPrefix + 'grid-header-ct-hidden', hiddenHeaderCls:Ext.baseCSSPrefix + 'grid-header-hidden', resizeMarkerCls:Ext.baseCSSPrefix + 'grid-resize-marker', emptyCls:Ext.baseCSSPrefix + 'grid-empty', initComponent:function() {
   if (!this.viewType) {
     Ext.Error.raise('You must specify a viewType config.');
   }
@@ -42942,7 +42557,7 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
   }
   me.relayEvents(me.view, ['beforeitemmousedown', 'beforeitemmouseup', 'beforeitemmouseenter', 'beforeitemmouseleave', 'beforeitemclick', 'beforeitemdblclick', 'beforeitemcontextmenu', 'itemmousedown', 'itemmouseup', 'itemmouseenter', 'itemmouseleave', 'itemclick', 'itemdblclick', 'itemcontextmenu', 'beforecellclick', 'cellclick', 'beforecelldblclick', 'celldblclick', 'beforecellcontextmenu', 'cellcontextmenu', 'beforecellmousedown', 'cellmousedown', 'beforecellmouseup', 'cellmouseup', 'beforecellkeydown', 
   'cellkeydown', 'beforecontainermousedown', 'beforecontainermouseup', 'beforecontainermouseover', 'beforecontainermouseout', 'beforecontainerclick', 'beforecontainerdblclick', 'beforecontainercontextmenu', 'containermouseup', 'containermouseover', 'containermouseout', 'containerclick', 'containerdblclick', 'containercontextmenu', 'selectionchange', 'beforeselect', 'select', 'beforedeselect', 'deselect']);
-  Ext.panel.Panel.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   me.addStateEvents(['columnresize', 'columnmove', 'columnhide', 'columnshow', 'sortchange', 'filterchange']);
   if (!me.lockable && me.headerCt) {
     me.headerCt.on('afterlayout', me.onRestoreHorzScroll, me);
@@ -42961,7 +42576,7 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
 }, relayHeaderCtEvents:function(headerCt) {
   this.relayEvents(headerCt, ['columnresize', 'columnmove', 'columnhide', 'columnshow', 'columnschanged', 'sortchange', 'headerclick', 'headercontextmenu', 'headertriggerclick']);
 }, getState:function() {
-  var me = this, state = Ext.panel.Panel.prototype.getState.call(this), storeState = me.store.getState();
+  var me = this, state = me.callParent(), storeState = me.store.getState();
   state = me.addPropertyToState(state, 'columns', me.headerCt.getColumnsState());
   if (storeState) {
     state.storeState = storeState;
@@ -42970,7 +42585,7 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
 }, applyState:function(state) {
   var me = this, sorter = state.sort, storeState = state.storeState, store = me.store, columns = state.columns;
   delete state.columns;
-  Ext.panel.Panel.prototype.applyState.apply(this, arguments);
+  me.callParent(arguments);
   if (columns) {
     me.headerCt.applyColumnsState(columns);
   }
@@ -43019,10 +42634,10 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
   var me = this;
   me.saveScrollPos();
   me.saveScrollPos();
-  Ext.panel.Panel.prototype.afterCollapse.apply(this, arguments);
+  me.callParent(arguments);
 }, afterExpand:function() {
   var me = this;
-  Ext.panel.Panel.prototype.afterExpand.apply(this, arguments);
+  me.callParent(arguments);
   me.restoreScrollPos();
   me.restoreScrollPos();
 }, saveScrollPos:Ext.emptyFn, restoreScrollPos:Ext.emptyFn, onHeaderResize:function() {
@@ -43185,14 +42800,14 @@ hiddenHeaderCls:'x-grid-header-hidden', resizeMarkerCls:'x-grid-resize-marker', 
     task.cancel();
     this.scrollTask = null;
   }
-  Ext.panel.Panel.prototype.beforeDestroy.call(this);
+  this.callParent();
 }, onDestroy:function() {
   if (this.lockable) {
     this.destroyLockable();
   }
-  Ext.panel.Panel.prototype.onDestroy.call(this);
-}}, 0, ['tablepanel'], ['component', 'box', 'container', 'panel', 'tablepanel'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true}, ['widget.tablepanel'], 0, [Ext.panel, 'Table'], 0);
-Ext.cmd.derive('Ext.util.CSS', Ext.Base, function() {
+  this.callParent();
+}});
+Ext.define('Ext.util.CSS', function() {
   var CSS, rules = null, doc = document, camelRe = /(-[a-z])/gi, camelFn = function(m, a) {
     return a.charAt(1).toUpperCase();
   };
@@ -43348,10 +42963,10 @@ Ext.cmd.derive('Ext.util.CSS', Ext.Base, function() {
       delete rules[selector];
     }
   }};
-}, 1, 0, 0, 0, 0, 0, [Ext.util, 'CSS'], 0);
-Ext.cmd.derive('Ext.view.TableLayout', Ext.layout.component.Auto, {type:'tableview', beginLayout:function(ownerContext) {
+});
+Ext.define('Ext.view.TableLayout', {extend:Ext.layout.component.Auto, alias:['layout.tableview'], type:'tableview', beginLayout:function(ownerContext) {
   var me = this, otherSide = me.owner.lockingPartner, owner = me.owner;
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (otherSide) {
     me.lockedGrid = me.owner.up('[lockable]');
     me.lockedGrid.needsRowHeightSync = true;
@@ -43390,7 +43005,7 @@ Ext.cmd.derive('Ext.view.TableLayout', Ext.layout.component.Auto, {type:'tablevi
     if (lockingPartner && !lockingPartner.state.columnWidthsSynced) {
       me.done = false;
     } else {
-      Ext.layout.component.Auto.prototype.calculate.apply(this, arguments);
+      me.callParent(arguments);
     }
   } else {
     me.done = false;
@@ -43398,7 +43013,7 @@ Ext.cmd.derive('Ext.view.TableLayout', Ext.layout.component.Auto, {type:'tablevi
 }, measureContentHeight:function(ownerContext) {
   var lockingPartner = ownerContext.lockingPartner;
   if (!ownerContext.bodyContext || ownerContext.state.columnWidthsSynced && (!lockingPartner || lockingPartner.state.columnWidthsSynced)) {
-    return Ext.layout.component.Auto.prototype.measureContentHeight.apply(this, arguments);
+    return this.callParent(arguments);
   }
 }, setColumnWidths:function(ownerContext) {
   var me = this, owner = me.owner, context = ownerContext.context, columns = me.headerCt.getVisibleGridColumns(), column, i = 0, len = columns.length, tableWidth = 0, columnLineWidth = 0, childContext, colWidth, isContentBox = !Ext.isBorderBox;
@@ -43426,7 +43041,7 @@ Ext.cmd.derive('Ext.view.TableLayout', Ext.layout.component.Auto, {type:'tablevi
   return true;
 }, finishedLayout:function() {
   var me = this, owner = me.owner;
-  Ext.layout.component.Auto.prototype.finishedLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (Ext.isWebKit) {
     owner.el.select(owner.getBodySelector()).setStyle('table-layout', '');
   }
@@ -43434,8 +43049,8 @@ Ext.cmd.derive('Ext.view.TableLayout', Ext.layout.component.Auto, {type:'tablevi
     me.lockedGrid.syncRowHeights();
     me.lockedGrid.needsRowHeightSync = false;
   }
-}}, 0, 0, 0, 0, ['layout.tableview'], 0, [Ext.view, 'TableLayout'], 0);
-Ext.cmd.derive('Ext.view.NodeCache', Ext.Base, {constructor:function(view) {
+}});
+Ext.define('Ext.view.NodeCache', {constructor:function(view) {
   this.view = view;
   this.clear();
   this.el = new Ext.dom.AbstractElement.Fly;
@@ -43625,17 +43240,18 @@ Ext.cmd.derive('Ext.view.NodeCache', Ext.Base, {constructor:function(view) {
     nodeContainer.appendChild(frag);
   }
   me.count = me.endIndex - me.startIndex + 1;
-}}, 1, 0, 0, 0, 0, 0, [Ext.view, 'NodeCache'], 0);
-Ext.cmd.derive('Ext.view.Table', Ext.view.View, {componentLayout:'tableview', baseCls:'x-grid-view', firstCls:'x-grid-cell-first', lastCls:'x-grid-cell-last', headerRowSelector:'tr.x-grid-header-row', selectedItemCls:'x-grid-row-selected', beforeSelectedItemCls:'x-grid-row-before-selected', selectedCellCls:'x-grid-cell-selected', focusedItemCls:'x-grid-row-focused', beforeFocusedItemCls:'x-grid-row-before-focused', tableFocusedFirstCls:'x-grid-table-focused-first', tableSelectedFirstCls:'x-grid-table-selected-first', 
-tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', beforeOverItemCls:'x-grid-row-before-over', altRowCls:'x-grid-row-alt', dirtyCls:'x-grid-dirty-cell', rowClsRe:new RegExp('(?:^|\\s*)x-grid-row-(first|last|alt)(?:\\s+|$)', 'g'), cellRe:new RegExp('x-grid-cell-([^\\s]+) ', ''), positionBody:true, trackOver:true, getRowClass:null, stripeRows:true, markDirty:true, tpl:'{%values.view.tableTpl.applyOut(values, out)%}', tableTpl:['{%', 'var view\x3dvalues.view,tableCls\x3d["x-" + view.id + "-table x-grid-table"];', 
-'if (view.columnLines) tableCls[tableCls.length]\x3dview.ownerCt.colLinesCls;', 'if (view.rowLines) tableCls[tableCls.length]\x3dview.ownerCt.rowLinesCls;', '%}', '\x3ctable role\x3d"presentation" id\x3d"{view.id}-table" class\x3d"{[tableCls.join(" ")]}" border\x3d"0" cellspacing\x3d"0" cellpadding\x3d"0" style\x3d"{tableStyle}" tabIndex\x3d"-1"\x3e', '{[view.renderColumnSizer(out)]}', '{[view.renderTHead(values, out)]}', '{[view.renderTFoot(values, out)]}', '\x3ctbody id\x3d"{view.id}-body"\x3e', 
-'{%', 'view.renderRows(values.rows, values.viewStartIndex, out);', '%}', '\x3c/tbody\x3e', '\x3c/table\x3e', {priority:0}], rowTpl:['{%', 'var dataRowCls \x3d values.recordIndex \x3d\x3d\x3d -1 ? "" : " x-grid-data-row";', '%}', '\x3ctr role\x3d"row" {[values.rowId ? ("id\x3d\\"" + values.rowId + "\\"") : ""]} ', 'data-boundView\x3d"{view.id}" ', 'data-recordId\x3d"{record.internalId}" ', 'data-recordIndex\x3d"{recordIndex}" ', 'class\x3d"{[values.itemClasses.join(" ")]} {[values.rowClasses.join(" ")]}{[dataRowCls]}" ', 
-'{rowAttr:attributes} tabIndex\x3d"-1"\x3e', '\x3ctpl for\x3d"columns"\x3e{%', 'parent.view.renderCell(values, parent.record, parent.recordIndex, xindex - 1, out, parent)', '%}', '\x3c/tpl\x3e', '\x3c/tr\x3e', {priority:0}], cellTpl:['\x3ctd role\x3d"gridcell" class\x3d"{tdCls}" {tdAttr} id\x3d"{[Ext.id()]}"\x3e', '\x3cdiv {unselectableAttr} class\x3d"x-grid-cell-inner {innerCls}"', 'style\x3d"text-align:{align};\x3ctpl if\x3d"style"\x3e{style}\x3c/tpl\x3e"\x3e{value}\x3c/div\x3e', '\x3c/td\x3e', 
-{priority:0}], refreshSelmodelOnRefresh:false, tableValues:{}, rowValues:{itemClasses:[], rowClasses:[]}, cellValues:{classes:['x-grid-cell x-grid-td']}, renderBuffer:document.createElement('div'), constructor:function(config) {
+}});
+Ext.define('Ext.view.Table', {extend:Ext.view.View, alias:'widget.tableview', componentLayout:'tableview', baseCls:Ext.baseCSSPrefix + 'grid-view', firstCls:Ext.baseCSSPrefix + 'grid-cell-first', lastCls:Ext.baseCSSPrefix + 'grid-cell-last', headerRowSelector:'tr.' + Ext.baseCSSPrefix + 'grid-header-row', selectedItemCls:Ext.baseCSSPrefix + 'grid-row-selected', beforeSelectedItemCls:Ext.baseCSSPrefix + 'grid-row-before-selected', selectedCellCls:Ext.baseCSSPrefix + 'grid-cell-selected', focusedItemCls:Ext.baseCSSPrefix + 
+'grid-row-focused', beforeFocusedItemCls:Ext.baseCSSPrefix + 'grid-row-before-focused', tableFocusedFirstCls:Ext.baseCSSPrefix + 'grid-table-focused-first', tableSelectedFirstCls:Ext.baseCSSPrefix + 'grid-table-selected-first', tableOverFirstCls:Ext.baseCSSPrefix + 'grid-table-over-first', overItemCls:Ext.baseCSSPrefix + 'grid-row-over', beforeOverItemCls:Ext.baseCSSPrefix + 'grid-row-before-over', altRowCls:Ext.baseCSSPrefix + 'grid-row-alt', dirtyCls:Ext.baseCSSPrefix + 'grid-dirty-cell', rowClsRe:new RegExp('(?:^|\\s*)' + 
+Ext.baseCSSPrefix + 'grid-row-(first|last|alt)(?:\\s+|$)', 'g'), cellRe:new RegExp(Ext.baseCSSPrefix + 'grid-cell-([^\\s]+) ', ''), positionBody:true, trackOver:true, getRowClass:null, stripeRows:true, markDirty:true, tpl:'{%values.view.tableTpl.applyOut(values, out)%}', tableTpl:['{%', 'var view\x3dvalues.view,tableCls\x3d["' + Ext.baseCSSPrefix + '" + view.id + "-table ' + Ext.baseCSSPrefix + 'grid-table"];', 'if (view.columnLines) tableCls[tableCls.length]\x3dview.ownerCt.colLinesCls;', 'if (view.rowLines) tableCls[tableCls.length]\x3dview.ownerCt.rowLinesCls;', 
+'%}', '\x3ctable role\x3d"presentation" id\x3d"{view.id}-table" class\x3d"{[tableCls.join(" ")]}" border\x3d"0" cellspacing\x3d"0" cellpadding\x3d"0" style\x3d"{tableStyle}" tabIndex\x3d"-1"\x3e', '{[view.renderColumnSizer(out)]}', '{[view.renderTHead(values, out)]}', '{[view.renderTFoot(values, out)]}', '\x3ctbody id\x3d"{view.id}-body"\x3e', '{%', 'view.renderRows(values.rows, values.viewStartIndex, out);', '%}', '\x3c/tbody\x3e', '\x3c/table\x3e', {priority:0}], rowTpl:['{%', 'var dataRowCls \x3d values.recordIndex \x3d\x3d\x3d -1 ? "" : " ' + 
+Ext.baseCSSPrefix + 'grid-data-row";', '%}', '\x3ctr role\x3d"row" {[values.rowId ? ("id\x3d\\"" + values.rowId + "\\"") : ""]} ', 'data-boundView\x3d"{view.id}" ', 'data-recordId\x3d"{record.internalId}" ', 'data-recordIndex\x3d"{recordIndex}" ', 'class\x3d"{[values.itemClasses.join(" ")]} {[values.rowClasses.join(" ")]}{[dataRowCls]}" ', '{rowAttr:attributes} tabIndex\x3d"-1"\x3e', '\x3ctpl for\x3d"columns"\x3e' + '{%', 'parent.view.renderCell(values, parent.record, parent.recordIndex, xindex - 1, out, parent)', 
+'%}', '\x3c/tpl\x3e', '\x3c/tr\x3e', {priority:0}], cellTpl:['\x3ctd role\x3d"gridcell" class\x3d"{tdCls}" {tdAttr} id\x3d"{[Ext.id()]}"\x3e', '\x3cdiv {unselectableAttr} class\x3d"' + Ext.baseCSSPrefix + 'grid-cell-inner {innerCls}"', 'style\x3d"text-align:{align};\x3ctpl if\x3d"style"\x3e{style}\x3c/tpl\x3e"\x3e{value}\x3c/div\x3e', '\x3c/td\x3e', {priority:0}], refreshSelmodelOnRefresh:false, tableValues:{}, rowValues:{itemClasses:[], rowClasses:[]}, cellValues:{classes:[Ext.baseCSSPrefix + 'grid-cell ' + 
+Ext.baseCSSPrefix + 'grid-td']}, renderBuffer:document.createElement('div'), constructor:function(config) {
   if (config.grid.isTree) {
-    config.baseCls = 'x-tree-view';
+    config.baseCls = Ext.baseCSSPrefix + 'tree-view';
   }
-  Ext.view.View.prototype.constructor.call(this, config);
+  this.callParent([config]);
 }, initComponent:function() {
   var me = this, scroll = me.scroll;
   this.addEvents('beforecellclick', 'cellclick', 'beforecelldblclick', 'celldblclick', 'beforecellcontextmenu', 'cellcontextmenu', 'beforecellmousedown', 'cellmousedown', 'beforecellmouseup', 'cellmouseup', 'beforecellkeydown', 'cellkeydown');
@@ -43665,7 +43281,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   me.tpl = me.getTpl('tpl');
   me.itemSelector = me.getItemSelector();
   me.all = new Ext.view.NodeCache(me);
-  Ext.view.View.prototype.initComponent.call(this);
+  me.callParent();
 }, moveColumn:function(fromIdx, toIdx, colsToMove) {
   var me = this, fragment = colsToMove > 1 ? document.createDocumentFragment() : undefined, destinationCellIdx = toIdx, colCount = me.getGridColumns().length, lastIndex = colCount - 1, doFirstLastClasses = (me.firstCls || me.lastCls) && (toIdx === 0 || toIdx == colCount || fromIdx === 0 || fromIdx == lastIndex), i, j, rows, len, tr, cells, tables;
   if (me.rendered && toIdx !== fromIdx) {
@@ -43834,12 +43450,12 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   return result;
 }, beforeRender:function() {
   var me = this;
-  Ext.view.View.prototype.beforeRender.call(this);
+  me.callParent();
   if (!me.enableTextSelection) {
     me.protoEl.unselectable();
   }
 }, onViewScroll:function(e, t) {
-  Ext.view.View.prototype.onViewScroll.apply(this, arguments);
+  this.callParent(arguments);
   this.fireEvent('bodyscroll', e, t);
 }, createRowElement:function(record, index) {
   var me = this, div = me.renderBuffer;
@@ -43862,7 +43478,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   if (!me.hasLoadingHeight) {
     grid = me.up('tablepanel');
     Ext.suspendLayouts();
-    Ext.view.View.prototype.refreshSize.call(this);
+    me.callParent();
     grid.updateLayout();
     Ext.resumeLayouts(true);
   }
@@ -43910,7 +43526,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   for (i = 0; i < len; i++) {
     column = columns[i];
     width = column.hidden ? 0 : column.lastBox ? column.lastBox.width : Ext.grid.header.Container.prototype.defaultWidth;
-    out.push('\x3ccolgroup\x3e\x3ccol class\x3d"', 'x-', 'grid-cell-', columns[i].getItemId(), '" style\x3d"width:' + width + 'px"\x3e\x3c/colgroup\x3e');
+    out.push('\x3ccolgroup\x3e\x3ccol class\x3d"', Ext.baseCSSPrefix, 'grid-cell-', columns[i].getItemId(), '" style\x3d"width:' + width + 'px"\x3e\x3c/colgroup\x3e');
   }
 }, renderRow:function(record, rowIdx, out) {
   var me = this, isMetadataRecord = rowIdx === -1, selModel = me.selModel, rowValues = me.rowValues, itemClasses = rowValues.itemClasses, rowClasses = rowValues.rowClasses, cls, rowTpl = me.rowTpl;
@@ -43924,7 +43540,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   }
   itemClasses.length = rowClasses.length = 0;
   if (!isMetadataRecord) {
-    itemClasses[0] = 'x-grid-row';
+    itemClasses[0] = Ext.baseCSSPrefix + 'grid-row';
     if (selModel && selModel.isRowSelected) {
       if (selModel.isRowSelected(rowIdx + 1)) {
         itemClasses.push(me.beforeSelectedItemCls);
@@ -43971,7 +43587,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
     value = fieldValue;
   }
   cellValues.value = value == null || value === '' ? '\x26#160;' : value;
-  classes[1] = 'x-grid-cell-' + column.getItemId();
+  classes[1] = Ext.baseCSSPrefix + 'grid-cell-' + column.getItemId();
   clsInsertPoint = 2;
   if (column.tdCls) {
     classes[clsInsertPoint++] = column.tdCls;
@@ -43986,7 +43602,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
     classes[clsInsertPoint++] = me.lastCls;
   }
   if (!me.enableTextSelection) {
-    classes[clsInsertPoint++] = 'x-unselectable';
+    classes[clsInsertPoint++] = Ext.baseCSSPrefix + 'unselectable';
   }
   classes[clsInsertPoint++] = cellValues.tdCls;
   if (selModel && selModel.isCellSelected && selModel.isCellSelected(me, recordIndex, columnIndex)) {
@@ -43997,7 +43613,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   cellTpl.applyOut(cellValues, out);
   cellValues.column = null;
 }, getNode:function(nodeInfo, dataRow) {
-  var fly, result = Ext.view.View.prototype.getNode.apply(this, arguments);
+  var fly, result = this.callParent(arguments);
   if (result && result.tagName) {
     if (dataRow) {
       if (!(fly = Ext.fly(result)).is(this.dataRowSelector)) {
@@ -44030,10 +43646,10 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
     }
   }
   return result;
-}, updateIndexes:Ext.emptyFn, bodySelector:'table', nodeContainerSelector:'tbody', itemSelector:'tr.x-grid-row', dataRowSelector:'tr.x-grid-data-row', cellSelector:'td.x-grid-cell', sizerSelector:'col.x-grid-cell', innerSelector:'div.x-grid-cell-inner', getNodeContainer:function() {
+}, updateIndexes:Ext.emptyFn, bodySelector:'table', nodeContainerSelector:'tbody', itemSelector:'tr.' + Ext.baseCSSPrefix + 'grid-row', dataRowSelector:'tr.' + Ext.baseCSSPrefix + 'grid-data-row', cellSelector:'td.' + Ext.baseCSSPrefix + 'grid-cell', sizerSelector:'col.' + Ext.baseCSSPrefix + 'grid-cell', innerSelector:'div.' + Ext.baseCSSPrefix + 'grid-cell-inner', getNodeContainer:function() {
   return this.el.down(this.nodeContainerSelector, true);
 }, getBodySelector:function() {
-  return this.bodySelector + '.x-' + this.id + '-table';
+  return this.bodySelector + '.' + Ext.baseCSSPrefix + this.id + '-table';
 }, getNodeContainerSelector:function() {
   return this.nodeContainerSelector;
 }, getColumnSizerSelector:function(header) {
@@ -44068,7 +43684,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   if (item && me.isRowStyleFirst(item)) {
     me.getRowStyleTableEl(item).addCls(me.tableOverFirstCls);
   }
-  Ext.view.View.prototype.setHighlightedItem.apply(this, arguments);
+  me.callParent(arguments);
 }, onRowSelect:function(rowIdx) {
   var me = this;
   me.addRowCls(rowIdx, me.selectedItemCls);
@@ -44147,7 +43763,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   if (saveScroll) {
     scrollPos = me.el.dom.scrollLeft;
   }
-  Ext.view.View.prototype.focus.apply(this, arguments);
+  this.callParent(arguments);
   if (saveScroll) {
     me.el.dom.scrollLeft = scrollPos;
   }
@@ -44187,7 +43803,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   var elDom = this.el.dom;
   elDom[dir] = elDom[dir] += delta;
 }, isDataRow:function(row) {
-  return Ext.fly(row).hasCls('x-grid-data-row');
+  return Ext.fly(row).hasCls(Ext.baseCSSPrefix + 'grid-data-row');
 }, syncRowHeights:function(firstRow, secondRow) {
   firstRow = Ext.get(firstRow);
   secondRow = Ext.get(secondRow);
@@ -44337,7 +43953,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   return false;
 }, refresh:function() {
   var me = this, hasFocus = me.el && me.el.isAncestor(Ext.Element.getActiveElement());
-  Ext.view.View.prototype.refresh.apply(this, arguments);
+  me.callParent(arguments);
   me.headerCt.setSortState();
   if (me.el && !me.all.getCount() && me.headerCt && me.headerCt.tooNarrow) {
     me.el.createChild({style:'position:absolute;height:1px;width:1px;left:' + (me.headerCt.getFullWidth() - 1) + 'px'});
@@ -44361,7 +43977,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
       cellIndex = -1;
     }
     result = me.fireEvent('uievent', type, me, cell, rowIndex, cellIndex, e, record, row);
-    if (result === false || Ext.view.View.prototype.processItemEvent.apply(this, arguments) === false) {
+    if (result === false || me.callParent(arguments) === false) {
       me.selModel.onVetoUIEvent(type, me, cell, rowIndex, cellIndex, e, record, row);
       return false;
     }
@@ -44387,7 +44003,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   }
 }, processSpecialEvent:function(e) {
   var me = this, features = me.features, ln = features.length, type = e.type, i, feature, prefix, featureTarget, beforeArgs, args, panel = me.ownerCt;
-  Ext.view.View.prototype.processSpecialEvent.apply(this, arguments);
+  me.callParent(arguments);
   if (type == 'mouseover' || type == 'mouseout') {
     return;
   }
@@ -44578,7 +44194,7 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   if (me.rendered) {
     me.el.removeAllListeners();
   }
-  Ext.view.View.prototype.beforeDestroy.apply(this, arguments);
+  me.callParent(arguments);
 }, onDestroy:function() {
   var me = this, features = me.featuresMC, len, i;
   if (features) {
@@ -44587,12 +44203,12 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
     }
   }
   me.featuresMC = null;
-  Ext.view.View.prototype.onDestroy.apply(this, arguments);
+  this.callParent(arguments);
 }, onAdd:function(ds, records, index) {
-  Ext.view.View.prototype.onAdd.apply(this, arguments);
+  this.callParent(arguments);
   this.doStripeRows(index);
 }, onRemove:function(ds, records, indexes) {
-  Ext.view.View.prototype.onRemove.apply(this, arguments);
+  this.callParent(arguments);
   this.doStripeRows(indexes[0]);
 }, doStripeRows:function(startRow, endRow) {
   var me = this, rows, rowsLn, i, row;
@@ -44629,10 +44245,10 @@ tableOverFirstCls:'x-grid-table-over-first', overItemCls:'x-grid-row-over', befo
   } else {
     index = me.indexOf(item);
   }
-  return !index || me.isGrouping && Ext.fly(item).hasCls('x-grid-group-row');
+  return !index || me.isGrouping && Ext.fly(item).hasCls(Ext.baseCSSPrefix + 'grid-group-row');
 }, getCellPaddingAfter:function(cell) {
   return Ext.fly(cell).getPadding('r');
-}}, 1, ['tableview'], ['component', 'box', 'dataview', 'tableview'], {'component':true, 'box':true, 'dataview':true, 'tableview':true}, ['widget.tableview'], 0, [Ext.view, 'Table'], 0);
+}});
 Ext.define('Ext.grid.plugin.BufferedRendererTableView', {override:'Ext.view.Table', onAdd:function(store, records, index) {
   var me = this, bufferedRenderer = me.bufferedRenderer, rows = me.all;
   if (me.rendered && bufferedRenderer && rows.getCount() + records.length > bufferedRenderer.viewSize) {
@@ -44642,11 +44258,11 @@ Ext.define('Ext.grid.plugin.BufferedRendererTableView', {override:'Ext.view.Tabl
       bufferedRenderer.stretchView(me, bufferedRenderer.getScrollHeight());
     }
   } else {
-    (arguments.callee.$previous || Ext.view.View.prototype.onAdd).call(this, store, records, index);
+    me.callParent([store, records, index]);
   }
 }, onRemove:function(store, records, indices) {
   var me = this, bufferedRenderer = me.bufferedRenderer;
-  (arguments.callee.$previous || Ext.view.View.prototype.onRemove).call(this, store, records, indices);
+  me.callParent([store, records, indices]);
   if (me.rendered && bufferedRenderer) {
     if (me.dataSource.getCount() > bufferedRenderer.viewSize) {
       me.refreshView();
@@ -44660,12 +44276,11 @@ Ext.define('Ext.grid.plugin.BufferedRendererTableView', {override:'Ext.view.Tabl
     me.all.clear();
     me.bufferedRenderer.onStoreClear();
   }
-  (arguments.callee.$previous || Ext.view.View.prototype.onDataRefresh).call(this);
+  me.callParent();
 }});
-Ext.cmd.derive('Ext.grid.View', Ext.view.Table, {stripeRows:true, autoScroll:true}, 0, ['gridview'], ['component', 'box', 'dataview', 'tableview', 'gridview'], {'component':true, 'box':true, 'dataview':true, 'tableview':true, 'gridview':true}, ['widget.gridview'], 0, [Ext.grid, 'View'], 0);
-Ext.cmd.derive('Ext.grid.Panel', Ext.panel.Table, {alternateClassName:['Ext.list.ListView', 'Ext.ListView', 'Ext.grid.GridPanel'], viewType:'gridview', lockable:false, rowLines:true}, 0, ['grid', 'gridpanel'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true}, ['widget.grid', 'widget.gridpanel'], 0, [Ext.grid, 'Panel', Ext.list, 'ListView', Ext, 'ListView', 
-Ext.grid, 'GridPanel'], 0);
-Ext.cmd.derive('Ext.grid.plugin.HeaderResizer', Ext.AbstractPlugin, {disabled:false, config:{dynamic:false}, colHeaderCls:'x-column-header', minColWidth:40, maxColWidth:1000, wResizeCursor:'col-resize', eResizeCursor:'col-resize', init:function(headerCt) {
+Ext.define('Ext.grid.View', {extend:Ext.view.Table, alias:'widget.gridview', stripeRows:true, autoScroll:true});
+Ext.define('Ext.grid.Panel', {extend:Ext.panel.Table, alias:['widget.gridpanel', 'widget.grid'], alternateClassName:['Ext.list.ListView', 'Ext.ListView', 'Ext.grid.GridPanel'], viewType:'gridview', lockable:false, rowLines:true});
+Ext.define('Ext.grid.plugin.HeaderResizer', {extend:Ext.AbstractPlugin, alias:'plugin.gridheaderresizer', disabled:false, config:{dynamic:false}, colHeaderCls:Ext.baseCSSPrefix + 'column-header', minColWidth:40, maxColWidth:1000, wResizeCursor:'col-resize', eResizeCursor:'col-resize', init:function(headerCt) {
   this.headerCt = headerCt;
   headerCt.on('render', this.afterHeaderRender, this, {single:true});
 }, destroy:function() {
@@ -44842,12 +44457,12 @@ Ext.cmd.derive('Ext.grid.plugin.HeaderResizer', Ext.AbstractPlugin, {disabled:fa
   return region.adjust(t, r, b, l);
 }, adjustColumnWidth:function(offsetX) {
   this.dragHd.setWidth(this.origWidth + offsetX);
-}}, 0, 0, 0, 0, ['plugin.gridheaderresizer'], 0, [Ext.grid.plugin, 'HeaderResizer'], 0);
-Ext.cmd.derive('Ext.grid.header.DragZone', Ext.dd.DragZone, {colHeaderSelector:'.x-column-header', colInnerSelector:'.x-column-header-inner', maxProxyWidth:120, constructor:function(headerCt) {
+}});
+Ext.define('Ext.grid.header.DragZone', {extend:Ext.dd.DragZone, colHeaderSelector:'.' + Ext.baseCSSPrefix + 'column-header', colInnerSelector:'.' + Ext.baseCSSPrefix + 'column-header-inner', maxProxyWidth:120, constructor:function(headerCt) {
   this.headerCt = headerCt;
   this.ddGroup = this.getDDGroup();
-  Ext.dd.DragZone.prototype.constructor.call(this, headerCt.el);
-  this.proxy.el.addCls('x-grid-col-dd');
+  this.callParent([headerCt.el]);
+  this.proxy.el.addCls(Ext.baseCSSPrefix + 'grid-col-dd');
 }, getDDGroup:function() {
   return 'header-dd-zone-' + this.headerCt.up('[scrollerOwner]').id;
 }, getDragData:function(e) {
@@ -44867,12 +44482,12 @@ Ext.cmd.derive('Ext.grid.header.DragZone', Ext.dd.DragZone, {colHeaderSelector:'
   return !(this.headerCt.dragging || this.disabled);
 }, onInitDrag:function() {
   this.headerCt.dragging = true;
-  Ext.dd.DragZone.prototype.onInitDrag.apply(this, arguments);
+  this.callParent(arguments);
 }, onDragDrop:function() {
   this.headerCt.dragging = false;
-  Ext.dd.DragZone.prototype.onDragDrop.apply(this, arguments);
+  this.callParent(arguments);
 }, afterRepair:function() {
-  Ext.dd.DragZone.prototype.afterRepair.call(this);
+  this.callParent();
   this.headerCt.dragging = false;
 }, getRepairXY:function() {
   return this.dragData.header.el.getXY();
@@ -44880,11 +44495,11 @@ Ext.cmd.derive('Ext.grid.header.DragZone', Ext.dd.DragZone, {colHeaderSelector:'
   this.disabled = true;
 }, enable:function() {
   this.disabled = false;
-}}, 1, 0, 0, 0, 0, 0, [Ext.grid.header, 'DragZone'], 0);
-Ext.cmd.derive('Ext.grid.header.DropZone', Ext.dd.DropZone, {colHeaderCls:'x-column-header', proxyOffsets:[-4, -9], constructor:function(headerCt) {
+}});
+Ext.define('Ext.grid.header.DropZone', {extend:Ext.dd.DropZone, colHeaderCls:Ext.baseCSSPrefix + 'column-header', proxyOffsets:[-4, -9], constructor:function(headerCt) {
   this.headerCt = headerCt;
   this.ddGroup = this.getDDGroup();
-  Ext.dd.DropZone.prototype.constructor.call(this, headerCt.el);
+  this.callParent([headerCt.el]);
 }, getDDGroup:function() {
   return 'header-dd-zone-' + this.headerCt.up('[scrollerOwner]').id;
 }, getTargetFromEvent:function(e) {
@@ -45046,8 +44661,8 @@ Ext.cmd.derive('Ext.grid.header.DropZone', Ext.dd.DropZone, {colHeaderCls:'x-col
       }
     }
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.grid.header, 'DropZone'], 0);
-Ext.cmd.derive('Ext.grid.plugin.HeaderReorderer', Ext.AbstractPlugin, {init:function(headerCt) {
+}});
+Ext.define('Ext.grid.plugin.HeaderReorderer', {extend:Ext.AbstractPlugin, alias:'plugin.gridheaderreorderer', init:function(headerCt) {
   this.headerCt = headerCt;
   headerCt.on({render:this.onHeaderCtRender, single:true, scope:this});
 }, destroy:function() {
@@ -45069,9 +44684,9 @@ Ext.cmd.derive('Ext.grid.plugin.HeaderReorderer', Ext.AbstractPlugin, {init:func
   if (this.dragZone) {
     this.dragZone.disable();
   }
-}}, 0, 0, 0, 0, ['plugin.gridheaderreorderer'], 0, [Ext.grid.plugin, 'HeaderReorderer'], 0);
-Ext.cmd.derive('Ext.grid.header.Container', Ext.container.Container, {border:true, baseCls:'x-grid-header-ct', dock:'top', weight:100, defaultType:'gridcolumn', detachOnRemove:false, defaultWidth:100, sortAscText:'Sort Ascending', sortDescText:'Sort Descending', sortClearText:'Clear Sort', columnsText:'Columns', headerOpenCls:'x-column-header-open', menuSortAscCls:'x-hmenu-sort-asc', menuSortDescCls:'x-hmenu-sort-desc', menuColsIcon:'x-cols-icon', triStateSort:false, ddLock:false, dragging:false, 
-sortable:true, enableColumnHide:true, initComponent:function() {
+}});
+Ext.define('Ext.grid.header.Container', {extend:Ext.container.Container, border:true, alias:'widget.headercontainer', baseCls:Ext.baseCSSPrefix + 'grid-header-ct', dock:'top', weight:100, defaultType:'gridcolumn', detachOnRemove:false, defaultWidth:100, sortAscText:'Sort Ascending', sortDescText:'Sort Descending', sortClearText:'Clear Sort', columnsText:'Columns', headerOpenCls:Ext.baseCSSPrefix + 'column-header-open', menuSortAscCls:Ext.baseCSSPrefix + 'hmenu-sort-asc', menuSortDescCls:Ext.baseCSSPrefix + 
+'hmenu-sort-desc', menuColsIcon:Ext.baseCSSPrefix + 'cols-icon', triStateSort:false, ddLock:false, dragging:false, sortable:true, enableColumnHide:true, initComponent:function() {
   var me = this;
   me.headerCounter = 0;
   me.plugins = me.plugins || [];
@@ -45097,13 +44712,13 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   me.defaults = me.defaults || {};
   Ext.applyIf(me.defaults, {triStateSort:me.triStateSort, sortable:me.sortable});
   me.menuTask = new Ext.util.DelayedTask(me.updateMenuDisabledState, me);
-  Ext.container.Container.prototype.initComponent.call(this);
+  me.callParent();
   me.addEvents('columnresize', 'headerclick', 'headercontextmenu', 'headertriggerclick', 'columnmove', 'columnhide', 'columnshow', 'columnschanged', 'sortchange', 'menucreate');
 }, isLayoutRoot:function() {
   if (this.hiddenHeaders) {
     return false;
   }
-  return Ext.container.Container.prototype.isLayoutRoot.call(this);
+  return this.callParent();
 }, getOwnerHeaderCt:function() {
   var me = this;
   return me.isRootHeader ? me : me.up('[isRootHeader]');
@@ -45114,7 +44729,7 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   }
   me.menuTask.cancel();
   Ext.destroy(me.resizer, me.reorderer);
-  Ext.container.Container.prototype.onDestroy.call(this);
+  me.callParent();
 }, applyColumnsState:function(columns) {
   if (!columns || !columns.length) {
     return;
@@ -45162,13 +44777,13 @@ sortable:true, enableColumnHide:true, initComponent:function() {
     }
     me._usedIDs[c.headerId] = true;
   }
-  Ext.container.Container.prototype.onAdd.apply(this, arguments);
+  me.callParent(arguments);
   me.onColumnsChanged();
 }, onMove:function() {
-  Ext.container.Container.prototype.onMove.apply(this, arguments);
+  this.callParent(arguments);
   this.onColumnsChanged();
 }, onShow:function() {
-  Ext.container.Container.prototype.onShow.apply(this, arguments);
+  this.callParent(arguments);
   this.onColumnsChanged();
 }, onColumnsChanged:function() {
   var headerCt = this;
@@ -45184,7 +44799,7 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   }
 }, onRemove:function(c) {
   var me = this, ownerCt = me.ownerCt;
-  Ext.container.Container.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
   if (!me._usedIDs) {
     me._usedIDs = {};
   }
@@ -45203,7 +44818,7 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   if (config && !config.isComponent && config.xtype == 'rownumberer') {
     ret = config;
   } else {
-    ret = Ext.container.Container.prototype.applyDefaults.apply(this, arguments);
+    ret = this.callParent(arguments);
     if (!config.isGroupHeader && !('width' in ret) && !ret.flex) {
       ret.width = this.defaultWidth;
     }
@@ -45460,10 +45075,10 @@ sortable:true, enableColumnHide:true, initComponent:function() {
   if (view) {
     view.autoSizeColumn(header);
   }
-}}, 0, ['headercontainer'], ['component', 'box', 'container', 'headercontainer'], {'component':true, 'box':true, 'container':true, 'headercontainer':true}, ['widget.headercontainer'], 0, [Ext.grid.header, 'Container'], 0);
-Ext.cmd.derive('Ext.grid.column.Column', Ext.grid.header.Container, {alternateClassName:'Ext.grid.Column', baseCls:'x-column-header', hoverCls:'x-column-header-over', handleWidth:4, sortState:null, possibleSortStates:['ASC', 'DESC'], childEls:['titleEl', 'triggerEl', 'textEl'], noWrap:true, renderTpl:'\x3cdiv id\x3d"{id}-titleEl" {tipMarkup}class\x3d"x-column-header-inner"\x3e\x3cspan id\x3d"{id}-textEl" class\x3d"x-column-header-text{childElCls}"\x3e{text}\x3c/span\x3e\x3ctpl if\x3d"!menuDisabled"\x3e\x3cdiv id\x3d"{id}-triggerEl" class\x3d"x-column-header-trigger{childElCls}"\x3e\x3c/div\x3e\x3c/tpl\x3e\x3c/div\x3e{%this.renderContainer(out,values)%}', 
-dataIndex:null, text:'\x26#160;', menuText:null, emptyCellText:'\x26#160;', sortable:true, resizable:true, hideable:true, menuDisabled:false, renderer:false, editRenderer:false, align:'left', draggable:true, tooltipType:'qtip', initDraggable:Ext.emptyFn, tdCls:'', isHeader:true, isColumn:true, ascSortCls:'x-column-header-sort-ASC', descSortCls:'x-column-header-sort-DESC', componentLayout:'columncomponent', groupSubHeaderCls:'x-group-sub-header', groupHeaderCls:'x-group-header', clickTargetName:'titleEl', 
-detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
+}});
+Ext.define('Ext.grid.column.Column', {extend:Ext.grid.header.Container, alias:'widget.gridcolumn', alternateClassName:'Ext.grid.Column', baseCls:Ext.baseCSSPrefix + 'column-header', hoverCls:Ext.baseCSSPrefix + 'column-header-over', handleWidth:4, sortState:null, possibleSortStates:['ASC', 'DESC'], childEls:['titleEl', 'triggerEl', 'textEl'], noWrap:true, renderTpl:'\x3cdiv id\x3d"{id}-titleEl" {tipMarkup}class\x3d"' + Ext.baseCSSPrefix + 'column-header-inner"\x3e' + '\x3cspan id\x3d"{id}-textEl" class\x3d"' + 
+Ext.baseCSSPrefix + 'column-header-text' + '{childElCls}"\x3e' + '{text}' + '\x3c/span\x3e' + '\x3ctpl if\x3d"!menuDisabled"\x3e' + '\x3cdiv id\x3d"{id}-triggerEl" class\x3d"' + Ext.baseCSSPrefix + 'column-header-trigger' + '{childElCls}"\x3e\x3c/div\x3e' + '\x3c/tpl\x3e' + '\x3c/div\x3e' + '{%this.renderContainer(out,values)%}', dataIndex:null, text:'\x26#160;', menuText:null, emptyCellText:'\x26#160;', sortable:true, resizable:true, hideable:true, menuDisabled:false, renderer:false, editRenderer:false, 
+align:'left', draggable:true, tooltipType:'qtip', initDraggable:Ext.emptyFn, tdCls:'', isHeader:true, isColumn:true, ascSortCls:Ext.baseCSSPrefix + 'column-header-sort-ASC', descSortCls:Ext.baseCSSPrefix + 'column-header-sort-DESC', componentLayout:'columncomponent', groupSubHeaderCls:Ext.baseCSSPrefix + 'group-sub-header', groupHeaderCls:Ext.baseCSSPrefix + 'group-header', clickTargetName:'titleEl', detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   var me = this, renderer, listeners;
   if (me.header != null) {
     me.text = me.header;
@@ -45490,7 +45105,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
       me.minWidth = me.minWidth || Ext.grid.plugin.HeaderResizer.prototype.minColWidth;
     }
   }
-  me.addCls('x-column-header-align-' + me.align);
+  me.addCls(Ext.baseCSSPrefix + 'column-header-align-' + me.align);
   renderer = me.renderer;
   if (renderer) {
     if (typeof renderer == 'string') {
@@ -45503,7 +45118,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
       me.renderer = me.defaultRenderer;
     }
   }
-  Ext.grid.header.Container.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   listeners = {element:me.clickTargetName, click:me.onTitleElClick, contextmenu:me.onTitleElContextMenu, mouseenter:me.onTitleMouseOver, mouseleave:me.onTitleMouseOut, scope:me};
   if (me.resizable) {
     listeners.dblclick = me.onTitleElDblClick;
@@ -45517,19 +45132,19 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   if (this.hidden) {
     child.hide();
   }
-  Ext.grid.header.Container.prototype.onAdd.apply(this, arguments);
+  this.callParent(arguments);
 }, onRemove:function(child) {
   if (child.isSubHeader) {
     child.isSubHeader = false;
     child.removeCls(this.groupSubHeaderCls);
   }
-  Ext.grid.header.Container.prototype.onRemove.apply(this, arguments);
+  this.callParent(arguments);
 }, initRenderData:function() {
   var me = this, tipMarkup = '', tip = me.tooltip, attr = me.tooltipType == 'qtip' ? 'data-qtip' : 'title';
   if (!Ext.isEmpty(tip)) {
     tipMarkup = attr + '\x3d"' + tip + '" ';
   }
-  return Ext.applyIf(Ext.grid.header.Container.prototype.initRenderData.apply(this, arguments), {text:me.text, menuDisabled:me.menuDisabled, tipMarkup:tipMarkup});
+  return Ext.applyIf(me.callParent(arguments), {text:me.text, menuDisabled:me.menuDisabled, tipMarkup:tipMarkup});
 }, applyColumnState:function(state) {
   var me = this;
   me.applyColumnsState(state.columns);
@@ -45583,14 +45198,14 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   return this.isGroupColumn ? false : Ext.Array.indexOf(this.getOwnerHeaderCt().getVisibleGridColumns(), this);
 }, beforeRender:function() {
   var me = this, grid = me.up('tablepanel');
-  Ext.grid.header.Container.prototype.beforeRender.call(this);
+  me.callParent();
   if (grid && (!me.sortable || grid.sortableColumns === false) && !me.groupable && !me.lockable && (grid.enableColumnHide === false || !me.getOwnerHeaderCt().getHideableColumns().length)) {
     me.menuDisabled = true;
   }
   me.protoEl.unselectable();
 }, afterRender:function() {
   var me = this, triggerEl = me.triggerEl, triggerWidth;
-  Ext.grid.header.Container.prototype.afterRender.apply(this, arguments);
+  me.callParent(arguments);
   if (!Ext.isIE8 || !Ext.isStrict) {
     me.mon(me.getFocusEl(), {focus:me.onTitleMouseOver, blur:me.onTitleMouseOut, scope:me});
   }
@@ -45602,7 +45217,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   me.keyNav = new Ext.util.KeyNav(me.el, {enter:me.onEnterKey, down:me.onDownKey, scope:me});
 }, afterComponentLayout:function(width, height, oldWidth, oldHeight) {
   var me = this, ownerHeaderCt = me.getOwnerHeaderCt();
-  Ext.grid.header.Container.prototype.afterComponentLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (ownerHeaderCt && (oldWidth != null || me.flex) && width !== oldWidth) {
     ownerHeaderCt.onHeaderResize(me, width, true);
   }
@@ -45610,7 +45225,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   var me = this;
   Ext.destroy(me.textEl, me.keyNav, me.field);
   me.keyNav = null;
-  Ext.grid.header.Container.prototype.onDestroy.apply(this, arguments);
+  me.callParent(arguments);
 }, onTitleMouseOver:function() {
   this.titleEl.addCls(this.hoverCls);
 }, onTitleMouseOut:function() {
@@ -45758,7 +45373,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
     return me;
   }
   if (!ownerHeaderCt) {
-    Ext.grid.header.Container.prototype.hide.call(this);
+    me.callParent();
     return me;
   }
   if (ownerHeaderCt.forceFit) {
@@ -45786,7 +45401,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
       }
     }
   }
-  Ext.grid.header.Container.prototype.hide.call(this);
+  me.callParent();
   ownerHeaderCt.onHeaderHide(me);
   Ext.resumeLayouts(true);
   return me;
@@ -45830,7 +45445,7 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
   if (me.isSubHeader && ownerCt.hidden) {
     ownerCt.show(false, true);
   }
-  Ext.grid.header.Container.prototype.show.apply(this, arguments);
+  me.callParent(arguments);
   if (me.isGroupHeader && fromChild !== true && !me.query(':not([hidden])').length) {
     items = me.items.items;
     for (i = 0, len = items.length; i < len; i++) {
@@ -45857,19 +45472,19 @@ detachOnRemove:true, initResizable:Ext.emptyFn, initComponent:function() {
     }
   }
 }, getCellSelector:function() {
-  return '.x-grid-cell-' + this.getItemId();
+  return '.' + Ext.baseCSSPrefix + 'grid-cell-' + this.getItemId();
 }, getCellInnerSelector:function() {
-  return this.getCellSelector() + ' .x-grid-cell-inner';
+  return this.getCellSelector() + ' .' + Ext.baseCSSPrefix + 'grid-cell-inner';
 }, isOnLeftEdge:function(e) {
   return e.getXY()[0] - this.getX() <= this.handleWidth;
 }, isOnRightEdge:function(e) {
   return this.getX() + this.getWidth() - e.getXY()[0] <= this.handleWidth;
 }, setMenuActive:function(isMenuOpen) {
   this.titleEl[isMenuOpen ? 'addCls' : 'removeCls'](this.headerOpenCls);
-}}, 0, ['gridcolumn'], ['component', 'box', 'container', 'headercontainer', 'gridcolumn'], {'component':true, 'box':true, 'container':true, 'headercontainer':true, 'gridcolumn':true}, ['widget.gridcolumn'], 0, [Ext.grid.column, 'Column', Ext.grid, 'Column'], 0);
-Ext.cmd.derive('Ext.grid.feature.Feature', Ext.util.Observable, {wrapsItem:false, isFeature:true, disabled:false, hasFeatureEvent:true, eventPrefix:null, eventSelector:null, view:null, grid:null, constructor:function(config) {
+}});
+Ext.define('Ext.grid.feature.Feature', {extend:Ext.util.Observable, alias:'feature.feature', wrapsItem:false, isFeature:true, disabled:false, hasFeatureEvent:true, eventPrefix:null, eventSelector:null, view:null, grid:null, constructor:function(config) {
   this.initialConfig = config;
-  Ext.util.Observable.prototype.constructor.apply(this, arguments);
+  this.callParent(arguments);
 }, clone:function() {
   return new this.self(this.initialConfig);
 }, init:Ext.emptyFn, destroy:function() {
@@ -45880,14 +45495,15 @@ Ext.cmd.derive('Ext.grid.feature.Feature', Ext.util.Observable, {wrapsItem:false
   this.disabled = false;
 }, disable:function() {
   this.disabled = true;
-}}, 1, 0, 0, 0, ['feature.feature'], 0, [Ext.grid.feature, 'Feature'], 0);
-Ext.cmd.derive('Ext.grid.feature.RowBody', Ext.grid.feature.Feature, {rowBodyCls:'x-grid-row-body', rowBodyHiddenCls:'x-grid-row-body-hidden', rowBodyTdSelector:'td.x-grid-cell-rowbody', eventPrefix:'rowbody', eventSelector:'tr.x-grid-rowbody-tr', tableTpl:{before:function(values, out) {
+}});
+Ext.define('Ext.grid.feature.RowBody', {extend:Ext.grid.feature.Feature, alias:'feature.rowbody', rowBodyCls:Ext.baseCSSPrefix + 'grid-row-body', rowBodyHiddenCls:Ext.baseCSSPrefix + 'grid-row-body-hidden', rowBodyTdSelector:'td.' + Ext.baseCSSPrefix + 'grid-cell-rowbody', eventPrefix:'rowbody', eventSelector:'tr.' + Ext.baseCSSPrefix + 'grid-rowbody-tr', tableTpl:{before:function(values, out) {
   var view = values.view, rowValues = view.rowValues;
   this.rowBody.setup(values.rows, rowValues);
 }, after:function(values, out) {
   var view = values.view, rowValues = view.rowValues;
   this.rowBody.cleanup(values.rows, rowValues);
-}, priority:100}, extraRowTpl:['{%', 'values.view.rowBodyFeature.setupRowData(values.record, values.recordIndex, values);', 'this.nextTpl.applyOut(values, out, parent);', '%}', '\x3ctr class\x3d"x-grid-rowbody-tr {rowBodyCls}"\x3e', '\x3ctd class\x3d"x-grid-cell-rowbody" colspan\x3d"{rowBodyColspan}"\x3e', '\x3cdiv class\x3d"x-grid-rowbody {rowBodyDivCls}"\x3e{rowBody}\x3c/div\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', {priority:100, syncRowHeights:function(firstRow, secondRow) {
+}, priority:100}, extraRowTpl:['{%', 'values.view.rowBodyFeature.setupRowData(values.record, values.recordIndex, values);', 'this.nextTpl.applyOut(values, out, parent);', '%}', '\x3ctr class\x3d"' + Ext.baseCSSPrefix + 'grid-rowbody-tr {rowBodyCls}"\x3e', '\x3ctd class\x3d"' + Ext.baseCSSPrefix + 'grid-cell-rowbody' + '" colspan\x3d"{rowBodyColspan}"\x3e', '\x3cdiv class\x3d"' + Ext.baseCSSPrefix + 'grid-rowbody' + ' {rowBodyDivCls}"\x3e{rowBody}\x3c/div\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', {priority:100, 
+syncRowHeights:function(firstRow, secondRow) {
   var owner = this.owner, firstRowBody = Ext.fly(firstRow).down(owner.eventSelector, true), secondRowBody, firstHeight, secondHeight;
   if (firstRowBody && (secondRowBody = Ext.fly(secondRow).down(owner.eventSelector, true))) {
     if ((firstHeight = firstRowBody.offsetHeight) > (secondHeight = secondRowBody.offsetHeight)) {
@@ -45913,7 +45529,7 @@ Ext.cmd.derive('Ext.grid.feature.RowBody', Ext.grid.feature.Feature, {rowBodyCls
   view.headerCt.on({columnschanged:me.onColumnsChanged, scope:me});
   view.addTableTpl(me.tableTpl).rowBody = me;
   view.addRowTpl(Ext.XTemplate.getTpl(this, 'extraRowTpl'));
-  Ext.grid.feature.Feature.prototype.init.apply(this, arguments);
+  me.callParent(arguments);
 }, onStoreRemove:function(store, model, index) {
   var view = this.view, node;
   if (view.rendered) {
@@ -45951,13 +45567,13 @@ Ext.cmd.derive('Ext.grid.feature.RowBody', Ext.grid.feature.Feature, {rowBodyCls
   rowValues.rowBodyColspan = rowValues.view.getGridColumns().length;
 }, cleanup:function(rows, rowValues) {
   rowValues.rowBodyCls = rowValues.rowBodyColspan = rowValues.rowBody = null;
-}}, 0, 0, 0, 0, ['feature.rowbody'], 0, [Ext.grid.feature, 'RowBody'], 0);
-Ext.cmd.derive('Ext.grid.feature.RowWrap', Ext.grid.feature.Feature, {rowWrapTd:'td.x-grid-rowwrap', hasFeatureEvent:false, tableTpl:{before:function(values, out) {
+}});
+Ext.define('Ext.grid.feature.RowWrap', {extend:Ext.grid.feature.Feature, alias:'feature.rowwrap', rowWrapTd:'td.' + Ext.baseCSSPrefix + 'grid-rowwrap', hasFeatureEvent:false, tableTpl:{before:function(values, out) {
   if (values.view.bufferedRenderer) {
     values.view.bufferedRenderer.variableRowHeight = true;
   }
-}, priority:200}, wrapTpl:['\x3ctr data-boundView\x3d"{view.id}" data-recordId\x3d"{record.internalId}" data-recordIndex\x3d"{recordIndex}" class\x3d"{[values.itemClasses.join(" ")]} x-grid-wrap-row"\x3e', '\x3ctd class\x3d"x-grid-rowwrap x-grid-td" colSpan\x3d"{columns.length}"\x3e', '\x3ctable class\x3d"x-{view.id}-table x-grid-table" border\x3d"0" cellspacing\x3d"0" cellpadding\x3d"0"\x3e', '{[values.view.renderColumnSizer(out)]}', '{%', 'values.itemClasses.length \x3d 0;', 'this.nextTpl.applyOut(values, out, parent)', 
-'%}', '\x3c/table\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', {priority:200}], init:function(grid) {
+}, priority:200}, wrapTpl:['\x3ctr data-boundView\x3d"{view.id}" data-recordId\x3d"{record.internalId}" data-recordIndex\x3d"{recordIndex}" class\x3d"{[values.itemClasses.join(" ")]} ' + Ext.baseCSSPrefix + 'grid-wrap-row"\x3e', '\x3ctd class\x3d"' + Ext.baseCSSPrefix + 'grid-rowwrap ' + Ext.baseCSSPrefix + 'grid-td" colSpan\x3d"{columns.length}"\x3e', '\x3ctable class\x3d"' + Ext.baseCSSPrefix + '{view.id}-table ' + Ext.baseCSSPrefix + 'grid-table" border\x3d"0" cellspacing\x3d"0" cellpadding\x3d"0"\x3e', 
+'{[values.view.renderColumnSizer(out)]}', '{%', 'values.itemClasses.length \x3d 0;', 'this.nextTpl.applyOut(values, out, parent)', '%}', '\x3c/table\x3e', '\x3c/td\x3e', '\x3c/tr\x3e', {priority:200}], init:function(grid) {
   var me = this;
   me.view.addTableTpl(me.tableTpl);
   me.view.addRowTpl(Ext.XTemplate.getTpl(me, 'wrapTpl'));
@@ -45967,11 +45583,11 @@ Ext.cmd.derive('Ext.grid.feature.RowWrap', Ext.grid.feature.Feature, {rowWrapTd:
   for (i = 0; i < len; ++i) {
     items[i].colSpan = colspan;
   }
-}}, 0, 0, 0, 0, ['feature.rowwrap'], 0, [Ext.grid.feature, 'RowWrap'], 0);
-Ext.cmd.derive('Ext.grid.locking.HeaderContainer', Ext.grid.header.Container, {constructor:function(lockable) {
+}});
+Ext.define('Ext.grid.locking.HeaderContainer', {extend:Ext.grid.header.Container, constructor:function(lockable) {
   var me = this, events, event, eventNames = [], lockedGrid = lockable.lockedGrid, normalGrid = lockable.normalGrid;
   me.lockable = lockable;
-  Ext.grid.header.Container.prototype.constructor.call(this);
+  me.callParent();
   lockedGrid.columnManager.rootColumns = normalGrid.columnManager.rootColumns = lockable.columnManager = me.columnManager = new Ext.grid.ColumnManager(lockedGrid.headerCt, normalGrid.headerCt);
   events = lockedGrid.headerCt.events;
   for (event in events) {
@@ -46018,8 +45634,8 @@ Ext.cmd.derive('Ext.grid.locking.HeaderContainer', Ext.grid.header.Container, {c
     normalHeaderCt.add(normal);
     lockedGrid.setWidth(lockedWidth);
   }
-}}, 1, 0, ['component', 'box', 'container', 'headercontainer'], {'component':true, 'box':true, 'container':true, 'headercontainer':true}, 0, 0, [Ext.grid.locking, 'HeaderContainer'], 0);
-Ext.cmd.derive('Ext.grid.locking.View', Ext.Base, {alternateClassName:'Ext.grid.LockingView', isLockingView:true, eventRelayRe:/^(beforeitem|beforecontainer|item|container|cell|refresh)/, constructor:function(config) {
+}});
+Ext.define('Ext.grid.locking.View', {alternateClassName:'Ext.grid.LockingView', mixins:{observable:Ext.util.Observable}, isLockingView:true, eventRelayRe:/^(beforeitem|beforecontainer|item|container|cell|refresh)/, constructor:function(config) {
   var me = this, eventNames = [], eventRe = me.eventRelayRe, locked = config.locked.getView(), normal = config.normal.getView(), events, event;
   Ext.apply(me, {lockedView:locked, normalView:normal, lockedGrid:config.locked, normalGrid:config.normal, panel:config.panel});
   me.mixins.observable.constructor.call(me, config);
@@ -46132,8 +45748,8 @@ Ext.cmd.derive('Ext.grid.locking.View', Ext.Base, {alternateClassName:'Ext.grid.
   if (mask && mask.bindStore) {
     mask.bindStore(null);
   }
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.grid.locking, 'View', Ext.grid, 'LockingView'], 0);
-Ext.cmd.derive('Ext.grid.locking.Lockable', Ext.Base, {alternateClassName:'Ext.grid.Lockable', syncRowHeight:true, headerCounter:0, scrollDelta:40, lockedGridCls:'x-grid-inner-locked', unlockText:'Unlock', lockText:'Lock', bothCfgCopy:['invalidateScrollerOnRefresh', 'hideHeaders', 'enableColumnHide', 'enableColumnMove', 'enableColumnResize', 'sortableColumns', 'columnLines', 'rowLines'], normalCfgCopy:['verticalScroller', 'verticalScrollDock', 'verticalScrollerType', 'scroll'], lockedCfgCopy:[], 
+}});
+Ext.define('Ext.grid.locking.Lockable', {alternateClassName:'Ext.grid.Lockable', syncRowHeight:true, headerCounter:0, scrollDelta:40, lockedGridCls:Ext.baseCSSPrefix + 'grid-inner-locked', unlockText:'Unlock', lockText:'Lock', bothCfgCopy:['invalidateScrollerOnRefresh', 'hideHeaders', 'enableColumnHide', 'enableColumnMove', 'enableColumnResize', 'sortableColumns', 'columnLines', 'rowLines'], normalCfgCopy:['verticalScroller', 'verticalScrollDock', 'verticalScrollerType', 'scroll'], lockedCfgCopy:[], 
 determineXTypeToCreate:function(lockedSide) {
   var me = this, typeToCreate, xtypes, xtypesLn, xtype, superxtype;
   if (me.subGridXType) {
@@ -46169,7 +45785,7 @@ determineXTypeToCreate:function(lockedSide) {
   normalGrid = Ext.apply({id:me.id + '-normal', isLocked:false, ownerLockable:me, xtype:me.determineXTypeToCreate(), store:store, scrollerOwner:false, selModel:selModel, border:false, isLayoutRoot:function() {
     return false;
   }, features:allFeatures.normalFeatures, plugins:allPlugins.normalPlugins}, me.normalGridConfig);
-  me.addCls('x-grid-locked');
+  me.addCls(Ext.baseCSSPrefix + 'grid-locked');
   Ext.copyTo(normalGrid, me, me.bothCfgCopy, true);
   Ext.copyTo(lockedGrid, me, me.bothCfgCopy, true);
   Ext.copyTo(normalGrid, me, me.normalCfgCopy, true);
@@ -46366,7 +45982,7 @@ determineXTypeToCreate:function(lockedSide) {
     }
   }
 }, getMenuItems:function(getMenuItems, locked) {
-  var me = this, unlockText = me.unlockText, lockText = me.lockText, unlockCls = 'x-hmenu-unlock', lockCls = 'x-hmenu-lock', unlockHandler = Ext.Function.bind(me.onUnlockMenuClick, me), lockHandler = Ext.Function.bind(me.onLockMenuClick, me);
+  var me = this, unlockText = me.unlockText, lockText = me.lockText, unlockCls = Ext.baseCSSPrefix + 'hmenu-unlock', lockCls = Ext.baseCSSPrefix + 'hmenu-lock', unlockHandler = Ext.Function.bind(me.onUnlockMenuClick, me), lockHandler = Ext.Function.bind(me.onLockMenuClick, me);
   return function() {
     var o = getMenuItems.call(this);
     o.push('-', {itemId:'unlockItem', cls:unlockCls, text:unlockText, handler:unlockHandler, disabled:!locked});
@@ -46552,10 +46168,10 @@ determineXTypeToCreate:function(lockedSide) {
   return {topPlugins:topPlugins, normalPlugins:normalPlugins, lockedPlugins:lockedPlugins};
 }, destroyLockable:function() {
   Ext.destroy(this.view);
-}}, 0, 0, 0, 0, 0, 0, [Ext.grid.locking, 'Lockable', Ext.grid, 'Lockable'], function() {
+}}, function() {
   this.borrow(Ext.AbstractComponent, ['constructPlugin']);
 });
-Ext.cmd.derive('Ext.grid.plugin.BufferedRenderer', Ext.AbstractPlugin, {lockableScope:'both', percentageFromEdge:0.35, variableRowHeight:false, numFromEdge:8, trailingBufferZone:10, leadingBufferZone:20, synchronousRender:true, scrollToLoadBuffer:200, viewSize:0, rowHeight:21, position:0, lastScrollDirection:1, bodyTop:0, init:function(grid) {
+Ext.define('Ext.grid.plugin.BufferedRenderer', {extend:Ext.AbstractPlugin, alias:'plugin.bufferedrenderer', lockableScope:'both', percentageFromEdge:0.35, variableRowHeight:false, numFromEdge:8, trailingBufferZone:10, leadingBufferZone:20, synchronousRender:true, scrollToLoadBuffer:200, viewSize:0, rowHeight:21, position:0, lastScrollDirection:1, bodyTop:0, init:function(grid) {
   var me = this, view = grid.view, viewListeners = {scroll:{fn:me.onViewScroll, element:'el', scope:me}, boxready:me.onViewResize, resize:me.onViewResize, refresh:me.onViewRefresh, scope:me, destroyable:true};
   if (!me.variableRowHeight && grid.ownerLockable) {
     grid.ownerLockable.syncRowHeight = false;
@@ -46906,8 +46522,8 @@ Ext.cmd.derive('Ext.grid.plugin.BufferedRenderer', Ext.AbstractPlugin, {lockable
     view.el.un('scroll', me.onViewScroll, me);
   }
   Ext.destroy(me.viewListeners, me.storeListeners, me.gridListeners);
-}}, 0, 0, 0, 0, ['plugin.bufferedrenderer'], 0, [Ext.grid.plugin, 'BufferedRenderer'], 0);
-Ext.cmd.derive('Ext.layout.ClassList', Ext.Base, function() {
+}});
+Ext.define('Ext.layout.ClassList', function() {
   var splitWords = Ext.String.splitWords, toMap = Ext.Array.toMap;
   return {dirty:false, constructor:function(owner) {
     this.owner = owner;
@@ -46955,8 +46571,8 @@ Ext.cmd.derive('Ext.layout.ClassList', Ext.Base, function() {
       return false;
     });
   }};
-}(), 1, 0, 0, 0, 0, 0, [Ext.layout, 'ClassList'], 0);
-Ext.cmd.derive('Ext.util.Queue', Ext.Base, {constructor:function() {
+}());
+Ext.define('Ext.util.Queue', {constructor:function() {
   this.clear();
 }, add:function(obj) {
   var me = this, key = me.getKey(obj);
@@ -46988,9 +46604,9 @@ Ext.cmd.derive('Ext.util.Queue', Ext.Base, {constructor:function() {
     --me.length;
   }
   return obj;
-}}, 1, 0, 0, 0, 0, 0, [Ext.util, 'Queue'], 0);
-Ext.cmd.derive('Ext.layout.ContextItem', Ext.Base, {heightModel:null, widthModel:null, sizeModel:null, optOut:false, ownerSizePolicy:null, boxChildren:null, boxParent:null, isBorderBoxValue:null, children:[], dirty:null, dirtyCount:0, hasRawContent:true, isContextItem:true, isTopLevel:false, consumersContentHeight:0, consumersContentWidth:0, consumersContainerHeight:0, consumersContainerWidth:0, consumersHeight:0, consumersWidth:0, ownerCtContext:null, remainingChildDimensions:0, props:null, state:null, 
-wrapsComponent:false, constructor:function(config) {
+}});
+Ext.define('Ext.layout.ContextItem', {heightModel:null, widthModel:null, sizeModel:null, optOut:false, ownerSizePolicy:null, boxChildren:null, boxParent:null, isBorderBoxValue:null, children:[], dirty:null, dirtyCount:0, hasRawContent:true, isContextItem:true, isTopLevel:false, consumersContentHeight:0, consumersContentWidth:0, consumersContainerHeight:0, consumersContainerWidth:0, consumersHeight:0, consumersWidth:0, ownerCtContext:null, remainingChildDimensions:0, props:null, state:null, wrapsComponent:false, 
+constructor:function(config) {
   var me = this, sizeModels = Ext.layout.SizeModel.sizeModels, configured = sizeModels.configured, shrinkWrap = sizeModels.shrinkWrap, el, lastBox, ownerCt, ownerCtContext, props, sizeModel, target, lastWidth, lastHeight, sameWidth, sameHeight, widthModel, heightModel, optOut;
   Ext.apply(me, config);
   el = me.el;
@@ -47802,11 +47418,11 @@ wrapsComponent:false, constructor:function(config) {
   if (styleCount) {
     el.setStyle(styles);
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.layout, 'ContextItem'], function() {
+}}, function() {
   var px = {dom:true, parseInt:true, suffix:'px'}, isDom = {dom:true}, faux = {dom:false};
   this.prototype.styleInfo = {containerChildrenSizeDone:faux, containerLayoutDone:faux, displayed:faux, done:faux, x:faux, y:faux, columnWidthsDone:faux, left:px, top:px, right:px, bottom:px, width:px, height:px, 'border-top-width':px, 'border-right-width':px, 'border-bottom-width':px, 'border-left-width':px, 'margin-top':px, 'margin-right':px, 'margin-bottom':px, 'margin-left':px, 'padding-top':px, 'padding-right':px, 'padding-bottom':px, 'padding-left':px, 'line-height':isDom, display:isDom};
 });
-Ext.cmd.derive('Ext.layout.Context', Ext.Base, {remainingLayouts:0, state:0, constructor:function(config) {
+Ext.define('Ext.layout.Context', {remainingLayouts:0, state:0, constructor:function(config) {
   var me = this;
   Ext.apply(me, config);
   me.items = {};
@@ -48252,13 +47868,13 @@ Ext.cmd.derive('Ext.layout.Context', Ext.Base, {remainingLayouts:0, state:0, con
     contextItem.setSize(width, height);
     item = items[++i];
   }
-}}, 1, 0, 0, 0, 0, 0, [Ext.layout, 'Context'], 0);
-Ext.cmd.derive('Ext.layout.component.Body', Ext.layout.component.Auto, {type:'body', beginLayout:function(ownerContext) {
-  Ext.layout.component.Auto.prototype.beginLayout.apply(this, arguments);
+}});
+Ext.define('Ext.layout.component.Body', {alias:['layout.body'], extend:Ext.layout.component.Auto, type:'body', beginLayout:function(ownerContext) {
+  this.callParent(arguments);
   ownerContext.bodyContext = ownerContext.getEl('body');
 }, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this, lastWidthModel = me.lastWidthModel, lastHeightModel = me.lastHeightModel, body = me.owner.body;
-  Ext.layout.component.Auto.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (lastWidthModel && lastWidthModel.fixed && ownerContext.widthModel.shrinkWrap) {
     body.setWidth(null);
   }
@@ -48266,13 +47882,13 @@ Ext.cmd.derive('Ext.layout.component.Body', Ext.layout.component.Auto, {type:'bo
     body.setHeight(null);
   }
 }, calculateOwnerHeightFromContentHeight:function(ownerContext, contentHeight) {
-  var height = Ext.layout.component.Auto.prototype.calculateOwnerHeightFromContentHeight.apply(this, arguments);
+  var height = this.callParent(arguments);
   if (ownerContext.targetContext != ownerContext) {
     height += ownerContext.getPaddingInfo().height;
   }
   return height;
 }, calculateOwnerWidthFromContentWidth:function(ownerContext, contentWidth) {
-  var width = Ext.layout.component.Auto.prototype.calculateOwnerWidthFromContentWidth.apply(this, arguments);
+  var width = this.callParent(arguments);
   if (ownerContext.targetContext != ownerContext) {
     width += ownerContext.getPaddingInfo().width;
   }
@@ -48293,14 +47909,14 @@ Ext.cmd.derive('Ext.layout.component.Body', Ext.layout.component.Auto, {type:'bo
     innerWidth -= ownerContext.getPaddingInfo().width;
   }
   ownerContext.bodyContext.setWidth(innerWidth, !ownerContext.widthModel.natural);
-}}, 0, 0, 0, 0, ['layout.body'], 0, [Ext.layout.component, 'Body'], 0);
-Ext.cmd.derive('Ext.layout.component.FieldSet', Ext.layout.component.Body, {type:'fieldset', defaultCollapsedWidth:100, beforeLayoutCycle:function(ownerContext) {
+}});
+Ext.define('Ext.layout.component.FieldSet', {extend:Ext.layout.component.Body, alias:['layout.fieldset'], type:'fieldset', defaultCollapsedWidth:100, beforeLayoutCycle:function(ownerContext) {
   if (ownerContext.target.collapsed) {
     ownerContext.heightModel = this.sizeModels.shrinkWrap;
   }
 }, beginLayoutCycle:function(ownerContext) {
   var target = ownerContext.target, lastSize;
-  Ext.layout.component.Body.prototype.beginLayoutCycle.apply(this, arguments);
+  this.callParent(arguments);
   if (target.collapsed) {
     ownerContext.setContentHeight(0);
     ownerContext.restoreMinHeight = target.minHeight;
@@ -48312,7 +47928,7 @@ Ext.cmd.derive('Ext.layout.component.FieldSet', Ext.layout.component.Body, {type
   }
 }, finishedLayout:function(ownerContext) {
   var owner = this.owner, restore = ownerContext.restoreMinHeight;
-  Ext.layout.component.Body.prototype.finishedLayout.apply(this, arguments);
+  this.callParent(arguments);
   if (restore) {
     owner.minHeight = restore;
   }
@@ -48324,17 +47940,17 @@ Ext.cmd.derive('Ext.layout.component.FieldSet', Ext.layout.component.Body, {type
   if (legend) {
     height -= legend.getHeight();
   }
-  Ext.layout.component.Body.prototype.publishInnerHeight.call(this, ownerContext, height);
+  this.callParent([ownerContext, height]);
 }, getLayoutItems:function() {
   var legend = this.owner.legend;
   return legend ? [legend] : [];
-}}, 0, 0, 0, 0, ['layout.fieldset'], 0, [Ext.layout.component, 'FieldSet'], 0);
-Ext.cmd.derive('Ext.resizer.Splitter', Ext.Component, {childEls:['collapseEl'], renderTpl:['\x3ctpl if\x3d"collapsible\x3d\x3d\x3dtrue"\x3e', '\x3cdiv id\x3d"{id}-collapseEl" class\x3d"', 'x-', 'collapse-el ', 'x-', 'layout-split-{collapseDir}{childElCls}"\x3e\x26#160;', '\x3c/div\x3e', '\x3c/tpl\x3e'], baseCls:'x-splitter', collapsedClsInternal:'x-splitter-collapsed', canResize:true, collapsible:false, collapseOnDblClick:true, defaultSplitMin:40, defaultSplitMax:1000, collapseTarget:'next', horizontal:false, 
-vertical:false, size:5, getTrackerConfig:function() {
+}});
+Ext.define('Ext.resizer.Splitter', {extend:Ext.Component, alias:'widget.splitter', childEls:['collapseEl'], renderTpl:['\x3ctpl if\x3d"collapsible\x3d\x3d\x3dtrue"\x3e', '\x3cdiv id\x3d"{id}-collapseEl" class\x3d"', Ext.baseCSSPrefix, 'collapse-el ', Ext.baseCSSPrefix, 'layout-split-{collapseDir}{childElCls}"\x3e\x26#160;', '\x3c/div\x3e', '\x3c/tpl\x3e'], baseCls:Ext.baseCSSPrefix + 'splitter', collapsedClsInternal:Ext.baseCSSPrefix + 'splitter-collapsed', canResize:true, collapsible:false, collapseOnDblClick:true, 
+defaultSplitMin:40, defaultSplitMax:1000, collapseTarget:'next', horizontal:false, vertical:false, size:5, getTrackerConfig:function() {
   return {xclass:'Ext.resizer.SplitterTracker', el:this.el, splitter:this};
 }, beforeRender:function() {
   var me = this, target = me.getCollapseTarget();
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   if (target.collapsed) {
     me.addCls(me.collapsedClsInternal);
   }
@@ -48345,7 +47961,7 @@ vertical:false, size:5, getTrackerConfig:function() {
   me.protoEl.unselectable();
 }, onRender:function() {
   var me = this, collapseEl;
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   if (me.performCollapse !== false) {
     if (me.renderData.collapsible) {
       me.mon(me.collapseEl, 'click', me.toggleTargetCmp, me);
@@ -48402,7 +48018,7 @@ vertical:false, size:5, getTrackerConfig:function() {
 }, onTargetExpand:function(target) {
   this.el.removeCls([this.collapsedClsInternal, this.collapsedCls]);
   this.setCollapseEl('');
-}, collapseDirProps:{top:{cls:'x-layout-split-top'}, right:{cls:'x-layout-split-right'}, bottom:{cls:'x-layout-split-bottom'}, left:{cls:'x-layout-split-left'}}, orientationProps:{horizontal:{opposite:'vertical', fixedAxis:'height', stretchedAxis:'width'}, vertical:{opposite:'horizontal', fixedAxis:'width', stretchedAxis:'height'}}, applyCollapseDirection:function() {
+}, collapseDirProps:{top:{cls:Ext.baseCSSPrefix + 'layout-split-top'}, right:{cls:Ext.baseCSSPrefix + 'layout-split-right'}, bottom:{cls:Ext.baseCSSPrefix + 'layout-split-bottom'}, left:{cls:Ext.baseCSSPrefix + 'layout-split-left'}}, orientationProps:{horizontal:{opposite:'vertical', fixedAxis:'height', stretchedAxis:'width'}, vertical:{opposite:'horizontal', fixedAxis:'width', stretchedAxis:'height'}}, applyCollapseDirection:function() {
   var me = this, collapseEl = me.collapseEl, collapseDirProps = me.collapseDirProps[me.collapseDirection], cls;
   if (collapseEl) {
     cls = collapseEl.lastCollapseDirCls;
@@ -48455,21 +48071,21 @@ vertical:false, size:5, getTrackerConfig:function() {
   }
 }, setSize:function() {
   var me = this;
-  Ext.Component.prototype.setSize.apply(this, arguments);
+  me.callParent(arguments);
   if (Ext.isIE && me.el) {
     me.el.repaint();
   }
 }, beforeDestroy:function() {
   Ext.destroy(this.tracker);
-  Ext.Component.prototype.beforeDestroy.call(this);
-}}, 0, ['splitter'], ['component', 'box', 'splitter'], {'component':true, 'box':true, 'splitter':true}, ['widget.splitter'], 0, [Ext.resizer, 'Splitter'], 0);
-Ext.cmd.derive('Ext.resizer.BorderSplitter', Ext.resizer.Splitter, {collapseTarget:null, getTrackerConfig:function() {
-  var trackerConfig = Ext.resizer.Splitter.prototype.getTrackerConfig.call(this);
+  this.callParent();
+}});
+Ext.define('Ext.resizer.BorderSplitter', {extend:Ext.resizer.Splitter, alias:'widget.bordersplitter', collapseTarget:null, getTrackerConfig:function() {
+  var trackerConfig = this.callParent();
   trackerConfig.xclass = 'Ext.resizer.BorderSplitterTracker';
   return trackerConfig;
-}}, 0, ['bordersplitter'], ['component', 'box', 'splitter', 'bordersplitter'], {'component':true, 'box':true, 'splitter':true, 'bordersplitter':true}, ['widget.bordersplitter'], 0, [Ext.resizer, 'BorderSplitter'], 0);
-Ext.cmd.derive('Ext.layout.container.Border', Ext.layout.container.Container, {alternateClassName:'Ext.layout.BorderLayout', targetCls:'x-border-layout-ct', itemCls:['x-border-item', 'x-box-item'], type:'border', isBorderLayout:true, padding:undefined, percentageRe:/(\d+)%/, horzMarginProp:'left', padOnContainerProp:'left', padNotOnContainerProp:'right', axisProps:{horz:{borderBegin:'west', borderEnd:'east', horizontal:true, posProp:'x', sizeProp:'width', sizePropCap:'Width'}, vert:{borderBegin:'north', 
-borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap:'Height'}}, centerRegion:null, manageMargins:true, panelCollapseAnimate:true, panelCollapseMode:'placeholder', regionWeights:{north:20, south:10, center:0, west:-10, east:-20}, beginAxis:function(ownerContext, regions, name) {
+}});
+Ext.define('Ext.layout.container.Border', {extend:Ext.layout.container.Container, alias:'layout.border', alternateClassName:'Ext.layout.BorderLayout', targetCls:Ext.baseCSSPrefix + 'border-layout-ct', itemCls:[Ext.baseCSSPrefix + 'border-item', Ext.baseCSSPrefix + 'box-item'], type:'border', isBorderLayout:true, padding:undefined, percentageRe:/(\d+)%/, horzMarginProp:'left', padOnContainerProp:'left', padNotOnContainerProp:'right', axisProps:{horz:{borderBegin:'west', borderEnd:'east', horizontal:true, 
+posProp:'x', sizeProp:'width', sizePropCap:'Width'}, vert:{borderBegin:'north', borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap:'Height'}}, centerRegion:null, manageMargins:true, panelCollapseAnimate:true, panelCollapseMode:'placeholder', regionWeights:{north:20, south:10, center:0, west:-10, east:-20}, beginAxis:function(ownerContext, regions, name) {
   var me = this, props = me.axisProps[name], isVert = !props.horizontal, sizeProp = props.sizeProp, totalFlex = 0, childItems = ownerContext.childItems, length = childItems.length, center, i, childContext, centerFlex, comp, region, match, size, type, target, placeholder;
   for (i = 0; i < length; ++i) {
     childContext = childItems[i];
@@ -48560,7 +48176,7 @@ borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap
       }
     }
   }
-  Ext.layout.container.Container.prototype.beginLayout.apply(this, arguments);
+  me.callParent(arguments);
   items = ownerContext.childItems;
   length = items.length;
   regions = {};
@@ -48725,7 +48341,7 @@ borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap
   item.splitter = this.owner.add(at, splitter);
 }, onAdd:function(item, index) {
   var me = this, placeholderFor = item.placeholderFor, region = item.region, split, hidden, cfg;
-  Ext.layout.container.Container.prototype.onAdd.apply(this, arguments);
+  me.callParent(arguments);
   if (region) {
     Ext.apply(item, me.regionFlags[region]);
     if (item.initBorderRegion) {
@@ -48766,7 +48382,7 @@ borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap
   }
 }, onDestroy:function() {
   this.centerRegion = null;
-  Ext.layout.container.Container.prototype.onDestroy.call(this);
+  this.callParent();
 }, onRemove:function(item) {
   var me = this, region = item.region, splitter = item.splitter;
   if (region) {
@@ -48781,7 +48397,7 @@ borderEnd:'south', horizontal:false, posProp:'y', sizeProp:'height', sizePropCap
       delete item.splitter;
     }
   }
-  Ext.layout.container.Container.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
 }, regionMeta:{center:{splitterDelta:0}, north:{splitterDelta:1}, south:{splitterDelta:-1}, west:{splitterDelta:1}, east:{splitterDelta:-1}}, regionFlags:{center:{isCenter:true, isHorz:false, isVert:false}, north:{isCenter:false, isHorz:false, isVert:true, collapseDirection:'top'}, south:{isCenter:false, isHorz:false, isVert:true, collapseDirection:'bottom'}, west:{isCenter:false, isHorz:true, isVert:false, collapseDirection:'left'}, east:{isCenter:false, isHorz:true, isVert:false, collapseDirection:'right'}}, 
 setupSplitterNeighbors:function(items) {
   var edgeRegions = {}, length = items.length, touchedRegions = this.touchedRegions, i, j, center, count, edge, comp, region, splitter, touched;
@@ -48856,20 +48472,20 @@ setupSplitterNeighbors:function(items) {
     return policy;
   }
   return me.autoSizePolicy;
-}}, 0, 0, 0, 0, ['layout.border'], 0, [Ext.layout.container, 'Border', Ext.layout, 'BorderLayout'], function() {
+}}, function() {
   var methods = {addUnflexed:function(px) {
     this.flexSpace = Math.max(this.flexSpace - px, 0);
   }}, props = this.prototype.axisProps;
   Ext.apply(props.horz, methods);
   Ext.apply(props.vert, methods);
 });
-Ext.cmd.derive('Ext.layout.container.Fit', Ext.layout.container.Container, {alternateClassName:'Ext.layout.FitLayout', itemCls:'x-fit-item', targetCls:'x-layout-fit', type:'fit', defaultMargins:{top:0, right:0, bottom:0, left:0}, manageMargins:true, sizePolicies:{0:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, 1:{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, 2:{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, 3:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}}, 
-getItemSizePolicy:function(item, ownerSizeModel) {
+Ext.define('Ext.layout.container.Fit', {extend:Ext.layout.container.Container, alternateClassName:'Ext.layout.FitLayout', alias:'layout.fit', itemCls:Ext.baseCSSPrefix + 'fit-item', targetCls:Ext.baseCSSPrefix + 'layout-fit', type:'fit', defaultMargins:{top:0, right:0, bottom:0, left:0}, manageMargins:true, sizePolicies:{0:{readsWidth:1, readsHeight:1, setsWidth:0, setsHeight:0}, 1:{readsWidth:0, readsHeight:1, setsWidth:1, setsHeight:0}, 2:{readsWidth:1, readsHeight:0, setsWidth:0, setsHeight:1}, 
+3:{readsWidth:0, readsHeight:0, setsWidth:1, setsHeight:1}}, getItemSizePolicy:function(item, ownerSizeModel) {
   var sizeModel = ownerSizeModel || this.owner.getSizeModel(), mode = (sizeModel.width.shrinkWrap ? 0 : 1) | (sizeModel.height.shrinkWrap ? 0 : 2);
   return this.sizePolicies[mode];
 }, beginLayoutCycle:function(ownerContext, firstCycle) {
   var me = this, resetHeight = me.lastHeightModel && me.lastHeightModel.calculated, resetWidth = me.lastWidthModel && me.lastWidthModel.calculated, resetSizes = resetWidth || resetHeight, maxChildMinHeight = 0, maxChildMinWidth = 0, c, childItems, i, item, length, margins, minHeight, minWidth, style, undef;
-  Ext.layout.container.Container.prototype.beginLayoutCycle.apply(this, arguments);
+  me.callParent(arguments);
   if (resetSizes && ownerContext.targetContext.el.dom.tagName.toUpperCase() != 'TD') {
     resetSizes = resetWidth = resetHeight = false;
   }
@@ -49030,8 +48646,8 @@ getItemSizePolicy:function(item, ownerSizeModel) {
   itemContext.setHeight(info.targetSize.height - info.margins.height);
 }, setItemWidth:function(itemContext, info) {
   itemContext.setWidth(info.targetSize.width - info.margins.width);
-}}, 0, 0, 0, 0, ['layout.fit'], 0, [Ext.layout.container, 'Fit', Ext.layout, 'FitLayout'], 0);
-Ext.cmd.derive('Ext.layout.container.Card', Ext.layout.container.Fit, {alternateClassName:'Ext.layout.CardLayout', type:'card', hideInactive:true, deferredRender:false, getRenderTree:function() {
+}});
+Ext.define('Ext.layout.container.Card', {extend:Ext.layout.container.Fit, alternateClassName:'Ext.layout.CardLayout', alias:'layout.card', type:'card', hideInactive:true, deferredRender:false, getRenderTree:function() {
   var me = this, activeItem = me.getActiveItem();
   if (activeItem) {
     if (activeItem.hasListeners.beforeactivate && activeItem.fireEvent('beforeactivate', activeItem) === false) {
@@ -49048,13 +48664,13 @@ Ext.cmd.derive('Ext.layout.container.Card', Ext.layout.container.Fit, {alternate
         return me.getItemsRenderTree([activeItem]);
       }
     } else {
-      return Ext.layout.container.Fit.prototype.getRenderTree.apply(this, arguments);
+      return me.callParent(arguments);
     }
   }
 }, renderChildren:function() {
   var me = this, active = me.getActiveItem();
   if (!me.deferredRender) {
-    Ext.layout.container.Fit.prototype.renderChildren.call(this);
+    me.callParent();
   } else {
     if (active) {
       me.renderItems([active], me.getRenderTarget());
@@ -49087,7 +48703,7 @@ Ext.cmd.derive('Ext.layout.container.Card', Ext.layout.container.Fit, {alternate
   } else {
     item.hidden = true;
   }
-  Ext.layout.container.Fit.prototype.configureItem.apply(this, arguments);
+  this.callParent(arguments);
 }, onRemove:function(component) {
   var me = this;
   if (component === me.activeItem) {
@@ -49154,10 +48770,11 @@ Ext.cmd.derive('Ext.layout.container.Card', Ext.layout.container.Fit, {alternate
     return me.activeItem;
   }
   return false;
-}}, 0, 0, 0, 0, ['layout.card'], 0, [Ext.layout.container, 'Card', Ext.layout, 'CardLayout'], 0);
-Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.TextItem', activeCls:'x-menu-item-active', ariaRole:'menuitem', canActivate:true, clickHideDelay:0, destroyMenu:true, disabledCls:'x-menu-item-disabled', hideOnClick:true, isMenuItem:true, menuAlign:'tl-tr?', menuExpandDelay:200, menuHideDelay:200, tooltipType:'qtip', arrowCls:'x-menu-item-arrow', childEls:['itemEl', 'iconEl', 'textEl', 'arrowEl'], renderTpl:['\x3ctpl if\x3d"plain"\x3e', '{text}', '\x3ctpl else\x3e', '\x3ca id\x3d"{id}-itemEl"', 
-' class\x3d"x-menu-item-link{childElCls}"', ' href\x3d"{href}"', '\x3ctpl if\x3d"hrefTarget"\x3e target\x3d"{hrefTarget}"\x3c/tpl\x3e', ' hidefocus\x3d"true"', ' unselectable\x3d"on"', '\x3ctpl if\x3d"tabIndex"\x3e', ' tabIndex\x3d"{tabIndex}"', '\x3c/tpl\x3e', '\x3e', '\x3cdiv role\x3d"img" id\x3d"{id}-iconEl" class\x3d"x-menu-item-icon {iconCls}', '{childElCls} {glyphCls}" style\x3d"\x3ctpl if\x3d"icon"\x3ebackground-image:url({icon});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', 
-'\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cspan id\x3d"{id}-textEl" class\x3d"x-menu-item-text" unselectable\x3d"on"\x3e{text}\x3c/span\x3e', '\x3cimg id\x3d"{id}-arrowEl" src\x3d"{blank}" class\x3d"{arrowCls}', '{childElCls}"/\x3e', '\x3c/a\x3e', '\x3c/tpl\x3e'], maskOnDisable:false, activate:function() {
+}});
+Ext.define('Ext.menu.Item', {extend:Ext.Component, alias:'widget.menuitem', alternateClassName:'Ext.menu.TextItem', mixins:{queryable:Ext.Queryable}, activeCls:Ext.baseCSSPrefix + 'menu-item-active', ariaRole:'menuitem', canActivate:true, clickHideDelay:0, destroyMenu:true, disabledCls:Ext.baseCSSPrefix + 'menu-item-disabled', hideOnClick:true, isMenuItem:true, menuAlign:'tl-tr?', menuExpandDelay:200, menuHideDelay:200, tooltipType:'qtip', arrowCls:Ext.baseCSSPrefix + 'menu-item-arrow', childEls:['itemEl', 
+'iconEl', 'textEl', 'arrowEl'], renderTpl:['\x3ctpl if\x3d"plain"\x3e', '{text}', '\x3ctpl else\x3e', '\x3ca id\x3d"{id}-itemEl"', ' class\x3d"' + Ext.baseCSSPrefix + 'menu-item-link{childElCls}"', ' href\x3d"{href}"', '\x3ctpl if\x3d"hrefTarget"\x3e target\x3d"{hrefTarget}"\x3c/tpl\x3e', ' hidefocus\x3d"true"', ' unselectable\x3d"on"', '\x3ctpl if\x3d"tabIndex"\x3e', ' tabIndex\x3d"{tabIndex}"', '\x3c/tpl\x3e', '\x3e', '\x3cdiv role\x3d"img" id\x3d"{id}-iconEl" class\x3d"' + Ext.baseCSSPrefix + 
+'menu-item-icon {iconCls}', '{childElCls} {glyphCls}" style\x3d"\x3ctpl if\x3d"icon"\x3ebackground-image:url({icon});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e', '\x3c/div\x3e', '\x3cspan id\x3d"{id}-textEl" class\x3d"' + Ext.baseCSSPrefix + 'menu-item-text" unselectable\x3d"on"\x3e{text}\x3c/span\x3e', '\x3cimg id\x3d"{id}-arrowEl" src\x3d"{blank}" class\x3d"{arrowCls}', '{childElCls}"/\x3e', 
+'\x3c/a\x3e', '\x3c/tpl\x3e'], maskOnDisable:false, activate:function() {
   var me = this;
   if (!me.activated && me.canActivate && me.rendered && !me.isDisabled() && me.isVisible()) {
     me.el.addCls(me.activeCls);
@@ -49224,7 +48841,7 @@ Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.Tex
     me.hideMenuTimer = Ext.defer(me.deferHideMenu, Ext.isNumber(delay) ? delay : me.menuHideDelay, me);
   }
 }, initComponent:function() {
-  var me = this, prefix = 'x-', cls = [prefix + 'menu-item'], menu;
+  var me = this, prefix = Ext.baseCSSPrefix, cls = [prefix + 'menu-item'], menu;
   me.addEvents('activate', 'click', 'deactivate', 'textchange', 'iconchange');
   if (me.plain) {
     cls.push(prefix + 'menu-item-plain');
@@ -49238,7 +48855,7 @@ Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.Tex
     delete me.menu;
     me.setMenu(menu);
   }
-  Ext.Component.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
 }, onClick:function(e) {
   var me = this, clickHideDelay = me.clickHideDelay;
   if (!me.href) {
@@ -49264,27 +48881,27 @@ Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.Tex
   if (me.activated && me.parentMenu.activeItem === me) {
     me.parentMenu.deactivateActiveItem();
   }
-  Ext.Component.prototype.onRemoved.apply(this, arguments);
+  me.callParent(arguments);
   me.parentMenu = me.ownerButton = null;
 }, beforeDestroy:function() {
   var me = this;
   if (me.rendered) {
     me.clearTip();
   }
-  Ext.Component.prototype.beforeDestroy.call(this);
+  me.callParent();
 }, onDestroy:function() {
   var me = this;
   clearTimeout(me.expandMenuTimer);
   me.cancelDeferHide();
   clearTimeout(me.deferHideParentMenusTimer);
   me.setMenu(null);
-  Ext.Component.prototype.onDestroy.apply(this, arguments);
+  me.callParent(arguments);
 }, beforeRender:function() {
   var me = this, blank = Ext.BLANK_IMAGE_URL, glyph = me.glyph, glyphFontFamily = Ext._glyphFontFamily, glyphParts, iconCls, arrowCls;
-  Ext.Component.prototype.beforeRender.call(this);
+  me.callParent();
   if (me.iconAlign === 'right') {
     iconCls = me.checkChangeDisabled ? me.disabledCls : '';
-    arrowCls = 'x-menu-item-icon-right ' + me.iconCls;
+    arrowCls = Ext.baseCSSPrefix + 'menu-item-icon-right ' + me.iconCls;
   } else {
     iconCls = (me.iconCls || '') + (me.checkChangeDisabled ? ' ' + me.disabledCls : '');
     arrowCls = me.menu ? me.arrowCls : '';
@@ -49294,10 +48911,10 @@ Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.Tex
     glyph = glyphParts[0];
     glyphFontFamily = glyphParts[1];
   }
-  Ext.applyIf(me.renderData, {href:me.href || '#', hrefTarget:me.hrefTarget, icon:me.icon, iconCls:iconCls, glyph:glyph, glyphCls:glyph ? 'x-menu-item-glyph' : undefined, glyphFontFamily:glyphFontFamily, hasIcon:!!(me.icon || me.iconCls || glyph), iconAlign:me.iconAlign, plain:me.plain, text:me.text, arrowCls:arrowCls, blank:blank, tabIndex:me.tabIndex});
+  Ext.applyIf(me.renderData, {href:me.href || '#', hrefTarget:me.hrefTarget, icon:me.icon, iconCls:iconCls, glyph:glyph, glyphCls:glyph ? Ext.baseCSSPrefix + 'menu-item-glyph' : undefined, glyphFontFamily:glyphFontFamily, hasIcon:!!(me.icon || me.iconCls || glyph), iconAlign:me.iconAlign, plain:me.plain, text:me.text, arrowCls:arrowCls, blank:blank, tabIndex:me.tabIndex});
 }, onRender:function() {
   var me = this;
-  Ext.Component.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   if (me.tooltip) {
     me.setTooltip(me.tooltip, true);
   }
@@ -49372,15 +48989,15 @@ Ext.cmd.derive('Ext.menu.Item', Ext.Component, {alternateClassName:'Ext.menu.Tex
     me.tooltip = tooltip;
   }
   return me;
-}}, 0, ['menuitem'], ['component', 'box', 'menuitem'], {'component':true, 'box':true, 'menuitem':true}, ['widget.menuitem'], [['queryable', Ext.Queryable]], [Ext.menu, 'Item', Ext.menu, 'TextItem'], 0);
-Ext.cmd.derive('Ext.menu.CheckItem', Ext.menu.Item, {checkedCls:'x-menu-item-checked', uncheckedCls:'x-menu-item-unchecked', groupCls:'x-menu-group-icon', hideOnClick:false, checkChangeDisabled:false, childEls:['itemEl', 'iconEl', 'textEl', 'checkEl'], showCheckbox:true, renderTpl:['\x3ctpl if\x3d"plain"\x3e', '{text}', '\x3ctpl else\x3e', '{%var showCheckbox \x3d values.showCheckbox,', '      rightCheckbox \x3d showCheckbox \x26\x26 values.hasIcon \x26\x26 (values.iconAlign !\x3d\x3d "left"), textCls \x3d rightCheckbox ? "x-right-check-item-text" : "";%}', 
-'\x3ca id\x3d"{id}-itemEl" class\x3d"x-menu-item-link{childElCls}" href\x3d"{href}" \x3ctpl if\x3d"hrefTarget"\x3etarget\x3d"{hrefTarget}"\x3c/tpl\x3e hidefocus\x3d"true" unselectable\x3d"on"', '\x3ctpl if\x3d"tabIndex"\x3e', ' tabIndex\x3d"{tabIndex}"', '\x3c/tpl\x3e', '\x3e', '{%if (values.hasIcon \x26\x26 (values.iconAlign !\x3d\x3d "left")) {%}', '\x3cdiv role\x3d"img" id\x3d"{id}-iconEl" class\x3d"x-menu-item-icon {iconCls}', '{childElCls} {glyphCls}" style\x3d"\x3ctpl if\x3d"icon"\x3ebackground-image:url({icon});\x3c/tpl\x3e', 
-'\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e', '\x3c/div\x3e', '{%} else if (showCheckbox){%}', '\x3cimg id\x3d"{id}-checkEl" src\x3d"{blank}" class\x3d"x-menu-item-icon{childElCls}" /\x3e', '{%}%}', '\x3cspan id\x3d"{id}-textEl" class\x3d"x-menu-item-text {[textCls]}{childElCls}" \x3ctpl if\x3d"arrowCls"\x3estyle\x3d"margin-right: 17px;"\x3c/tpl\x3e \x3e{text}\x3c/span\x3e', '{%if (rightCheckbox) {%}', 
-'\x3cimg id\x3d"{id}-checkEl" src\x3d"{blank}" class\x3d"x-menu-item-icon-right{childElCls}" /\x3e', '{%} else if (values.arrowCls) {%}', '\x3cimg id\x3d"{id}-arrowEl" src\x3d"{blank}" class\x3d"{arrowCls}{childElCls}"/\x3e', '{%}%}', '\x3c/a\x3e', '\x3c/tpl\x3e'], initComponent:function() {
+}});
+Ext.define('Ext.menu.CheckItem', {extend:Ext.menu.Item, alias:'widget.menucheckitem', checkedCls:Ext.baseCSSPrefix + 'menu-item-checked', uncheckedCls:Ext.baseCSSPrefix + 'menu-item-unchecked', groupCls:Ext.baseCSSPrefix + 'menu-group-icon', hideOnClick:false, checkChangeDisabled:false, childEls:['itemEl', 'iconEl', 'textEl', 'checkEl'], showCheckbox:true, renderTpl:['\x3ctpl if\x3d"plain"\x3e', '{text}', '\x3ctpl else\x3e', '{%var showCheckbox \x3d values.showCheckbox,', '      rightCheckbox \x3d showCheckbox \x26\x26 values.hasIcon \x26\x26 (values.iconAlign !\x3d\x3d "left"), textCls \x3d rightCheckbox ? "' + 
+Ext.baseCSSPrefix + 'right-check-item-text" : "";%}', '\x3ca id\x3d"{id}-itemEl" class\x3d"' + Ext.baseCSSPrefix + 'menu-item-link{childElCls}" href\x3d"{href}" \x3ctpl if\x3d"hrefTarget"\x3etarget\x3d"{hrefTarget}"\x3c/tpl\x3e hidefocus\x3d"true" unselectable\x3d"on"', '\x3ctpl if\x3d"tabIndex"\x3e', ' tabIndex\x3d"{tabIndex}"', '\x3c/tpl\x3e', '\x3e', '{%if (values.hasIcon \x26\x26 (values.iconAlign !\x3d\x3d "left")) {%}', '\x3cdiv role\x3d"img" id\x3d"{id}-iconEl" class\x3d"' + Ext.baseCSSPrefix + 
+'menu-item-icon {iconCls}', '{childElCls} {glyphCls}" style\x3d"\x3ctpl if\x3d"icon"\x3ebackground-image:url({icon});\x3c/tpl\x3e', '\x3ctpl if\x3d"glyph \x26\x26 glyphFontFamily"\x3efont-family:{glyphFontFamily};\x3c/tpl\x3e"\x3e', '\x3ctpl if\x3d"glyph"\x3e\x26#{glyph};\x3c/tpl\x3e', '\x3c/div\x3e', '{%} else if (showCheckbox){%}', '\x3cimg id\x3d"{id}-checkEl" src\x3d"{blank}" class\x3d"' + Ext.baseCSSPrefix + 'menu-item-icon{childElCls}" /\x3e', '{%}%}', '\x3cspan id\x3d"{id}-textEl" class\x3d"' + 
+Ext.baseCSSPrefix + 'menu-item-text {[textCls]}{childElCls}" \x3ctpl if\x3d"arrowCls"\x3estyle\x3d"margin-right: 17px;"\x3c/tpl\x3e \x3e{text}\x3c/span\x3e', '{%if (rightCheckbox) {%}', '\x3cimg id\x3d"{id}-checkEl" src\x3d"{blank}" class\x3d"' + Ext.baseCSSPrefix + 'menu-item-icon-right{childElCls}" /\x3e', '{%} else if (values.arrowCls) {%}', '\x3cimg id\x3d"{id}-arrowEl" src\x3d"{blank}" class\x3d"{arrowCls}{childElCls}"/\x3e', '{%}%}', '\x3c/a\x3e', '\x3c/tpl\x3e'], initComponent:function() {
   var me = this;
   me.checked = !!me.checked;
   me.addEvents('beforecheckchange', 'checkchange');
-  Ext.menu.Item.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   Ext.menu.Manager.registerCheckable(me);
   if (me.group) {
     me.showCheckbox = false;
@@ -49392,11 +49009,11 @@ Ext.cmd.derive('Ext.menu.CheckItem', Ext.menu.Item, {checkedCls:'x-menu-item-che
     }
   }
 }, beforeRender:function() {
-  Ext.menu.Item.prototype.beforeRender.call(this);
+  this.callParent();
   this.renderData.showCheckbox = this.showCheckbox;
 }, afterRender:function() {
   var me = this;
-  Ext.menu.Item.prototype.afterRender.call(this);
+  me.callParent();
   me.checked = !me.checked;
   me.setChecked(!me.checked, true);
   if (me.checkChangeDisabled) {
@@ -49422,10 +49039,10 @@ Ext.cmd.derive('Ext.menu.CheckItem', Ext.menu.Item, {checkedCls:'x-menu-item-che
   if (!me.disabled && !me.checkChangeDisabled && !(me.checked && me.group)) {
     me.setChecked(!me.checked);
   }
-  Ext.menu.Item.prototype.onClick.call(this, e);
+  this.callParent([e]);
 }, onDestroy:function() {
   Ext.menu.Manager.unregisterCheckable(this);
-  Ext.menu.Item.prototype.onDestroy.apply(this, arguments);
+  this.callParent(arguments);
 }, setChecked:function(checked, suppressEvents) {
   var me = this;
   if (me.checked !== checked && (suppressEvents || me.fireEvent('beforecheckchange', me, checked) !== false)) {
@@ -49439,11 +49056,11 @@ Ext.cmd.derive('Ext.menu.CheckItem', Ext.menu.Item, {checkedCls:'x-menu-item-che
       me.fireEvent('checkchange', me, checked);
     }
   }
-}}, 0, ['menucheckitem'], ['component', 'box', 'menuitem', 'menucheckitem'], {'component':true, 'box':true, 'menuitem':true, 'menucheckitem':true}, ['widget.menucheckitem'], 0, [Ext.menu, 'CheckItem'], 0);
-Ext.cmd.derive('Ext.menu.KeyNav', Ext.util.KeyNav, {constructor:function(config) {
+}});
+Ext.define('Ext.menu.KeyNav', {extend:Ext.util.KeyNav, constructor:function(config) {
   var me = this;
   me.menu = config.target;
-  Ext.util.KeyNav.prototype.constructor.call(this, Ext.apply({down:me.down, enter:me.enter, esc:me.escape, left:me.left, right:me.right, space:me.enter, tab:me.tab, up:me.up}, config));
+  me.callParent([Ext.apply({down:me.down, enter:me.enter, esc:me.escape, left:me.left, right:me.right, space:me.enter, tab:me.tab, up:me.up}, config)]);
 }, down:function(e) {
   var me = this, fi = me.menu.focusedItem;
   if (fi && e.getKey() == Ext.EventObject.DOWN && me.isWhitelisted(fi)) {
@@ -49515,14 +49132,14 @@ Ext.cmd.derive('Ext.menu.KeyNav', Ext.util.KeyNav, {constructor:function(config)
     return true;
   }
   me.focusNextItem(-1);
-}}, 1, 0, 0, 0, 0, 0, [Ext.menu, 'KeyNav'], 0);
-Ext.cmd.derive('Ext.menu.Separator', Ext.menu.Item, {canActivate:false, focusable:false, hideOnClick:false, plain:true, separatorCls:'x-menu-item-separator', text:'\x26#160;', beforeRender:function(ct, pos) {
+}});
+Ext.define('Ext.menu.Separator', {extend:Ext.menu.Item, alias:'widget.menuseparator', canActivate:false, focusable:false, hideOnClick:false, plain:true, separatorCls:Ext.baseCSSPrefix + 'menu-item-separator', text:'\x26#160;', beforeRender:function(ct, pos) {
   var me = this;
-  Ext.menu.Item.prototype.beforeRender.call(this);
+  me.callParent();
   me.addCls(me.separatorCls);
-}}, 0, ['menuseparator'], ['component', 'box', 'menuitem', 'menuseparator'], {'component':true, 'box':true, 'menuitem':true, 'menuseparator':true}, ['widget.menuseparator'], 0, [Ext.menu, 'Separator'], 0);
-Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherMenus:false, ariaRole:'menu', floating:true, constrain:true, hidden:true, hideMode:'visibility', ignoreParentClicks:false, isMenu:true, showSeparator:true, minWidth:undefined, defaultMinWidth:120, initComponent:function() {
-  var me = this, prefix = 'x-', cls = [prefix + 'menu'], bodyCls = me.bodyCls ? [me.bodyCls] : [], isFloating = me.floating !== false;
+}});
+Ext.define('Ext.menu.Menu', {extend:Ext.panel.Panel, alias:'widget.menu', enableKeyNav:true, allowOtherMenus:false, ariaRole:'menu', floating:true, constrain:true, hidden:true, hideMode:'visibility', ignoreParentClicks:false, isMenu:true, showSeparator:true, minWidth:undefined, defaultMinWidth:120, initComponent:function() {
+  var me = this, prefix = Ext.baseCSSPrefix, cls = [prefix + 'menu'], bodyCls = me.bodyCls ? [me.bodyCls] : [], isFloating = me.floating !== false;
   me.addEvents('click', 'mouseenter', 'mouseleave', 'mouseover');
   Ext.menu.Manager.register(me);
   if (me.plain) {
@@ -49542,28 +49159,28 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
     me.hidden = !!me.initialConfig.hidden;
     me.constrain = false;
   }
-  Ext.panel.Panel.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
 }, registerWithOwnerCt:function() {
   if (this.floating) {
     this.ownerCt = null;
     Ext.WindowManager.register(this);
   }
 }, initHierarchyEvents:Ext.emptyFn, isVisible:function() {
-  return Ext.panel.Panel.prototype.isVisible.call(this);
+  return this.callParent();
 }, getHierarchyState:function() {
-  var result = Ext.panel.Panel.prototype.getHierarchyState.call(this);
+  var result = this.callParent();
   result.hidden = this.hidden;
   return result;
 }, beforeRender:function() {
-  Ext.panel.Panel.prototype.beforeRender.apply(this, arguments);
+  this.callParent(arguments);
   if (!this.getSizeModel().width.shrinkWrap) {
     this.layout.align = 'stretch';
   }
 }, onBoxReady:function() {
   var me = this;
-  Ext.panel.Panel.prototype.onBoxReady.apply(this, arguments);
+  me.callParent(arguments);
   if (me.showSeparator) {
-    me.iconSepEl = me.layout.getElementTarget().insertFirst({cls:'x-menu-icon-separator', html:'\x26#160;'});
+    me.iconSepEl = me.layout.getElementTarget().insertFirst({cls:Ext.baseCSSPrefix + 'menu-icon-separator', html:'\x26#160;'});
   }
   me.mon(me.el, {click:me.onClick, mouseover:me.onMouseOver, scope:me});
   me.mouseMonitor = me.el.monitorMouseLeave(100, me.onMouseLeave, me);
@@ -49571,7 +49188,7 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
     me.keyNav = new Ext.menu.KeyNav({target:me, keyMap:me.getKeyMap()});
   }
 }, getRefOwner:function() {
-  return this.parentMenu || this.ownerButton || Ext.panel.Panel.prototype.getRefOwner.apply(this, arguments);
+  return this.parentMenu || this.ownerButton || this.callParent(arguments);
 }, canActivateItem:function(item) {
   return item && !item.isDisabled() && item.isVisible() && (item.canActivate || item.getXTypes().indexOf('menuitem') < 0);
 }, deactivateActiveItem:function(andBlurFocusedItem) {
@@ -49590,7 +49207,7 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
   return this.focusedItem || this.el;
 }, hide:function() {
   this.deactivateActiveItem(true);
-  Ext.panel.Panel.prototype.hide.apply(this, arguments);
+  this.callParent(arguments);
 }, getItemFromEvent:function(e) {
   return this.getChildByElement(e.getTarget());
 }, lookupComponent:function(cmp) {
@@ -49605,7 +49222,7 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
   cmp.minWidth = cmp.minWidth || me.minWidth;
   return cmp;
 }, lookupItemFromObject:function(cmp) {
-  var me = this, prefix = 'x-', cls;
+  var me = this, prefix = Ext.baseCSSPrefix, cls;
   if (!cmp.isComponent) {
     if (!cmp.xtype) {
       cmp = Ext.create('Ext.menu.' + (Ext.isBoolean(cmp.checked) ? 'Check' : '') + 'Item', cmp);
@@ -49657,7 +49274,7 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
     Ext.destroy(me.keyNav);
     me.keyNav = null;
   }
-  Ext.panel.Panel.prototype.onDestroy.apply(this, arguments);
+  me.callParent(arguments);
 }, onMouseLeave:function(e) {
   var me = this;
   me.deactivateActiveItem();
@@ -49706,7 +49323,7 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
   }
 }, showBy:function(cmp, pos, off) {
   var me = this;
-  Ext.panel.Panel.prototype.showBy.apply(this, arguments);
+  me.callParent(arguments);
   if (!me.hidden) {
     me.setVerticalPosition();
   }
@@ -49718,10 +49335,10 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
     viewHeight = me.container.getViewSize().height;
     me.maxHeight = Math.min(me.maxHeight || viewHeight, viewHeight);
   }
-  Ext.panel.Panel.prototype.beforeShow.apply(this, arguments);
+  me.callParent(arguments);
 }, afterShow:function() {
   var me = this;
-  Ext.panel.Panel.prototype.afterShow.apply(this, arguments);
+  me.callParent(arguments);
   if (me.floating) {
     me.maxHeight = me.savedMaxHeight;
   }
@@ -49743,9 +49360,9 @@ Ext.cmd.derive('Ext.menu.Menu', Ext.panel.Panel, {enableKeyNav:true, allowOtherM
     }
   }
   me.setY(returnY);
-}}, 0, ['menu'], ['component', 'box', 'container', 'panel', 'menu'], {'component':true, 'box':true, 'container':true, 'panel':true, 'menu':true}, ['widget.menu'], 0, [Ext.menu, 'Menu'], 0);
-Ext.cmd.derive('Ext.panel.Tool', Ext.Component, {isTool:true, baseCls:'x-tool', disabledCls:'x-tool-disabled', toolPressedCls:'x-tool-pressed', toolOverCls:'x-tool-over', ariaRole:'button', childEls:['toolEl'], renderTpl:['\x3cimg role\x3d"presentation" id\x3d"{id}-toolEl" src\x3d"{blank}" class\x3d"{baseCls}-img {baseCls}-{type}{childElCls}" role\x3d"presentation"/\x3e'], toolOwner:null, tooltipType:'qtip', stopEvent:true, height:15, width:15, _toolTypes:{close:1, collapse:1, down:1, expand:1, gear:1, 
-help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, print:1, refresh:1, restore:1, right:1, save:1, search:1, toggle:1, unpin:1, up:1}, initComponent:function() {
+}});
+Ext.define('Ext.panel.Tool', {extend:Ext.Component, alias:'widget.tool', isTool:true, baseCls:Ext.baseCSSPrefix + 'tool', disabledCls:Ext.baseCSSPrefix + 'tool-disabled', toolPressedCls:Ext.baseCSSPrefix + 'tool-pressed', toolOverCls:Ext.baseCSSPrefix + 'tool-over', ariaRole:'button', childEls:['toolEl'], renderTpl:['\x3cimg role\x3d"presentation" id\x3d"{id}-toolEl" src\x3d"{blank}" class\x3d"{baseCls}-img {baseCls}-{type}' + '{childElCls}" role\x3d"presentation"/\x3e'], toolOwner:null, tooltipType:'qtip', 
+stopEvent:true, height:15, width:15, _toolTypes:{close:1, collapse:1, down:1, expand:1, gear:1, help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, print:1, refresh:1, restore:1, right:1, save:1, search:1, toggle:1, unpin:1, up:1}, initComponent:function() {
   var me = this;
   me.addEvents('click');
   if (me.id && me._toolTypes[me.id] && Ext.global.console) {
@@ -49754,10 +49371,10 @@ help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, 
   me.type = me.type || me.id;
   Ext.applyIf(me.renderData, {baseCls:me.baseCls, blank:Ext.BLANK_IMAGE_URL, type:me.type});
   me.tooltip = me.tooltip || me.qtip;
-  Ext.Component.prototype.initComponent.call(this);
+  me.callParent();
 }, afterRender:function() {
   var me = this, attr;
-  Ext.Component.prototype.afterRender.apply(this, arguments);
+  me.callParent(arguments);
   me.el.on({click:me.onClick, mousedown:me.onMouseDown, mouseover:me.onMouseOver, mouseout:me.onMouseOut, scope:me});
   if (me.tooltip) {
     if (Ext.quickTipsActive && Ext.isObject(me.tooltip)) {
@@ -49804,7 +49421,7 @@ help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, 
   if (Ext.quickTipsActive && Ext.isObject(this.tooltip)) {
     Ext.tip.QuickTipManager.unregister(this.id);
   }
-  Ext.Component.prototype.onDestroy.call(this);
+  this.callParent();
 }, onMouseDown:function() {
   if (this.disabled) {
     return false;
@@ -49817,8 +49434,8 @@ help:1, left:1, maximize:1, minimize:1, minus:1, next:1, pin:1, plus:1, prev:1, 
   this.el.addCls(this.toolOverCls);
 }, onMouseOut:function() {
   this.el.removeCls(this.toolOverCls);
-}}, 0, ['tool'], ['component', 'box', 'tool'], {'component':true, 'box':true, 'tool':true}, ['widget.tool'], 0, [Ext.panel, 'Tool'], 0);
-Ext.cmd.derive('Ext.resizer.SplitterTracker', Ext.dd.DragTracker, {enabled:true, overlayCls:'x-resizable-overlay', createDragOverlay:function() {
+}});
+Ext.define('Ext.resizer.SplitterTracker', {extend:Ext.dd.DragTracker, enabled:true, overlayCls:Ext.baseCSSPrefix + 'resizable-overlay', createDragOverlay:function() {
   var overlay;
   overlay = this.overlay = Ext.getBody().createChild({cls:this.overlayCls, html:'\x26#160;'});
   overlay.unselectable();
@@ -49895,7 +49512,7 @@ Ext.cmd.derive('Ext.resizer.SplitterTracker', Ext.dd.DragTracker, {enabled:true,
     me.overlay.remove();
     delete me.overlay;
   }
-  Ext.dd.DragTracker.prototype.endDrag.apply(this, arguments);
+  me.callParent(arguments);
 }, onEnd:function(e) {
   var me = this, splitter = me.getSplitter();
   splitter.removeCls(splitter.baseCls + '-active');
@@ -49919,8 +49536,8 @@ Ext.cmd.derive('Ext.resizer.SplitterTracker', Ext.dd.DragTracker, {enabled:true,
   return (o.nextCmp.maxWidth ? o.nextBox.right - o.nextCmp.maxWidth : o.prevBox.x + (o.prevBox.minWidth || o.defaultMin)) - o.splitWidth;
 }, getResizeOffset:function() {
   return this.getOffset('dragTarget');
-}}, 0, 0, 0, 0, 0, 0, [Ext.resizer, 'SplitterTracker'], 0);
-Ext.cmd.derive('Ext.resizer.BorderSplitterTracker', Ext.resizer.SplitterTracker, {getPrevCmp:null, getNextCmp:null, calculateConstrainRegion:function() {
+}});
+Ext.define('Ext.resizer.BorderSplitterTracker', {extend:Ext.resizer.SplitterTracker, getPrevCmp:null, getNextCmp:null, calculateConstrainRegion:function() {
   var me = this, splitter = me.splitter, collapseTarget = splitter.collapseTarget, defaultSplitMin = splitter.defaultSplitMin, sizePropCap = splitter.vertical ? 'Width' : 'Height', minSizeProp = 'min' + sizePropCap, maxSizeProp = 'max' + sizePropCap, getSizeMethod = 'get' + sizePropCap, neighbors = splitter.neighbors, length = neighbors.length, box = collapseTarget.el.getBox(), left = box.x, top = box.y, right = box.right, bottom = box.bottom, size = splitter.vertical ? right - left : bottom - top, 
   i, neighbor, minRange, maxRange, maxGrowth, maxShrink, targetSize;
   minRange = (collapseTarget[minSizeProp] || Math.min(size, defaultSplitMin)) - size;
@@ -50001,8 +49618,8 @@ Ext.cmd.derive('Ext.resizer.BorderSplitterTracker', Ext.resizer.SplitterTracker,
   target.setSize(undefined, targetSize + delta);
 }}}, getCollapseDirection:function() {
   return this.splitter.getCollapseDirection();
-}}, 0, 0, 0, 0, 0, 0, [Ext.resizer, 'BorderSplitterTracker'], 0);
-Ext.cmd.derive('Ext.resizer.ResizeTracker', Ext.dd.DragTracker, {dynamic:true, preserveRatio:false, constrainTo:null, proxyCls:'x-resizable-proxy', constructor:function(config) {
+}});
+Ext.define('Ext.resizer.ResizeTracker', {extend:Ext.dd.DragTracker, dynamic:true, preserveRatio:false, constrainTo:null, proxyCls:Ext.baseCSSPrefix + 'resizable-proxy', constructor:function(config) {
   var me = this, widthRatio, heightRatio, throttledResizeFn;
   if (!config.el) {
     if (config.target.isComponent) {
@@ -50011,7 +49628,7 @@ Ext.cmd.derive('Ext.resizer.ResizeTracker', Ext.dd.DragTracker, {dynamic:true, p
       me.el = config.target;
     }
   }
-  Ext.dd.DragTracker.prototype.constructor.apply(this, arguments);
+  this.callParent(arguments);
   if (me.preserveRatio && me.minWidth && me.minHeight) {
     widthRatio = me.minWidth / me.el.getWidth();
     heightRatio = me.minHeight / me.el.getHeight();
@@ -50053,7 +49670,7 @@ Ext.cmd.derive('Ext.resizer.ResizeTracker', Ext.dd.DragTracker, {dynamic:true, p
   } else {
     proxy = target.createProxy({tag:'div', cls:cls, id:target.id + '-rzproxy'}, Ext.getBody());
   }
-  proxy.removeCls('x-proxy-el');
+  proxy.removeCls(Ext.baseCSSPrefix + 'proxy-el');
   return proxy;
 }, onStart:function(e) {
   this.activeResizeHandle = Ext.get(this.getDragTarget().id);
@@ -50208,9 +49825,9 @@ Ext.cmd.derive('Ext.resizer.ResizeTracker', Ext.dd.DragTracker, {dynamic:true, p
   }
 }, convertRegionName:function(name) {
   return name;
-}}, 1, 0, 0, 0, 0, 0, [Ext.resizer, 'ResizeTracker'], 0);
-Ext.cmd.derive('Ext.resizer.Resizer', Ext.Base, {alternateClassName:'Ext.Resizable', handleCls:'x-resizable-handle', pinnedCls:'x-resizable-pinned', overCls:'x-resizable-over', wrapCls:'x-resizable-wrap', delimiterRe:/(?:\s*[,;]\s*)|\s+/, dynamic:true, handles:'s e se', height:null, width:null, heightIncrement:0, widthIncrement:0, minHeight:20, minWidth:20, maxHeight:10000, maxWidth:10000, pinned:false, preserveRatio:false, transparent:false, possiblePositions:{n:'north', s:'south', e:'east', w:'west', 
-se:'southeast', sw:'southwest', nw:'northwest', ne:'northeast'}, constructor:function(config) {
+}});
+Ext.define('Ext.resizer.Resizer', {mixins:{observable:Ext.util.Observable}, alternateClassName:'Ext.Resizable', handleCls:Ext.baseCSSPrefix + 'resizable-handle', pinnedCls:Ext.baseCSSPrefix + 'resizable-pinned', overCls:Ext.baseCSSPrefix + 'resizable-over', wrapCls:Ext.baseCSSPrefix + 'resizable-wrap', delimiterRe:/(?:\s*[,;]\s*)|\s+/, dynamic:true, handles:'s e se', height:null, width:null, heightIncrement:0, widthIncrement:0, minHeight:20, minWidth:20, maxHeight:10000, maxWidth:10000, pinned:false, 
+preserveRatio:false, transparent:false, possiblePositions:{n:'north', s:'south', e:'east', w:'west', se:'southeast', sw:'southwest', nw:'northwest', ne:'northeast'}, constructor:function(config) {
   var me = this, target, targetEl, tag, handles = me.handles, handleCls, possibles, len, i = 0, pos, handleEls = [], eastWestStyle, style, box, targetBaseCls, unselectableCls = Ext.dom.Element.unselectableCls;
   me.addEvents('beforeresize', 'resizedrag', 'resize');
   if (Ext.isString(config) || Ext.isElement(config) || config.dom) {
@@ -50359,10 +49976,10 @@ se:'southeast', sw:'southwest', nw:'northwest', ne:'northeast'}, constructor:fun
     }
     me.el.repaint();
   }
-}}, 1, 0, 0, 0, 0, [['observable', Ext.util.Observable]], [Ext.resizer, 'Resizer', Ext, 'Resizable'], 0);
-Ext.cmd.derive('Ext.selection.CellModel', Ext.selection.Model, {isCellModel:true, enableKeyNav:true, preventWrap:false, noSelection:{row:-1, column:-1}, constructor:function() {
+}});
+Ext.define('Ext.selection.CellModel', {extend:Ext.selection.Model, alias:'selection.cellmodel', isCellModel:true, enableKeyNav:true, preventWrap:false, noSelection:{row:-1, column:-1}, constructor:function() {
   this.addEvents('deselect', 'select');
-  Ext.selection.Model.prototype.constructor.apply(this, arguments);
+  this.callParent(arguments);
 }, bindComponent:function(view) {
   var me = this, grid = view.ownerCt;
   me.primaryView = view;
@@ -50460,7 +50077,7 @@ Ext.cmd.derive('Ext.selection.CellModel', Ext.selection.Model, {isCellModel:true
   }
 }, onStoreRemove:function(store, records, indexes) {
   var me = this, pos = me.getCurrentPosition(), i, length = records.length, index, shuffleCount = 0;
-  Ext.selection.Model.prototype.onStoreRemove.apply(this, arguments);
+  me.callParent(arguments);
   if (pos) {
     if (indexes[0] > pos.row) {
       return;
@@ -50560,11 +50177,11 @@ Ext.cmd.derive('Ext.selection.CellModel', Ext.selection.Model, {isCellModel:true
   }
 }, selectByPosition:function(position, suppressEvent) {
   this.setCurrentPosition(position, suppressEvent);
-}}, 1, 0, 0, 0, ['selection.cellmodel'], 0, [Ext.selection, 'CellModel'], 0);
-Ext.cmd.derive('Ext.selection.RowModel', Ext.selection.Model, {deltaScroll:5, enableKeyNav:true, ignoreRightMouseSelection:false, constructor:function() {
+}});
+Ext.define('Ext.selection.RowModel', {extend:Ext.selection.Model, alias:'selection.rowmodel', deltaScroll:5, enableKeyNav:true, ignoreRightMouseSelection:false, constructor:function() {
   this.addEvents('beforedeselect', 'beforeselect', 'deselect', 'select');
   this.views = [];
-  Ext.selection.Model.prototype.constructor.apply(this, arguments);
+  this.callParent(arguments);
 }, bindComponent:function(view) {
   var me = this;
   view.on({itemmousedown:me.onRowMouseDown, itemclick:me.onRowClick, scope:me});
@@ -50731,7 +50348,7 @@ Ext.cmd.derive('Ext.selection.RowModel', Ext.selection.Model, {deltaScroll:5, en
       }
     }
   }
-  Ext.selection.Model.prototype.onLastFocusChanged.apply(this, arguments);
+  this.callParent(arguments);
 }, onEditorTab:function(editingPlugin, e) {
   var me = this, view = me.views[0], record = editingPlugin.getActiveRecord(), header = editingPlugin.getActiveColumn(), position = view.getPosition(record, header), direction = e.shiftKey ? 'left' : 'right';
   do {
@@ -50764,16 +50381,16 @@ Ext.cmd.derive('Ext.selection.RowModel', Ext.selection.Model, {deltaScroll:5, en
   return success;
 }, isRowSelected:function(record, index) {
   return this.isSelected(record);
-}}, 1, 0, 0, 0, ['selection.rowmodel'], 0, [Ext.selection, 'RowModel'], 0);
-Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MULTI', injectCheckbox:0, checkOnly:false, showHeaderCheckbox:undefined, checkSelector:'.x-grid-row-checker', headerWidth:24, checkerOnCls:'x-grid-hd-checker-on', constructor:function() {
+}});
+Ext.define('Ext.selection.CheckboxModel', {alias:'selection.checkboxmodel', extend:Ext.selection.RowModel, mode:'MULTI', injectCheckbox:0, checkOnly:false, showHeaderCheckbox:undefined, checkSelector:'.' + Ext.baseCSSPrefix + 'grid-row-checker', headerWidth:24, checkerOnCls:Ext.baseCSSPrefix + 'grid-hd-checker-on', constructor:function() {
   var me = this;
-  Ext.selection.RowModel.prototype.constructor.apply(this, arguments);
+  me.callParent(arguments);
   if (me.mode === 'SINGLE' && me.showHeaderCheckbox !== true) {
     me.showHeaderCheckbox = false;
   }
 }, beforeViewRender:function(view) {
   var me = this, owner;
-  Ext.selection.RowModel.prototype.beforeViewRender.apply(this, arguments);
+  me.callParent(arguments);
   if (!me.hasLockedHeader() || view.headerCt.lockedCt) {
     if (me.showHeaderCheckbox !== false) {
       view.headerCt.on('headerclick', me.onHeaderClick, me);
@@ -50788,7 +50405,7 @@ Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MUL
 }, bindComponent:function(view) {
   var me = this;
   me.sortable = false;
-  Ext.selection.RowModel.prototype.bindComponent.apply(this, arguments);
+  me.callParent(arguments);
 }, hasLockedHeader:function() {
   var views = this.views, vLen = views.length, v;
   for (v = 0; v < vLen; v++) {
@@ -50833,7 +50450,7 @@ Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MUL
 }, onHeaderClick:function(headerCt, header, e) {
   if (header.isCheckerHd) {
     e.stopEvent();
-    var me = this, isChecked = header.el.hasCls('x-grid-hd-checker-on');
+    var me = this, isChecked = header.el.hasCls(Ext.baseCSSPrefix + 'grid-hd-checker-on');
     me.preventFocus = true;
     if (isChecked) {
       me.deselectAll();
@@ -50844,14 +50461,14 @@ Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MUL
   }
 }, getHeaderConfig:function() {
   var me = this, showCheck = me.showHeaderCheckbox !== false;
-  return {isCheckerHd:showCheck, text:'\x26#160;', clickTargetName:'el', width:me.headerWidth, sortable:false, draggable:false, resizable:false, hideable:false, menuDisabled:true, dataIndex:'', cls:showCheck ? 'x-column-header-checkbox ' : '', renderer:Ext.Function.bind(me.renderer, me), editRenderer:me.editRenderer || me.renderEmpty, locked:me.hasLockedHeader()};
+  return {isCheckerHd:showCheck, text:'\x26#160;', clickTargetName:'el', width:me.headerWidth, sortable:false, draggable:false, resizable:false, hideable:false, menuDisabled:true, dataIndex:'', cls:showCheck ? Ext.baseCSSPrefix + 'column-header-checkbox ' : '', renderer:Ext.Function.bind(me.renderer, me), editRenderer:me.editRenderer || me.renderEmpty, locked:me.hasLockedHeader()};
 }, renderEmpty:function() {
   return '\x26#160;';
 }, refresh:function() {
-  Ext.selection.RowModel.prototype.refresh.apply(this, arguments);
+  this.callParent(arguments);
   this.updateHeaderState();
 }, renderer:function(value, metaData, record, rowIndex, colIndex, store, view) {
-  var baseCSSPrefix = 'x-';
+  var baseCSSPrefix = Ext.baseCSSPrefix;
   metaData.tdCls = baseCSSPrefix + 'grid-cell-special ' + baseCSSPrefix + 'grid-cell-row-checker';
   return '\x3cdiv class\x3d"' + baseCSSPrefix + 'grid-row-checker"\x3e\x26#160;\x3c/div\x3e';
 }, processSelection:function(view, record, item, index, e) {
@@ -50870,29 +50487,29 @@ Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MUL
     me.selectWithEvent(record, e);
   }
 }, onSelectChange:function() {
-  Ext.selection.RowModel.prototype.onSelectChange.apply(this, arguments);
+  this.callParent(arguments);
   if (!this.suspendChange) {
     this.updateHeaderState();
   }
 }, onStoreLoad:function() {
-  Ext.selection.RowModel.prototype.onStoreLoad.apply(this, arguments);
+  this.callParent(arguments);
   this.updateHeaderState();
 }, onStoreAdd:function() {
-  Ext.selection.RowModel.prototype.onStoreAdd.apply(this, arguments);
+  this.callParent(arguments);
   this.updateHeaderState();
 }, onStoreRemove:function() {
-  Ext.selection.RowModel.prototype.onStoreRemove.apply(this, arguments);
+  this.callParent(arguments);
   this.updateHeaderState();
 }, onStoreRefresh:function() {
-  Ext.selection.RowModel.prototype.onStoreRefresh.apply(this, arguments);
+  this.callParent(arguments);
   this.updateHeaderState();
 }, maybeFireSelectionChange:function(fireEvent) {
   if (fireEvent && !this.suspendChange) {
     this.updateHeaderState();
   }
-  Ext.selection.RowModel.prototype.maybeFireSelectionChange.apply(this, arguments);
+  this.callParent(arguments);
 }, resumeChanges:function() {
-  Ext.selection.RowModel.prototype.resumeChanges.call(this);
+  this.callParent();
   if (!this.suspendChange) {
     this.updateHeaderState();
   }
@@ -50912,17 +50529,17 @@ Ext.cmd.derive('Ext.selection.CheckboxModel', Ext.selection.RowModel, {mode:'MUL
   if (views && views.length) {
     me.toggleUiHeader(hdSelectStatus);
   }
-}}, 1, 0, 0, 0, ['selection.checkboxmodel'], 0, [Ext.selection, 'CheckboxModel'], 0);
-Ext.cmd.derive('Ext.tab.Tab', Ext.button.Button, {isTab:true, baseCls:'x-tab', closeElOverCls:'x-tab-close-btn-over', activeCls:'active', closableCls:'closable', closable:true, closeText:'Close Tab', active:false, childEls:['closeEl'], scale:false, position:'top', initComponent:function() {
+}});
+Ext.define('Ext.tab.Tab', {extend:Ext.button.Button, alias:'widget.tab', isTab:true, baseCls:Ext.baseCSSPrefix + 'tab', closeElOverCls:Ext.baseCSSPrefix + 'tab-close-btn-over', activeCls:'active', closableCls:'closable', closable:true, closeText:'Close Tab', active:false, childEls:['closeEl'], scale:false, position:'top', initComponent:function() {
   var me = this;
   me.addEvents('activate', 'deactivate', 'beforeclose', 'close');
-  Ext.button.Button.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   if (me.card) {
     me.setCard(me.card);
   }
   me.overCls = ['over', me.position + '-over'];
 }, getTemplateArgs:function() {
-  var me = this, result = Ext.button.Button.prototype.getTemplateArgs.call(this);
+  var me = this, result = me.callParent();
   result.closable = me.closable;
   result.closeText = me.closeText;
   return result;
@@ -50930,7 +50547,7 @@ Ext.cmd.derive('Ext.tab.Tab', Ext.button.Button, {isTab:true, baseCls:'x-tab', c
   return this.baseCls + '-' + this.ui + '-' + this.position;
 }, beforeRender:function() {
   var me = this, tabBar = me.up('tabbar'), tabPanel = me.up('tabpanel');
-  Ext.button.Button.prototype.beforeRender.call(this);
+  me.callParent();
   me.addClsWithUI(me.position);
   if (me.active) {
     me.addClsWithUI([me.activeCls, me.position + '-' + me.activeCls]);
@@ -50954,7 +50571,7 @@ Ext.cmd.derive('Ext.tab.Tab', Ext.button.Button, {isTab:true, baseCls:'x-tab', c
 }, onRender:function() {
   var me = this;
   me.setElOrientation();
-  Ext.button.Button.prototype.onRender.apply(this, arguments);
+  me.callParent(arguments);
   if (me.closable) {
     me.closeEl.addClsOnOver(me.closeElOverCls);
   }
@@ -50966,19 +50583,19 @@ Ext.cmd.derive('Ext.tab.Tab', Ext.button.Button, {isTab:true, baseCls:'x-tab', c
   }
 }, enable:function(silent) {
   var me = this;
-  Ext.button.Button.prototype.enable.apply(this, arguments);
+  me.callParent(arguments);
   me.removeClsWithUI(me.position + '-disabled');
   return me;
 }, disable:function(silent) {
   var me = this;
-  Ext.button.Button.prototype.disable.apply(this, arguments);
+  me.callParent(arguments);
   me.addClsWithUI(me.position + '-disabled');
   return me;
 }, onDestroy:function() {
   var me = this;
   Ext.destroy(me.keyNav);
   delete me.keyNav;
-  Ext.button.Button.prototype.onDestroy.apply(this, arguments);
+  me.callParent(arguments);
 }, setClosable:function(closable) {
   var me = this;
   closable = !arguments.length || !!closable;
@@ -51056,13 +50673,13 @@ Ext.cmd.derive('Ext.tab.Tab', Ext.button.Button, {isTab:true, baseCls:'x-tab', c
   if (supressEvent !== true) {
     me.fireEvent('deactivate', me);
   }
-}}, 0, ['tab'], ['component', 'box', 'button', 'tab'], {'component':true, 'box':true, 'button':true, 'tab':true}, ['widget.tab'], 0, [Ext.tab, 'Tab'], 0);
-Ext.cmd.derive('Ext.util.Point', Ext.util.Region, {statics:{fromEvent:function(e) {
+}});
+Ext.define('Ext.util.Point', {extend:Ext.util.Region, statics:{fromEvent:function(e) {
   e = e.browserEvent || e;
   e = e.changedTouches && e.changedTouches.length > 0 ? e.changedTouches[0] : e;
   return new this(e.pageX, e.pageY);
 }}, constructor:function(x, y) {
-  Ext.util.Region.prototype.constructor.call(this, y, x, y, x);
+  this.callParent([y, x, y, x]);
 }, toString:function() {
   return 'Point[' + this.x + ',' + this.y + ']';
 }, equals:function(p) {
@@ -51079,18 +50696,18 @@ Ext.cmd.derive('Ext.util.Point', Ext.util.Region, {statics:{fromEvent:function(e
   return region.contains(this);
 }, roundedEquals:function(p) {
   return Math.round(this.x) == Math.round(p.x) && Math.round(this.y) == Math.round(p.y);
-}}, 3, 0, 0, 0, 0, 0, [Ext.util, 'Point'], function() {
+}}, function() {
   this.prototype.translate = Ext.util.Region.prototype.translateBy;
 });
-Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:true, defaultType:'tab', plain:false, childEls:['body', 'strip'], renderTpl:['\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body {bodyCls} {bodyTargetCls}{childElCls}\x3ctpl if\x3d"ui"\x3e {baseCls}-body-{ui}\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e\x3c/tpl\x3e"\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values)%}', '\x3c/div\x3e', 
-'\x3cdiv id\x3d"{id}-strip" class\x3d"{baseCls}-strip {baseCls}-strip-{dock}{childElCls}', '\x3ctpl if\x3d"ui"\x3e {baseCls}-strip-{ui}', '\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-strip-{parent.ui}-{.}\x3c/tpl\x3e', '\x3c/tpl\x3e"\x3e', '\x3c/div\x3e'], _reverseDockNames:{left:'right', right:'left'}, initComponent:function() {
+Ext.define('Ext.tab.Bar', {extend:Ext.panel.Header, alias:'widget.tabbar', baseCls:Ext.baseCSSPrefix + 'tab-bar', isTabBar:true, defaultType:'tab', plain:false, childEls:['body', 'strip'], renderTpl:['\x3cdiv id\x3d"{id}-body" class\x3d"{baseCls}-body {bodyCls} {bodyTargetCls}{childElCls}\x3ctpl if\x3d"ui"\x3e {baseCls}-body-{ui}\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-body-{parent.ui}-{.}\x3c/tpl\x3e\x3c/tpl\x3e"\x3ctpl if\x3d"bodyStyle"\x3e style\x3d"{bodyStyle}"\x3c/tpl\x3e\x3e', '{%this.renderContainer(out,values)%}', 
+'\x3c/div\x3e', '\x3cdiv id\x3d"{id}-strip" class\x3d"{baseCls}-strip {baseCls}-strip-{dock}{childElCls}', '\x3ctpl if\x3d"ui"\x3e {baseCls}-strip-{ui}', '\x3ctpl for\x3d"uiCls"\x3e {parent.baseCls}-strip-{parent.ui}-{.}\x3c/tpl\x3e', '\x3c/tpl\x3e"\x3e', '\x3c/div\x3e'], _reverseDockNames:{left:'right', right:'left'}, initComponent:function() {
   var me = this;
   if (me.plain) {
     me.addCls(me.baseCls + '-plain');
   }
   me.addClsWithUI(me.orientation);
   me.addEvents('change');
-  Ext.panel.Header.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   Ext.merge(me.layout, me.initialConfig.layout);
   me.layout.align = me.orientation == 'vertical' ? 'left' : 'top';
   me.layout.overflowHandler = new Ext.layout.container.boxOverflow.Scroller(me.layout);
@@ -51099,13 +50716,13 @@ Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:t
   Ext.apply(me.renderData, {bodyCls:me.bodyCls, dock:me.dock});
 }, onRender:function() {
   var me = this;
-  Ext.panel.Header.prototype.onRender.call(this);
+  me.callParent();
   if (me.orientation === 'vertical' && (Ext.isIE8 || Ext.isIE9) && Ext.isStrict) {
     me.el.on({mousemove:me.onMouseMove, scope:me});
   }
 }, afterRender:function() {
   var layout = this.layout;
-  Ext.panel.Header.prototype.afterRender.call(this);
+  this.callParent();
   if (Ext.isIE9 && Ext.isStrict && this.orientation === 'vertical') {
     layout.innerCt.on('scroll', function() {
       layout.innerCt.dom.scrollLeft = 0;
@@ -51113,7 +50730,7 @@ Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:t
   }
 }, afterLayout:function() {
   this.adjustTabPositions();
-  Ext.panel.Header.prototype.afterLayout.apply(this, arguments);
+  this.callParent(arguments);
 }, adjustTabPositions:function() {
   var items = this.items.items, i = items.length, tab;
   if (!Ext.isIE9m) {
@@ -51138,26 +50755,26 @@ Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:t
 }, getLayout:function() {
   var me = this;
   me.layout.type = me.orientation === 'horizontal' ? 'hbox' : 'vbox';
-  return Ext.panel.Header.prototype.getLayout.apply(this, arguments);
+  return me.callParent(arguments);
 }, onAdd:function(tab) {
   tab.position = this.dock;
-  Ext.panel.Header.prototype.onAdd.apply(this, arguments);
+  this.callParent(arguments);
 }, onRemove:function(tab) {
   var me = this;
   if (tab === me.previousTab) {
     me.previousTab = null;
   }
-  Ext.panel.Header.prototype.onRemove.apply(this, arguments);
+  me.callParent(arguments);
 }, afterComponentLayout:function(width) {
   var me = this, needsScroll = me.needsScroll;
-  Ext.panel.Header.prototype.afterComponentLayout.apply(this, arguments);
+  me.callParent(arguments);
   if (needsScroll) {
     me.layout.overflowHandler.scrollToItem(me.activeTab);
   }
   delete me.needsScroll;
 }, onClick:function(e, target) {
   var me = this, tabPanel = me.tabPanel, tabEl, tab, isCloseClick, tabInfo;
-  if (e.getTarget('.x-box-scroller')) {
+  if (e.getTarget('.' + Ext.baseCSSPrefix + 'box-scroller')) {
     return;
   }
   if (me.orientation === 'vertical' && (Ext.isIE8 || Ext.isIE9) && Ext.isStrict) {
@@ -51186,7 +50803,7 @@ Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:t
   }
 }, onMouseMove:function(e) {
   var me = this, overTab = me._overTab, tabInfo, tab;
-  if (e.getTarget('.x-box-scroller')) {
+  if (e.getTarget('.' + Ext.baseCSSPrefix + 'box-scroller')) {
     return;
   }
   tabInfo = me.getTabInfoFromPoint(e.getXY());
@@ -51298,15 +50915,15 @@ Ext.cmd.derive('Ext.tab.Bar', Ext.panel.Header, {baseCls:'x-tab-bar', isTabBar:t
       me.updateLayout();
     }
   }
-}}, 0, ['tabbar'], ['component', 'box', 'container', 'header', 'tabbar'], {'component':true, 'box':true, 'container':true, 'header':true, 'tabbar':true}, ['widget.tabbar'], 0, [Ext.tab, 'Bar'], 0);
-Ext.cmd.derive('Ext.tab.Panel', Ext.panel.Panel, {alternateClassName:['Ext.TabPanel'], tabPosition:'top', removePanelHeader:true, plain:false, itemCls:'x-tabpanel-child', minTabWidth:undefined, maxTabWidth:undefined, deferredRender:true, initComponent:function() {
+}});
+Ext.define('Ext.tab.Panel', {extend:Ext.panel.Panel, alias:'widget.tabpanel', alternateClassName:['Ext.TabPanel'], tabPosition:'top', removePanelHeader:true, plain:false, itemCls:Ext.baseCSSPrefix + 'tabpanel-child', minTabWidth:undefined, maxTabWidth:undefined, deferredRender:true, initComponent:function() {
   var me = this, dockedItems = [].concat(me.dockedItems || []), activeTab = me.activeTab || (me.activeTab = 0), tabPosition = me.tabPosition;
   me.layout = new Ext.layout.container.Card(Ext.apply({owner:me, deferredRender:me.deferredRender, itemCls:me.itemCls, activeItem:activeTab}, me.layout));
   me.tabBar = new Ext.tab.Bar(Ext.apply({ui:me.ui, dock:me.tabPosition, orientation:tabPosition == 'top' || tabPosition == 'bottom' ? 'horizontal' : 'vertical', plain:me.plain, cardLayout:me.layout, tabPanel:me}, me.tabBar));
   dockedItems.push(me.tabBar);
   me.dockedItems = dockedItems;
   me.addEvents('beforetabchange', 'tabchange');
-  Ext.panel.Panel.prototype.initComponent.apply(this, arguments);
+  me.callParent(arguments);
   activeTab = me.activeTab = me.getComponent(activeTab);
   if (activeTab) {
     me.tabBar.setActiveTab(activeTab.tab, true);
@@ -51392,7 +51009,7 @@ Ext.cmd.derive('Ext.tab.Panel', Ext.panel.Panel, {alternateClassName:['Ext.TabPa
       me.setActiveTab(toActivate);
     }
   }
-  Ext.panel.Panel.prototype.doRemove.apply(this, arguments);
+  this.callParent(arguments);
   delete item.tab.card;
   delete item.tab;
 }, onRemove:function(item, destroying) {
@@ -51401,12 +51018,12 @@ Ext.cmd.derive('Ext.tab.Panel', Ext.panel.Panel, {alternateClassName:['Ext.TabPa
   if (!me.destroying && item.tab.ownerCt === me.tabBar) {
     me.tabBar.remove(item.tab);
   }
-}}, 0, ['tabpanel'], ['component', 'box', 'container', 'panel', 'tabpanel'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tabpanel':true}, ['widget.tabpanel'], 0, [Ext.tab, 'Panel', Ext, 'TabPanel'], 0);
-Ext.cmd.derive('Ext.util.Grouper', Ext.util.Sorter, {isGrouper:true, getGroupString:function(instance) {
+}});
+Ext.define('Ext.util.Grouper', {extend:Ext.util.Sorter, isGrouper:true, getGroupString:function(instance) {
   return instance.get(this.property);
-}}, 0, 0, 0, 0, 0, 0, [Ext.util, 'Grouper'], 0);
-Ext.cmd.derive('Ext.ux.PreviewPlugin', Ext.AbstractPlugin, {hideBodyCls:'x-grid-row-body-hidden', bodyField:'', previewExpanded:true, setCmp:function(grid) {
-  Ext.AbstractPlugin.prototype.setCmp.apply(this, arguments);
+}});
+Ext.define('Ext.ux.PreviewPlugin', {extend:Ext.AbstractPlugin, alias:'plugin.preview', hideBodyCls:'x-grid-row-body-hidden', bodyField:'', previewExpanded:true, setCmp:function(grid) {
+  this.callParent(arguments);
   var bodyField = this.bodyField, hideBodyCls = this.hideBodyCls, features = [{ftype:'rowbody', getAdditionalData:function(data, idx, record, orig, view) {
     var getAdditionalData = Ext.grid.feature.RowBody.prototype.getAdditionalData, additionalData = {rowBody:data[bodyField], rowBodyCls:grid.previewExpanded ? '' : hideBodyCls};
     if (getAdditionalData) {
@@ -51423,9 +51040,9 @@ Ext.cmd.derive('Ext.ux.PreviewPlugin', Ext.AbstractPlugin, {hideBodyCls:'x-grid-
   var view = this.getCmp();
   this.previewExpanded = view.previewExpanded = expanded;
   view.refresh();
-}}, 0, 0, 0, 0, ['plugin.preview'], 0, [Ext.ux, 'PreviewPlugin'], 0);
-Ext.cmd.derive('SopCor.view.Viewport', Ext.container.Viewport, {layout:'fit'}, 0, 0, ['component', 'box', 'container', 'viewport'], {'component':true, 'box':true, 'container':true, 'viewport':true}, 0, 0, [SopCor.view, 'Viewport'], 0);
-Ext.cmd.derive('SopCor.controller.Viewport', Ext.app.Controller, {views:['Viewport'], init:function() {
+}});
+Ext.define('SopCor.view.Viewport', {extend:Ext.container.Viewport, layout:'fit'});
+Ext.define('SopCor.controller.Viewport', {extend:Ext.app.Controller, views:['Viewport'], init:function() {
   this.control({'viewport':{render:this.onViewportRendered}});
 }, onViewportRendered:function(p) {
   if (0 == userid) {
@@ -51439,8 +51056,8 @@ Ext.cmd.derive('SopCor.controller.Viewport', Ext.app.Controller, {views:['Viewpo
     p.add(Ext.create('SopCor.view.Mainwindow'));
     p.doLayout();
   }
-}}, 0, 0, 0, 0, 0, 0, [SopCor.controller, 'Viewport'], 0);
-Ext.cmd.derive('SopCor.controller.Login', Ext.app.Controller, {init:function() {
+}});
+Ext.define('SopCor.controller.Login', {extend:Ext.app.Controller, init:function() {
   this.control({'loginwindow button[action\x3dlogin]':{click:this.login}, 'mainwindow button[action\x3dlogout]':{click:this.logout}, 'mainwindow':{render:this.keepAlive}, 'form \x3e textfield':{specialkey:this.onSpecialKey}});
   this.application.on({applicationstart:this.onApplicationStart, scope:this});
 }, refs:[{ref:'loginwindow', selector:'loginwindow'}], login:function(button) {
@@ -51515,24 +51132,23 @@ Ext.cmd.derive('SopCor.controller.Login', Ext.app.Controller, {init:function() {
   if (e.getKey() == e.ENTER) {
     this.login(Ext.getCmp('loginSubmitButton'));
   }
-}}, 0, 0, 0, 0, 0, 0, [SopCor.controller, 'Login'], 0);
-Ext.cmd.derive('SopCor.view.events.ViewMarkerEventForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'scannerUserName', name:'scannerUserName', fieldLabel:'Пользователь'}, {id:'scannerVendorName', name:'scannerVendorName', fieldLabel:'Организация'}, {id:'scannerContactTelephone', name:'scannerContactTelephone', fieldLabel:'Контактный телефон'}, {id:'scannerEmail', name:'scannerEmail', 
-fieldLabel:'E-mail'}]}, {xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'resultOfEvent', name:'resultOfEvent', fieldLabel:'Результат сканирования'}]}, {xtype:'fieldset', id:'markerView', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{xtype:'panel', layout:'anchor', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, margin:'10 10', layout:'hbox', items:[{xtype:'textfield', 
-id:'markerViewUID', readOnly:true, fieldLabel:'Идентификационный номер:', labelWidth:150, margin:'0 30'}, {id:'markerViewStatus', xtype:'textfield', readOnly:true, labelWidth:45, fieldLabel:'Статус'}]}, {xtype:'container', html:'\x3chr /\x3e'}, {fieldDefaults:{labelWidth:200}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'markerViewUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции', anchor:'100%', width:700}, {id:'markerViewVendor', 
-xtype:'textfield', readOnly:true, fieldLabel:'Производитель', anchor:'100%', width:700}, {id:'markerViewGoodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа', anchor:'100%', width:700}]}]}, {xtype:'container', layout:'hbox', margin:'10 10', items:[{xtype:'fieldset', margin:'0 10 0 0', items:[{id:'markerViewDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства', labelWidth:150, width:335}, {id:'markerViewExpireTime', xtype:'textfield', readOnly:true, 
-fieldLabel:'Срок годности (месяцев)', labelWidth:150, width:335}]}, {xtype:'fieldset', items:[{id:'markerViewUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.', labelWidth:150, width:335}, {id:'markerViewQuantityPerUnit', xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.', labelWidth:150, width:335}]}]}, {xtype:'container', layout:'hbox', margin:'10 10', items:[{xtype:'fieldset', margin:'0 10 0 0', items:[{id:'markerViewBatchNumber', xtype:'textfield', readOnly:true, 
-fieldLabel:'Номер партии', labelWidth:150, width:335}, {id:'markerViewBatchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии', labelWidth:150, width:335}]}, {xtype:'fieldset', items:[{id:'markerViewNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер пасп. качества', labelWidth:150, width:335}, {id:'markerViewNumberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Н-р бланка пасп. кач-ва', labelWidth:150, width:335}]}]}]}]}, {xtype:'fieldset', 
-anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'dateOfEvent', name:'dateOfEvent', fieldLabel:'Дата сканирования'}, {id:'coordinates', name:'coordinates', fieldLabel:'Координаты (Ш,Д)'}]}]}, 0, ['viewmarkereventform'], ['component', 'box', 'container', 'panel', 'form', 'viewmarkereventform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'viewmarkereventform':true}, ['widget.viewmarkereventform'], 0, [SopCor.view.events, 
-'ViewMarkerEventForm'], 0);
-Ext.cmd.derive('SopCor.view.events.ViewMarkerEvent', Ext.window.Window, {id:'viewmarkerevent', title:'Информация о сканировании', width:800, layout:'fit', plain:true, border:false, closable:true, modal:true, items:[{xtype:'viewmarkereventform', id:'viewmarkereventform'}], buttons:[{id:'ViewMarkerEventCloseButton', text:'Закрыть', handler:function(button, event) {
+}});
+Ext.define('SopCor.view.events.ViewMarkerEventForm', {extend:Ext.form.Panel, alias:'widget.viewmarkereventform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'scannerUserName', name:'scannerUserName', fieldLabel:'Пользователь'}, {id:'scannerVendorName', name:'scannerVendorName', fieldLabel:'Организация'}, {id:'scannerContactTelephone', name:'scannerContactTelephone', fieldLabel:'Контактный телефон'}, 
+{id:'scannerEmail', name:'scannerEmail', fieldLabel:'E-mail'}]}, {xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'resultOfEvent', name:'resultOfEvent', fieldLabel:'Результат сканирования'}]}, {xtype:'fieldset', id:'markerView', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{xtype:'panel', layout:'anchor', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, 
+margin:'10 10', layout:'hbox', items:[{xtype:'textfield', id:'markerViewUID', readOnly:true, fieldLabel:'Идентификационный номер:', labelWidth:150, margin:'0 30'}, {id:'markerViewStatus', xtype:'textfield', readOnly:true, labelWidth:45, fieldLabel:'Статус'}]}, {xtype:'container', html:'\x3chr /\x3e'}, {fieldDefaults:{labelWidth:200}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'markerViewUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции', 
+anchor:'100%', width:700}, {id:'markerViewVendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель', anchor:'100%', width:700}, {id:'markerViewGoodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа', anchor:'100%', width:700}]}]}, {xtype:'container', layout:'hbox', margin:'10 10', items:[{xtype:'fieldset', margin:'0 10 0 0', items:[{id:'markerViewDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства', labelWidth:150, width:335}, {id:'markerViewExpireTime', 
+xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)', labelWidth:150, width:335}]}, {xtype:'fieldset', items:[{id:'markerViewUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.', labelWidth:150, width:335}, {id:'markerViewQuantityPerUnit', xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.', labelWidth:150, width:335}]}]}, {xtype:'container', layout:'hbox', margin:'10 10', items:[{xtype:'fieldset', margin:'0 10 0 0', items:[{id:'markerViewBatchNumber', 
+xtype:'textfield', readOnly:true, fieldLabel:'Номер партии', labelWidth:150, width:335}, {id:'markerViewBatchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии', labelWidth:150, width:335}]}, {xtype:'fieldset', items:[{id:'markerViewNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер пасп. качества', labelWidth:150, width:335}, {id:'markerViewNumberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Н-р бланка пасп. кач-ва', labelWidth:150, 
+width:335}]}]}]}]}, {xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', readOnly:true}, items:[{id:'dateOfEvent', name:'dateOfEvent', fieldLabel:'Дата сканирования'}, {id:'coordinates', name:'coordinates', fieldLabel:'Координаты (Ш,Д)'}]}]});
+Ext.define('SopCor.view.events.ViewMarkerEvent', {extend:Ext.window.Window, alias:'widget.viewmarkerevent', id:'viewmarkerevent', title:'Информация о сканировании', width:800, layout:'fit', plain:true, border:false, closable:true, modal:true, items:[{xtype:'viewmarkereventform', id:'viewmarkereventform'}], buttons:[{id:'ViewMarkerEventCloseButton', text:'Закрыть', handler:function(button, event) {
   Ext.getCmp('viewmarkerevent').close();
-}}]}, 0, ['viewmarkerevent'], ['component', 'box', 'container', 'panel', 'window', 'viewmarkerevent'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'viewmarkerevent':true}, ['widget.viewmarkerevent'], 0, [SopCor.view.events, 'ViewMarkerEvent'], 0);
-Ext.cmd.derive('SopCor.model.Event', Ext.data.Model, {fields:[{name:'UID'}, {name:'name'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'dateOfCreation'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Event'], 0);
-Ext.cmd.derive('SopCor.model.BriefAdd', Ext.data.Model, {fields:[{name:'vendorName'}, {name:'scansNumber'}, {name:'lastScansNumber'}, {name:'fakeScansNumber'}, {name:'lastFakeScansNumber'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'BriefAdd'], 0);
-Ext.cmd.derive('SopCor.model.Scan', Ext.data.Model, {fields:[{name:'dateOfCreation'}, {name:'userName'}, {name:'vendorName'}, {name:'codeOfEvent'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Scan'], 0);
-Ext.cmd.derive('SopCor.store.Events', Ext.data.Store, {model:'SopCor.model.Event', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/events', reader:{root:'scans', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Events'], 0);
-Ext.cmd.derive('SopCor.store.Scans', Ext.data.Store, {model:'SopCor.model.Scan', autoLoad:false}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Scans'], 0);
-Ext.cmd.derive('SopCor.controller.AdditionalClient', Ext.app.Controller, {stores:['Events', 'Scans'], models:['Event', 'BriefAdd', 'Scan'], views:['checkuid.*', 'scans.*'], init:function() {
+}}]});
+Ext.define('SopCor.model.Event', {extend:Ext.data.Model, fields:[{name:'UID'}, {name:'name'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'dateOfCreation'}]});
+Ext.define('SopCor.model.BriefAdd', {extend:Ext.data.Model, fields:[{name:'vendorName'}, {name:'scansNumber'}, {name:'lastScansNumber'}, {name:'fakeScansNumber'}, {name:'lastFakeScansNumber'}]});
+Ext.define('SopCor.model.Scan', {extend:Ext.data.Model, fields:[{name:'dateOfCreation'}, {name:'userName'}, {name:'vendorName'}, {name:'codeOfEvent'}]});
+Ext.define('SopCor.store.Events', {extend:Ext.data.Store, model:'SopCor.model.Event', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/events', reader:{root:'scans', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Scans', {extend:Ext.data.Store, model:'SopCor.model.Scan', autoLoad:false});
+Ext.define('SopCor.controller.AdditionalClient', {extend:Ext.app.Controller, stores:['Events', 'Scans'], models:['Event', 'BriefAdd', 'Scan'], views:['checkuid.*', 'scans.*'], init:function() {
   this.control({'statistics':{render:this.loadStatistics}, 'instances button[action\x3dcheckuid]':{click:this.checkuid}, 'instances button[action\x3dscans]':{click:this.scans}, 'checkuidform button[action\x3dcheckmarker]':{click:this.checkmarker}, 'scansform button[action\x3dsearchscans]':{click:this.searchscans}, 'scansresult button[action\x3dshow]':{click:this.onScansGridShow}, 'menuitem[action\x3dshow]':{click:this.onScansGridShow}, 'scansresult \x3e grid[id\x3deventsGrid]':{itemcontextmenu:this.onScansGridContextMenu, 
   selectionchange:this.onScanGridSelectionChange}});
 }, loadStatistics:function() {
@@ -51713,43 +51329,43 @@ Ext.cmd.derive('SopCor.controller.AdditionalClient', Ext.app.Controller, {stores
       button.setDisabled(true);
     }
   }
-}}, 0, 0, 0, 0, 0, 0, [SopCor.controller, 'AdditionalClient'], 0);
-Ext.cmd.derive('SopCor.model.Vendor', Ext.data.Model, {fields:[{name:'vendorId'}, {name:'name'}, {name:'public_name'}, {name:'contactPerson'}, {name:'contactPhone'}, {name:'markersPermitted'}, {name:'markersPrinted'}, {name:'address'}, {name:'city'}, {name:'region'}, {name:'shortName'}, {name:'inn'}, {name:'ogrn'}, {name:'notes'}, {name:'typeOfVendor'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Vendor'], 0);
-Ext.cmd.derive('SopCor.model.Token', Ext.data.Model, {fields:[{name:'tokenId'}, {name:'tokenShortId'}, {name:'vendorId'}, {name:'key'}, {name:'accessLevel'}, {name:'suspended'}, {name:'serialNumber'}, {name:'notes'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Token'], 0);
-Ext.cmd.derive('SopCor.model.User', Ext.data.Model, {fields:[{name:'userId'}, {name:'name'}, {name:'accessLevel'}, {name:'userDescription'}, {name:'contactPhone'}, {name:'email'}, {name:'login'}, {name:'suspended'}, {name:'vendorId'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'User'], 0);
-Ext.cmd.derive('SopCor.model.UnitType', Ext.data.Model, {fields:[{name:'unitTypeId'}, {name:'vendorId'}, {name:'name'}, {name:'statusCode'}, {name:'goodsGroupName'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'UnitType'], 0);
-Ext.cmd.derive('SopCor.model.Reel', Ext.data.Model, {fields:[{name:'reelId'}, {name:'seriesNumber'}, {name:'quantity'}, {name:'firstSerial'}, {name:'description'}, {name:'serialNumber'}, {name:'notes'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Reel'], 0);
-Ext.cmd.derive('SopCor.model.Marker', Ext.data.Model, {fields:[{name:'UID'}, {name:'UIDClean'}, {name:'goodsGroupName'}, {name:'unitTypeName'}, {name:'vendorName'}, {name:'numberOfQualityPassport'}, {name:'numberOfQualityPassportBlank'}, {name:'statusCode'}, {name:'dateOfCreation'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Marker'], 0);
-Ext.cmd.derive('SopCor.model.Option', Ext.data.Model, {fields:[{name:'optionId'}, {name:'name'}, {name:'description'}, {name:'value'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Option'], 0);
-Ext.cmd.derive('SopCor.model.TriggerOption', Ext.data.Model, {fields:[{name:'triggerOptionId'}, {name:'name'}, {name:'description'}, {name:'value'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'TriggerOption'], 0);
-Ext.cmd.derive('SopCor.model.GoodsGroup', Ext.data.Model, {fields:[{name:'goodsGroupId'}, {name:'shortName'}, {name:'name'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'GoodsGroup'], 0);
-Ext.cmd.derive('SopCor.model.UserEvent', Ext.data.Model, {fields:[{name:'tokenId'}, {name:'dateOfCreation'}, {name:'description'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'vendorName'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'UserEvent'], 0);
-Ext.cmd.derive('SopCor.model.MarkerEvent', Ext.data.Model, {fields:[{name:'markerEventId'}, {name:'markerId'}, {name:'ip'}, {name:'recievedUID'}, {name:'dateOfCreation'}, {name:'description'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'vendorName'}, {name:'userId'}, {name:'latitude'}, {name:'longtitude'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'MarkerEvent'], 0);
-Ext.cmd.derive('SopCor.model.Report', Ext.data.Model, {fields:[{name:'reportGeneratorId'}, {name:'name'}, {name:'description'}, {name:'enabled'}, {name:'formItems'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Report'], 0);
-Ext.cmd.derive('SopCor.model.Request', Ext.data.Model, {fields:[{name:'dateOfCreation'}, {name:'reportGeneratorId'}, {name:'reportRequestId'}, {name:'finished'}, {name:'xml'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Request'], 0);
-Ext.cmd.derive('SopCor.model.MarkerScan', Ext.data.Model, {fields:[{name:'userName'}, {name:'vendorName'}, {name:'codeOfEvent'}, {name:'dateOfCreation'}, {name:'ip'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'MarkerScan'], 0);
-Ext.cmd.derive('SopCor.model.UnitMeasure', Ext.data.Model, {fields:[{name:'volume_name'}, {name:'volume_shortname'}, {name:'volume_code'}, {name:'sort_order'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'UnitMeasure'], 0);
-Ext.cmd.derive('SopCor.model.Product', Ext.data.Model, {fields:[{name:'id'}, {name:'product_name'}, {name:'product_doc'}, {name:'product_replacedby'}, {name:'product_expiration'}, {name:'product_modification'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Product'], 0);
-Ext.cmd.derive('SopCor.model.Component', Ext.data.Model, {fields:[{name:'id'}, {name:'name'}, {name:'comments'}, {name:'expiration_date'}, {name:'is_mark_required'}, {name:'modification_date'}]}, 0, 0, 0, 0, 0, 0, [SopCor.model, 'Component'], 0);
-Ext.cmd.derive('SopCor.store.Vendors', Ext.data.Store, {model:'SopCor.model.Vendor', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/vendors', reader:{root:'vendors', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Vendors'], 0);
-Ext.cmd.derive('SopCor.store.Tokens', Ext.data.Store, {model:'SopCor.model.Token', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/tokens', reader:{root:'tokens', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Tokens'], 0);
-Ext.cmd.derive('SopCor.store.Users', Ext.data.Store, {model:'SopCor.model.User', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/users', reader:{root:'users', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Users'], 0);
-Ext.cmd.derive('SopCor.store.UnitTypes', Ext.data.Store, {model:'SopCor.model.UnitType', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/unitTypes', reader:{root:'unitTypes', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitTypes'], 0);
-Ext.cmd.derive('SopCor.store.Reels', Ext.data.Store, {model:'SopCor.model.Reel', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/reels', reader:{root:'reels', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Reels'], 0);
-Ext.cmd.derive('SopCor.store.Markers', Ext.data.Store, {model:'SopCor.model.Marker', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/markers', reader:{root:'markers', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Markers'], 0);
-Ext.cmd.derive('SopCor.store.Options', Ext.data.Store, {model:'SopCor.model.Option', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/options', reader:{root:'options', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Options'], 0);
-Ext.cmd.derive('SopCor.store.TriggerOptions', Ext.data.Store, {model:'SopCor.model.TriggerOption', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/triggerOptions', reader:{root:'triggerOptions', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'TriggerOptions'], 0);
-Ext.cmd.derive('SopCor.store.GoodsGroups', Ext.data.Store, {model:'SopCor.model.GoodsGroup', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/goodsGroups', reader:{root:'goodsGroups', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'GoodsGroups'], 0);
-Ext.cmd.derive('SopCor.store.UserEvents', Ext.data.Store, {model:'SopCor.model.UserEvent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/userEvents', reader:{root:'userEvents', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UserEvents'], 0);
-Ext.cmd.derive('SopCor.store.MarkerEvents', Ext.data.Store, {model:'SopCor.model.MarkerEvent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/markerEvents', reader:{root:'markerEvents', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'MarkerEvents'], 0);
-Ext.cmd.derive('SopCor.store.Reports', Ext.data.Store, {model:'SopCor.model.Report', autoLoad:false, proxy:{type:'ajax', url:'/request/reports', reader:{root:'reports', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Reports'], 0);
-Ext.cmd.derive('SopCor.store.Requests', Ext.data.Store, {model:'SopCor.model.Request', autoLoad:false, proxy:{type:'ajax', url:'/request/reportRequests', reader:{root:'reportRequests', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Requests'], 0);
-Ext.cmd.derive('SopCor.store.MarkerScans', Ext.data.Store, {model:'SopCor.model.MarkerScan', autoLoad:false}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'MarkerScans'], 0);
-Ext.cmd.derive('SopCor.store.UnitMeasures', Ext.data.Store, {model:'SopCor.model.UnitMeasure', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/volume', reader:{root:'volumeList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitMeasures'], 0);
-Ext.cmd.derive('SopCor.store.Products', Ext.data.Store, {model:'SopCor.model.Product', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/product', reader:{root:'productList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Products'], 0);
-Ext.cmd.derive('SopCor.store.Components', Ext.data.Store, {model:'SopCor.model.Component', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/component', reader:{root:'componentList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Components'], 0);
+}});
+Ext.define('SopCor.model.Vendor', {extend:Ext.data.Model, fields:[{name:'vendorId'}, {name:'name'}, {name:'public_name'}, {name:'contactPerson'}, {name:'contactPhone'}, {name:'markersPermitted'}, {name:'markersPrinted'}, {name:'address'}, {name:'city'}, {name:'region'}, {name:'shortName'}, {name:'inn'}, {name:'ogrn'}, {name:'notes'}, {name:'typeOfVendor'}]});
+Ext.define('SopCor.model.Token', {extend:Ext.data.Model, fields:[{name:'tokenId'}, {name:'tokenShortId'}, {name:'vendorId'}, {name:'key'}, {name:'accessLevel'}, {name:'suspended'}, {name:'serialNumber'}, {name:'notes'}]});
+Ext.define('SopCor.model.User', {extend:Ext.data.Model, fields:[{name:'userId'}, {name:'name'}, {name:'accessLevel'}, {name:'userDescription'}, {name:'contactPhone'}, {name:'email'}, {name:'login'}, {name:'suspended'}, {name:'vendorId'}]});
+Ext.define('SopCor.model.UnitType', {extend:Ext.data.Model, fields:[{name:'unitTypeId'}, {name:'vendorId'}, {name:'name'}, {name:'statusCode'}, {name:'goodsGroupName'}]});
+Ext.define('SopCor.model.Reel', {extend:Ext.data.Model, fields:[{name:'reelId'}, {name:'seriesNumber'}, {name:'quantity'}, {name:'firstSerial'}, {name:'description'}, {name:'serialNumber'}, {name:'notes'}]});
+Ext.define('SopCor.model.Marker', {extend:Ext.data.Model, fields:[{name:'UID'}, {name:'UIDClean'}, {name:'goodsGroupName'}, {name:'unitTypeName'}, {name:'vendorName'}, {name:'numberOfQualityPassport'}, {name:'numberOfQualityPassportBlank'}, {name:'statusCode'}, {name:'dateOfCreation'}]});
+Ext.define('SopCor.model.Option', {extend:Ext.data.Model, fields:[{name:'optionId'}, {name:'name'}, {name:'description'}, {name:'value'}]});
+Ext.define('SopCor.model.TriggerOption', {extend:Ext.data.Model, fields:[{name:'triggerOptionId'}, {name:'name'}, {name:'description'}, {name:'value'}]});
+Ext.define('SopCor.model.GoodsGroup', {extend:Ext.data.Model, fields:[{name:'goodsGroupId'}, {name:'shortName'}, {name:'name'}]});
+Ext.define('SopCor.model.UserEvent', {extend:Ext.data.Model, fields:[{name:'tokenId'}, {name:'dateOfCreation'}, {name:'description'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'vendorName'}]});
+Ext.define('SopCor.model.MarkerEvent', {extend:Ext.data.Model, fields:[{name:'markerEventId'}, {name:'markerId'}, {name:'ip'}, {name:'recievedUID'}, {name:'dateOfCreation'}, {name:'description'}, {name:'codeOfEvent'}, {name:'userName'}, {name:'vendorName'}, {name:'userId'}, {name:'latitude'}, {name:'longtitude'}]});
+Ext.define('SopCor.model.Report', {extend:Ext.data.Model, fields:[{name:'reportGeneratorId'}, {name:'name'}, {name:'description'}, {name:'enabled'}, {name:'formItems'}]});
+Ext.define('SopCor.model.Request', {extend:Ext.data.Model, fields:[{name:'dateOfCreation'}, {name:'reportGeneratorId'}, {name:'reportRequestId'}, {name:'finished'}, {name:'xml'}]});
+Ext.define('SopCor.model.MarkerScan', {extend:Ext.data.Model, fields:[{name:'userName'}, {name:'vendorName'}, {name:'codeOfEvent'}, {name:'dateOfCreation'}, {name:'ip'}]});
+Ext.define('SopCor.model.UnitMeasure', {extend:Ext.data.Model, fields:[{name:'volume_name'}, {name:'volume_shortname'}, {name:'volume_code'}, {name:'sort_order'}]});
+Ext.define('SopCor.model.Product', {extend:Ext.data.Model, fields:[{name:'id'}, {name:'product_name'}, {name:'product_doc'}, {name:'product_replacedby'}, {name:'product_expiration'}, {name:'product_modification'}]});
+Ext.define('SopCor.model.Component', {extend:Ext.data.Model, fields:[{name:'id'}, {name:'name'}, {name:'comments'}, {name:'expiration_date'}, {name:'is_mark_required'}, {name:'modification_date'}]});
+Ext.define('SopCor.store.Vendors', {extend:Ext.data.Store, model:'SopCor.model.Vendor', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/vendors', reader:{root:'vendors', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Tokens', {extend:Ext.data.Store, model:'SopCor.model.Token', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/tokens', reader:{root:'tokens', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Users', {extend:Ext.data.Store, model:'SopCor.model.User', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/users', reader:{root:'users', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.UnitTypes', {extend:Ext.data.Store, model:'SopCor.model.UnitType', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/unitTypes', reader:{root:'unitTypes', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Reels', {extend:Ext.data.Store, model:'SopCor.model.Reel', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/reels', reader:{root:'reels', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Markers', {extend:Ext.data.Store, model:'SopCor.model.Marker', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/markers', reader:{root:'markers', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Options', {extend:Ext.data.Store, model:'SopCor.model.Option', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/options', reader:{root:'options', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.TriggerOptions', {extend:Ext.data.Store, model:'SopCor.model.TriggerOption', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/triggerOptions', reader:{root:'triggerOptions', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.GoodsGroups', {extend:Ext.data.Store, model:'SopCor.model.GoodsGroup', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/goodsGroups', reader:{root:'goodsGroups', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.UserEvents', {extend:Ext.data.Store, model:'SopCor.model.UserEvent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/userEvents', reader:{root:'userEvents', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.MarkerEvents', {extend:Ext.data.Store, model:'SopCor.model.MarkerEvent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/markerEvents', reader:{root:'markerEvents', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Reports', {extend:Ext.data.Store, model:'SopCor.model.Report', autoLoad:false, proxy:{type:'ajax', url:'/request/reports', reader:{root:'reports', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Requests', {extend:Ext.data.Store, model:'SopCor.model.Request', autoLoad:false, proxy:{type:'ajax', url:'/request/reportRequests', reader:{root:'reportRequests', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.MarkerScans', {extend:Ext.data.Store, model:'SopCor.model.MarkerScan', autoLoad:false});
+Ext.define('SopCor.store.UnitMeasures', {extend:Ext.data.Store, model:'SopCor.model.UnitMeasure', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/volume', reader:{root:'volumeList', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Products', {extend:Ext.data.Store, model:'SopCor.model.Product', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/product', reader:{root:'productList', totalProperty:'totalCount'}, simpleSortMode:true}});
+Ext.define('SopCor.store.Components', {extend:Ext.data.Store, model:'SopCor.model.Component', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/component', reader:{root:'componentList', totalProperty:'totalCount'}, simpleSortMode:true}});
 var vendorTypes = Ext.create('Ext.data.Store', {fields:['type_id', 'type_name'], data:[{'type_id':1, 'type_name':'Завод'}, {'type_id':2, 'type_name':'Продавец'}, {'type_id':3, 'type_name':'Комплексный поставщик'}, {'type_id':4, 'type_name':'Заказчик'}, {'type_id':5, 'type_name':'Подрядчик'}, {'type_id':6, 'type_name':'СубПодрядчик'}, {'type_id':7, 'type_name':'Контрольный орган'}]});
-Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 'Report', 'Request', 'MarkerScan', 'UnitMeasure', 'Product', 'Component'], 
+Ext.define('SopCor.controller.KMOClient', {extend:Ext.app.Controller, stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 'Report', 'Request', 'MarkerScan', 'UnitMeasure', 'Product', 'Component'], 
 views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options.*'], init:function() {
   this.control({'statisticsKMO':{render:this.loadStatistics}, 'instancesKMO button[action\x3dvendors]':{click:this.vendors}, 'instancesKMO button[action\x3dmarkers]':{click:this.markers}, 'instancesKMO button[action\x3dproducts]':{click:this.products}, 'instancesKMO button[action\x3devents]':{click:this.events}, 'instancesKMO button[action\x3dreports]':{click:this.reports}, 'instancesKMO button[action\x3doptions]':{click:this.options}, 'vendorslist button[action\x3daddvendor]':{click:this.addVendor}, 
   'menuitem[action\x3daddvendor]':{click:this.addVendor}, 'addvendor button[action\x3dsave]':{click:this.saveVendor}, 'vendorslist button[action\x3ddeletevendor]':{click:this.deleteVendor}, 'menuitem[action\x3ddeletevendor]':{click:this.deleteVendor}, 'vendorslist button[action\x3deditvendor]':{click:this.editVendor}, 'menuitem[action\x3deditvendor]':{click:this.editVendor}, 'vendorslist \x3e grid[id\x3dvendorsGrid]':{itemcontextmenu:this.onVendorsGridContextMenu, selectionchange:this.onVendorsGridSelectionChange}, 
@@ -53567,8 +53183,8 @@ views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options
     }});
     win.show();
   }
-}}, 0, 0, 0, 0, 0, 0, [SopCor.controller, 'KMOClient'], 0);
-Ext.cmd.derive('SopCor.controller.KMPClient', Ext.app.Controller, {stores:['Events'], models:['Event'], views:['scans.*'], init:function() {
+}});
+Ext.define('SopCor.controller.KMPClient', {extend:Ext.app.Controller, stores:['Events'], models:['Event'], views:['scans.*'], init:function() {
   this.control({'statisticsKMP':{}, 'instancesKMP button[action\x3dstatistics]':{click:this.statistics}, 'instancesKMP button[action\x3dreports]':{click:this.reports}, 'instancesKMP button[action\x3dscans]':{click:this.scans}, 'stats':{activate:this.onStatsActivate}});
 }, loadStatistics:function() {
   var FormPanel = Ext.getCmp('briefKMP');
@@ -53607,7 +53223,7 @@ Ext.cmd.derive('SopCor.controller.KMPClient', Ext.app.Controller, {stores:['Even
       }
     }});
   }
-}}, 0, 0, 0, 0, 0, 0, [SopCor.controller, 'KMPClient'], 0);
+}});
 var splashscreen;
 var userid = 0;
 var userName = '';
@@ -53634,7 +53250,7 @@ Ext.onDocumentReady(function() {
   splashscreen.addCls('splashscreen');
   Ext.DomHelper.insertFirst(Ext.query('.x-mask-msg')[0], {cls:'x-splash-icon'});
 });
-Ext.cmd.derive('SopCor.Application', Ext.app.Application, {name:'SopCor', views:[], controllers:['Viewport', 'Login', 'AdditionalClient', 'KMOClient', 'KMPClient'], stores:[], launch:function() {
+Ext.define('SopCor.Application', {name:'SopCor', extend:Ext.app.Application, views:[], controllers:['Viewport', 'Login', 'AdditionalClient', 'KMOClient', 'KMPClient'], stores:[], launch:function() {
   SopCor.app = this;
   Ext.QuickTips.init();
   var task = new Ext.util.DelayedTask(function() {
@@ -53644,31 +53260,26 @@ Ext.cmd.derive('SopCor.Application', Ext.app.Application, {name:'SopCor', views:
     }}});
   });
   task.delay(500);
-}}, 0, 0, 0, 0, 0, 0, [SopCor, 'Application'], 0);
-Ext.cmd.derive('SopCor.view.Help', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'}, 0, ['help'], ['component', 'box', 'container', 'panel', 'help'], {'component':true, 'box':true, 'container':true, 'panel':true, 'help':true}, ['widget.help'], 0, [SopCor.view, 'Help'], 0);
-Ext.cmd.derive('SopCor.view.HelpKMO', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'}, 0, ['helpKMO'], ['component', 'box', 'container', 'panel', 'helpKMO'], {'component':true, 'box':true, 'container':true, 'panel':true, 'helpKMO':true}, ['widget.helpKMO'], 0, [SopCor.view, 'HelpKMO'], 0);
-Ext.cmd.derive('SopCor.view.HelpKMP', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'}, 0, ['helpKMP'], ['component', 'box', 'container', 'panel', 'helpKMP'], {'component':true, 'box':true, 'container':true, 'panel':true, 'helpKMP':true}, ['widget.helpKMP'], 0, [SopCor.view, 'HelpKMP'], 0);
-Ext.cmd.derive('SopCor.view.Instances', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Проверка', margins:'0 0 5', width:238, action:'checkuid'}, {xtype:'button', text:'Журнал', width:238, action:'scans'}]}, 0, ['instances'], ['component', 'box', 'container', 'panel', 'instances'], {'component':true, 'box':true, 'container':true, 'panel':true, 'instances':true}, ['widget.instances'], 0, [SopCor.view, 'Instances'], 0);
-Ext.cmd.derive('SopCor.view.InstancesKMO', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Компании', margins:'0 0 5', width:238, action:'vendors'}, {xtype:'button', text:'Идентификационные марки', margins:'0 0 5', width:238, action:'markers'}, {xtype:'button', text:'Продукция', margins:'0 0 5', width:238, action:'products'}, {xtype:'button', text:'События', margins:'0 0 5', width:238, action:'events'}, {xtype:'button', 
-text:'Отчеты', margins:'0 0 5', width:238, action:'reports', disabled:true}, {xtype:'button', text:'Настройки', width:238, action:'options'}]}, 0, ['instancesKMO'], ['component', 'box', 'container', 'panel', 'instancesKMO'], {'component':true, 'box':true, 'container':true, 'panel':true, 'instancesKMO':true}, ['widget.instancesKMO'], 0, [SopCor.view, 'InstancesKMO'], 0);
-Ext.cmd.derive('SopCor.view.InstancesKMP', Ext.Panel, {margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Статистика', margins:'0 0 5', width:238, action:'statistics'}, {xtype:'button', text:'Отчеты', margins:'0 0 5', width:238, disabled:true, action:'reports'}, {xtype:'button', text:'Сканирования', margins:'0 0 5', width:238, action:'scans'}]}, 0, ['instancesKMP'], ['component', 'box', 'container', 'panel', 'instancesKMP'], {'component':true, 
-'box':true, 'container':true, 'panel':true, 'instancesKMP':true}, ['widget.instancesKMP'], 0, [SopCor.view, 'InstancesKMP'], 0);
-Ext.cmd.derive('SopCor.view.Logo', Ext.Container, {margins:'5 5', html:'\x3cdiv id\x3d"logo"\x3e    \x3cp align\x3d"center"\x3e        \x3cimg src\x3d"resources/images/logo.png" width\x3d"150" height\x3d"100" alt\x3d"Logo" /\x3e    \x3c/p\x3e\x3c/div\x3e'}, 0, ['logo'], ['component', 'box', 'container', 'logo'], {'component':true, 'box':true, 'container':true, 'logo':true}, ['widget.logo'], 0, [SopCor.view, 'Logo'], 0);
-Ext.cmd.derive('SopCor.view.Statistics', Ext.Panel, {margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefAdd', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {id:'scansNumber', name:'scansNumber', xtype:'textfield', readOnly:true, fieldLabel:'Сканирований:'}, {id:'lastScansNumber', name:'lastScansNumber', xtype:'textfield', readOnly:true, 
-fieldLabel:'- за посл. 12 ч:'}, {id:'fakeScansNumber', name:'fakeScansNumber', xtype:'textfield', readOnly:true, fieldLabel:'Сканировано контрафакта:'}, {id:'lastFakeScansNumber', name:'lastFakeScansNumber', xtype:'textfield', readOnly:true, fieldLabel:'- за посл. 12 ч:'}]}]}, 0, ['statistics'], ['component', 'box', 'container', 'panel', 'statistics'], {'component':true, 'box':true, 'container':true, 'panel':true, 'statistics':true}, ['widget.statistics'], 0, [SopCor.view, 'Statistics'], 0);
-Ext.cmd.derive('SopCor.view.StatisticsKMO', Ext.Panel, {margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefKMO', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {xtype:'textfield', name:'vendors', readOnly:true, fieldLabel:'активных предприятий:'}, {xtype:'textfield', name:'unitTypes', readOnly:true, fieldLabel:'наименований продукции:'}, 
-{xtype:'textfield', name:'tokens', readOnly:true, fieldLabel:'назначенных ключей:'}, {xtype:'textfield', name:'markers', readOnly:true, fieldLabel:'опубликованных маркеров:'}, {xtype:'textfield', name:'events', readOnly:true, fieldLabel:'число сканирований:'}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'- в т.ч. подозрений на кон-факт:'}]}]}, 0, ['statisticsKMO'], ['component', 'box', 'container', 'panel', 'statisticsKMO'], {'component':true, 'box':true, 'container':true, 'panel':true, 
-'statisticsKMO':true}, ['widget.statisticsKMO'], 0, [SopCor.view, 'StatisticsKMO'], 0);
-Ext.cmd.derive('SopCor.view.StatisticsKMP', Ext.Panel, {margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefKMP', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {xtype:'textfield', readOnly:true, name:'unitTypes', fieldLabel:'активных артикулов:'}, {xtype:'textfield', readOnly:true, name:'todayMarkers', fieldLabel:'опубликованых сегодня маркеров:'}, 
-{xtype:'textfield', readOnly:true, name:'todayEvents', fieldLabel:'сканирований сегодня:'}, {xtype:'textfield', readOnly:true, name:'contrafactToday', fieldLabel:'сканирований контрафакта:'}, {xtype:'textfield', readOnly:true, name:'markersPermitted', fieldLabel:'число доступных наклеек:'}]}]}, 0, ['statisticsKMP'], ['component', 'box', 'container', 'panel', 'statisticsKMP'], {'component':true, 'box':true, 'container':true, 'panel':true, 'statisticsKMP':true}, ['widget.statisticsKMP'], 0, [SopCor.view, 
-'StatisticsKMP'], 0);
-Ext.cmd.derive('SopCor.view.checkuid.CheckuidForm', Ext.form.Panel, {frame:false, border:false, defaultType:'textfield', monitorValid:true, layout:'hbox', items:[{itemId:'uid', fieldLabel:'Идентификационный номер', name:'uid', allowBlank:false, labelWidth:175, margin:'0 10'}, {xtype:'button', text:'Проверить', action:'checkmarker'}]}, 0, ['checkuidform'], ['component', 'box', 'container', 'panel', 'form', 'checkuidform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 
-'checkuidform':true}, ['widget.checkuidform'], 0, [SopCor.view.checkuid, 'CheckuidForm'], 0);
-Ext.cmd.derive('SopCor.view.checkuid.CheckuidResult', Ext.Container, {id:'checkuidresult', layout:'card', border:false, items:[{xtype:'panel', border:false}, {fieldDefaults:{labelWidth:200, anchor:'100%'}, xtype:'form', id:'checkuidresultpanel', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'UID', xtype:'textfield', readOnly:true, fieldLabel:'UID'}, {id:'unitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'quantityPerUnit', xtype:'textfield', readOnly:true, 
-fieldLabel:'Количество в ед. изм.'}, {id:'status', xtype:'textfield', readOnly:true, fieldLabel:'Статус'}]}, {xtype:'fieldset', items:[{id:'vendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель'}, {id:'unitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции'}, {id:'goodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа'}]}, {xtype:'fieldset', items:[{id:'batchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, {id:'batchSize', 
-xtype:'textfield', readOnly:true, fieldLabel:'Размер партии'}]}, {xtype:'fieldset', items:[{id:'numberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'numberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Номер бланка паспорта качества'}]}, {xtype:'fieldset', items:[{id:'dateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'expireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}]}]}, 
-0, ['checkuidresult'], ['component', 'box', 'container', 'checkuidresult'], {'component':true, 'box':true, 'container':true, 'checkuidresult':true}, ['widget.checkuidresult'], 0, [SopCor.view.checkuid, 'CheckuidResult'], 0);
-Ext.cmd.derive('SopCor.view.checkuid.CheckuidResultScans', Ext.Container, {id:'checkuidresultscans', layout:'card', border:false, items:[{xtype:'panel', border:false}, {xtype:'grid', id:'checkuidresultscansgrid', autoHeight:true, store:'Scans', columns:[{text:'Дата и время', dataIndex:'dateOfCreation', renderer:function(value) {
+}});
+Ext.define('SopCor.view.Help', {extend:Ext.Panel, alias:'widget.help', margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'});
+Ext.define('SopCor.view.HelpKMO', {extend:Ext.Panel, alias:'widget.helpKMO', margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'});
+Ext.define('SopCor.view.HelpKMP', {extend:Ext.Panel, alias:'widget.helpKMP', margins:'0 5 5', bodyStyle:'padding: 5px; text-align: center', width:250, title:'Помощь', html:'"Служба поддрежки пользователей" \x3cbr /\x3eтелефон +7(495) 9840698\x3cbr /\x3e\x3ca href\x3d"mailto:support@tnbz.ru"\x3esupport@tnbz.ru\x3c/a\x3e'});
+Ext.define('SopCor.view.Instances', {extend:Ext.Panel, alias:'widget.instances', margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Проверка', margins:'0 0 5', width:238, action:'checkuid'}, {xtype:'button', text:'Журнал', width:238, action:'scans'}]});
+Ext.define('SopCor.view.InstancesKMO', {extend:Ext.Panel, alias:'widget.instancesKMO', margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Компании', margins:'0 0 5', width:238, action:'vendors'}, {xtype:'button', text:'Идентификационные марки', margins:'0 0 5', width:238, action:'markers'}, {xtype:'button', text:'Продукция', margins:'0 0 5', width:238, action:'products'}, {xtype:'button', text:'События', margins:'0 0 5', width:238, 
+action:'events'}, {xtype:'button', text:'Отчеты', margins:'0 0 5', width:238, action:'reports', disabled:true}, {xtype:'button', text:'Настройки', width:238, action:'options'}]});
+Ext.define('SopCor.view.InstancesKMP', {extend:Ext.Panel, alias:'widget.instancesKMP', margins:'0 5 5', bodyStyle:'padding: 5px', width:250, title:'Разделы', layout:'vbox', items:[{xtype:'button', text:'Статистика', margins:'0 0 5', width:238, action:'statistics'}, {xtype:'button', text:'Отчеты', margins:'0 0 5', width:238, disabled:true, action:'reports'}, {xtype:'button', text:'Сканирования', margins:'0 0 5', width:238, action:'scans'}]});
+Ext.define('SopCor.view.Logo', {extend:Ext.Container, alias:'widget.logo', margins:'5 5', html:'\x3cdiv id\x3d"logo"\x3e' + '    \x3cp align\x3d"center"\x3e' + '        \x3cimg src\x3d"resources/images/logo.png" width\x3d"150" height\x3d"100" alt\x3d"Logo" /\x3e' + '    \x3c/p\x3e' + '\x3c/div\x3e'});
+Ext.define('SopCor.view.Statistics', {extend:Ext.Panel, alias:'widget.statistics', margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefAdd', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {id:'scansNumber', name:'scansNumber', xtype:'textfield', readOnly:true, fieldLabel:'Сканирований:'}, {id:'lastScansNumber', name:'lastScansNumber', xtype:'textfield', 
+readOnly:true, fieldLabel:'- за посл. 12 ч:'}, {id:'fakeScansNumber', name:'fakeScansNumber', xtype:'textfield', readOnly:true, fieldLabel:'Сканировано контрафакта:'}, {id:'lastFakeScansNumber', name:'lastFakeScansNumber', xtype:'textfield', readOnly:true, fieldLabel:'- за посл. 12 ч:'}]}]});
+Ext.define('SopCor.view.StatisticsKMO', {extend:Ext.Panel, alias:'widget.statisticsKMO', margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefKMO', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {xtype:'textfield', name:'vendors', readOnly:true, fieldLabel:'активных предприятий:'}, {xtype:'textfield', name:'unitTypes', readOnly:true, fieldLabel:'наименований продукции:'}, 
+{xtype:'textfield', name:'tokens', readOnly:true, fieldLabel:'назначенных ключей:'}, {xtype:'textfield', name:'markers', readOnly:true, fieldLabel:'опубликованных маркеров:'}, {xtype:'textfield', name:'events', readOnly:true, fieldLabel:'число сканирований:'}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'- в т.ч. подозрений на кон-факт:'}]}]});
+Ext.define('SopCor.view.StatisticsKMP', {extend:Ext.Panel, alias:'widget.statisticsKMP', margins:'0 5 5', width:250, title:'Статистика', items:[{xtype:'form', id:'briefKMP', border:false, margin:'10 10', items:[{id:'userName', xtype:'textfield', readOnly:true, width:228}, {id:'vendorName', name:'vendorName', xtype:'textfield', readOnly:true, width:228}, {xtype:'textfield', readOnly:true, name:'unitTypes', fieldLabel:'активных артикулов:'}, {xtype:'textfield', readOnly:true, name:'todayMarkers', fieldLabel:'опубликованых сегодня маркеров:'}, 
+{xtype:'textfield', readOnly:true, name:'todayEvents', fieldLabel:'сканирований сегодня:'}, {xtype:'textfield', readOnly:true, name:'contrafactToday', fieldLabel:'сканирований контрафакта:'}, {xtype:'textfield', readOnly:true, name:'markersPermitted', fieldLabel:'число доступных наклеек:'}]}]});
+Ext.define('SopCor.view.checkuid.CheckuidForm', {extend:Ext.form.Panel, alias:'widget.checkuidform', frame:false, border:false, defaultType:'textfield', monitorValid:true, layout:'hbox', items:[{itemId:'uid', fieldLabel:'Идентификационный номер', name:'uid', allowBlank:false, labelWidth:175, margin:'0 10'}, {xtype:'button', text:'Проверить', action:'checkmarker'}]});
+Ext.define('SopCor.view.checkuid.CheckuidResult', {extend:Ext.Container, alias:'widget.checkuidresult', id:'checkuidresult', layout:'card', border:false, items:[{xtype:'panel', border:false}, {fieldDefaults:{labelWidth:200, anchor:'100%'}, xtype:'form', id:'checkuidresultpanel', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'UID', xtype:'textfield', readOnly:true, fieldLabel:'UID'}, {id:'unitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'quantityPerUnit', 
+xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.'}, {id:'status', xtype:'textfield', readOnly:true, fieldLabel:'Статус'}]}, {xtype:'fieldset', items:[{id:'vendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель'}, {id:'unitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции'}, {id:'goodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа'}]}, {xtype:'fieldset', items:[{id:'batchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, 
+{id:'batchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии'}]}, {xtype:'fieldset', items:[{id:'numberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'numberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Номер бланка паспорта качества'}]}, {xtype:'fieldset', items:[{id:'dateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'expireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}]}]});
+Ext.define('SopCor.view.checkuid.CheckuidResultScans', {extend:Ext.Container, alias:'widget.checkuidresultscans', id:'checkuidresultscans', layout:'card', border:false, items:[{xtype:'panel', border:false}, {xtype:'grid', id:'checkuidresultscansgrid', autoHeight:true, store:'Scans', columns:[{text:'Дата и время', dataIndex:'dateOfCreation', renderer:function(value) {
   var a = new Date(value * 1000);
   var year = a.getFullYear();
   var month = a.getMonth() + 1;
@@ -53697,15 +53308,15 @@ Ext.cmd.derive('SopCor.view.checkuid.CheckuidResultScans', Ext.Container, {id:'c
       return 'не найден';
     }
   }
-}}]}]}, 0, ['checkuidresultscans'], ['component', 'box', 'container', 'checkuidresultscans'], {'component':true, 'box':true, 'container':true, 'checkuidresultscans':true}, ['widget.checkuidresultscans'], 0, [SopCor.view.checkuid, 'CheckuidResultScans'], 0);
-Ext.cmd.derive('SopCor.view.checkuid.Checkuid', Ext.Panel, {plain:false, border:false, bodyPadding:10, autoScroll:true, items:[{xtype:'checkuidform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'checkuidresult'}, {xtype:'checkuidresultscans'}]}, 0, ['checkuid'], ['component', 'box', 'container', 'panel', 'checkuid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'checkuid':true}, ['widget.checkuid'], 0, [SopCor.view.checkuid, 'Checkuid'], 0);
-Ext.cmd.derive('SopCor.view.scans.ScansForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'beginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
+}}]}]});
+Ext.define('SopCor.view.checkuid.Checkuid', {extend:Ext.Panel, alias:'widget.checkuid', plain:false, border:false, bodyPadding:10, autoScroll:true, items:[{xtype:'checkuidform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'checkuidresult'}, {xtype:'checkuidresultscans'}]});
+Ext.define('SopCor.view.scans.ScansForm', {extend:Ext.form.Panel, alias:'widget.scansform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'beginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
   datefield.setValue(new Date);
 }}}, {id:'endDate', name:'endDate', xtype:'datefield', fieldLabel:'Конечная дата', margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
   datefield.setValue(new Date);
-}}}, {xtype:'button', text:'Искать', action:'searchscans'}]}, {id:'nameFragment', name:'nameFragment', xtype:'textfield', fieldLabel:'Часть названия', anchor:'100%'}]}, 0, ['scansform'], ['component', 'box', 'container', 'panel', 'form', 'scansform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'scansform':true}, ['widget.scansform'], 0, [SopCor.view.scans, 'ScansForm'], 0);
+}}}, {xtype:'button', text:'Искать', action:'searchscans'}]}, {id:'nameFragment', name:'nameFragment', xtype:'textfield', fieldLabel:'Часть названия', anchor:'100%'}]});
 var contextMenuScans = Ext.create('Ext.menu.Menu', {id:'contextMenuScans', alias:'widget.contextMenuScans', items:[{text:'Просмотр', action:'show', icon:'/resources/images/icons/attributes_display.png'}]});
-Ext.cmd.derive('SopCor.view.scans.EventsGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.scans.EventsGrid', {extend:Ext.grid.Panel, alias:'widget.eventsgrid', initComponent:function() {
   this.store = 'Events';
   this.columns = [{text:'Идентификационный номер', dataIndex:'UID', width:200, renderer:function(value) {
     var str = new String(value);
@@ -53742,43 +53353,36 @@ Ext.cmd.derive('SopCor.view.scans.EventsGrid', Ext.grid.Panel, {initComponent:fu
   }}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'scanDetailsShowButton', text:'Просмотр', action:'show', icon:'/resources/images/icons/attributes_display.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['eventsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'eventsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'eventsgrid':true}, ['widget.eventsgrid'], 0, [SopCor.view.scans, 'EventsGrid'], 0);
-Ext.cmd.derive('SopCor.view.scans.ScansResult', Ext.Container, {id:'scansresult', layout:'fit', items:[{id:'eventsGrid', xtype:'eventsgrid', autoHeight:true, stateful:false}]}, 0, ['scansresult'], ['component', 'box', 'container', 'scansresult'], {'component':true, 'box':true, 'container':true, 'scansresult':true}, ['widget.scansresult'], 0, [SopCor.view.scans, 'ScansResult'], 0);
-Ext.cmd.derive('SopCor.view.scans.Scans', Ext.Panel, {plain:false, border:false, bodyPadding:10, autoScroll:true, items:[{xtype:'scansform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'scansresult'}]}, 0, ['scans'], ['component', 'box', 'container', 'panel', 'scans'], {'component':true, 'box':true, 'container':true, 'panel':true, 'scans':true}, ['widget.scans'], 0, [SopCor.view.scans, 'Scans'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddReelForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'numberfield', labelWidth:200, anchor:'100%', allowBlank:false, maxValue:9999999, minValue:0, margin:'0 0 5'}, items:[{id:'firstSerial', name:'firstSerial', fieldLabel:'Номер первого стикера'}, {id:'quantity', name:'quantity', fieldLabel:'Количество стикеров'}, {xtype:'textfield', id:'serialNumber', name:'serialNumber', fieldLabel:'Серия'}, {xtype:'textarea', 
-id:'notes', name:'notes', fieldLabel:'Комментарии'}]}], monitorValid:true}, 0, ['addreelform'], ['component', 'box', 'container', 'panel', 'form', 'addreelform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addreelform':true}, ['widget.addreelform'], 0, [SopCor.view.vendors, 'AddReelForm'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddReel', Ext.window.Window, {title:'Новая катушка', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addreelform', id:'addreelform'}], buttons:[{id:'AddReelSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'firstSerial'}, 0, ['addreel'], ['component', 'box', 'container', 'panel', 'window', 'addreel'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addreel':true}, ['widget.addreel'], 0, 
-[SopCor.view.vendors, 'AddReel'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddTokenForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', title:'Данные ключа', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{xtype:'numberfield', allowNegative:false, id:'token_short_id', name:'tokenShortId', enforceMaxLength:true, maxLength:5, fieldLabel:'Идентификатор ключа'}, {xtype:'textarea', maxLength:64, id:'key', name:'key', fieldLabel:'Ключевая последовательность', validator:function(value) {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.scans.ScansResult', {extend:Ext.Container, alias:'widget.scansresult', id:'scansresult', layout:'fit', items:[{id:'eventsGrid', xtype:'eventsgrid', autoHeight:true, stateful:false}]});
+Ext.define('SopCor.view.scans.Scans', {extend:Ext.Panel, alias:'widget.scans', plain:false, border:false, bodyPadding:10, autoScroll:true, items:[{xtype:'scansform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'scansresult'}]});
+Ext.define('SopCor.view.vendors.AddReelForm', {extend:Ext.form.Panel, alias:'widget.addreelform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'numberfield', labelWidth:200, anchor:'100%', allowBlank:false, maxValue:9999999, minValue:0, margin:'0 0 5'}, items:[{id:'firstSerial', name:'firstSerial', fieldLabel:'Номер первого стикера'}, {id:'quantity', name:'quantity', fieldLabel:'Количество стикеров'}, {xtype:'textfield', id:'serialNumber', name:'serialNumber', 
+fieldLabel:'Серия'}, {xtype:'textarea', id:'notes', name:'notes', fieldLabel:'Комментарии'}]}], monitorValid:true});
+Ext.define('SopCor.view.vendors.AddReel', {extend:Ext.window.Window, alias:'widget.addreel', title:'Новая катушка', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addreelform', id:'addreelform'}], buttons:[{id:'AddReelSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'firstSerial'});
+Ext.define('SopCor.view.vendors.AddTokenForm', {extend:Ext.form.Panel, alias:'widget.addtokenform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', title:'Данные ключа', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{xtype:'numberfield', allowNegative:false, id:'token_short_id', name:'tokenShortId', enforceMaxLength:true, maxLength:5, fieldLabel:'Идентификатор ключа'}, {xtype:'textarea', maxLength:64, id:'key', name:'key', fieldLabel:'Ключевая последовательность', 
+validator:function(value) {
   return /^[0-9A-Fa-f]+$/.test(value) ? true : 'Допкскаются только шестнадцатеричные цифры';
 }}, {id:'serial_number', name:'serialNumber', fieldLabel:'Серийный номер'}, {xtype:'textarea', id:'notes', name:'notes', fieldLabel:'Коментарии'}]}, {xtype:'fieldset', anchor:'100%', title:'Уровень доступа', items:[{xtype:'checkboxgroup', items:[{boxLabel:'Глобальный пользователь', name:'ACL_GLOBAL', id:'ACL_GLOBAL', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Админ производителя', name:'ACL_PRINTING', id:'ACL_PRINTING', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Менеджер оргкомитета', 
-name:'ACL_ORGMANAGER', id:'ACL_ORGMANAGER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Конечный пользователь', name:'ACL_ENDUSER', id:'ACL_ENDUSER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Редактирование номенклатуры', name:'ACL_UNITTYPES', id:'ACL_UNITTYPES', submitValue:false}, {boxLabel:'Доступ к статистике', name:'ACL_STATUSER', id:'ACL_STATUSER', submitValue:false}]}]}], monitorValid:true}, 0, ['addtokenform'], ['component', 'box', 'container', 'panel', 
-'form', 'addtokenform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addtokenform':true}, ['widget.addtokenform'], 0, [SopCor.view.vendors, 'AddTokenForm'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddToken', Ext.window.Window, {title:'Новый Ключ', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addtokenform', id:'addtokenform'}], buttons:[{id:'AddTokenSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'token_short_id'}, 0, ['addtoken'], ['component', 'box', 'container', 'panel', 'window', 'addtoken'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addtoken':true}, ['widget.addtoken'], 
-0, [SopCor.view.vendors, 'AddToken'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddUserForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', title:'Контактные данные', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'user_name', name:'name', fieldLabel:'Фамилия, имя, отчество'}, {id:'user_description', name:'userDescription', fieldLabel:'Описание пользователя'}, {id:'contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}, {id:'email', 
-name:'email', fieldLabel:'E-mail', allowBlank:true, vtype:'email'}]}, {xtype:'fieldset', anchor:'100%', title:'Уровень доступа', items:[{xtype:'checkboxgroup', items:[{boxLabel:'Глобальный пользователь', name:'ACL_GLOBAL', id:'ACL_GLOBAL', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Админ производителя', name:'ACL_PRINTING', id:'ACL_PRINTING', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Менеджер оргкомитета', name:'ACL_ORGMANAGER', id:'ACL_ORGMANAGER', submitValue:false}]}, 
-{xtype:'checkboxgroup', items:[{boxLabel:'Конечный пользователь', name:'ACL_ENDUSER', id:'ACL_ENDUSER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Редактирование номенклатуры', name:'ACL_UNITTYPES', id:'ACL_UNITTYPES', submitValue:false}, {boxLabel:'Доступ к статистике', name:'ACL_STATUSER', id:'ACL_STATUSER', submitValue:false}]}]}, {xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'login', name:'login', 
-fieldLabel:'Логин'}, {id:'password', name:'password', inputType:'password', fieldLabel:'Пароль', allowBlank:true}]}], monitorValid:true}, 0, ['adduserform'], ['component', 'box', 'container', 'panel', 'form', 'adduserform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'adduserform':true}, ['widget.adduserform'], 0, [SopCor.view.vendors, 'AddUserForm'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddUser', Ext.window.Window, {title:'Новый пользователь', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'adduserform', id:'adduserform'}], buttons:[{id:'AddUserSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'user_name'}, 0, ['adduser'], ['component', 'box', 'container', 'panel', 'window', 'adduser'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'adduser':true}, ['widget.adduser'], 
-0, [SopCor.view.vendors, 'AddUser'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddVendorForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{anchor:'75%', xtype:'combo', id:'vendor_type', name:'typeOfVendor', fieldLabel:'Вид предприятия', emptyText:'Выберите тип', store:vendorTypes, queryMode:'local', displayField:'type_name', valueField:'type_id'}, {id:'vendor_name', name:'name', fieldLabel:'Название'}, 
-{id:'vendor_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'vendor_public_name', name:'public_name', fieldLabel:'Публичное название'}, {id:'vendor_inn', name:'inn', fieldLabel:'ИНН'}, {id:'vendor_ogrn', name:'ogrn', fieldLabel:'ОГРН'}, {id:'contact_person', name:'contactPerson', fieldLabel:'Контактное лицо'}, {id:'contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}]}, {xtype:'fieldset', title:'Адрес', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, 
-anchor:'100%', allowBlank:false}, items:[{id:'address', name:'address', fieldLabel:'Улица, дом'}, {id:'city', name:'city', fieldLabel:'Город'}, {id:'region', name:'region', fieldLabel:'Регион'}]}, {xtype:'fieldset', title:'Прочая информация', anchor:'100%', defaults:{xtype:'textareafield', anchor:'100%', allowBlank:true}, items:[{id:'vendor_notes', name:'notes'}]}], monitorValid:true}, 0, ['addvendorform'], ['component', 'box', 'container', 'panel', 'form', 'addvendorform'], {'component':true, 'box':true, 
-'container':true, 'panel':true, 'form':true, 'addvendorform':true}, ['widget.addvendorform'], 0, [SopCor.view.vendors, 'AddVendorForm'], 0);
-Ext.cmd.derive('SopCor.view.vendors.AddVendor', Ext.window.Window, {title:'Новая компания', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addvendorform', id:'addvendorform'}], buttons:[{id:'AddVendorSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'vendor_name'}, 0, ['addvendor'], ['component', 'box', 'container', 'panel', 'window', 'addvendor'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addvendor':true}, ['widget.addvendor'], 
-0, [SopCor.view.vendors, 'AddVendor'], 0);
-Ext.cmd.derive('SopCor.view.vendors.Contacts', Ext.Container, {items:[{xtype:'form', id:'vendorscontactsform', border:false, margin:'10 10', items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{anchor:'50%', xtype:'combo', id:'edit_vendor_type', name:'typeOfVendor', fieldLabel:'Вид предприятия', emptyText:'Выберите тип', store:vendorTypes, queryMode:'local', displayField:'type_name', valueField:'type_id'}, 
-{id:'edit_vendor_name', name:'name', fieldLabel:'Название'}, {id:'edit_vendor_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'vendor_public_name', name:'public_name', fieldLabel:'Публичное название'}, {id:'edit_vendor_inn', name:'inn', fieldLabel:'ИНН'}, {id:'edit_vendor_ogrn', name:'ogrn', fieldLabel:'ОГРН'}, {id:'edit_contact_person', name:'contactPerson', fieldLabel:'Контактное лицо'}, {id:'edit_contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}]}, 
+name:'ACL_ORGMANAGER', id:'ACL_ORGMANAGER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Конечный пользователь', name:'ACL_ENDUSER', id:'ACL_ENDUSER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Редактирование номенклатуры', name:'ACL_UNITTYPES', id:'ACL_UNITTYPES', submitValue:false}, {boxLabel:'Доступ к статистике', name:'ACL_STATUSER', id:'ACL_STATUSER', submitValue:false}]}]}], monitorValid:true});
+Ext.define('SopCor.view.vendors.AddToken', {extend:Ext.window.Window, alias:'widget.addtoken', title:'Новый Ключ', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addtokenform', id:'addtokenform'}], buttons:[{id:'AddTokenSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'token_short_id'});
+Ext.define('SopCor.view.vendors.AddUserForm', {extend:Ext.form.Panel, alias:'widget.adduserform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', title:'Контактные данные', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'user_name', name:'name', fieldLabel:'Фамилия, имя, отчество'}, {id:'user_description', name:'userDescription', fieldLabel:'Описание пользователя'}, {id:'contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}, 
+{id:'email', name:'email', fieldLabel:'E-mail', allowBlank:true, vtype:'email'}]}, {xtype:'fieldset', anchor:'100%', title:'Уровень доступа', items:[{xtype:'checkboxgroup', items:[{boxLabel:'Глобальный пользователь', name:'ACL_GLOBAL', id:'ACL_GLOBAL', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Админ производителя', name:'ACL_PRINTING', id:'ACL_PRINTING', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Менеджер оргкомитета', name:'ACL_ORGMANAGER', id:'ACL_ORGMANAGER', 
+submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Конечный пользователь', name:'ACL_ENDUSER', id:'ACL_ENDUSER', submitValue:false}]}, {xtype:'checkboxgroup', items:[{boxLabel:'Редактирование номенклатуры', name:'ACL_UNITTYPES', id:'ACL_UNITTYPES', submitValue:false}, {boxLabel:'Доступ к статистике', name:'ACL_STATUSER', id:'ACL_STATUSER', submitValue:false}]}]}, {xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'login', 
+name:'login', fieldLabel:'Логин'}, {id:'password', name:'password', inputType:'password', fieldLabel:'Пароль', allowBlank:true}]}], monitorValid:true});
+Ext.define('SopCor.view.vendors.AddUser', {extend:Ext.window.Window, alias:'widget.adduser', title:'Новый пользователь', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'adduserform', id:'adduserform'}], buttons:[{id:'AddUserSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'user_name'});
+Ext.define('SopCor.view.vendors.AddVendorForm', {extend:Ext.form.Panel, alias:'widget.addvendorform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{anchor:'75%', xtype:'combo', id:'vendor_type', name:'typeOfVendor', fieldLabel:'Вид предприятия', emptyText:'Выберите тип', store:vendorTypes, queryMode:'local', displayField:'type_name', valueField:'type_id'}, {id:'vendor_name', 
+name:'name', fieldLabel:'Название'}, {id:'vendor_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'vendor_public_name', name:'public_name', fieldLabel:'Публичное название'}, {id:'vendor_inn', name:'inn', fieldLabel:'ИНН'}, {id:'vendor_ogrn', name:'ogrn', fieldLabel:'ОГРН'}, {id:'contact_person', name:'contactPerson', fieldLabel:'Контактное лицо'}, {id:'contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}]}, {xtype:'fieldset', title:'Адрес', anchor:'100%', 
+defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'address', name:'address', fieldLabel:'Улица, дом'}, {id:'city', name:'city', fieldLabel:'Город'}, {id:'region', name:'region', fieldLabel:'Регион'}]}, {xtype:'fieldset', title:'Прочая информация', anchor:'100%', defaults:{xtype:'textareafield', anchor:'100%', allowBlank:true}, items:[{id:'vendor_notes', name:'notes'}]}], monitorValid:true});
+Ext.define('SopCor.view.vendors.AddVendor', {extend:Ext.window.Window, alias:'widget.addvendor', title:'Новая компания', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addvendorform', id:'addvendorform'}], buttons:[{id:'AddVendorSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'vendor_name'});
+Ext.define('SopCor.view.vendors.Contacts', {extend:Ext.Container, alias:'widget.vendorscontacts', items:[{xtype:'form', id:'vendorscontactsform', border:false, margin:'10 10', items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{anchor:'50%', xtype:'combo', id:'edit_vendor_type', name:'typeOfVendor', fieldLabel:'Вид предприятия', emptyText:'Выберите тип', store:vendorTypes, queryMode:'local', displayField:'type_name', 
+valueField:'type_id'}, {id:'edit_vendor_name', name:'name', fieldLabel:'Название'}, {id:'edit_vendor_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'vendor_public_name', name:'public_name', fieldLabel:'Публичное название'}, {id:'edit_vendor_inn', name:'inn', fieldLabel:'ИНН'}, {id:'edit_vendor_ogrn', name:'ogrn', fieldLabel:'ОГРН'}, {id:'edit_contact_person', name:'contactPerson', fieldLabel:'Контактное лицо'}, {id:'edit_contact_phone', name:'contactPhone', fieldLabel:'Контактные телефоны (через ";")'}]}, 
 {xtype:'fieldset', title:'Адрес', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'edit_address', name:'address', fieldLabel:'Улица, дом'}, {id:'edit_city', name:'city', fieldLabel:'Город'}, {id:'edit_region', name:'region', fieldLabel:'Регион'}]}, {xtype:'fieldset', title:'Прочая информация', anchor:'100%', defaults:{xtype:'textareafield', anchor:'100%', allowBlank:true}, items:[{id:'edit_vendor_notes', name:'notes'}]}], buttons:[{id:'UpdVendorSubmitButton', 
-text:'Сохранить', action:'update'}]}]}, 0, ['vendorscontacts'], ['component', 'box', 'container', 'vendorscontacts'], {'component':true, 'box':true, 'container':true, 'vendorscontacts':true}, ['widget.vendorscontacts'], 0, [SopCor.view.vendors, 'Contacts'], 0);
-Ext.cmd.derive('SopCor.view.vendors.EditToken', Ext.window.Window, {title:'Редактирование информации о ключе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addtokenform', id:'edittokenform'}], buttons:[{id:'EditTokenSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'token_short_id'}, 0, ['edittoken'], ['component', 'box', 'container', 'panel', 'window', 'edittoken'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'edittoken':true}, 
-['widget.edittoken'], 0, [SopCor.view.vendors, 'EditToken'], 0);
-Ext.cmd.derive('SopCor.view.vendors.EditUser', Ext.window.Window, {title:'Редактирование информации о пользователе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'adduserform', id:'edituserform'}], buttons:[{id:'EditUserSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'user_name'}, 0, ['edituser'], ['component', 'box', 'container', 'panel', 'window', 'edituser'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'edituser':true}, 
-['widget.edituser'], 0, [SopCor.view.vendors, 'EditUser'], 0);
+text:'Сохранить', action:'update'}]}]});
+Ext.define('SopCor.view.vendors.EditToken', {extend:Ext.window.Window, alias:'widget.edittoken', title:'Редактирование информации о ключе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addtokenform', id:'edittokenform'}], buttons:[{id:'EditTokenSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'token_short_id'});
+Ext.define('SopCor.view.vendors.EditUser', {extend:Ext.window.Window, alias:'widget.edituser', title:'Редактирование информации о пользователе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'adduserform', id:'edituserform'}], buttons:[{id:'EditUserSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'user_name'});
 var contextMenuTokens = Ext.create('Ext.menu.Menu', {id:'contextMenuTokens', alias:'widget.contextMenuTokens', items:[{text:'Добавить', action:'addtoken', icon:'/resources/images/icons/add.png'}, {text:'Изменить', action:'edittoken', icon:'/resources/images/icons/pencil.png'}, '-', {text:'Удалить', action:'deletetoken', icon:'/resources/images/icons/delete.png'}]});
-Ext.cmd.derive('SopCor.view.vendors.TokensGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.vendors.TokensGrid', {extend:Ext.grid.Panel, alias:'widget.tokensgrid', initComponent:function() {
   this.store = 'Tokens';
   this.columns = [{text:'Идентификатор ключа', dataIndex:'tokenShortId', width:150, sortable:true}, {text:'Ключевая последовательность', dataIndex:'key', flex:1, sortable:true}, {text:'Заблокирован', dataIndex:'suspended', width:150, sortable:true, renderer:function(value) {
     if (value) {
@@ -53790,11 +53394,11 @@ Ext.cmd.derive('SopCor.view.vendors.TokensGrid', Ext.grid.Panel, {initComponent:
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addTokenButton', text:'Добавить', action:'addtoken', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editTokenButton', text:'Изменить', action:'edittoken', icon:'/resources/images/icons/pencil.png', disabled:true}, {xtype:'button', id:'suspendTokenButton', text:'Заблокировать', action:'suspendtoken', icon:'/resources/images/icons/bullet_green.png', disabled:true}, '-', {xtype:'button', id:'deleteTokenButton', 
   text:'Удалить', action:'deletetoken', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['tokensgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'tokensgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'tokensgrid':true}, ['widget.tokensgrid'], 0, [SopCor.view.vendors, 'TokensGrid'], 0);
-Ext.cmd.derive('SopCor.view.vendors.TokensList', Ext.Container, {id:'tokenslist', layout:'fit', border:false, items:[{xtype:'tokensgrid', id:'tokensGrid'}]}, 0, ['tokenslist'], ['component', 'box', 'container', 'tokenslist'], {'component':true, 'box':true, 'container':true, 'tokenslist':true}, ['widget.tokenslist'], 0, [SopCor.view.vendors, 'TokensList'], 0);
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.vendors.TokensList', {extend:Ext.Container, alias:'widget.tokenslist', id:'tokenslist', layout:'fit', border:false, items:[{xtype:'tokensgrid', id:'tokensGrid'}]});
 var contextMenuUsers = Ext.create('Ext.menu.Menu', {id:'contextMenuUsers', alias:'widget.contextMenuUsers', items:[{text:'Добавить', action:'adduser', icon:'/resources/images/icons/add.png'}, {text:'Изменить', action:'edituser', icon:'/resources/images/icons/pencil.png'}, '-', {text:'Удалить', action:'deleteuser', icon:'/resources/images/icons/delete.png'}]});
-Ext.cmd.derive('SopCor.view.vendors.UsersGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.vendors.UsersGrid', {extend:Ext.grid.Panel, alias:'widget.usersgrid', initComponent:function() {
   this.store = 'Users';
   this.columns = [{text:'Имя, отчество, фамилия', dataIndex:'name', flex:1, sortable:true}, {text:'Контактный телефон', dataIndex:'contactPhone', width:150, sortable:true}, {text:'E-mail', dataIndex:'email', width:150, sortable:true}, {text:'Логин', dataIndex:'login', width:100, sortable:true}, {text:'Заблокирован', dataIndex:'suspended', width:150, sortable:true, renderer:function(value) {
     if (value) {
@@ -53806,52 +53410,49 @@ Ext.cmd.derive('SopCor.view.vendors.UsersGrid', Ext.grid.Panel, {initComponent:f
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUserButton', text:'Добавить', action:'adduser', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editUserButton', text:'Изменить', action:'edituser', icon:'/resources/images/icons/pencil.png', disabled:true}, {xtype:'button', id:'suspendUserButton', text:'Заблокировать', action:'suspenduser', icon:'/resources/images/icons/bullet_green.png', disabled:true}, '-', {xtype:'button', id:'deleteUserButton', 
   text:'Удалить', action:'deleteuser', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['usersgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'usersgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'usersgrid':true}, ['widget.usersgrid'], 0, [SopCor.view.vendors, 'UsersGrid'], 0);
-Ext.cmd.derive('SopCor.view.vendors.UsersList', Ext.Container, {id:'userslist', layout:'fit', border:false, items:[{id:'usersGrid', xtype:'usersgrid'}]}, 0, ['userslist'], ['component', 'box', 'container', 'userslist'], {'component':true, 'box':true, 'container':true, 'userslist':true}, ['widget.userslist'], 0, [SopCor.view.vendors, 'UsersList'], 0);
-Ext.cmd.derive('SopCor.view.vendors.UnitTypesForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'searchString', name:'searchString', xtype:'textfield', fieldLabel:'Часть названия', margin:'10 10 0 10', width:600}, {xtype:'button', text:'Искать', margin:'10 10 0 10', action:'searchunittypes'}]}]}, 0, ['unittypesform'], ['component', 'box', 'container', 'panel', 'form', 'unittypesform'], {'component':true, 'box':true, 'container':true, 
-'panel':true, 'form':true, 'unittypesform':true}, ['widget.unittypesform'], 0, [SopCor.view.vendors, 'UnitTypesForm'], 0);
-Ext.cmd.derive('SopCor.view.vendors.UnitTypesGrid', Ext.grid.Panel, {initComponent:function() {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.vendors.UsersList', {extend:Ext.Container, alias:'widget.userslist', id:'userslist', layout:'fit', border:false, items:[{id:'usersGrid', xtype:'usersgrid'}]});
+Ext.define('SopCor.view.vendors.UnitTypesForm', {extend:Ext.form.Panel, alias:'widget.unittypesform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'searchString', name:'searchString', xtype:'textfield', fieldLabel:'Часть названия', margin:'10 10 0 10', width:600}, {xtype:'button', text:'Искать', margin:'10 10 0 10', action:'searchunittypes'}]}]});
+Ext.define('SopCor.view.vendors.UnitTypesGrid', {extend:Ext.grid.Panel, alias:'widget.unittypesgrid', initComponent:function() {
   this.store = 'UnitTypes';
   this.columns = [{text:'Наименование продукции', dataIndex:'name', flex:1, sortable:true}, {text:'Товарная группа', dataIndex:'goodsGroupName', flex:1, sortable:false}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['unittypesgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unittypesgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unittypesgrid':true}, ['widget.unittypesgrid'], 0, [SopCor.view.vendors, 'UnitTypesGrid'], 0);
-Ext.cmd.derive('SopCor.view.vendors.UnitTypesList', Ext.Container, {id:'unittypeslist', layout:'fit', items:[{id:'unitTypesGrid', xtype:'unittypesgrid'}]}, 0, ['unittypeslist'], ['component', 'box', 'container', 'unittypeslist'], {'component':true, 'box':true, 'container':true, 'unittypeslist':true}, ['widget.unittypeslist'], 0, [SopCor.view.vendors, 'UnitTypesList'], 0);
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.vendors.UnitTypesList', {extend:Ext.Container, alias:'widget.unittypeslist', id:'unittypeslist', layout:'fit', items:[{id:'unitTypesGrid', xtype:'unittypesgrid'}]});
 var contextMenuReels = Ext.create('Ext.menu.Menu', {id:'contextMenuReels', alias:'widget.contextMenuReels', items:[{text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png'}]});
-Ext.cmd.derive('SopCor.view.vendors.ReelsGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.vendors.ReelsGrid', {extend:Ext.grid.Panel, alias:'widget.reelsgrid', initComponent:function() {
   this.store = 'Reels';
   this.columns = [{text:'Номер партии', dataIndex:'seriesNumber', flex:1, width:150, sortable:true}, {text:'Количество стикеров', dataIndex:'quantity', width:150, sortable:true}, {text:'Серийный номер первого стикера', dataIndex:'firstSerial', width:200, sortable:true}, {text:'Описание', dataIndex:'description', flex:1, sortable:false}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addReelButton', text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png', disabled:false}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['reelsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'reelsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'reelsgrid':true}, ['widget.reelsgrid'], 0, [SopCor.view.vendors, 'ReelsGrid'], 0);
-Ext.cmd.derive('SopCor.view.vendors.ReelsList', Ext.Container, {id:'reelslist', layout:'fit', border:false, items:[{id:'reelsGrid', xtype:'reelsgrid'}]}, 0, ['reelslist'], ['component', 'box', 'container', 'reelslist'], {'component':true, 'box':true, 'container':true, 'reelslist':true}, ['widget.reelslist'], 0, [SopCor.view.vendors, 'ReelsList'], 0);
-Ext.cmd.derive('SopCor.view.vendors.Statistics', Ext.Container, {items:[{xtype:'form', id:'vendorstatisticsform', border:false, margin:'10 10', items:[{xtype:'fieldset', title:'Сводная информация', items:[{id:'productsTotalCount', name:'productsTotalCount', xtype:'textfield', readOnly:true, fieldLabel:'Единиц номенклатуры:'}, {id:'tokensTotalCount', name:'tokensTotalCount', xtype:'textfield', readOnly:true, fieldLabel:'Количество ключей:'}]}, {xtype:'fieldset', title:'Емкость', items:[{id:'markersPermitted', 
-name:'markersPermitted', xtype:'textfield', readOnly:true, fieldLabel:'Выделено:'}, {id:'markersPrinted', name:'markersPrinted', xtype:'textfield', readOnly:true, fieldLabel:'Использовано:'}, {id:'markersRest', name:'markersRest', xtype:'textfield', readOnly:true, fieldLabel:'Доступно:'}]}]}]}, 0, ['vendorstatistics'], ['component', 'box', 'container', 'vendorstatistics'], {'component':true, 'box':true, 'container':true, 'vendorstatistics':true}, ['widget.vendorstatistics'], 0, [SopCor.view.vendors, 
-'Statistics'], 0);
-Ext.cmd.derive('SopCor.view.vendors.EditVendor', Ext.window.Window, {title:'Редактирование', width:900, height:600, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editvendortabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1}, items:[{title:'Контактная информация', id:'contacts', items:[{xtype:'vendorscontacts'}]}, {title:'Ключи', id:'keys', items:[{xtype:'tokenslist'}]}, {title:'Пользователи', id:'users', items:[{xtype:'userslist'}]}, 
-{title:'Продукция', id:'unittypes', items:[{xtype:'unittypesform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypeslist'}]}, {title:'Этикетки', id:'reels', items:[{xtype:'reelslist'}]}, {title:'Статистика', id:'stats', items:[{xtype:'vendorstatistics'}]}]}]}, 0, ['editvendor'], ['component', 'box', 'container', 'panel', 'window', 'editvendor'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editvendor':true}, ['widget.editvendor'], 0, [SopCor.view.vendors, 
-'EditVendor'], 0);
-Ext.cmd.derive('SopCor.view.vendors.VendorsGrid', Ext.grid.Panel, {initComponent:function() {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.vendors.ReelsList', {extend:Ext.Container, alias:'widget.reelslist', id:'reelslist', layout:'fit', border:false, items:[{id:'reelsGrid', xtype:'reelsgrid'}]});
+Ext.define('SopCor.view.vendors.Statistics', {extend:Ext.Container, alias:'widget.vendorstatistics', items:[{xtype:'form', id:'vendorstatisticsform', border:false, margin:'10 10', items:[{xtype:'fieldset', title:'Сводная информация', items:[{id:'productsTotalCount', name:'productsTotalCount', xtype:'textfield', readOnly:true, fieldLabel:'Единиц номенклатуры:'}, {id:'tokensTotalCount', name:'tokensTotalCount', xtype:'textfield', readOnly:true, fieldLabel:'Количество ключей:'}]}, {xtype:'fieldset', 
+title:'Емкость', items:[{id:'markersPermitted', name:'markersPermitted', xtype:'textfield', readOnly:true, fieldLabel:'Выделено:'}, {id:'markersPrinted', name:'markersPrinted', xtype:'textfield', readOnly:true, fieldLabel:'Использовано:'}, {id:'markersRest', name:'markersRest', xtype:'textfield', readOnly:true, fieldLabel:'Доступно:'}]}]}]});
+Ext.define('SopCor.view.vendors.EditVendor', {extend:Ext.window.Window, alias:'widget.editvendor', title:'Редактирование', width:900, height:600, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editvendortabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1}, items:[{title:'Контактная информация', id:'contacts', items:[{xtype:'vendorscontacts'}]}, {title:'Ключи', id:'keys', items:[{xtype:'tokenslist'}]}, {title:'Пользователи', 
+id:'users', items:[{xtype:'userslist'}]}, {title:'Продукция', id:'unittypes', items:[{xtype:'unittypesform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypeslist'}]}, {title:'Этикетки', id:'reels', items:[{xtype:'reelslist'}]}, {title:'Статистика', id:'stats', items:[{xtype:'vendorstatistics'}]}]}]});
+Ext.define('SopCor.view.vendors.VendorsGrid', {extend:Ext.grid.Panel, alias:'widget.vendorsgrid', initComponent:function() {
   this.store = 'Vendors';
   this.columns = [{text:'Название компании', dataIndex:'name', flex:1, sortable:true}, {text:'Публичное название', dataIndex:'public_name', width:250, sortable:true}, {text:'Контактное лицо', dataIndex:'contactPerson', width:250, sortable:true}, {text:'Контактный телефон', dataIndex:'contactPhone', width:150, sortable:true}, {text:'Разр. маркеров', dataIndex:'markersPermitted', width:150, sortable:true}, {text:'Отп. маркеров', dataIndex:'markersPrinted', width:150, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addVendorButton', text:'Добавить', action:'addvendor', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editVendorButton', text:'Изменить', action:'editvendor', icon:'/resources/images/icons/pencil.png', disabled:true}, '-', {xtype:'button', id:'deleteVendorButton', text:'Удалить', action:'deletevendor', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['vendorsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'vendorsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'vendorsgrid':true}, ['widget.vendorsgrid'], 0, [SopCor.view.vendors, 'VendorsGrid'], 0);
+  this.callParent(arguments);
+}});
 var contextMenuVendors = Ext.create('Ext.menu.Menu', {id:'contextMenuVendors', alias:'widget.contextMenuVendors', items:[{text:'Добавить', action:'addvendor', icon:'/resources/images/icons/add.png'}, {text:'Изменить', action:'editvendor', icon:'/resources/images/icons/pencil.png'}, '-', {text:'Удалить', action:'deletevendor', icon:'/resources/images/icons/delete.png'}]});
-Ext.cmd.derive('SopCor.view.vendors.VendorsList', Ext.Container, {id:'vendorslist', layout:'fit', items:[{xtype:'vendorsgrid', id:'vendorsGrid'}]}, 0, ['vendorslist'], ['component', 'box', 'container', 'vendorslist'], {'component':true, 'box':true, 'container':true, 'vendorslist':true}, ['widget.vendorslist'], 0, [SopCor.view.vendors, 'VendorsList'], 0);
-Ext.cmd.derive('SopCor.view.vendors.Vendors', Ext.Panel, {plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Компании', items:[{xtype:'vendorslist'}]}, 0, ['vendors'], ['component', 'box', 'container', 'panel', 'vendors'], {'component':true, 'box':true, 'container':true, 'panel':true, 'vendors':true}, ['widget.vendors'], 0, [SopCor.view.vendors, 'Vendors'], 0);
+Ext.define('SopCor.view.vendors.VendorsList', {extend:Ext.Container, alias:'widget.vendorslist', id:'vendorslist', layout:'fit', items:[{xtype:'vendorsgrid', id:'vendorsGrid'}]});
+Ext.define('SopCor.view.vendors.Vendors', {extend:Ext.Panel, alias:'widget.vendors', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Компании', items:[{xtype:'vendorslist'}]});
 var markerStatuses = Ext.create('Ext.data.Store', {fields:['value', 'name'], data:[{value:0, name:'подлинная'}, {value:1, name:'забракованная'}, {value:2, name:'контрафакт'}]});
-Ext.cmd.derive('SopCor.view.markers.MarkersForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'dateOfProductionFrom', name:'dateOfProductionFrom', xtype:'datefield', fieldLabel:'Дата опубликования \x26nbsp;\x26nbsp;\x26nbsp;\x26nbsp;c', labelWidth:180, margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
+Ext.define('SopCor.view.markers.MarkersForm', {extend:Ext.form.Panel, alias:'widget.markersform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'dateOfProductionFrom', name:'dateOfProductionFrom', xtype:'datefield', fieldLabel:'Дата опубликования \x26nbsp;\x26nbsp;\x26nbsp;\x26nbsp;c', labelWidth:180, margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
   datefield.setValue(new Date);
 }}}, {id:'dateOfProductionTo', name:'dateOfProductionTo', xtype:'datefield', fieldLabel:'по', labelWidth:30, margin:'0 30 0 0', format:'d.m.Y', listeners:{render:function(datefield) {
   datefield.setValue(new Date);
 }}}, {xtype:'button', text:'Искать', margin:'0 30 0 0', action:'searchmarkers'}, {xtype:'button', text:'Сбросить фильтр', action:'clearmarkersfilter'}]}, {id:'UID', name:'UID', xtype:'textfield', fieldLabel:'Идентификационный номер', labelWidth:180, width:330}, {id:'statusCode', name:'statusCode', xtype:'combobox', fieldLabel:'Статус', labelWidth:180, store:markerStatuses, queryMode:'local', valueField:'value', displayField:'name', width:330, margin:'0 0 5'}, {id:'vName', name:'vendorName', xtype:'textfield', 
-fieldLabel:'Название производителя', labelWidth:180, anchor:'100%'}, {id:'unitTypeName', name:'unitTypeName', xtype:'textfield', fieldLabel:'Название продукции', labelWidth:180, anchor:'100%'}]}, 0, ['markersform'], ['component', 'box', 'container', 'panel', 'form', 'markersform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'markersform':true}, ['widget.markersform'], 0, [SopCor.view.markers, 'MarkersForm'], 0);
+fieldLabel:'Название производителя', labelWidth:180, anchor:'100%'}, {id:'unitTypeName', name:'unitTypeName', xtype:'textfield', fieldLabel:'Название продукции', labelWidth:180, anchor:'100%'}]});
 var contextMenuMarkers = Ext.create('Ext.menu.Menu', {id:'contextMenuMarkers', alias:'widget.contextMenuMarkers', items:[{text:'Просмотр', action:'showMarker', icon:'/resources/images/icons/attributes_display.png'}]});
-Ext.cmd.derive('SopCor.view.markers.MarkersGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.markers.MarkersGrid', {extend:Ext.grid.Panel, alias:'widget.markersgrid', initComponent:function() {
   this.store = 'Markers';
   this.columns = [{text:'Идентификационный номер', dataIndex:'UID', width:200, sortable:true, renderer:function(value) {
     var str = new String(value);
@@ -53893,10 +53494,10 @@ Ext.cmd.derive('SopCor.view.markers.MarkersGrid', Ext.grid.Panel, {initComponent
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'markPublishedButton', text:'Пометить нормальными', action:'markreleased', icon:'/resources/images/icons/bullet_green.png', disabled:true}, {xtype:'button', id:'markSpoiledButton', text:'Забраковать', action:'markspoiled', icon:'/resources/images/icons/bullet_yellow.png', disabled:true}, {xtype:'button', id:'markContrafactButton', text:'Пометить контрафактом', action:'markcontrafact', icon:'/resources/images/icons/bullet_red.png', 
   disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['markersgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'markersgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'markersgrid':true}, ['widget.markersgrid'], 0, [SopCor.view.markers, 'MarkersGrid'], 0);
-Ext.cmd.derive('SopCor.view.markers.MarkersResult', Ext.Container, {id:'markersresult', layout:'fit', items:[{id:'markersGrid', xtype:'markersgrid', height:650, stateful:false}]}, 0, ['markersresult'], ['component', 'box', 'container', 'markersresult'], {'component':true, 'box':true, 'container':true, 'markersresult':true}, ['widget.markersresult'], 0, [SopCor.view.markers, 'MarkersResult'], 0);
-Ext.cmd.derive('SopCor.view.markers.ScansList', Ext.Container, {id:'scanslist', layout:'auto', items:[{id:'markerScansGrid', xtype:'grid', autoHeight:false, height:300, width:748, autoScroll:true, store:'MarkerScans', stateful:false, columns:[{text:'IP адрес', dataIndex:'ip', width:100, sortable:true}, {text:'Рез. сканирования', dataIndex:'codeOfEvent', width:120, sortable:true, renderer:function(value) {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.markers.MarkersResult', {extend:Ext.Container, alias:'widget.markersresult', id:'markersresult', layout:'fit', items:[{id:'markersGrid', xtype:'markersgrid', height:650, stateful:false}]});
+Ext.define('SopCor.view.markers.ScansList', {extend:Ext.Container, alias:'widget.scanslist', id:'scanslist', layout:'auto', items:[{id:'markerScansGrid', xtype:'grid', autoHeight:false, height:300, width:748, autoScroll:true, store:'MarkerScans', stateful:false, columns:[{text:'IP адрес', dataIndex:'ip', width:100, sortable:true}, {text:'Рез. сканирования', dataIndex:'codeOfEvent', width:120, sortable:true, renderer:function(value) {
   if ('EV_UID_CHECK_SUCCESS' == value || 'EV_ENTRY_CHECK_SUCCESS' == value) {
     return 'успешно';
   } else {
@@ -53925,13 +53526,13 @@ Ext.cmd.derive('SopCor.view.markers.ScansList', Ext.Container, {id:'scanslist', 
   minutes = s.substr(s.length - 2);
   var time = date + '.' + month + '.' + year + ' ' + hours + ':' + minutes;
   return time;
-}}]}]}, 0, ['scanslist'], ['component', 'box', 'container', 'scanslist'], {'component':true, 'box':true, 'container':true, 'scanslist':true}, ['widget.scanslist'], 0, [SopCor.view.markers, 'ScansList'], 0);
-Ext.cmd.derive('SopCor.view.markers.Markers', Ext.Panel, {plain:false, border:false, bodyPadding:10, autoScroll:true, title:'Идентификационные марки', items:[{xtype:'markersform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'markersresult'}]}, 0, ['markers'], ['component', 'box', 'container', 'panel', 'markers'], {'component':true, 'box':true, 'container':true, 'panel':true, 'markers':true}, ['widget.markers'], 0, [SopCor.view.markers, 'Markers'], 0);
+}}]}]});
+Ext.define('SopCor.view.markers.Markers', {extend:Ext.Panel, alias:'widget.markers', plain:false, border:false, bodyPadding:10, autoScroll:true, title:'Идентификационные марки', items:[{xtype:'markersform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'markersresult'}]});
 var userEventTypes = Ext.create('Ext.data.Store', {fields:['value', 'name'], data:[{value:UEV_UNEXPECTED_TERMINATION, name:'неожиданное завершение'}, {value:UEV_RECREATED_JOURNAL, name:'создан журнал'}]});
-Ext.cmd.derive('SopCor.view.events.UserEventsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'userEventBeginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', labelWidth:95, margin:'0 10 0 0', format:'d.m.Y'}, {id:'userEventEndDate', name:'endDate', xtype:'datefield', fieldLabel:'Конечная дата', labelWidth:90, margin:'0 10 0 0', format:'d.m.Y'}, {id:'codeOfUserEvent', name:'codeOfEvent', xtype:'combobox', 
-fieldLabel:'Тип', labelWidth:30, margin:'0 10 0 0', store:userEventTypes, queryMode:'local', valueField:'value', displayField:'name', width:220}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchuserevents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearusereventsfilter'}]}]}, 0, ['usereventsform'], ['component', 'box', 'container', 'panel', 'form', 'usereventsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'usereventsform':true}, ['widget.usereventsform'], 
-0, [SopCor.view.events, 'UserEventsForm'], 0);
-Ext.cmd.derive('SopCor.view.events.UserEventsResult', Ext.Container, {layout:'fit', items:[{id:'userEventsGrid', xtype:'grid', autoHeight:true, store:'UserEvents', stateful:false, columns:[{text:'Идентификатор ключа', dataIndex:'tokenId', width:150, sortable:true}, {text:'Пользователь', dataIndex:'userName', width:150, sortable:true}, {text:'Производитель', dataIndex:'vendorName', width:150, sortable:true}, {text:'Тип события', dataIndex:'codeOfEvent', width:180, sortable:true, renderer:function(value) {
+Ext.define('SopCor.view.events.UserEventsForm', {extend:Ext.form.Panel, alias:'widget.usereventsform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'userEventBeginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', labelWidth:95, margin:'0 10 0 0', format:'d.m.Y'}, {id:'userEventEndDate', name:'endDate', xtype:'datefield', fieldLabel:'Конечная дата', labelWidth:90, margin:'0 10 0 0', format:'d.m.Y'}, {id:'codeOfUserEvent', 
+name:'codeOfEvent', xtype:'combobox', fieldLabel:'Тип', labelWidth:30, margin:'0 10 0 0', store:userEventTypes, queryMode:'local', valueField:'value', displayField:'name', width:220}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchuserevents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearusereventsfilter'}]}]});
+Ext.define('SopCor.view.events.UserEventsResult', {extend:Ext.Container, alias:'widget.usereventsresult', layout:'fit', items:[{id:'userEventsGrid', xtype:'grid', autoHeight:true, store:'UserEvents', stateful:false, columns:[{text:'Идентификатор ключа', dataIndex:'tokenId', width:150, sortable:true}, {text:'Пользователь', dataIndex:'userName', width:150, sortable:true}, {text:'Производитель', dataIndex:'vendorName', width:150, sortable:true}, {text:'Тип события', dataIndex:'codeOfEvent', width:180, 
+sortable:true, renderer:function(value) {
   if (UEV_UNEXPECTED_TERMINATION == value) {
     return 'неожиданное завершение';
   } else {
@@ -53962,11 +53563,11 @@ Ext.cmd.derive('SopCor.view.events.UserEventsResult', Ext.Container, {layout:'fi
   minutes = s.substr(s.length - 2);
   var time = date + '.' + month + '.' + year + ' ' + hours + ':' + minutes;
   return time;
-}}], bbar:Ext.create('Ext.PagingToolbar', {displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'})}]}, 0, ['usereventsresult'], ['component', 'box', 'container', 'usereventsresult'], {'component':true, 'box':true, 'container':true, 'usereventsresult':true}, ['widget.usereventsresult'], 0, [SopCor.view.events, 'UserEventsResult'], 0);
-Ext.cmd.derive('SopCor.view.events.MarkerEventsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'markerEventBeginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', labelWidth:95, margin:'0 10 0 0', format:'d.m.Y'}, {id:'markerEventEndDate', name:'endDate', xtype:'datefield', fieldLabel:'Конечная дата', labelWidth:90, margin:'0 10 0 0', format:'d.m.Y'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', 
-action:'searchmarkerevents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearmarkereventsfilter'}]}]}, 0, ['markereventsform'], ['component', 'box', 'container', 'panel', 'form', 'markereventsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'markereventsform':true}, ['widget.markereventsform'], 0, [SopCor.view.events, 'MarkerEventsForm'], 0);
+}}], bbar:Ext.create('Ext.PagingToolbar', {displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'})}]});
+Ext.define('SopCor.view.events.MarkerEventsForm', {extend:Ext.form.Panel, alias:'widget.markereventsform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', items:[{id:'markerEventBeginDate', name:'beginDate', xtype:'datefield', fieldLabel:'Начальная дата', labelWidth:95, margin:'0 10 0 0', format:'d.m.Y'}, {id:'markerEventEndDate', name:'endDate', xtype:'datefield', fieldLabel:'Конечная дата', labelWidth:90, margin:'0 10 0 0', format:'d.m.Y'}, {xtype:'button', 
+text:'Искать', margin:'0 10 0 0', action:'searchmarkerevents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearmarkereventsfilter'}]}]});
 var contextMenuEvents = Ext.create('Ext.menu.Menu', {id:'contextMenuEvents', alias:'widget.contextMenuEvents', items:[{text:'Подробнее', action:'viewevent', icon:'/resources/images/icons/document_info.png'}]});
-Ext.cmd.derive('SopCor.view.events.MarkerEventsGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.events.MarkerEventsGrid', {extend:Ext.grid.Panel, alias:'widget.markereventsgrid', initComponent:function() {
   this.store = 'MarkerEvents';
   this.columns = [{text:'IP адрес', dataIndex:'ip', width:120, sortable:true}, {text:'Ид. ном. в запросе', dataIndex:'recievedUID', width:120, sortable:true, renderer:function(value) {
     var str = new String(value);
@@ -54017,21 +53618,20 @@ Ext.cmd.derive('SopCor.view.events.MarkerEventsGrid', Ext.grid.Panel, {initCompo
   }}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'viewEventButton', text:'Подробнее', action:'viewevent', icon:'/resources/images/icons/document_info.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['markereventsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'markereventsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'markereventsgrid':true}, ['widget.markereventsgrid'], 0, [SopCor.view.events, 'MarkerEventsGrid'], 0);
-Ext.cmd.derive('SopCor.view.events.MarkerEventsResult', Ext.Container, {layout:'fit', items:[{id:'markerEventsGrid', xtype:'markereventsgrid', autoHeight:true, stateful:false}]}, 0, ['markereventsresult'], ['component', 'box', 'container', 'markereventsresult'], {'component':true, 'box':true, 'container':true, 'markereventsresult':true}, ['widget.markereventsresult'], 0, [SopCor.view.events, 'MarkerEventsResult'], 0);
-Ext.cmd.derive('SopCor.view.events.Events', Ext.Panel, {id:'events', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'События', items:[{xtype:'tabpanel', id:'eventstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:10}, items:[{title:'События сканирования', id:'markerEvents', items:[{xtype:'markereventsform', id:'markereventsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'markereventsresult', id:'markereventsresult'}]}]}]}, 0, ['events'], ['component', 'box', 
-'container', 'panel', 'events'], {'component':true, 'box':true, 'container':true, 'panel':true, 'events':true}, ['widget.events'], 0, [SopCor.view.events, 'Events'], 0);
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.events.MarkerEventsResult', {extend:Ext.Container, alias:'widget.markereventsresult', layout:'fit', items:[{id:'markerEventsGrid', xtype:'markereventsgrid', autoHeight:true, stateful:false}]});
+Ext.define('SopCor.view.events.Events', {extend:Ext.Panel, alias:'widget.events', id:'events', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'События', items:[{xtype:'tabpanel', id:'eventstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:10}, items:[{title:'События сканирования', id:'markerEvents', items:[{xtype:'markereventsform', id:'markereventsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'markereventsresult', id:'markereventsresult'}]}]}]});
 var contextMenuTokens = Ext.create('Ext.menu.Menu', {id:'contextMenuReports', alias:'widget.contextMenuReports', items:[{text:'Запросить отчет', action:'requestreport', icon:'/resources/images/icons/report_go.png'}]});
-Ext.cmd.derive('SopCor.view.reports.ReportsList', Ext.Container, {id:'reportslist', layout:'fit', items:[{id:'reportsGrid', xtype:'grid', height:600, store:'Reports', stateful:false, columns:[{text:'Название отчета', dataIndex:'name', width:200, sortable:true}, {text:'Краткое описание', dataIndex:'description', flex:1, sortable:true}, {text:'Статус', dataIndex:'enabled', width:60, renderer:function(value) {
+Ext.define('SopCor.view.reports.ReportsList', {extend:Ext.Container, alias:'widget.reportslist', id:'reportslist', layout:'fit', items:[{id:'reportsGrid', xtype:'grid', height:600, store:'Reports', stateful:false, columns:[{text:'Название отчета', dataIndex:'name', width:200, sortable:true}, {text:'Краткое описание', dataIndex:'description', flex:1, sortable:true}, {text:'Статус', dataIndex:'enabled', width:60, renderer:function(value) {
   if (value) {
     return '\x3cimg src\x3d"/resources/images/icons/bullet_green.png" \x3e';
   } else {
     return '\x3cimg src\x3d"/resources/images/icons/bullet_red.png" \x3e';
   }
-}}], dockedItems:[{xtype:'toolbar', items:[{xtype:'button', id:'requestReportButton', text:'Запросить отчет', action:'requestreport', icon:'/resources/images/icons/report_go.png', disabled:true}]}]}]}, 0, ['reportslist'], ['component', 'box', 'container', 'reportslist'], {'component':true, 'box':true, 'container':true, 'reportslist':true}, ['widget.reportslist'], 0, [SopCor.view.reports, 'ReportsList'], 0);
+}}], dockedItems:[{xtype:'toolbar', items:[{xtype:'button', id:'requestReportButton', text:'Запросить отчет', action:'requestreport', icon:'/resources/images/icons/report_go.png', disabled:true}]}]}]});
 var contextMenuRequests = Ext.create('Ext.menu.Menu', {id:'contextMenuRequests', alias:'widget.contextMenuRequests', items:[{text:'Просмотреть результат', action:'showreport', icon:'/resources/images/icons/report_magnify.png'}, {text:'Удалить результат', action:'deletereport', icon:'/resources/images/icons/report_delete.png'}]});
-Ext.cmd.derive('SopCor.view.reports.RequestsList', Ext.Container, {id:'requestslist', layout:'fit', items:[{id:'requestsGrid', xtype:'grid', store:'Requests', height:600, stateful:false, columns:[{text:'Дата создания запроса', dataIndex:'dateOfCreation', flex:1, sortable:true, renderer:function(value) {
+Ext.define('SopCor.view.reports.RequestsList', {extend:Ext.Container, alias:'widget.requestslist', id:'requestslist', layout:'fit', items:[{id:'requestsGrid', xtype:'grid', store:'Requests', height:600, stateful:false, columns:[{text:'Дата создания запроса', dataIndex:'dateOfCreation', flex:1, sortable:true, renderer:function(value) {
   var a = new Date(value * 1000);
   var year = a.getFullYear();
   var month = a.getMonth() + 1;
@@ -54058,38 +53658,35 @@ Ext.cmd.derive('SopCor.view.reports.RequestsList', Ext.Container, {id:'requestsl
   } else {
     return '\x3cimg src\x3d"/resources/images/icons/bullet_red.png" \x3e';
   }
-}}], dockedItems:[{xtype:'toolbar', items:[{xtype:'button', id:'showReportButton', text:'Просмотреть результат', action:'showreport', icon:'/resources/images/icons/report_magnify.png', disabled:true}, {xtype:'button', id:'deleteReportButton', text:'Удалить результат', action:'deletereport', icon:'/resources/images/icons/report_delete.png', disabled:true}]}]}]}, 0, ['requestslist'], ['component', 'box', 'container', 'requestslist'], {'component':true, 'box':true, 'container':true, 'requestslist':true}, 
-['widget.requestslist'], 0, [SopCor.view.reports, 'RequestsList'], 0);
-Ext.cmd.derive('SopCor.view.reports.ReportResult', Ext.window.Window, {border:true, bodyPadding:5, modal:true, layout:'fit', bodyStyle:'background:#fff;', title:'Просмотр отчета', items:[{xtype:'container', id:'reportresultfield'}]}, 0, ['reportresult'], ['component', 'box', 'container', 'panel', 'window', 'reportresult'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'reportresult':true}, ['widget.reportresult'], 0, [SopCor.view.reports, 'ReportResult'], 0);
-Ext.cmd.derive('SopCor.view.reports.Reports', Ext.Panel, {plain:false, border:false, bodyPadding:1, autoScroll:true, layout:'fit', title:'Отчеты', items:[{xtype:'panel', layout:'border', items:[{xtype:'reportslist', region:'center'}, {xtype:'requestslist', region:'east', width:500}]}]}, 0, ['reports'], ['component', 'box', 'container', 'panel', 'reports'], {'component':true, 'box':true, 'container':true, 'panel':true, 'reports':true}, ['widget.reports'], 0, [SopCor.view.reports, 'Reports'], 0);
+}}], dockedItems:[{xtype:'toolbar', items:[{xtype:'button', id:'showReportButton', text:'Просмотреть результат', action:'showreport', icon:'/resources/images/icons/report_magnify.png', disabled:true}, {xtype:'button', id:'deleteReportButton', text:'Удалить результат', action:'deletereport', icon:'/resources/images/icons/report_delete.png', disabled:true}]}]}]});
+Ext.define('SopCor.view.reports.ReportResult', {extend:Ext.window.Window, alias:'widget.reportresult', border:true, bodyPadding:5, modal:true, layout:'fit', bodyStyle:'background:#fff;', title:'Просмотр отчета', items:[{xtype:'container', id:'reportresultfield'}]});
+Ext.define('SopCor.view.reports.Reports', {extend:Ext.Panel, alias:'widget.reports', plain:false, border:false, bodyPadding:1, autoScroll:true, layout:'fit', title:'Отчеты', items:[{xtype:'panel', layout:'border', items:[{xtype:'reportslist', region:'center'}, {xtype:'requestslist', region:'east', width:500}]}]});
 var contextMenuGoodsGroups = Ext.create('Ext.menu.Menu', {id:'contextMenuGoodsGroups', alias:'widget.contextMenuGoodsGroups', items:[{text:'Добавить', action:'addgoodsgroup', icon:'/resources/images/icons/add.png'}, '-', {text:'Удалить', action:'deletegoodsgroup', icon:'/resources/images/icons/delete.png'}]});
-Ext.cmd.derive('SopCor.view.options.GoodsGroupsGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.options.GoodsGroupsGrid', {extend:Ext.grid.Panel, alias:'widget.goodsgroupsgrid', initComponent:function() {
   this.store = 'GoodsGroups';
   this.columns = [{text:'Краткое название', dataIndex:'shortName', width:250, sortable:true}, {text:'Название', dataIndex:'name', flex:1, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addGoodsGroupButton', text:'Добавить', action:'addgoodsgroup', icon:'/resources/images/icons/add.png', disabled:false}, '-', {xtype:'button', id:'deleteGoodsGroupButton', text:'Удалить', action:'deletegoodsgroup', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:'GoodsGroups', displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['goodsgroupsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'goodsgroupsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'goodsgroupsgrid':true}, ['widget.goodsgroupsgrid'], 0, [SopCor.view.options, 'GoodsGroupsGrid'], 0);
-Ext.cmd.derive('SopCor.view.options.GoodsGroupsList', Ext.Container, {id:'goodsgroupslist', layout:'fit', items:[{id:'goodsGroupsGrid', xtype:'goodsgroupsgrid', autoheight:true, stateful:false}]}, 0, ['goodsgroupslist'], ['component', 'box', 'container', 'goodsgroupslist'], {'component':true, 'box':true, 'container':true, 'goodsgroupslist':true}, ['widget.goodsgroupslist'], 0, [SopCor.view.options, 'GoodsGroupsList'], 0);
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.options.GoodsGroupsList', {extend:Ext.Container, alias:'widget.goodsgroupslist', id:'goodsgroupslist', layout:'fit', items:[{id:'goodsGroupsGrid', xtype:'goodsgroupsgrid', autoheight:true, stateful:false}]});
 var contextMenuUnitMeasures = Ext.create('Ext.menu.Menu', {id:'contextMenuUnitMeasures', alias:'widget.contextunitmeasures', items:[{text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png'}]});
-Ext.cmd.derive('SopCor.view.options.UnitMeasuresGrid', Ext.grid.Panel, {initComponent:function() {
+Ext.define('SopCor.view.options.UnitMeasuresGrid', {extend:Ext.grid.Panel, alias:'widget.unitmeasuresgrid', initComponent:function() {
   this.store = 'UnitMeasures';
   this.columns = [{text:'Название', dataIndex:'volume_name', flex:1, sortable:true}, {text:'Краткое название', dataIndex:'volume_shortname', width:250, sortable:true}, {text:'Код', dataIndex:'volume_code', flex:1, sortable:true}, {text:'Сортировка', dataIndex:'sort_order', flex:1}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addUnitMeasureButton', text:'Добавить', action:'addunitmeasure', icon:'/resources/images/icons/add.png', disabled:false}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:'UnitMeasures', displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['unitmeasuresgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unitmeasuresgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unitmeasuresgrid':true}, ['widget.unitmeasuresgrid'], 0, [SopCor.view.options, 'UnitMeasuresGrid'], 0);
-Ext.cmd.derive('SopCor.view.options.UnitMeasuresList', Ext.Container, {id:'unitmeasureslist', layout:'fit', items:[{id:'unitMeasuresGrid', xtype:'unitmeasuresgrid', autoheight:true, stateful:false}]}, 0, ['unitmeasureslist'], ['component', 'box', 'container', 'unitmeasureslist'], {'component':true, 'box':true, 'container':true, 'unitmeasureslist':true}, ['widget.unitmeasureslist'], 0, [SopCor.view.options, 'UnitMeasuresList'], 0);
-Ext.cmd.derive('SopCor.view.options.Options', Ext.Panel, {plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Настройки', items:[{xtype:'tabpanel', id:'optionstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1}, items:[{title:'Редактирование товарных групп', id:'goodsgroups', items:[{xtype:'goodsgroupslist'}]}, {title:'Единицы измерения', id:'unitmeasures', items:[{xtype:'unitmeasureslist'}]}]}]}, 0, ['options'], ['component', 'box', 'container', 'panel', 'options'], {'component':true, 
-'box':true, 'container':true, 'panel':true, 'options':true}, ['widget.options'], 0, [SopCor.view.options, 'Options'], 0);
-Ext.cmd.derive('SopCor.view.statistics.Stats', Ext.Panel, {plain:false, border:false, bodyPadding:10, autoScroll:true, title:'Статистика', items:[{xtype:'fieldset', anchor:'100%', title:'Общее число', items:[{xtype:'form', border:false, id:'statsForm', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'unitTypes', fieldLabel:'Общее число активных артикулов', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'archivedUnitTypes', fieldLabel:'Общее число архивных артикулов', labelWidth:350}, 
-{xtype:'textfield', readOnly:true, name:'markersPrinted', fieldLabel:'Общее число отпечатанных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'spoiledMarkers', fieldLabel:'Общее число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'contrafact', fieldLabel:'Общее число сканирований контрафактных маркеров.', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'tokens', fieldLabel:'Общее число ключей у предприятия', labelWidth:350}, {xtype:'textfield', 
-readOnly:true, name:'markersPermitted', fieldLabel:'Число доступных наклеек(число доступных публикаций)', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За 12 часов', items:[{xtype:'form', border:false, id:'statsForm12', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', fieldLabel:'Число опубликованных маркеров', labelWidth:350}, {xtype:'textfield', name:'spoiledMarkers', readOnly:true, fieldLabel:'Число забракованных маркеров', labelWidth:350}, {xtype:'textfield', 
-readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За неделю', items:[{xtype:'form', border:false, id:'statsForm168', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', fieldLabel:'Число опубликованных маркеров', labelWidth:350}, {xtype:'textfield', name:'spoiledMarkers', 
-readOnly:true, fieldLabel:'Число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За месяц', items:[{xtype:'form', border:false, id:'statsForm720', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', fieldLabel:'Число опубликованных маркеров', 
-labelWidth:350}, {xtype:'textfield', name:'spoiledMarkers', readOnly:true, fieldLabel:'Число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}]}, 0, ['stats'], ['component', 'box', 'container', 'panel', 'stats'], {'component':true, 'box':true, 'container':true, 'panel':true, 'stats':true}, 
-['widget.stats'], 0, [SopCor.view.statistics, 'Stats'], 0);
-Ext.cmd.derive('SopCor.view.Mainwindow', Ext.panel.Panel, {id:'mainwindow', layout:'border', initComponent:function() {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.options.UnitMeasuresList', {extend:Ext.Container, alias:'widget.unitmeasureslist', id:'unitmeasureslist', layout:'fit', items:[{id:'unitMeasuresGrid', xtype:'unitmeasuresgrid', autoheight:true, stateful:false}]});
+Ext.define('SopCor.view.options.Options', {extend:Ext.Panel, alias:'widget.options', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Настройки', items:[{xtype:'tabpanel', id:'optionstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1}, items:[{title:'Редактирование товарных групп', id:'goodsgroups', items:[{xtype:'goodsgroupslist'}]}, {title:'Единицы измерения', id:'unitmeasures', items:[{xtype:'unitmeasureslist'}]}]}]});
+Ext.define('SopCor.view.statistics.Stats', {extend:Ext.Panel, alias:'widget.stats', plain:false, border:false, bodyPadding:10, autoScroll:true, title:'Статистика', items:[{xtype:'fieldset', anchor:'100%', title:'Общее число', items:[{xtype:'form', border:false, id:'statsForm', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'unitTypes', fieldLabel:'Общее число активных артикулов', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'archivedUnitTypes', fieldLabel:'Общее число архивных артикулов', 
+labelWidth:350}, {xtype:'textfield', readOnly:true, name:'markersPrinted', fieldLabel:'Общее число отпечатанных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'spoiledMarkers', fieldLabel:'Общее число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'contrafact', fieldLabel:'Общее число сканирований контрафактных маркеров.', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'tokens', fieldLabel:'Общее число ключей у предприятия', labelWidth:350}, 
+{xtype:'textfield', readOnly:true, name:'markersPermitted', fieldLabel:'Число доступных наклеек(число доступных публикаций)', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За 12 часов', items:[{xtype:'form', border:false, id:'statsForm12', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', fieldLabel:'Число опубликованных маркеров', labelWidth:350}, {xtype:'textfield', name:'spoiledMarkers', readOnly:true, fieldLabel:'Число забракованных маркеров', 
+labelWidth:350}, {xtype:'textfield', readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За неделю', items:[{xtype:'form', border:false, id:'statsForm168', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', fieldLabel:'Число опубликованных маркеров', labelWidth:350}, {xtype:'textfield', 
+name:'spoiledMarkers', readOnly:true, fieldLabel:'Число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}, {xtype:'fieldset', anchor:'100%', title:'За месяц', items:[{xtype:'form', border:false, id:'statsForm720', margin:'10 10', items:[{xtype:'textfield', readOnly:true, name:'publishedMarkers', 
+fieldLabel:'Число опубликованных маркеров', labelWidth:350}, {xtype:'textfield', name:'spoiledMarkers', readOnly:true, fieldLabel:'Число забракованных маркеров', labelWidth:350}, {xtype:'textfield', readOnly:true, name:'events', fieldLabel:'Число сканированных маркеров', labelWidth:350}, {xtype:'textfield', name:'contrafact', readOnly:true, fieldLabel:'Число сканирований контрафакта', labelWidth:350}]}]}]});
+Ext.define('SopCor.view.Mainwindow', {extend:Ext.panel.Panel, alias:'widget.mainwindow', id:'mainwindow', layout:'border', initComponent:function() {
   if (accessLevel & ACL_GLOBAL && accessLevel & ACL_ENDUSER) {
     this.items = [{id:'center_panel', region:'center', xtype:'panel', layout:'card', margins:'5 5 0 0', defaults:{border:false}, items:[{itemId:'checkuid', xtype:'checkuid', title:'Проверка'}, {itemId:'scans', xtype:'scans', title:'Сканирования'}]}, {region:'west', layout:'vbox', align:'stretch', width:262, split:true, splitterResize:false, items:[{xtype:'logo'}, {xtype:'instances'}, {xtype:'statistics', id:'statisctics'}, {flex:1, xtype:'help'}]}];
   } else {
@@ -54102,65 +53699,50 @@ Ext.cmd.derive('SopCor.view.Mainwindow', Ext.panel.Panel, {id:'mainwindow', layo
       }
     }
   }
-  Ext.panel.Panel.prototype.initComponent.call(this);
-}, tbar:{id:'top-bar', items:['-', {xtype:'button', text:'Выход', action:'logout'}]}}, 0, ['mainwindow'], ['component', 'box', 'container', 'panel', 'mainwindow'], {'component':true, 'box':true, 'container':true, 'panel':true, 'mainwindow':true}, ['widget.mainwindow'], 0, [SopCor.view, 'Mainwindow'], 0);
-Ext.cmd.derive('SopCor.view.login.LoginForm', Ext.form.Panel, {frame:true, defaultType:'textfield', monitorValid:true, items:[{itemId:'login', fieldLabel:'Логин', name:'login', allowBlank:false, anchor:'100%'}, {itemId:'password', fieldLabel:'Пароль', name:'password', inputType:'password', allowBlank:false, anchor:'100%'}]}, 0, ['loginform'], ['component', 'box', 'container', 'panel', 'form', 'loginform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'loginform':true}, 
-['widget.loginform'], 0, [SopCor.view.login, 'LoginForm'], 0);
-Ext.cmd.derive('SopCor.view.login.Login', Ext.window.Window, {title:'Вход', width:300, height:150, layout:'fit', plain:true, closable:false, bodyStyle:'padding: 5px;', modal:true, items:[{xtype:'loginform'}], buttons:[{id:'loginSubmitButton', text:'Войти', action:'login'}], defaultFocus:'login'}, 0, ['loginwindow'], ['component', 'box', 'container', 'panel', 'window', 'loginwindow'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'loginwindow':true}, ['widget.loginwindow'], 
-0, [SopCor.view.login, 'Login'], 0);
-Ext.cmd.derive('SopCor.view.markers.MarkerDetails', Ext.Window, {id:'markerdetails', title:'Информация об идентификационной маркере', resizable:false, items:[{xtype:'panel', layout:'anchor', margin:'10 10', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, margin:'10 10', layout:'hbox', items:[{xtype:'textfield', id:'infoUID', readOnly:true, fieldLabel:'Идентификационный номер:', labelWidth:180, margin:'0 30'}, {id:'infoStatus', xtype:'textfield', readOnly:true, labelWidth:45, 
-fieldLabel:'Статус'}]}, {xtype:'container', html:'\x3chr /\x3e', width:748}, {fieldDefaults:{labelWidth:200}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'infoUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции', anchor:'100%', width:700}, {id:'infoVendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель', anchor:'100%', width:700}, {id:'infoGoodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа', 
-anchor:'100%', width:700}]}, {xtype:'container', layout:'hbox', items:[{xtype:'fieldset', anchor:'50%', margin:'0 10 0 0', items:[{id:'infoDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'infoExpireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}, {xtype:'fieldset', anchor:'100%', items:[{id:'infoUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'infoQuantityPerUnit', xtype:'textfield', readOnly:true, 
-fieldLabel:'Количество в ед. изм.'}]}]}, {xtype:'container', layout:'hbox', items:[{xtype:'fieldset', anchor:'50%', margin:'0 10 0 0', items:[{id:'infoBatchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, {id:'infoBatchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии'}]}, {xtype:'fieldset', anchor:'100%', items:[{id:'infoNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'infoNumberOfQualityPassportBlank', 
+  this.callParent();
+}, tbar:{id:'top-bar', items:['-', {xtype:'button', text:'Выход', action:'logout'}]}});
+Ext.define('SopCor.view.login.LoginForm', {extend:Ext.form.Panel, alias:'widget.loginform', frame:true, defaultType:'textfield', monitorValid:true, items:[{itemId:'login', fieldLabel:'Логин', name:'login', allowBlank:false, anchor:'100%'}, {itemId:'password', fieldLabel:'Пароль', name:'password', inputType:'password', allowBlank:false, anchor:'100%'}]});
+Ext.define('SopCor.view.login.Login', {extend:Ext.window.Window, alias:'widget.loginwindow', title:'Вход', width:300, height:150, layout:'fit', plain:true, closable:false, bodyStyle:'padding: 5px;', modal:true, items:[{xtype:'loginform'}], buttons:[{id:'loginSubmitButton', text:'Войти', action:'login'}], defaultFocus:'login'});
+Ext.define('SopCor.view.markers.MarkerDetails', {extend:Ext.Window, alias:'widget.markerdetails', id:'markerdetails', title:'Информация об идентификационной маркере', resizable:false, items:[{xtype:'panel', layout:'anchor', margin:'10 10', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, margin:'10 10', layout:'hbox', items:[{xtype:'textfield', id:'infoUID', readOnly:true, fieldLabel:'Идентификационный номер:', labelWidth:180, margin:'0 30'}, {id:'infoStatus', xtype:'textfield', 
+readOnly:true, labelWidth:45, fieldLabel:'Статус'}]}, {xtype:'container', html:'\x3chr /\x3e', width:748}, {fieldDefaults:{labelWidth:200}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'infoUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции', anchor:'100%', width:700}, {id:'infoVendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель', anchor:'100%', width:700}, {id:'infoGoodsGroup', xtype:'textfield', readOnly:true, 
+fieldLabel:'Товарная группа', anchor:'100%', width:700}]}, {xtype:'container', layout:'hbox', items:[{xtype:'fieldset', anchor:'50%', margin:'0 10 0 0', items:[{id:'infoDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'infoExpireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}, {xtype:'fieldset', anchor:'100%', items:[{id:'infoUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'infoQuantityPerUnit', 
+xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.'}]}]}, {xtype:'container', layout:'hbox', items:[{xtype:'fieldset', anchor:'50%', margin:'0 10 0 0', items:[{id:'infoBatchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, {id:'infoBatchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии'}]}, {xtype:'fieldset', anchor:'100%', items:[{id:'infoNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'infoNumberOfQualityPassportBlank', 
 xtype:'textfield', readOnly:true, fieldLabel:'Номер бланка паспорта качества'}]}]}]}, {xtype:'button', text:'закрыть', width:300, margin:'0 0 5 420', handler:function(button, event) {
   console.log('close');
   Ext.getCmp('markerdetails').close();
-}}, {xtype:'container', html:'\x3chr /\x3e', width:748}, {xtype:'scanslist'}]}]}, 0, ['markerdetails'], ['component', 'box', 'container', 'panel', 'window', 'markerdetails'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'markerdetails':true}, ['widget.markerdetails'], 0, [SopCor.view.markers, 'MarkerDetails'], 0);
-Ext.cmd.derive('SopCor.view.options.AddGoodsGroupForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'goods_group_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'goods_group_name', name:'name', fieldLabel:'Название'}]}], monitorValid:true}, 0, ['addgoodsgroupform'], ['component', 'box', 'container', 'panel', 'form', 'addgoodsgroupform'], {'component':true, 
-'box':true, 'container':true, 'panel':true, 'form':true, 'addgoodsgroupform':true}, ['widget.addgoodsgroupform'], 0, [SopCor.view.options, 'AddGoodsGroupForm'], 0);
-Ext.cmd.derive('SopCor.view.options.AddGoodsGroup', Ext.window.Window, {title:'Новая товарная группа', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addgoodsgroupform', id:'addgoodsgroupform'}], buttons:[{id:'AddGoodsGroupSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'goods_group_short_name'}, 0, ['addgoodsgroup'], ['component', 'box', 'container', 'panel', 'window', 'addgoodsgroup'], {'component':true, 'box':true, 'container':true, 'panel':true, 
-'window':true, 'addgoodsgroup':true}, ['widget.addgoodsgroup'], 0, [SopCor.view.options, 'AddGoodsGroup'], 0);
-Ext.cmd.derive('SopCor.view.options.AddUnitMeasureForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'unit_measure_name', name:'volume_name', fieldLabel:'Название'}, {id:'unit_measure_short_name', name:'volume_shortname', fieldLabel:'Краткое название'}, {id:'unit_measure_code', name:'volume_code', fieldLabel:'Код'}, {id:'unit_measure_sort_order', name:'sort_order', 
-fieldLabel:'Сортировка'}]}], monitorValid:true}, 0, ['addunitmeasureform'], ['component', 'box', 'container', 'panel', 'form', 'addunitmeasureform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addunitmeasureform':true}, ['widget.addunitmeasureform'], 0, [SopCor.view.options, 'AddUnitMeasureForm'], 0);
-Ext.cmd.derive('SopCor.view.options.AddUnitMeasure', Ext.window.Window, {title:'Новая единица измерения', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addunitmeasureform', id:'addunitmeasureform'}], buttons:[{id:'AddUnitMeasureSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'unit_measure_name'}, 0, ['addunitmeasure'], ['component', 'box', 'container', 'panel', 'window', 'addunitmeasure'], {'component':true, 'box':true, 'container':true, 'panel':true, 
-'window':true, 'addunitmeasure':true}, ['widget.addunitmeasure'], 0, [SopCor.view.options, 'AddUnitMeasure'], 0);
-Ext.cmd.derive('SopCor.view.options.EditGoodsGroup', Ext.window.Window, {title:'Редактирование информации о товарной группе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addgoodsgroupform', id:'editgoodsgroupform'}], buttons:[{id:'EditGoodsGroupSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'goods_group_short_name'}, 0, ['editgoodsgroup'], ['component', 'box', 'container', 'panel', 'window', 'editgoodsgroup'], {'component':true, 'box':true, 'container':true, 
-'panel':true, 'window':true, 'editgoodsgroup':true}, ['widget.editgoodsgroup'], 0, [SopCor.view.options, 'EditGoodsGroup'], 0);
-Ext.cmd.derive('SopCor.view.options.EditOptionForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', allowBlank:false}, items:[{name:'name', xtype:'hidden'}, {id:'value', name:'value', fieldLabel:''}]}], monitorValid:true}, 0, ['editoptionform'], ['component', 'box', 'container', 'panel', 'form', 'editoptionform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'editoptionform':true}, 
-['widget.editoptionform'], 0, [SopCor.view.options, 'EditOptionForm'], 0);
-Ext.cmd.derive('SopCor.view.options.EditOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'editoptionform', id:'editoptionform'}], buttons:[{id:'EditOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['editoption'], ['component', 'box', 'container', 'panel', 'window', 'editoption'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editoption':true}, ['widget.editoption'], 
-0, [SopCor.view.options, 'EditOption'], 0);
-Ext.cmd.derive('SopCor.view.options.EditTriggerOptionForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', allowBlank:false}, items:[{name:'id', xtype:'hidden'}, {id:'value', name:'value', fieldLabel:''}]}], monitorValid:true}, 0, ['edittriggeroptionform'], ['component', 'box', 'container', 'panel', 'form', 'edittriggeroptionform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 
-'edittriggeroptionform':true}, ['widget.edittriggeroptionform'], 0, [SopCor.view.options, 'EditTriggerOptionForm'], 0);
-Ext.cmd.derive('SopCor.view.options.EditTriggerOption', Ext.window.Window, {title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'}, 0, ['edittriggeroption'], ['component', 'box', 'container', 'panel', 'window', 'edittriggeroption'], {'component':true, 'box':true, 'container':true, 'panel':true, 
-'window':true, 'edittriggeroption':true}, ['widget.edittriggeroption'], 0, [SopCor.view.options, 'EditTriggerOption'], 0);
-Ext.cmd.derive('SopCor.view.products.AddComponentForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'component_name', name:'name', fieldLabel:'Наименование компонента'}, {id:'component_comments', name:'comments', fieldLabel:'Комментарии'}, {id:'component_is_mark_required', name:'is_mark_required', fieldLabel:'Обязательная маркировка'}, {xtype:'hiddenfield', 
-id:'component_modification_date', name:'modification_date', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'component_expiration_year', name:'component_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'component_expiration_month', name:'component_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, {id:'component_expiration_day', 
-name:'component_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true}, 0, ['addcomponentform'], ['component', 'box', 'container', 'panel', 'form', 'addcomponentform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addcomponentform':true}, ['widget.addcomponentform'], 0, [SopCor.view.products, 'AddComponentForm'], 0);
-Ext.cmd.derive('SopCor.view.products.AddComponent', Ext.window.Window, {title:'Новый компонент', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addcomponentform', id:'addcomponentform'}], buttons:[{id:'AddComponentSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'name'}, 0, ['addcomponent'], ['component', 'box', 'container', 'panel', 'window', 'addcomponent'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addcomponent':true}, 
-['widget.addcomponent'], 0, [SopCor.view.products, 'AddComponent'], 0);
-Ext.cmd.derive('SopCor.view.products.AddProductForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', fieldLabel:'Идентификатор замены'}, 
-{xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'product_expiration_year', name:'product_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'product_expiration_month', name:'product_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, {id:'product_expiration_day', 
-name:'product_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true}, 0, ['addproductform'], ['component', 'box', 'container', 'panel', 'form', 'addproductform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'addproductform':true}, ['widget.addproductform'], 0, [SopCor.view.products, 'AddProductForm'], 0);
-Ext.cmd.derive('SopCor.view.products.AddProduct', Ext.window.Window, {title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['addproduct'], ['component', 'box', 'container', 'panel', 'window', 'addproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'addproduct':true}, 
-['widget.addproduct'], 0, [SopCor.view.products, 'AddProduct'], 0);
-Ext.cmd.derive('SopCor.view.products.ComponentsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_component_name', name:'name', fieldLabel:'Наименование компонента', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchcomponents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearcomponentsfilter'}]}]}, 0, ['componentsform'], 
-['component', 'box', 'container', 'panel', 'form', 'componentsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'componentsform':true}, ['widget.componentsform'], 0, [SopCor.view.products, 'ComponentsForm'], 0);
-Ext.cmd.derive('SopCor.view.products.ComponentsGrid', Ext.grid.Panel, {initComponent:function() {
+}}, {xtype:'container', html:'\x3chr /\x3e', width:748}, {xtype:'scanslist'}]}]});
+Ext.define('SopCor.view.options.AddGoodsGroupForm', {extend:Ext.form.Panel, alias:'widget.addgoodsgroupform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'goods_group_short_name', name:'shortName', fieldLabel:'Краткое название'}, {id:'goods_group_name', name:'name', fieldLabel:'Название'}]}], monitorValid:true});
+Ext.define('SopCor.view.options.AddGoodsGroup', {extend:Ext.window.Window, alias:'widget.addgoodsgroup', title:'Новая товарная группа', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addgoodsgroupform', id:'addgoodsgroupform'}], buttons:[{id:'AddGoodsGroupSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'goods_group_short_name'});
+Ext.define('SopCor.view.options.AddUnitMeasureForm', {extend:Ext.form.Panel, alias:'widget.addunitmeasureform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[{id:'unit_measure_name', name:'volume_name', fieldLabel:'Название'}, {id:'unit_measure_short_name', name:'volume_shortname', fieldLabel:'Краткое название'}, {id:'unit_measure_code', name:'volume_code', fieldLabel:'Код'}, {id:'unit_measure_sort_order', 
+name:'sort_order', fieldLabel:'Сортировка'}]}], monitorValid:true});
+Ext.define('SopCor.view.options.AddUnitMeasure', {extend:Ext.window.Window, alias:'widget.addunitmeasure', title:'Новая единица измерения', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addunitmeasureform', id:'addunitmeasureform'}], buttons:[{id:'AddUnitMeasureSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'unit_measure_name'});
+Ext.define('SopCor.view.options.EditGoodsGroup', {extend:Ext.window.Window, alias:'widget.editgoodsgroup', title:'Редактирование информации о товарной группе', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addgoodsgroupform', id:'editgoodsgroupform'}], buttons:[{id:'EditGoodsGroupSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'goods_group_short_name'});
+Ext.define('SopCor.view.options.EditOptionForm', {extend:Ext.form.Panel, alias:'widget.editoptionform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', allowBlank:false}, items:[{name:'name', xtype:'hidden'}, {id:'value', name:'value', fieldLabel:''}]}], monitorValid:true});
+Ext.define('SopCor.view.options.EditOption', {extend:Ext.window.Window, alias:'widget.editoption', title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'editoptionform', id:'editoptionform'}], buttons:[{id:'EditOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'});
+Ext.define('SopCor.view.options.EditTriggerOptionForm', {extend:Ext.form.Panel, alias:'widget.edittriggeroptionform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:150, anchor:'100%', allowBlank:false}, items:[{name:'id', xtype:'hidden'}, {id:'value', name:'value', fieldLabel:''}]}], monitorValid:true});
+Ext.define('SopCor.view.options.EditTriggerOption', {extend:Ext.window.Window, alias:'widget.edittriggeroption', title:'Изменение параметра', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'edittriggeroptionform', id:'edittriggeroptionform'}], buttons:[{id:'EditTriggerOptionSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'value'});
+Ext.define('SopCor.view.products.AddComponentForm', {extend:Ext.form.Panel, alias:'widget.addcomponentform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'component_name', name:'name', fieldLabel:'Наименование компонента'}, {id:'component_comments', name:'comments', fieldLabel:'Комментарии'}, {id:'component_is_mark_required', name:'is_mark_required', fieldLabel:'Обязательная маркировка'}, 
+{xtype:'hiddenfield', id:'component_modification_date', name:'modification_date', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'component_expiration_year', name:'component_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'component_expiration_month', name:'component_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, 
+{id:'component_expiration_day', name:'component_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true});
+Ext.define('SopCor.view.products.AddComponent', {extend:Ext.window.Window, alias:'widget.addcomponent', title:'Новый компонент', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addcomponentform', id:'addcomponentform'}], buttons:[{id:'AddComponentSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'name'});
+Ext.define('SopCor.view.products.AddProductForm', {extend:Ext.form.Panel, alias:'widget.addproductform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false, margin:'0 0 5'}, items:[{id:'product_name', name:'product_name', fieldLabel:'Наименование продукции'}, {id:'product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ, другое'}, {id:'product_replacedby', name:'product_replacedby', 
+fieldLabel:'Идентификатор замены'}, {xtype:'hiddenfield', id:'product_expiration', name:'product_expiration', fieldLabel:'Срок годности'}, {xtype:'fieldcontainer', fieldLabel:'Срок годности', defaults:{xtype:'textfield', margin:'0 5 0 0', anchor:'50%'}, layout:{type:'hbox'}, items:[{id:'product_expiration_year', name:'product_expiration_year', xtype:'numberfield', width:100, afterSubTpl:' год '}, {id:'product_expiration_month', name:'product_expiration_month', xtype:'numberfield', width:100, afterSubTpl:' месяц '}, 
+{id:'product_expiration_day', name:'product_expiration_day', xtype:'numberfield', width:100, afterSubTpl:' день '}]}]}], monitorValid:true});
+Ext.define('SopCor.view.products.AddProduct', {extend:Ext.window.Window, alias:'widget.addproduct', title:'Новая продукция', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'addproductform'}], buttons:[{id:'AddProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'});
+Ext.define('SopCor.view.products.ComponentsForm', {extend:Ext.form.Panel, alias:'widget.componentsform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_component_name', name:'name', fieldLabel:'Наименование компонента', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchcomponents'}, {xtype:'button', text:'Сбросить фильтр', action:'clearcomponentsfilter'}]}]});
+Ext.define('SopCor.view.products.ComponentsGrid', {extend:Ext.grid.Panel, alias:'widget.componentsgrid', initComponent:function() {
   this.store = 'Components';
   this.columns = [{text:'Идентификатор', dataIndex:'id', width:100, sortable:true}, {text:'Наименование компонента', dataIndex:'name', flex:1, sortable:true}, {text:'Комментарии', dataIndex:'comments', flex:1, sortable:true}, {text:'Обязательная маркировка', dataIndex:'is_mark_required', width:200, sortable:true}, {text:'Срок годности', dataIndex:'modification_date', width:200, sortable:true}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addComponentButton', text:'Добавить', action:'addcomponent', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editComponentButton', text:'Изменить', action:'editcomponent', icon:'/resources/images/icons/pencil.png', disabled:true}, '-', {xtype:'button', id:'deleteComponentButton', text:'Удалить', action:'deletecomponent', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['componentsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'componentsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'componentsgrid':true}, ['widget.componentsgrid'], 0, [SopCor.view.products, 'ComponentsGrid'], 0);
-Ext.cmd.derive('SopCor.view.products.ComponentsResult', Ext.Container, {id:'componentsresult', layout:'fit', items:[{id:'componentsGrid', xtype:'componentsgrid', autoHeight:true, stateful:false}]}, 0, ['componentsresult'], ['component', 'box', 'container', 'componentsresult'], {'component':true, 'box':true, 'container':true, 'componentsresult':true}, ['widget.componentsresult'], 0, [SopCor.view.products, 'ComponentsResult'], 0);
-Ext.cmd.derive('SopCor.view.products.EditComponent', Ext.window.Window, {title:'Редактирование компонента', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addcomponentform', id:'editcomponentform'}], buttons:[{id:'EditComponentSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'name'}, 0, ['editcomponent'], ['component', 'box', 'container', 'panel', 'window', 'editcomponent'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 
-'editcomponent':true}, ['widget.editcomponent'], 0, [SopCor.view.products, 'EditComponent'], 0);
-Ext.cmd.derive('SopCor.view.products.EditProduct', Ext.window.Window, {title:'Редактирование продукции', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'editproductform'}], buttons:[{id:'EditProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'}, 0, ['editproduct'], ['component', 'box', 'container', 'panel', 'window', 'editproduct'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editproduct':true}, 
-['widget.editproduct'], 0, [SopCor.view.products, 'EditProduct'], 0);
-Ext.cmd.derive('SopCor.view.products.ProductsForm', Ext.form.Panel, {frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_product_name', name:'product_name', fieldLabel:'Наименование продукции', margin:'0 10 0 0'}, {id:'search_product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', margin:'0 10 0 0', action:'searchproducts'}, 
-{xtype:'button', text:'Сбросить фильтр', action:'clearproductsfilter'}]}]}, 0, ['productsform'], ['component', 'box', 'container', 'panel', 'form', 'productsform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'productsform':true}, ['widget.productsform'], 0, [SopCor.view.products, 'ProductsForm'], 0);
-Ext.cmd.derive('SopCor.view.products.ProductsGrid', Ext.grid.Panel, {initComponent:function() {
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.products.ComponentsResult', {extend:Ext.Container, alias:'widget.componentsresult', id:'componentsresult', layout:'fit', items:[{id:'componentsGrid', xtype:'componentsgrid', autoHeight:true, stateful:false}]});
+Ext.define('SopCor.view.products.EditComponent', {extend:Ext.window.Window, alias:'widget.editcomponent', title:'Редактирование компонента', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addcomponentform', id:'editcomponentform'}], buttons:[{id:'EditComponentSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'name'});
+Ext.define('SopCor.view.products.EditProduct', {extend:Ext.window.Window, alias:'widget.editproduct', title:'Редактирование продукции', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'addproductform', id:'editproductform'}], buttons:[{id:'EditProductSubmitButton', text:'Сохранить', action:'save'}], defaultFocus:'product_name'});
+Ext.define('SopCor.view.products.ProductsForm', {extend:Ext.form.Panel, alias:'widget.productsform', frame:false, border:false, monitorValid:true, items:[{xtype:'fieldcontainer', layout:'hbox', defaults:{xtype:'textfield', labelWidth:250, margin:'0 0 5'}, items:[{id:'search_product_name', name:'product_name', fieldLabel:'Наименование продукции', margin:'0 10 0 0'}, {id:'search_product_doc', name:'product_doc', fieldLabel:'Определяющий документ: ТУ, ГОСТ', margin:'0 10 0 0'}, {xtype:'button', text:'Искать', 
+margin:'0 10 0 0', action:'searchproducts'}, {xtype:'button', text:'Сбросить фильтр', action:'clearproductsfilter'}]}]});
+Ext.define('SopCor.view.products.ProductsGrid', {extend:Ext.grid.Panel, alias:'widget.productsgrid', initComponent:function() {
   this.store = 'Products';
   this.columns = [{text:'Идентификатор', dataIndex:'id', width:100, sortable:true}, {text:'Наименование продукции', dataIndex:'product_name', flex:1, sortable:true}, {text:'Определяющий документ: ТУ, ГОСТ, другое', dataIndex:'product_doc', flex:1, sortable:true}, {text:'Идентификатор замены', dataIndex:'product_replacedby', width:200, sortable:true}, {text:'Срок годности', dataIndex:'product_expiration', width:200, sortable:true}, {text:'Дата последнего изменения', dataIndex:'product_modification', 
   width:200, sortable:true, renderer:function(value) {
@@ -54187,18 +53769,15 @@ Ext.cmd.derive('SopCor.view.products.ProductsGrid', Ext.grid.Panel, {initCompone
   }}];
   this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addProductButton', text:'Добавить', action:'addproduct', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'editProductButton', text:'Изменить', action:'editproduct', icon:'/resources/images/icons/pencil.png', disabled:true}, '-', {xtype:'button', id:'deleteProductButton', text:'Удалить', action:'deleteproduct', icon:'/resources/images/icons/delete.png', disabled:true}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
-  Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
-}}, 0, ['productsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'productsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'productsgrid':true}, ['widget.productsgrid'], 0, [SopCor.view.products, 'ProductsGrid'], 0);
-Ext.cmd.derive('SopCor.view.products.ProductsResult', Ext.Container, {id:'productsresult', layout:'fit', items:[{id:'productsGrid', xtype:'productsgrid', autoHeight:true, stateful:false}]}, 0, ['productsresult'], ['component', 'box', 'container', 'productsresult'], {'component':true, 'box':true, 'container':true, 'productsresult':true}, ['widget.productsresult'], 0, [SopCor.view.products, 'ProductsResult'], 0);
-Ext.cmd.derive('SopCor.view.products.Products', Ext.Panel, {id:'products', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Продукция', items:[{xtype:'tabpanel', id:'productstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:10}, items:[{title:'Список продукции', id:'productslist', items:[{xtype:'productsform', id:'productsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'productsresult', id:'productsresult'}]}, {title:'Компоненты', id:'componentslist', items:[{xtype:'componentsform', 
-id:'componentsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'componentsresult', id:'componentsresult'}]}]}]}, 0, ['products'], ['component', 'box', 'container', 'panel', 'products'], {'component':true, 'box':true, 'container':true, 'panel':true, 'products':true}, ['widget.products'], 0, [SopCor.view.products, 'Products'], 0);
-Ext.cmd.derive('SopCor.view.reports.RequestReportForm', Ext.form.Panel, {border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[]}], monitorValid:true}, 0, ['requestreportform'], ['component', 'box', 'container', 'panel', 'form', 'requestreportform'], {'component':true, 'box':true, 'container':true, 'panel':true, 'form':true, 'requestreportform':true}, ['widget.requestreportform'], 0, [SopCor.view.reports, 
-'RequestReportForm'], 0);
-Ext.cmd.derive('SopCor.view.reports.RequestReport', Ext.window.Window, {title:'Запрос отчета', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'requestreportform', id:'requestreportform'}], buttons:[{id:'RequestReportSubmitButton', text:'Запросить', action:'request'}]}, 0, ['requestreport'], ['component', 'box', 'container', 'panel', 'window', 'requestreport'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'requestreport':true}, ['widget.requestreport'], 
-0, [SopCor.view.reports, 'RequestReport'], 0);
-Ext.cmd.derive('SopCor.view.scans.ScanDetails', Ext.Window, {title:'Информация о сканировании', resizable:false, items:[{xtype:'panel', layout:'anchor', margin:'10 10', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, margin:'10 10', layout:'hbox', items:[{xtype:'textfield', id:'infoUID', readOnly:true, fieldLabel:'UID:', labelWidth:30, margin:'0 30'}, {xtype:'textfield', id:'infoScantime', readOnly:true, fieldLabel:'Время сканирования:', labelWidth:130, margin:'0 30'}, {xtype:'textfield', 
-id:'infoResult', readOnly:true, fieldLabel:'Результат проверки:', labelWidth:120}]}, {xtype:'container', html:'\x3chr /\x3e'}, {fieldDefaults:{labelWidth:200, anchor:'100%', width:800}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'infoUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'infoQuantityPerUnit', xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.'}, {id:'infoStatus', xtype:'textfield', readOnly:true, 
-fieldLabel:'Статус'}]}, {xtype:'fieldset', items:[{id:'infoVendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель'}, {id:'infoUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции'}, {id:'infoGoodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа'}]}, {xtype:'fieldset', items:[{id:'infoBatchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, {id:'infoBatchSize', xtype:'textfield', readOnly:true, fieldLabel:'Размер партии'}]}, 
-{xtype:'fieldset', items:[{id:'infoNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'infoNumberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Номер бланка паспорта качества'}]}, {xtype:'fieldset', items:[{id:'infoDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'infoExpireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}]}]}]}, 0, ['scandetails'], ['component', 
-'box', 'container', 'panel', 'window', 'scandetails'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'scandetails':true}, ['widget.scandetails'], 0, [SopCor.view.scans, 'ScanDetails'], 0);
+  this.callParent(arguments);
+}});
+Ext.define('SopCor.view.products.ProductsResult', {extend:Ext.Container, alias:'widget.productsresult', id:'productsresult', layout:'fit', items:[{id:'productsGrid', xtype:'productsgrid', autoHeight:true, stateful:false}]});
+Ext.define('SopCor.view.products.Products', {extend:Ext.Panel, alias:'widget.products', id:'products', plain:false, border:false, bodyPadding:1, autoScroll:true, title:'Продукция', items:[{xtype:'tabpanel', id:'productstabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:10}, items:[{title:'Список продукции', id:'productslist', items:[{xtype:'productsform', id:'productsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'productsresult', id:'productsresult'}]}, {title:'Компоненты', 
+id:'componentslist', items:[{xtype:'componentsform', id:'componentsform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'componentsresult', id:'componentsresult'}]}]}]});
+Ext.define('SopCor.view.reports.RequestReportForm', {extend:Ext.form.Panel, alias:'widget.requestreportform', border:false, bodyPadding:10, items:[{xtype:'fieldset', anchor:'100%', defaults:{xtype:'textfield', labelWidth:200, anchor:'100%', allowBlank:false}, items:[]}], monitorValid:true});
+Ext.define('SopCor.view.reports.RequestReport', {extend:Ext.window.Window, alias:'widget.requestreport', title:'Запрос отчета', width:600, layout:'fit', plain:true, closable:true, modal:true, items:[{xtype:'requestreportform', id:'requestreportform'}], buttons:[{id:'RequestReportSubmitButton', text:'Запросить', action:'request'}]});
+Ext.define('SopCor.view.scans.ScanDetails', {extend:Ext.Window, alias:'widget.scandetails', title:'Информация о сканировании', resizable:false, items:[{xtype:'panel', layout:'anchor', margin:'10 10', items:[{xtype:'form', id:'scandetailsinfo', border:false, plain:true, margin:'10 10', layout:'hbox', items:[{xtype:'textfield', id:'infoUID', readOnly:true, fieldLabel:'UID:', labelWidth:30, margin:'0 30'}, {xtype:'textfield', id:'infoScantime', readOnly:true, fieldLabel:'Время сканирования:', labelWidth:130, 
+margin:'0 30'}, {xtype:'textfield', id:'infoResult', readOnly:true, fieldLabel:'Результат проверки:', labelWidth:120}]}, {xtype:'container', html:'\x3chr /\x3e'}, {fieldDefaults:{labelWidth:200, anchor:'100%', width:800}, xtype:'form', anchor:'100%', border:false, margin:'10 10', items:[{xtype:'fieldset', items:[{id:'infoUnitMeasure', xtype:'textfield', readOnly:true, fieldLabel:'Ед. изм.'}, {id:'infoQuantityPerUnit', xtype:'textfield', readOnly:true, fieldLabel:'Количество в ед. изм.'}, {id:'infoStatus', 
+xtype:'textfield', readOnly:true, fieldLabel:'Статус'}]}, {xtype:'fieldset', items:[{id:'infoVendor', xtype:'textfield', readOnly:true, fieldLabel:'Производитель'}, {id:'infoUnitType', xtype:'textfield', readOnly:true, fieldLabel:'Наименование продукции'}, {id:'infoGoodsGroup', xtype:'textfield', readOnly:true, fieldLabel:'Товарная группа'}]}, {xtype:'fieldset', items:[{id:'infoBatchNumber', xtype:'textfield', readOnly:true, fieldLabel:'Номер партии'}, {id:'infoBatchSize', xtype:'textfield', readOnly:true, 
+fieldLabel:'Размер партии'}]}, {xtype:'fieldset', items:[{id:'infoNumberOfQualityPassport', xtype:'textfield', readOnly:true, fieldLabel:'Номер паспорта качества'}, {id:'infoNumberOfQualityPassportBlank', xtype:'textfield', readOnly:true, fieldLabel:'Номер бланка паспорта качества'}]}, {xtype:'fieldset', items:[{id:'infoDateOfProduction', xtype:'textfield', readOnly:true, fieldLabel:'Дата производства'}, {id:'infoExpireTime', xtype:'textfield', readOnly:true, fieldLabel:'Срок годности (месяцев)'}]}]}]}]});
 Ext.application({name:'SopCor', extend:SopCor.Application, autoCreateViewport:false});
