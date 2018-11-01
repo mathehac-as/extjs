@@ -51749,7 +51749,7 @@ Ext.cmd.derive('SopCor.store.MarkerScans', Ext.data.Store, {model:'SopCor.model.
 Ext.cmd.derive('SopCor.store.UnitMeasures', Ext.data.Store, {model:'SopCor.model.UnitMeasure', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/volume', reader:{root:'volumeList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitMeasures'], 0);
 Ext.cmd.derive('SopCor.store.Products', Ext.data.Store, {model:'SopCor.model.Product', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/product', reader:{root:'productList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Products'], 0);
 Ext.cmd.derive('SopCor.store.Components', Ext.data.Store, {model:'SopCor.model.Component', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/component', reader:{root:'componentList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Components'], 0);
-Ext.cmd.derive('SopCor.store.VendorLinks', Ext.data.Store, {model:'SopCor.model.VendorLink', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dproduct_to_vendor\x26fid\x3d10', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'VendorLinks'], 0);
+Ext.cmd.derive('SopCor.store.VendorLinks', Ext.data.Store, {model:'SopCor.model.VendorLink', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'VendorLinks'], 0);
 var vendorTypes = Ext.create('Ext.data.Store', {fields:['type_id', 'type_name'], data:[{'type_id':1, 'type_name':'Завод'}, {'type_id':2, 'type_name':'Продавец'}, {'type_id':3, 'type_name':'Комплексный поставщик'}, {'type_id':4, 'type_name':'Заказчик'}, {'type_id':5, 'type_name':'Подрядчик'}, {'type_id':6, 'type_name':'СубПодрядчик'}, {'type_id':7, 'type_name':'Контрольный орган'}]});
 Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components', 'VendorLinks'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 'Report', 'Request', 'MarkerScan', 'UnitMeasure', 'Product', 
 'Component', 'VendorLink'], views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options.*'], init:function() {
@@ -51902,9 +51902,9 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
         Ext.apply(ug.getStore().proxy.extraParams, {vendorId:comp.initialConfig.vendorId});
         ug.getStore().load();
       } else {
-        if ('unittypes' == newCard.getId()) {
-          var utg = Ext.getCmp('unitTypesUGrid');
-          Ext.apply(utg.getStore().proxy.extraParams, {vendorId:comp.initialConfig.vendorId});
+        if ('vendorlinks' == newCard.getId()) {
+          var utg = Ext.getCmp('UnitTypesLinkGrid');
+          Ext.apply(utg.getStore().proxy.extraParams, {fid:comp.initialConfig.vendorId, data:product_to_vendor});
           utg.getStore().load();
         } else {
           if ('reels' == newCard.getId()) {
@@ -53863,7 +53863,7 @@ Ext.cmd.derive('SopCor.view.vendors.Statistics', Ext.Container, {items:[{xtype:'
 name:'markersPermitted', xtype:'textfield', readOnly:true, fieldLabel:'Выделено:'}, {id:'markersPrinted', name:'markersPrinted', xtype:'textfield', readOnly:true, fieldLabel:'Использовано:'}, {id:'markersRest', name:'markersRest', xtype:'textfield', readOnly:true, fieldLabel:'Доступно:'}]}]}]}, 0, ['vendorstatistics'], ['component', 'box', 'container', 'vendorstatistics'], {'component':true, 'box':true, 'container':true, 'vendorstatistics':true}, ['widget.vendorstatistics'], 0, [SopCor.view.vendors, 
 'Statistics'], 0);
 Ext.cmd.derive('SopCor.view.vendors.EditVendor', Ext.window.Window, {title:'Редактирование', width:900, height:600, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editvendortabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1}, items:[{title:'Контактная информация', id:'contacts', items:[{xtype:'vendorscontacts'}]}, {title:'Ключи', id:'keys', items:[{xtype:'tokenslist'}]}, {title:'Пользователи', id:'users', items:[{xtype:'userslist'}]}, 
-{title:'Маркировка', id:'unittypes', items:[{xtype:'unittypeslinklist'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypesunlinkform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypesunlinklist'}]}, {title:'Этикетки', id:'reels', items:[{xtype:'reelslist'}]}, {title:'Статистика', id:'stats', items:[{xtype:'vendorstatistics'}]}]}]}, 0, ['editvendor'], ['component', 'box', 'container', 'panel', 'window', 'editvendor'], {'component':true, 'box':true, 'container':true, 'panel':true, 
+{title:'Маркировка', id:'vendorlinks', items:[{xtype:'unittypeslinklist'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypesunlinkform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypesunlinklist'}]}, {title:'Этикетки', id:'reels', items:[{xtype:'reelslist'}]}, {title:'Статистика', id:'stats', items:[{xtype:'vendorstatistics'}]}]}]}, 0, ['editvendor'], ['component', 'box', 'container', 'panel', 'window', 'editvendor'], {'component':true, 'box':true, 'container':true, 'panel':true, 
 'window':true, 'editvendor':true}, ['widget.editvendor'], 0, [SopCor.view.vendors, 'EditVendor'], 0);
 Ext.cmd.derive('SopCor.view.vendors.VendorsGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Vendors';
