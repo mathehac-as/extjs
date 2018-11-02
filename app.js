@@ -53998,7 +53998,9 @@ Ext.cmd.derive('SopCor.view.vendors.UnitTypesLinkForm', Ext.form.Panel, {frame:f
 Ext.cmd.derive('SopCor.view.vendors.UnitTypesLinkGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Products';
   this.columns = [{text:'Идентификатор', dataIndex:'id', width:100, sortable:true}, {text:'Наименование продукции', dataIndex:'product_name', flex:1, sortable:true}, {text:'Определяющий документ', dataIndex:'product_doc', flex:1, sortable:false}, {text:'Идентификатор замены', dataIndex:'product_replacedby', width:170, sortable:false}, {xtype:'actioncolumn', width:30, sortable:false, menuDisabled:true, items:[{icon:'resources/images/icons/add.png', tooltip:'Связать рооизводителя и продукт', scope:this, 
-  handler:this.onLinkClick}]}];
+  handler:function() {
+    console.log('onLinkClick');
+  }}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['unittypeslinkgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unittypeslinkgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unittypeslinkgrid':true}, ['widget.unittypeslinkgrid'], 0, [SopCor.view.vendors, 'UnitTypesLinkGrid'], 0);
