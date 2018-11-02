@@ -52859,14 +52859,10 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   }
 }, onLinkClick:function(view, cell, rowIndex, colIndex, e) {
   var grid = Ext.getCmp('unitTypesLinkGrid');
-  var vendorId = grid.getStore().proxy.extraParams.vendorId;
+  var grid_unlink = Ext.getCmp('unitTypesUnlinkGrid');
+  grid.getSelectionModel().select(rowIndex);
+  var vendorId = grid_unlink.getStore().proxy.extraParams.vendorId;
   var rec = grid.getSelectionModel().getSelection()[0];
-  console.log(view);
-  console.log(cell);
-  console.log(rowIndex);
-  console.log(colIndex);
-  console.log(e);
-  console.log(1111111);
   console.log(grid);
   console.log(vendorId);
   console.log(rec);
