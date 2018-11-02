@@ -52857,16 +52857,22 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       }
     }).setHeight(50);
   }
-}, onLinkClick:function(button) {
+}, onLinkClick:function(view, cell, rowIndex, colIndex, e) {
   var grid = Ext.getCmp('unitTypesLinkGrid');
   var vendorId = grid.getStore().proxy.extraParams.vendorId;
   var rec = grid.getSelectionModel().getSelection()[0];
+  console.log(view);
+  console.log(cell);
+  console.log(rowIndex);
+  console.log(colIndex);
+  console.log(e);
+  console.log(1111111);
   console.log(grid);
   console.log(vendorId);
   console.log(rec);
   if (rec) {
     var productId = rec.get('id');
-    console.log(productId);
+    console.log(pro6ductId);
     form.submit({method:'post', url:'/request/linker', params:{op:'link_data', data:'product_to_vendor', fid:vendorId, sid:productId}, success:function(form, action) {
       var grid = Ext.getCmp('unitTypesLinkGrid');
       grid.getStore().reload();
