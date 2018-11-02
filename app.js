@@ -52858,6 +52858,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     }).setHeight(50);
   }
 }, onLinkClick:function(button) {
+  alert(111);
   var grid = Ext.getCmp('unitTypesLinkGrid');
   var vendorId = grid.getStore().proxy.extraParams.vendorId;
   var rec = grid.getSelectionModel().getSelection()[0];
