@@ -52868,7 +52868,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   console.log(rec);
   if (rec) {
     var productId = rec.get('id');
-    console.log(pro6ductId);
+    console.log(productId);
     form.submit({method:'post', url:'/request/linker', params:{op:'link_data', data:'product_to_vendor', fid:vendorId, sid:productId}, success:function(form, action) {
       var grid = Ext.getCmp('unitTypesLinkGrid');
       grid.getStore().reload();
