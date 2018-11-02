@@ -52859,17 +52859,12 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   }
 }, onLinkClick:function(view, cell, rowIndex, colIndex, e) {
   var grid = Ext.getCmp('unitTypesLinkGrid');
-  var grid_unlink = Ext.getCmp('unitTypesUnlinkGrid');
   grid.getSelectionModel().select(rowIndex);
-  var vendorId = grid_unlink.getStore().proxy.extraParams.vendorId;
   var rec = grid.getSelectionModel().getSelection()[0];
-  console.log(grid);
-  console.log(vendorId);
-  console.log(rec);
+  var vendorId = Ext.getCmp('edit_vendor_window').initialConfig.vendorId;
   if (rec) {
     var productId = rec.get('id');
-    console.log(productId);
-    form.submit({method:'post', url:'/request/linker', params:{op:'link_data', data:'product_to_vendor', fid:vendorId, sid:productId}, success:function(form, action) {
+    Ext.Ajax.request({method:'post', url:'/request/linker', params:{op:'link_data', data:'product_to_vendor', fid:vendorId, sid:productId}, success:function(form, action) {
       var grid = Ext.getCmp('unitTypesLinkGrid');
       grid.getStore().reload();
     }, failure:function(form, action) {
