@@ -52918,7 +52918,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   form.reset();
   this.searchComponentsLink(button);
 }, onUnlinkComponentsClick:function(view, cell, rowIndex, colIndex, e) {
-  var grid = Ext.getCmp('ComponentsLinkGrid');
+  var grid = Ext.getCmp('ComponentsUnlinkGrid');
   grid.getSelectionModel().select(rowIndex);
   var rec = grid.getSelectionModel().getSelection()[0];
   var productId = Ext.getCmp('edit_product_window').initialConfig.productId;
