@@ -51656,7 +51656,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   this.searchComponents(button);
 }, onEditComponentTabChange:function(tab, newCard, oldCard, opt) {
   var comp = Ext.getCmp('edit_component_window');
-  if ('editcomponent' == newCard.getId()) {
+  if ('editcomponentsub' == newCard.getId()) {
     var FormPanel = Ext.getCmp('editcomponentform');
     if (undefined != FormPanel) {
       var grid = Ext.getCmp('componentsGrid');
