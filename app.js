@@ -51087,7 +51087,7 @@ Ext.cmd.derive('SopCor.store.Products', Ext.data.Store, {model:'SopCor.model.Pro
 Ext.cmd.derive('SopCor.store.Components', Ext.data.Store, {model:'SopCor.model.Component', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/component', reader:{root:'componentList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'Components'], 0);
 Ext.cmd.derive('SopCor.store.ProductVendors', Ext.data.Store, {model:'SopCor.model.ProductVendor', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dproduct_to_vendor', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'ProductVendors'], 0);
 Ext.cmd.derive('SopCor.store.ComponentProducts', Ext.data.Store, {model:'SopCor.model.ComponentProduct', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dcomponent_to_product', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'ComponentProducts'], 0);
-Ext.cmd.derive('SopCor.store.UnitTypeComponents', Ext.data.Store, {model:'SopCor.model.UnitTypeComponent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dunits_to_component', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitTypeComponents'], 0);
+Ext.cmd.derive('SopCor.store.UnitTypeComponents', Ext.data.Store, {model:'SopCor.model.UnitTypeComponent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/unitTypes', reader:{root:'unitTypes', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitTypeComponents'], 0);
 var vendorTypes = Ext.create('Ext.data.Store', {fields:['type_id', 'type_name'], data:[{'type_id':1, 'type_name':'Завод'}, {'type_id':2, 'type_name':'Продавец'}, {'type_id':3, 'type_name':'Комплексный поставщик'}, {'type_id':4, 'type_name':'Заказчик'}, {'type_id':5, 'type_name':'Подрядчик'}, {'type_id':6, 'type_name':'СубПодрядчик'}, {'type_id':7, 'type_name':'Контрольный орган'}]});
 Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components', 'ProductVendors', 'ComponentProducts', 'UnitTypeComponents'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 'Report', 'Request', 
 'MarkerScan', 'UnitMeasure', 'Product', 'Component', 'ProductVendor', 'ComponentProduct', 'UnitTypeComponent'], views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options.*'], init:function() {
@@ -51670,22 +51670,24 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   } else {
     if ('componentunittype' == newCard.getId()) {
       var utug = Ext.getCmp('UnitTypesLinkComponentGrid');
-      Ext.apply(utug.getStore().proxy.extraParams, {fid:comp.initialConfig.componentId});
+      Ext.apply(utug.getStore().proxy.extraParams, {component_id:comp.initialConfig.componentId});
       utug.getStore().load();
     }
   }
 }, onLinkUnitTypeClick:function(view, cell, rowIndex, colIndex, e) {
-  var componentId = Ext.getCmp('edit_component_window').initialConfig.componentId;
-  var name = Ext.getCmp('unit_type_name').getValue();
-  if (componentId) {
-    Ext.Ajax.request({method:'post', url:'/request/linker', params:{op:'link_data', data:'units_to_component', fid:componentId, sid:name}, success:function(form, action) {
-      var grid = Ext.getCmp('UnitTypesLinkComponentGrid');
-      grid.getStore().reload();
-    }, failure:function(form, action) {
-      var obj = Ext.decode(action.response.responseText);
-      Ext.MessageBox.show({title:'Связывание компонент и маркировки', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
-    }});
+  var form = Ext.getCmp('unittypeslinkcomponentform').getForm();
+  if (!form || !form.isValid()) {
+    return;
   }
+  var componentId = Ext.getCmp('edit_component_window').initialConfig.componentId;
+  form.submit({method:'post', url:'/request/unitTypes', params:{component_id:componentId}, success:function(form, action) {
+    var grid = Ext.getCmp('UnitTypesLinkComponentGrid');
+    grid.getStore().reload();
+    Ext.getCmp('edit_component_window').close();
+  }, failure:function(form, action) {
+    var obj = Ext.decode(action.response.responseText);
+    Ext.MessageBox.show({title:'Связывание компонент и маркировки', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+  }});
 }, addUser:function(button) {
   var au = Ext.getCmp('add_user_window');
   if (au) {
@@ -53783,7 +53785,7 @@ Ext.cmd.derive('SopCor.view.products.ComponentsUnlinkGrid', Ext.grid.Panel, {ini
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['componentsunlinkgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'componentsunlinkgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'componentsunlinkgrid':true}, ['widget.componentsunlinkgrid'], 0, [SopCor.view.products, 'ComponentsUnlinkGrid'], 0);
 Ext.cmd.derive('SopCor.view.products.ComponentsUnlinkList', Ext.Container, {id:'componentsunlinklist', layout:'fit', height:190, items:[{id:'ComponentsUnlinkGrid', xtype:'componentsunlinkgrid'}]}, 0, ['componentsunlinklist'], ['component', 'box', 'container', 'componentsunlinklist'], {'component':true, 'box':true, 'container':true, 'componentsunlinklist':true}, ['widget.componentsunlinklist'], 0, [SopCor.view.products, 'ComponentsUnlinkList'], 0);
-Ext.cmd.derive('SopCor.view.products.EditComponent', Ext.window.Window, {title:'Редактирование компонента', width:500, height:300, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editcomponenttabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1, blankText:'Это поле должно быть заполнено'}, items:[{title:'Компонент', id:'editcomponent', items:[{xtype:'addcomponentform', id:'editcomponentform'}], buttons:[{id:'EditComponentSubmitButton', 
+Ext.cmd.derive('SopCor.view.products.EditComponent', Ext.window.Window, {title:'Редактирование компонента', width:600, height:300, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editcomponenttabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1, blankText:'Это поле должно быть заполнено'}, items:[{title:'Компонент', id:'editcomponent', items:[{xtype:'addcomponentform', id:'editcomponentform'}], buttons:[{id:'EditComponentSubmitButton', 
 text:'Добавить', margin:'10', action:'save'}], defaultFocus:'name'}, {title:'Маркировка', id:'componentunittype', items:[{xtype:'unittypeslinkcomponentform'}, {xtype:'container', html:'\x3chr /\x3e'}, {xtype:'unittypeslinkcomponentlist'}]}]}]}, 0, ['editcomponent'], ['component', 'box', 'container', 'panel', 'window', 'editcomponent'], {'component':true, 'box':true, 'container':true, 'panel':true, 'window':true, 'editcomponent':true}, ['widget.editcomponent'], 0, [SopCor.view.products, 'EditComponent'], 
 0);
 Ext.cmd.derive('SopCor.view.products.EditProduct', Ext.window.Window, {title:'Редактирование', width:900, height:500, layout:'fit', plain:true, border:false, closable:true, modal:true, closeAction:'hide', items:[{xtype:'tabpanel', id:'editproducttabpanel', activeTab:1, defaults:{autoScroll:true, bodyPadding:1, blankText:'Это поле должно быть заполнено'}, items:[{title:'Редактирование продукции', id:'editproduct', items:[{id:'editproductform', xtype:'addproductform'}], buttons:[{id:'EditProductSubmitButton', 
