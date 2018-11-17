@@ -51108,7 +51108,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   'productsresult button[action\x3deditproduct]':{click:this.editProduct}, 'menuitem[action\x3deditproduct]':{click:this.editProduct}, 'tabpanel[id\x3deditproducttabpanel]':{tabchange:this.onEditProductTabChange}, 'editproduct button[action\x3dsave]':{click:this.updateProduct}, 'productsresult \x3e grid[id\x3dproductsGrid]':{selectionchange:this.onProductsGridSelectionChange}, 'editproduct':{show:this.onEditProductWindowShow, close:this.onEditProductWindowClose}, 'productsform button[action\x3dsearchproducts]':{click:this.searchProducts}, 
   'productsform button[action\x3dclearproductsfilter]':{click:this.clearProductsFilter}, 'componentsresult button[action\x3daddcomponent]':{click:this.addComponent}, 'menuitem[action\x3daddcomponent]':{click:this.addComponent}, 'addcomponent button[action\x3dsave]':{click:this.saveComponent}, 'componentsresult button[action\x3ddeletecomponent]':{click:this.deleteComponent}, 'menuitem[action\x3ddeletecomponent]':{click:this.deleteComponent}, 'componentsresult button[action\x3deditcomponent]':{click:this.editComponent}, 
   'menuitem[action\x3deditcomponent]':{click:this.editComponent}, 'tabpanel[id\x3deditcomponenttabpanel]':{tabchange:this.onEditComponentTabChange}, 'editcomponent button[action\x3dsave]':{click:this.updateComponent}, 'componentsresult \x3e grid[id\x3dcomponentsGrid]':{selectionchange:this.onComponentsGridSelectionChange}, 'editcomponent':{show:this.onEditComponentWindowShow, close:this.onEditComponentWindowClose}, 'componentsform button[action\x3dsearchcomponents]':{click:this.searchComponents}, 
-  'componentsform button[action\x3dclearcomponentsfilter]':{click:this.clearComponentsFilter}, 'unittypeslinkform button[action\x3dsave]':{click:this.linkUnitType}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, 
+  'componentsform button[action\x3dclearcomponentsfilter]':{click:this.clearComponentsFilter}, 'unittypeslinkcomponentform button[action\x3dsave]':{click:this.onLinkUnitTypeClick}, 'events':{activate:this.onEventsActivate}, 'tabpanel[id\x3deventstabpanel]':{tabchange:this.onEventsTabChange}, 'options':{activate:this.onOptionsActivate}, 'tabpanel[id\x3doptionstabpanel]':{tabchange:this.onOptionsTabChange}, 'requestreport button[action\x3drequest]':{click:this.onRequestReportSubmit}, 'requestslist \x3e grid[id\x3drequestsGrid]':{itemcontextmenu:this.onRequestsGridContextMenu, 
   selectionchange:this.onRequestsGridSelectionChange}, 'requestslist button[action\x3dshowreport]':{click:this.showReport}, 'menuitem[action\x3dshowreport]':{click:this.showReport}, 'requestslist button[action\x3ddeletereport]':{click:this.deleteReport}, 'menuitem[action\x3ddeletereport]':{click:this.deleteReport}, 'markereventsresult \x3e grid[id\x3dmarkerEventsGrid]':{itemcontextmenu:this.onEventsGridContextMenu, selectionchange:this.oneventsGridSelectionChange, celldblclick:this.viewEvent}, 'markereventsresult button[action\x3dviewevent]':{click:this.viewEvent}, 
   'menuitem[action\x3dviewevent]':{click:this.viewEvent}});
 }, loadStatistics:function() {
@@ -51673,6 +51673,17 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       Ext.apply(utug.getStore().proxy.extraParams, {fid:comp.initialConfig.componentId});
       utug.getStore().load();
     }
+  }
+}, onLinkUnitTypeClick:function(view, cell, rowIndex, colIndex, e) {
+  var componentId = Ext.getCmp('edit_component_window').initialConfig.componentId;
+  if (componentId) {
+    Ext.Ajax.request({method:'post', url:'/request/linker', params:{op:'link_data', data:'units_to_component', fid:componentId}, success:function(form, action) {
+      var grid = Ext.getCmp('UnitTypesLinkComponentGrid');
+      grid.getStore().reload();
+    }, failure:function(form, action) {
+      var obj = Ext.decode(action.response.responseText);
+      Ext.MessageBox.show({title:'Связывание компонент и маркировки', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+    }});
   }
 }, addUser:function(button) {
   var au = Ext.getCmp('add_user_window');
