@@ -51678,7 +51678,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var componentId = Ext.getCmp('edit_component_window').initialConfig.componentId;
   var name = Ext.getCmp('unit_type_name').getValue();
   if (componentId) {
-    Ext.Ajax.request({method:'post', url:'/request/linker', params:{op:'link_data', data:'units_to_component', fid:componentId, name:name}, success:function(form, action) {
+    Ext.Ajax.request({method:'post', url:'/request/linker', params:{op:'link_data', data:'units_to_component', fid:componentId, sid:name}, success:function(form, action) {
       var grid = Ext.getCmp('UnitTypesLinkComponentGrid');
       grid.getStore().reload();
     }, failure:function(form, action) {
