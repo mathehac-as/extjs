@@ -51680,7 +51680,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     return;
   }
   var componentId = Ext.getCmp('edit_component_window').initialConfig.componentId;
-  form.submit({method:'post', url:'/request/unitTypes', params:{component_id:componentId, shortName:'', tu:''}, success:function(form, action) {
+  form.submit({method:'post', url:'/request/unitTypes', params:{component_id:componentId}, success:function(form, action) {
     var grid = Ext.getCmp('UnitTypesLinkComponentGrid');
     grid.getStore().reload();
     Ext.getCmp('edit_component_window').close();
