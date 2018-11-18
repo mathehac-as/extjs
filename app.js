@@ -51670,7 +51670,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   } else {
     if ('componentunittype' == newCard.getId()) {
       var utug = Ext.getCmp('UnitTypesLinkComponentGrid');
-      Ext.apply(utug.getStore().proxy.extraParams, {component_id:comp.initialConfig.componentId});
+      Ext.apply(utug.getStore().proxy.extraParams, {fid:comp.initialConfig.componentId});
       utug.getStore().load();
     }
   }
