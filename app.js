@@ -1,1 +1,1963 @@
-var $jscomp=$jscomp||{};$jscomp.scope={};$jscomp.ASSUME_ES5=!1;$jscomp.ASSUME_NO_NATIVE_MAP=!1;$jscomp.ASSUME_NO_NATIVE_SET=!1;$jscomp.defineProperty=$jscomp.ASSUME_ES5||typeof Object.defineProperties=='function'?Object.defineProperty:function(b,c,a){a=a;if(b==Array.prototype||b==Object.prototype){return}b[c]=a.value};$jscomp.getGlobal=function(a){return typeof window!='undefined'&&window===a?a:typeof global!='undefined'&&global!=null?global:a};$jscomp.global=$jscomp.getGlobal(this);$jscomp.polyfill=function(i,f,j,k){if(!f){return}var a=$jscomp.global;var b=i.split('.');for(var e=0;e<b.length-1;e++){var d=b[e];if(!(d in a)){a[d]={}}a=a[d]}var g=b[b.length-1];var h=a[g];var c=f(h);if(c==h||c==null){return}$jscomp.defineProperty(a,g,{configurable:!0,writable:!0,value:c})};$jscomp.polyfill('Array.prototype.copyWithin',function(a){if(a){return a}var b=function(d,c,b){var e=this.length;d=Number(d);c=Number(c);b=Number(b!=null?b:e);if(d<c){b=Math.min(b,e);while(c<b){if(c in this){this[d++]=this[c++]}else {delete this[d++];c++}}}else {b=Math.min(b,e+c-d);d+=b-c;while(b>c){if(--b in this){this[--d]=this[b]}else {delete this[d]}}}return this};return b},'es6','es3');$jscomp.SYMBOL_PREFIX='jscomp_symbol_';$jscomp.initSymbol=function(){$jscomp.initSymbol=function(){};if(!$jscomp.global['Symbol']){$jscomp.global['Symbol']=$jscomp.Symbol}};$jscomp.Symbol=function(){var a=0;function Symbol(b){return $jscomp.SYMBOL_PREFIX+(b||'')+a++}return Symbol}();$jscomp.initSymbolIterator=function(){$jscomp.initSymbol();var a=$jscomp.global['Symbol'].iterator;if(!a){a=$jscomp.global['Symbol'].iterator=$jscomp.global['Symbol']('iterator')}if(typeof Array.prototype[a]!='function'){$jscomp.defineProperty(Array.prototype,a,{configurable:!0,writable:!0,value:function(){return $jscomp.arrayIterator(this)}})}$jscomp.initSymbolIterator=function(){}};$jscomp.arrayIterator=function(a){var b=0;return $jscomp.iteratorPrototype(function(){if(b<a.length){return {done:!1,value:a[b++]}}else {return {done:!0}}})};$jscomp.iteratorPrototype=function(b){$jscomp.initSymbolIterator();var a={next:b};a[$jscomp.global['Symbol'].iterator]=function(){return this};return a};$jscomp.iteratorFromArray=function(a,d){$jscomp.initSymbolIterator();if(a instanceof String){a=a+''}var c=0;var b={next:function(){if(c<a.length){var e=c++;return {value:d(e,a[e]),done:!1}}b.next=function(){return {done:!0,value:void 0}};return b.next()}};b[Symbol.iterator]=function(){return b};return b};$jscomp.polyfill('Array.prototype.entries',function(a){if(a){return a}var b=function(){return $jscomp.iteratorFromArray(this,function(b,c){return [b,c]})};return b},'es6','es3');$jscomp.polyfill('Array.prototype.fill',function(a){if(a){return a}var b=function(f,c,b){var d=this.length||0;if(c<0){c=Math.max(0,d+c)}if(b==null||b>d){b=d}b=Number(b);if(b<0){b=Math.max(0,d+b)}for(var e=Number(c||0);e<b;e++){this[e]=f}return this};return b},'es6','es3');$jscomp.findInternal=function(a,d,e){if(a instanceof String){a=String(a)}var f=a.length;for(var b=0;b<f;b++){var c=a[b];if(d.call(e,c,b,a)){return {i:b,v:c}}}return {i:-1,v:void 0}};$jscomp.polyfill('Array.prototype.find',function(a){if(a){return a}var b=function(c,b){return $jscomp.findInternal(this,c,b).v};return b},'es6','es3');$jscomp.polyfill('Array.prototype.findIndex',function(a){if(a){return a}var b=function(c,b){return $jscomp.findInternal(this,c,b).i};return b},'es6','es3');$jscomp.polyfill('Array.from',function(a){if(a){return a}var b=function(b,c,g){$jscomp.initSymbolIterator();c=c!=null?c:function(d){return d};var d=[];var f=b[Symbol.iterator];if(typeof f=='function'){b=f.call(b);var h;while(!(h=b.next()).done){d.push(c.call(g,h.value))}}else {var i=b.length;for(var e=0;e<i;e++){d.push(c.call(g,b[e]))}}return d};return b},'es6','es3');$jscomp.polyfill('Object.is',function(a){if(a){return a}var b=function(b,c){if(b===c){return b!==0||1/b===1/c}else {return b!==b&&c!==c}};return b},'es6','es3');$jscomp.polyfill('Array.prototype.includes',function(a){if(a){return a}var b=function(d,e){var b=this;if(b instanceof String){b=String(b)}var f=b.length;for(var c=e||0;c<f;c++){if(b[c]==d||Object.is(b[c],d)){return !0}}return !1};return b},'es7','es3');$jscomp.polyfill('Array.prototype.keys',function(a){if(a){return a}var b=function(){return $jscomp.iteratorFromArray(this,function(b){return b})};return b},'es6','es3');$jscomp.polyfill('Array.of',function(a){if(a){return a}var b=function(b){return Array.from(arguments)};return b},'es6','es3');$jscomp.polyfill('Array.prototype.values',function(a){if(a){return a}var b=function(){return $jscomp.iteratorFromArray(this,function(c,b){return b})};return b},'es6','es3');$jscomp.makeIterator=function(a){$jscomp.initSymbolIterator();var b=a[Symbol.iterator];return b?b.call(a):$jscomp.arrayIterator(a)};$jscomp.FORCE_POLYFILL_PROMISE=!1;$jscomp.polyfill('Promise',function(c){if(c&&!$jscomp.FORCE_POLYFILL_PROMISE){return c}function AsyncExecutor(){this.batch_=null}AsyncExecutor.prototype.asyncExecute=function(a){if(this.batch_==null){this.batch_=[];this.asyncExecuteBatch_()}this.batch_.push(a);return this};AsyncExecutor.prototype.asyncExecuteBatch_=function(){var a=this;this.asyncExecuteFunction(function(){a.executeBatch_()})};var e=$jscomp.global['setTimeout'];AsyncExecutor.prototype.asyncExecuteFunction=function(a){e(a,0)};AsyncExecutor.prototype.executeBatch_=function(){while(this.batch_&&this.batch_.length){var b=this.batch_;this.batch_=[];for(var a=0;a<b.length;++a){var d=b[a];delete b[a];try{d()}catch(f){this.asyncThrow_(f)}}}this.batch_=null};AsyncExecutor.prototype.asyncThrow_=function(a){this.asyncExecuteFunction(function(){throw a})};var b={PENDING:0,FULFILLED:1,REJECTED:2};var a=function(d){this.state_=b.PENDING;this.result_=undefined;this.onSettledCallbacks_=[];var a=this.createResolveAndReject_();try{d(a.resolve,a.reject)}catch(f){a.reject(f)}};a.prototype.createResolveAndReject_=function(){var b=this;var a=!1;function firstCallWins(d){return function(e){if(!a){a=!0;d.call(b,e)}}}return {resolve:firstCallWins(this.resolveTo_),reject:firstCallWins(this.reject_)}};a.prototype.resolveTo_=function(b){if(b===this){this.reject_(new TypeError('A Promise cannot resolve to itself'))}else {if(b instanceof a){this.settleSameAsPromise_(b)}else {if(isObject(b)){this.resolveToNonPromiseObj_(b)}else {this.fulfill_(b)}}}};a.prototype.resolveToNonPromiseObj_=function(b){var a=undefined;try{a=b.then}catch(f){this.reject_(f);return}if(typeof a=='function'){this.settleSameAsThenable_(a,b)}else {this.fulfill_(b)}};function isObject(a){switch(typeof a){case 'object':return a!=null;case 'function':return !0;default:return !1;}}a.prototype.reject_=function(a){this.settle_(b.REJECTED,a)};a.prototype.fulfill_=function(a){this.settle_(b.FULFILLED,a)};a.prototype.settle_=function(d,a){if(this.state_!=b.PENDING){throw new Error('Cannot settle('+d+', '+a|'): Promise already settled in state'+this.state_)}this.state_=d;this.result_=a;this.executeOnSettledCallbacks_()};a.prototype.executeOnSettledCallbacks_=function(){if(this.onSettledCallbacks_!=null){var b=this.onSettledCallbacks_;for(var a=0;a<b.length;++a){b[a].call();b[a]=null}this.onSettledCallbacks_=null}};var d=new AsyncExecutor();a.prototype.settleSameAsPromise_=function(b){var a=this.createResolveAndReject_();b.callWhenSettled_(a.resolve,a.reject)};a.prototype.settleSameAsThenable_=function(b,d){var a=this.createResolveAndReject_();try{b.call(d,a.resolve,a.reject)}catch(f){a.reject(f)}};a.prototype.then=function(f,g){var b;var d;var e=new a(function(a,e){b=a;d=e});function createCallback(a,e){if(typeof a=='function'){return function(h){try{b(a(h))}catch(i){d(i)}}}else {return e}}this.callWhenSettled_(createCallback(f,b),createCallback(g,d));return e};a.prototype['catch']=function(a){return this.then(undefined,a)};a.prototype.callWhenSettled_=function(e,f){var a=this;function callback(){switch(a.state_){case b.FULFILLED:e(a.result_);break;case b.REJECTED:f(a.result_);break;default:throw new Error('Unexpected state: '+a.state_);}}if(this.onSettledCallbacks_==null){d.asyncExecute(callback)}else {this.onSettledCallbacks_.push(function(){d.asyncExecute(callback)})}};function resolvingPromise(b){if(b instanceof a){return b}else {return new a(function(a,d){a(b)})}}a['resolve']=resolvingPromise;a['reject']=function(b){return new a(function(d,a){a(b)})};a['race']=function(b){return new a(function(e,f){var d=$jscomp.makeIterator(b);for(var a=d.next();!a.done;a=d.next()){resolvingPromise(a.value).callWhenSettled_(e,f)}})};a['all']=function(e){var d=$jscomp.makeIterator(e);var b=d.next();if(b.done){return resolvingPromise([])}else {return new a(function(g,h){var a=[];var f=0;function onFulfilled(b){return function(d){a[b]=d;f--;if(f==0){g(a)}}}do{a.push(undefined);f++;resolvingPromise(b.value).callWhenSettled_(onFulfilled(a.length-1),h);b=d.next()}while(!b.done)})}};return a},'es6','es3');$jscomp.executeAsyncGenerator=function(a){function passValueToGenerator(b){return a.next(b)}function passErrorToGenerator(b){return a['throw'](b)}return new Promise(function(b,c){function handleGeneratorRecord(d){if(d.done){b(d.value)}else {Promise.resolve(d.value).then(passValueToGenerator,passErrorToGenerator).then(handleGeneratorRecord,c)}}handleGeneratorRecord(a.next())})};$jscomp.owns=function(b,a){return Object.prototype.hasOwnProperty.call(b,a)};$jscomp.polyfill('WeakMap',function(c){function isConformant(){if(!c||!Object.seal){return !1}try{var b=Object.seal({});var d=Object.seal({});var a=new c([[b,2],[d,3]]);if(a.get(b)!=2||a.get(d)!=3){return !1}a['delete'](b);a.set(d,4);return !a.has(b)&&a.get(d)==4}catch(e){return !1}}if(isConformant()){return c}var a='$jscomp_hidden_'+Math.random().toString().substring(2);function insert(b){if(!$jscomp.owns(b,a)){var d={};$jscomp.defineProperty(b,a,{value:d})}}function patch(a){var b=Object[a];if(b){Object[a]=function(d){insert(d);return b(d)}}}patch('freeze');patch('preventExtensions');patch('seal');var d=0;var b=function(a){this.id_=(d+=Math.random()+1).toString();if(a){$jscomp.initSymbol();$jscomp.initSymbolIterator();var f=$jscomp.makeIterator(a);var b;while(!(b=f.next()).done){var e=b.value;this.set(e[0],e[1])}}};b.prototype.set=function(b,d){insert(b);if(!$jscomp.owns(b,a)){throw new Error('WeakMap key fail: '+b)}b[a][this.id_]=d;return this};b.prototype.get=function(b){return $jscomp.owns(b,a)?b[a][this.id_]:undefined};b.prototype.has=function(b){return $jscomp.owns(b,a)&&$jscomp.owns(b[a],this.id_)};b.prototype['delete']=function(b){if(!$jscomp.owns(b,a)||!$jscomp.owns(b[a],this.id_)){return !1}return delete b[a][this.id_]};return b},'es6','es3');$jscomp.MapEntry=function(){this.previous;this.next;this.head;this.key;this.value};$jscomp.polyfill('Map',function(b){var g=!$jscomp.ASSUME_NO_NATIVE_MAP&&function(){if(!b||!b.prototype.entries||typeof Object.seal!='function'){return !1}try{b=b;var e=Object.seal({x:4});var c=new b($jscomp.makeIterator([[e,'s']]));if(c.get(e)!='s'||c.size!=1||c.get({x:4})||c.set({x:4},'t')!=c||c.size!=2){return !1}var d=c.entries();var a=d.next();if(a.done||a.value[0]!=e||a.value[1]!='s'){return !1}a=d.next();if(a.done||a.value[0].x!=4||a.value[1]!='t'||!d.next().done){return !1}return !0}catch(j){return !1}}();if(g){return b}$jscomp.initSymbol();$jscomp.initSymbolIterator();var e=new WeakMap();var a=function(a){this.data_={};this.head_=f();this.size=0;if(a){var e=$jscomp.makeIterator(a);var c;while(!(c=e.next()).done){var d=c.value;this.set(d[0],d[1])}}};a.prototype.set=function(e,d){var a=c(this,e);if(!a.list){a.list=this.data_[a.id]=[]}if(!a.entry){a.entry={next:this.head_,previous:this.head_.previous,head:this.head_,key:e,value:d};a.list.push(a.entry);this.head_.previous.next=a.entry;this.head_.previous=a.entry;this.size++}else {a.entry.value=d}return this};a.prototype['delete']=function(d){var a=c(this,d);if(a.entry&&a.list){a.list.splice(a.index,1);if(!a.list.length){delete this.data_[a.id]}a.entry.previous.next=a.entry.next;a.entry.next.previous=a.entry.previous;a.entry.head=null;this.size--;return !0}return !1};a.prototype.clear=function(){this.data_={};this.head_=this.head_.previous=f();this.size=0};a.prototype.has=function(a){return !!c(this,a).entry};a.prototype.get=function(d){var a=c(this,d).entry;return a&&a.value};a.prototype.entries=function(){return d(this,function(a){return [a.key,a.value]})};a.prototype.keys=function(){return d(this,function(a){return a.key})};a.prototype.values=function(){return d(this,function(a){return a.value})};a.prototype.forEach=function(e,d){var f=this.entries();var c;while(!(c=f.next()).done){var a=c.value;e.call(d,a[1],a[0],this)}};a.prototype[Symbol.iterator]=a.prototype.entries;var c=function(g,e){var f=i(e);var a=g.data_[f];if(a&&$jscomp.owns(g.data_,f)){for(var d=0;d<a.length;d++){var c=a[d];if(e!==e&&c.key!==c.key||e===c.key){return {id:f,list:a,index:d,entry:c}}}}return {id:f,list:a,index:-1,entry:undefined}};var d=function(c,d){var a=c.head_;return $jscomp.iteratorPrototype(function(){if(a){while(a.head!=c.head_){a=a.previous}while(a.next!=a.head){a=a.next;return {done:!1,value:d(a)}}a=null}return {done:!0,value:void 0}})};var f=function(){var a={};a.previous=a.next=a.head=a;return a};var h=0;var i=function(a){var c=a&&typeof a;if(c=='object'||c=='function'){a=a;if(!e.has(a)){var d=''+ ++h;e.set(a,d);return d}return e.get(a)}return 'p_'+a};return a},'es6','es3');$jscomp.polyfill('Math.acosh',function(a){if(a){return a}var b=function(b){b=Number(b);return Math.log(b+Math.sqrt(b*b-1))};return b},'es6','es3');$jscomp.polyfill('Math.asinh',function(a){if(a){return a}var b=function(b){b=Number(b);if(b===0){return b}var c=Math.log(Math.abs(b)+Math.sqrt(b*b+1));return b<0?-c:c};return b},'es6','es3');$jscomp.polyfill('Math.log1p',function(a){if(a){return a}var b=function(b){b=Number(b);if(b<0.25&&b>-0.25){var f=b;var g=1;var c=b;var d=0;var e=1;while(d!=c){f*=b;e*=-1;c=(d=c)+e*f/++g}return c}return Math.log(1+b)};return b},'es6','es3');$jscomp.polyfill('Math.atanh',function(b){if(b){return b}var a=Math.log1p;var c=function(c){c=Number(c);return (a(c)-a(-c))/2};return c},'es6','es3');$jscomp.polyfill('Math.cbrt',function(a){if(a){return a}var b=function(b){if(b===0){return b}b=Number(b);var c=Math.pow(Math.abs(b),1/3);return b<0?-c:c};return b},'es6','es3');$jscomp.polyfill('Math.clz32',function(a){if(a){return a}var b=function(b){b=Number(b)>>>0;if(b===0){return 32}var c=0;if((b&4.29490176E9)===0){b<<=16;c+=16}if((b&4.27819008E9)===0){b<<=8;c+=8}if((b&4.02653184E9)===0){b<<=4;c+=4}if((b&3.221225472E9)===0){b<<=2;c+=2}if((b&2.147483648E9)===0){c++}return c};return b},'es6','es3');$jscomp.polyfill('Math.cosh',function(a){if(a){return a}var b=Math.exp;var c=function(c){c=Number(c);return (b(c)+b(-c))/2};return c},'es6','es3');$jscomp.polyfill('Math.expm1',function(a){if(a){return a}var b=function(b){b=Number(b);if(b<0.25&&b>-0.25){var e=b;var f=1;var c=b;var d=0;while(d!=c){e*=b/++f;c=(d=c)+e}return c}return Math.exp(b)-1};return b},'es6','es3');$jscomp.polyfill('Math.hypot',function(a){if(a){return a}var b=function(c,d,h){c=Number(c);d=Number(d);var b,g,f;var e=Math.max(Math.abs(c),Math.abs(d));for(b=2;b<arguments.length;b++){e=Math.max(e,Math.abs(arguments[b]))}if(e>1.0E100||e<1.0E-100){c=c/e;d=d/e;f=c*c+d*d;for(b=2;b<arguments.length;b++){g=Number(arguments[b])/e;f+=g*g}return Math.sqrt(f)*e}else {f=c*c+d*d;for(b=2;b<arguments.length;b++){g=Number(arguments[b]);f+=g*g}return Math.sqrt(f)}};return b},'es6','es3');$jscomp.polyfill('Math.imul',function(a){if(a){return a}var b=function(b,c){b=Number(b);c=Number(c);var f=b>>>16&65535;var d=b&65535;var g=c>>>16&65535;var e=c&65535;var h=f*e+d*g<<16>>>0;return d*e+h|0};return b},'es6','es3');$jscomp.polyfill('Math.log10',function(a){if(a){return a}var b=function(b){return Math.log(b)/Math.LN10};return b},'es6','es3');$jscomp.polyfill('Math.log2',function(a){if(a){return a}var b=function(b){return Math.log(b)/Math.LN2};return b},'es6','es3');$jscomp.polyfill('Math.sign',function(a){if(a){return a}var b=function(b){b=Number(b);return b===0||isNaN(b)?b:b>0?1:-1};return b},'es6','es3');$jscomp.polyfill('Math.sinh',function(a){if(a){return a}var b=Math.exp;var c=function(c){c=Number(c);if(c===0){return c}return (b(c)-b(-c))/2};return c},'es6','es3');$jscomp.polyfill('Math.tanh',function(a){if(a){return a}var b=function(b){b=Number(b);if(b===0){return b}var c=Math.exp(-2*Math.abs(b));var d=(1-c)/(1+c);return b<0?-d:d};return b},'es6','es3');$jscomp.polyfill('Math.trunc',function(a){if(a){return a}var b=function(b){b=Number(b);if(isNaN(b)||b===Infinity||b===-Infinity||b===0){return b}var c=Math.floor(Math.abs(b));return b<0?-c:c};return b},'es6','es3');$jscomp.polyfill('Number.EPSILON',function(a){return Math.pow(2,-52)},'es6','es3');$jscomp.polyfill('Number.MAX_SAFE_INTEGER',function(){return 9.007199254740991E15},'es6','es3');$jscomp.polyfill('Number.MIN_SAFE_INTEGER',function(){return -9.007199254740991E15},'es6','es3');$jscomp.polyfill('Number.isFinite',function(a){if(a){return a}var b=function(b){if(typeof b!=='number'){return !1}return !isNaN(b)&&b!==Infinity&&b!==-Infinity};return b},'es6','es3');$jscomp.polyfill('Number.isInteger',function(a){if(a){return a}var b=function(b){if(!Number.isFinite(b)){return !1}return b===Math.floor(b)};return b},'es6','es3');$jscomp.polyfill('Number.isNaN',function(a){if(a){return a}var b=function(b){return typeof b==='number'&&isNaN(b)};return b},'es6','es3');$jscomp.polyfill('Number.isSafeInteger',function(a){if(a){return a}var b=function(b){return Number.isInteger(b)&&Math.abs(b)<=Number.MAX_SAFE_INTEGER};return b},'es6','es3');$jscomp.polyfill('Object.assign',function(a){if(a){return a}var b=function(e,f){for(var d=1;d<arguments.length;d++){var b=arguments[d];if(!b){continue}for(var c in b){if($jscomp.owns(b,c)){e[c]=b[c]}}}return e};return b},'es6','es3');$jscomp.polyfill('Object.entries',function(a){if(a){return a}var b=function(c){var d=[];for(var b in c){if($jscomp.owns(c,b)){d.push([b,c[b]])}}return d};return b},'es8','es3');$jscomp.polyfill('Object.getOwnPropertySymbols',function(a){if(a){return a}return function(){return []}},'es6','es5');$jscomp.polyfill('Reflect.ownKeys',function(b){if(b){return b}var a='jscomp_symbol_';function isSymbol(c){return c.substring(0,a.length)==a}var c=function(e){var f=[];var c=Object.getOwnPropertyNames(e);var d=Object.getOwnPropertySymbols(e);for(var a=0;a<c.length;a++){(isSymbol(c[a])?d:f).push(c[a])}return f.concat(d)};return c},'es6','es5');$jscomp.polyfill('Object.getOwnPropertyDescriptors',function(a){if(a){return a}var b=function(e){var d={};var c=Reflect.ownKeys(e);for(var b=0;b<c.length;b++){d[c[b]]=Object.getOwnPropertyDescriptor(e,c[b])}return d};return b},'es8','es5');$jscomp.underscoreProtoCanBeSet=function(){var b={a:!0};var a={};try{a.__proto__=b;return a.a}catch(c){}return !1};$jscomp.setPrototypeOf=typeof Object.setPrototypeOf=='function'?Object.setPrototypeOf:$jscomp.underscoreProtoCanBeSet()?function(a,b){a.__proto__=b;if(a.__proto__!==b){throw new TypeError(a+' is not extensible')}return a}:null;$jscomp.polyfill('Object.setPrototypeOf',function(a){return a||$jscomp.setPrototypeOf},'es6','es5');$jscomp.polyfill('Object.values',function(a){if(a){return a}var b=function(b){var c=[];for(var d in b){if($jscomp.owns(b,d)){c.push(b[d])}}return c};return b},'es8','es3');$jscomp.polyfill('Reflect.apply',function(a){if(a){return a}var c=Function.prototype.apply;var b=function(e,d,b){return c.call(e,d,b)};return b},'es6','es3');$jscomp.objectCreate=$jscomp.ASSUME_ES5||typeof Object.create=='function'?Object.create:function(b){var a=function(){};a.prototype=b;return new a()};$jscomp.construct=function(){function reflectConstructWorks(){function Base(){}function Derived(){}new Base();Reflect.construct(Base,[],Derived);return new Base() instanceof Base}if(typeof Reflect!='undefined'&&Reflect.construct){if(reflectConstructWorks()){return Reflect.construct}var b=Reflect.construct;var a=function(e,d,a){var c=b(e,d);if(a){Reflect.setPrototypeOf(c,a.prototype)}return c};return a}function construct(b,d,a){if(a===undefined){a=b}var f=a.prototype||Object.prototype;var c=$jscomp.objectCreate(f);var e=Function.prototype.apply;var g=e.call(b,c,d);return g||c}return construct}();$jscomp.polyfill('Reflect.construct',function(a){return $jscomp.construct},'es6','es3');$jscomp.polyfill('Reflect.defineProperty',function(a){if(a){return a}var b=function(e,d,c){try{Object.defineProperty(e,d,c);var b=Object.getOwnPropertyDescriptor(e,d);if(!b){return !1}return b.configurable===(c.configurable||!1)&&b.enumerable===(c.enumerable||!1)&&('value' in b?b.value===c.value&&b.writable===(c.writable||!1):b.get===c.get&&b.set===c.set)}catch(f){return !1}};return b},'es6','es5');$jscomp.polyfill('Reflect.deleteProperty',function(a){if(a){return a}var b=function(c,b){if(!$jscomp.owns(c,b)){return !0}try{return delete c[b]}catch(d){return !1}};return b},'es6','es3');$jscomp.polyfill('Reflect.getOwnPropertyDescriptor',function(a){return a||Object.getOwnPropertyDescriptor},'es6','es5');$jscomp.polyfill('Reflect.getPrototypeOf',function(a){return a||Object.getPrototypeOf},'es6','es5');$jscomp.findDescriptor=function(d,c){var a=d;while(a){var b=Reflect.getOwnPropertyDescriptor(a,c);if(b){return b}a=Reflect.getPrototypeOf(a)}return undefined};$jscomp.polyfill('Reflect.get',function(a){if(a){return a}var b=function(d,c,e){if(arguments.length<=2){return d[c]}var b=$jscomp.findDescriptor(d,c);if(b){return b.get?b.get.call(e):b.value}return undefined};return b},'es6','es5');$jscomp.polyfill('Reflect.has',function(a){if(a){return a}var b=function(c,b){return b in c};return b},'es6','es3');$jscomp.polyfill('Reflect.isExtensible',function(a){if(a){return a}if($jscomp.ASSUME_ES5||typeof Object.isExtensible=='function'){return Object.isExtensible}return function(){return !0}},'es6','es3');$jscomp.polyfill('Reflect.preventExtensions',function(a){if(a){return a}if(!($jscomp.ASSUME_ES5||typeof Object.preventExtensions=='function')){return function(){return !1}}var b=function(b){Object.preventExtensions(b);return !Object.isExtensible(b)};return b},'es6','es3');$jscomp.polyfill('Reflect.set',function(a){if(a){return a}var b=function(b,d,e,f){var c=$jscomp.findDescriptor(b,d);if(!c){if(Reflect.isExtensible(b)){b[d]=e;return !0}return !1}if(c.set){c.set.call(arguments.length>3?f:b,e);return !0}else {if(c.writable&&!Object.isFrozen(b)){b[d]=e;return !0}}return !1};return b},'es6','es5');$jscomp.polyfill('Reflect.setPrototypeOf',function(a){if(a){return a}else {if($jscomp.setPrototypeOf){var b=$jscomp.setPrototypeOf;var c=function(c,d){try{b(c,d);return !0}catch(e){return !1}};return c}else {return null}}},'es6','es5');$jscomp.polyfill('Set',function(b){var c=!$jscomp.ASSUME_NO_NATIVE_SET&&function(){if(!b||!b.prototype.entries||typeof Object.seal!='function'){return !1}try{b=b;var d=Object.seal({x:4});var c=new b($jscomp.makeIterator([d]));if(!c.has(d)||c.size!=1||c.add(d)!=c||c.size!=1||c.add({x:4})!=c||c.size!=2){return !1}var e=c.entries();var a=e.next();if(a.done||a.value[0]!=d||a.value[1]!=d){return !1}a=e.next();if(a.done||a.value[0]==d||a.value[0].x!=4||a.value[1]!=a.value[0]){return !1}return e.next().done}catch(f){return !1}}();if(c){return b}$jscomp.initSymbol();$jscomp.initSymbolIterator();var a=function(a){this.map_=new Map();if(a){var e=$jscomp.makeIterator(a);var c;while(!(c=e.next()).done){var d=c.value;this.add(d)}}this.size=this.map_.size};a.prototype.add=function(a){this.map_.set(a,a);this.size=this.map_.size;return this};a.prototype['delete']=function(c){var a=this.map_['delete'](c);this.size=this.map_.size;return a};a.prototype.clear=function(){this.map_.clear();this.size=0};a.prototype.has=function(a){return this.map_.has(a)};a.prototype.entries=function(){return this.map_.entries()};a.prototype.values=function(){return this.map_.values()};a.prototype.keys=a.prototype.values;a.prototype[Symbol.iterator]=a.prototype.values;a.prototype.forEach=function(c,a){var d=this;this.map_.forEach(function(e){return c.call(a,e,e,d)})};return a},'es6','es3');$jscomp.checkStringArgs=function(a,c,b){if(a==null){throw new TypeError("The 'this' value for String.prototype."+b+' must not be null or undefined')}if(c instanceof RegExp){throw new TypeError('First argument to String.prototype.'+b+' must not be a regular expression')}return a+''};$jscomp.polyfill('String.prototype.codePointAt',function(a){if(a){return a}var b=function(b){var e=$jscomp.checkStringArgs(this,null,'codePointAt');var f=e.length;b=Number(b)||0;if(!(b>=0&&b<f)){return void 0}b=b|0;var c=e.charCodeAt(b);if(c<55296||c>56319||b+1===f){return c}var d=e.charCodeAt(b+1);if(d<56320||d>57343){return c}return (c-55296)*1024+d+9216};return b},'es6','es3');$jscomp.polyfill('String.prototype.endsWith',function(a){if(a){return a}var b=function(b,c){var d=$jscomp.checkStringArgs(this,b,'endsWith');b=b+'';if(c===void 0){c=d.length}var f=Math.max(0,Math.min(c|0,d.length));var e=b.length;while(e>0&&f>0){if(d[--f]!=b[--e]){return !1}}return e<=0};return b},'es6','es3');$jscomp.polyfill('String.fromCodePoint',function(a){if(a){return a}var b=function(e){var c='';for(var d=0;d<arguments.length;d++){var b=Number(arguments[d]);if(b<0||b>1114111||b!==Math.floor(b)){throw new RangeError('invalid_code_point '+b)}if(b<=65535){c+=String.fromCharCode(b)}else {b-=65536;c+=String.fromCharCode(b>>>10&1023|55296);c+=String.fromCharCode(b&1023|56320)}}return c};return b},'es6','es3');$jscomp.polyfill('String.prototype.includes',function(a){if(a){return a}var b=function(b,c){var d=$jscomp.checkStringArgs(this,b,'includes');return d.indexOf(b,c||0)!==-1};return b},'es6','es3');$jscomp.polyfill('String.prototype.repeat',function(a){if(a){return a}var b=function(b){var c=$jscomp.checkStringArgs(this,null,'repeat');if(b<0||b>1342177279){throw new RangeError('Invalid count value')}b=b|0;var d='';while(b){if(b&1){d+=c}if(b>>>=1){c+=c}}return d};return b},'es6','es3');$jscomp.stringPadding=function(c,a){var b=c!==undefined?String(c):' ';if(!(a>0)||!b){return ''}var d=Math.ceil(a/b.length);return b.repeat(d).substring(0,a)};$jscomp.polyfill('String.prototype.padEnd',function(a){if(a){return a}var b=function(d,c){var b=$jscomp.checkStringArgs(this,null,'padStart');var e=d-b.length;return b+$jscomp.stringPadding(c,e)};return b},'es8','es3');$jscomp.polyfill('String.prototype.padStart',function(a){if(a){return a}var b=function(d,c){var b=$jscomp.checkStringArgs(this,null,'padStart');var e=d-b.length;return $jscomp.stringPadding(c,e)+b};return b},'es8','es3');$jscomp.polyfill('String.prototype.startsWith',function(a){if(a){return a}var b=function(b,g){var c=$jscomp.checkStringArgs(this,b,'startsWith');b=b+'';var h=c.length;var e=b.length;var f=Math.max(0,Math.min(g|0,c.length));var d=0;while(d<e&&f<h){if(c[f++]!=b[d++]){return !1}}return d>=e};return b},'es6','es3');$jscomp.arrayFromIterator=function(c){var b;var a=[];while(!(b=c.next()).done){a.push(b.value)}return a};$jscomp.arrayFromIterable=function(a){if(a instanceof Array){return a}else {return $jscomp.arrayFromIterator($jscomp.makeIterator(a))}};$jscomp.inherits=function(a,b){a.prototype=$jscomp.objectCreate(b.prototype);a.prototype.constructor=a;if($jscomp.setPrototypeOf){var e=$jscomp.setPrototypeOf;e(a,b)}else {for(var c in b){if(c=='prototype'){continue}if(Object.defineProperties){var d=Object.getOwnPropertyDescriptor(b,c);if(d){Object.defineProperty(a,c,d)}}else {a[c]=b[c]}}}a.superClass_=b.prototype};$jscomp.polyfill('WeakSet',function(b){function isConformant(){if(!b||!Object.seal){return !1}try{var c=Object.seal({});var d=Object.seal({});var a=new b([c]);if(!a.has(c)||a.has(d)){return !1}a['delete'](c);a.add(d);return !a.has(c)&&a.has(d)}catch(e){return !1}}if(isConformant()){return b}var a=function(a){this.map_=new WeakMap();if(a){$jscomp.initSymbol();$jscomp.initSymbolIterator();var e=$jscomp.makeIterator(a);var c;while(!(c=e.next()).done){var d=c.value;this.add(d)}}};a.prototype.add=function(a){this.map_.set(a,!0);return this};a.prototype.has=function(a){return this.map_.has(a)};a.prototype['delete']=function(a){return this.map_['delete'](a)};return a},'es6','es3');try{if(Array.prototype.values.toString().indexOf('[native code]')==-1){delete Array.prototype.values}}catch(a){}(function(q){var e,p=['constructor','toString','valueOf','toLocaleString'],n={},m={},k=0,l,j,a,b,o,f,c,d,g,h,i,t=function(){var s,t;j=Ext.Base;a=Ext.ClassManager;b=Ext.Class;for(s=p.length;s-->0;){t=1<<s;m[n[t]=p[s]]=t}for(s in m){k|=m[s]}k=~k;Function.prototype.$isFunction=1;i=!!a.addAlias;o=b.getPreprocessor('config').fn;f=b.getPreprocessor('cachedConfig');f=f&&f.fn;h=b.getPreprocessor('privates');h=h&&h.fn;d=b.getPreprocessor('platformConfig');d=d&&d.fn;c=a.postprocessors.platformConfig;c=c&&c.fn;g=a.postprocessors.deprecated;g=g&&g.fn;e=j.$staticMembers;if(!e){e=[];for(l in j){if(j.hasOwnProperty(l)){e.push(l)}}}q.derive=r;return r.apply(this,arguments)},s=function(f,d,o){var l=o.enumerableMembers,j=f.prototype,b,h,k,e,m;if(!d){return}if(i){f.addMembers(d)}else {for(b in d){e=d[b];if(e&&e.$isFunction&&!e.$isClass&&e!==Ext.emptyFn&&e!==Ext.identityFn){m=j.hasOwnProperty(b)&&j[b];if(m){e.$previous=m}j[b]=h=e;h.$owner=f;h.$name=b}else {j[b]=e}}for(k=1;l;k<<=1){if(l&k){l&=~k;b=n[k];j[b]=h=d[b];h.$owner=f;h.$name=b}}}if(d.platformConfig&&c){c.call(a,f.$className,f,d)}if(d.deprecated&&g){g.call(a,f.$className,f,d)}},r=function(u,Q,c,L,E,M,O,B,D,G,N){var g=function ctor(){return this.constructor.apply(this,arguments)||null},m=g,v={enumerableMembers:L&k,onCreated:N,onBeforeCreated:s,aliases:B},p=c.alternateClassName||[],P=Ext.global,F,z,l,K,y,C,H,r,x,w,n,I,t,J=a.alternateToName||a.maps.alternateToName,A=a.nameToAlternates||a.maps.nameToAlternates;for(l=e.length;l-->0;){H=e[l];g[H]=j[H]}if(c.$isFunction){c=c(g)}v.data=c;x=c.statics;delete c.statics;c.$className=u;if('$className' in c){g.$className=c.$className}g.extend(Q);r=g.prototype;if(E){g.xtype=c.xtype=E[0];r.xtypes=E}r.xtypesChain=M;r.xtypesMap=O;c.alias=B;m.triggerExtended(g,c,v);if(c.onClassExtended){g.onExtended(c.onClassExtended,g);delete c.onClassExtended}if(c.privates&&h){h.call(b,g,c)}if(x){if(i){g.addStatics(x)}else {for(w in x){if(x.hasOwnProperty(w)){t=x[w];if(t&&t.$isFunction&&!t.$isClass&&t!==Ext.emptyFn&&t!==Ext.identityFn){g[w]=I=t;I.$owner=g;I.$name=w}g[w]=t}}}}if(c.inheritableStatics){g.addInheritableStatics(c.inheritableStatics);delete c.inheritableStatics}if(r.onClassExtended){m.onExtended(r.onClassExtended,m);delete r.onClassExtended}if(c.platformConfig&&d){d.call(b,g,c);delete c.platformConfig}if(c.config){o.call(b,g,c)}if(c.cachedConfig&&f){f.call(b,g,c);delete c.cachedConfig}v.onBeforeCreated(g,v.data,v);for(l=0,y=D&&D.length;l<y;++l){g.mixin.apply(g,D[l])}for(l=0,y=B.length;l<y;l++){F=B[l];a.setAlias?a.setAlias(g,F):a.addAlias(g,F)}if(c.singleton){m=new g()}if(!(p instanceof Array)){p=[p]}n=a.getName(m);for(l=0,K=p.length;l<K;l++){z=p[l];a.classes[z]=m;if(i){a.addAlternate(g,z)}else {if(n){J[z]=n;p=A[n]||(A[n]=[]);p.push(z)}}}for(l=0,y=G.length;l<y;l+=2){C=G[l];if(!C){C=P}C[G[l+1]]=m}a.classes[u]=m;if(!i){if(n&&n!==u){J[u]=n;p=A[n]||(A[n]=[]);p.push(u)}}delete r.alternateClassName;if(v.onCreated){v.onCreated.call(m,m)}if(u){a.triggerCreated(u)}return m};q.derive=t})(Ext.cmd={});
+var $jscomp = $jscomp || {};
+$jscomp.scope = {};
+$jscomp.ASSUME_ES5 = false;
+$jscomp.ASSUME_NO_NATIVE_MAP = false;
+$jscomp.ASSUME_NO_NATIVE_SET = false;
+$jscomp.defineProperty = $jscomp.ASSUME_ES5 || typeof Object.defineProperties == 'function' ? Object.defineProperty : function(target, property, descriptor) {
+  descriptor = descriptor;
+  if (target == Array.prototype || target == Object.prototype) {
+    return;
+  }
+  target[property] = descriptor.value;
+};
+$jscomp.getGlobal = function(maybeGlobal) {
+  return typeof window != 'undefined' && window === maybeGlobal ? maybeGlobal : typeof global != 'undefined' && global != null ? global : maybeGlobal;
+};
+$jscomp.global = $jscomp.getGlobal(this);
+$jscomp.polyfill = function(target, polyfill, fromLang, toLang) {
+  if (!polyfill) {
+    return;
+  }
+  var obj = $jscomp.global;
+  var split = target.split('.');
+  for (var i = 0; i < split.length - 1; i++) {
+    var key = split[i];
+    if (!(key in obj)) {
+      obj[key] = {};
+    }
+    obj = obj[key];
+  }
+  var property = split[split.length - 1];
+  var orig = obj[property];
+  var impl = polyfill(orig);
+  if (impl == orig || impl == null) {
+    return;
+  }
+  $jscomp.defineProperty(obj, property, {configurable:true, writable:true, value:impl});
+};
+$jscomp.polyfill('Array.prototype.copyWithin', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, start, opt_end) {
+    var len = this.length;
+    target = Number(target);
+    start = Number(start);
+    opt_end = Number(opt_end != null ? opt_end : len);
+    if (target < start) {
+      opt_end = Math.min(opt_end, len);
+      while (start < opt_end) {
+        if (start in this) {
+          this[target++] = this[start++];
+        } else {
+          delete this[target++];
+          start++;
+        }
+      }
+    } else {
+      opt_end = Math.min(opt_end, len + start - target);
+      target += opt_end - start;
+      while (opt_end > start) {
+        if (--opt_end in this) {
+          this[--target] = this[opt_end];
+        } else {
+          delete this[target];
+        }
+      }
+    }
+    return this;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.SYMBOL_PREFIX = 'jscomp_symbol_';
+$jscomp.initSymbol = function() {
+  $jscomp.initSymbol = function() {
+  };
+  if (!$jscomp.global['Symbol']) {
+    $jscomp.global['Symbol'] = $jscomp.Symbol;
+  }
+};
+$jscomp.Symbol = function() {
+  var counter = 0;
+  function Symbol(opt_description) {
+    return $jscomp.SYMBOL_PREFIX + (opt_description || '') + counter++;
+  }
+  return Symbol;
+}();
+$jscomp.initSymbolIterator = function() {
+  $jscomp.initSymbol();
+  var symbolIterator = $jscomp.global['Symbol'].iterator;
+  if (!symbolIterator) {
+    symbolIterator = $jscomp.global['Symbol'].iterator = $jscomp.global['Symbol']('iterator');
+  }
+  if (typeof Array.prototype[symbolIterator] != 'function') {
+    $jscomp.defineProperty(Array.prototype, symbolIterator, {configurable:true, writable:true, value:function() {
+      return $jscomp.arrayIterator(this);
+    }});
+  }
+  $jscomp.initSymbolIterator = function() {
+  };
+};
+$jscomp.arrayIterator = function(array) {
+  var index = 0;
+  return $jscomp.iteratorPrototype(function() {
+    if (index < array.length) {
+      return {done:false, value:array[index++]};
+    } else {
+      return {done:true};
+    }
+  });
+};
+$jscomp.iteratorPrototype = function(next) {
+  $jscomp.initSymbolIterator();
+  var iterator = {next:next};
+  iterator[$jscomp.global['Symbol'].iterator] = function() {
+    return this;
+  };
+  return iterator;
+};
+$jscomp.iteratorFromArray = function(array, transform) {
+  $jscomp.initSymbolIterator();
+  if (array instanceof String) {
+    array = array + '';
+  }
+  var i = 0;
+  var iter = {next:function() {
+    if (i < array.length) {
+      var index = i++;
+      return {value:transform(index, array[index]), done:false};
+    }
+    iter.next = function() {
+      return {done:true, value:void 0};
+    };
+    return iter.next();
+  }};
+  iter[Symbol.iterator] = function() {
+    return iter;
+  };
+  return iter;
+};
+$jscomp.polyfill('Array.prototype.entries', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function() {
+    return $jscomp.iteratorFromArray(this, function(i, v) {
+      return [i, v];
+    });
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.prototype.fill', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(value, opt_start, opt_end) {
+    var length = this.length || 0;
+    if (opt_start < 0) {
+      opt_start = Math.max(0, length + opt_start);
+    }
+    if (opt_end == null || opt_end > length) {
+      opt_end = length;
+    }
+    opt_end = Number(opt_end);
+    if (opt_end < 0) {
+      opt_end = Math.max(0, length + opt_end);
+    }
+    for (var i = Number(opt_start || 0); i < opt_end; i++) {
+      this[i] = value;
+    }
+    return this;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.findInternal = function(array, callback, thisArg) {
+  if (array instanceof String) {
+    array = String(array);
+  }
+  var len = array.length;
+  for (var i = 0; i < len; i++) {
+    var value = array[i];
+    if (callback.call(thisArg, value, i, array)) {
+      return {i:i, v:value};
+    }
+  }
+  return {i:-1, v:void 0};
+};
+$jscomp.polyfill('Array.prototype.find', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(callback, opt_thisArg) {
+    return $jscomp.findInternal(this, callback, opt_thisArg).v;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.prototype.findIndex', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(callback, opt_thisArg) {
+    return $jscomp.findInternal(this, callback, opt_thisArg).i;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.from', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(arrayLike, opt_mapFn, opt_thisArg) {
+    $jscomp.initSymbolIterator();
+    opt_mapFn = opt_mapFn != null ? opt_mapFn : function(x) {
+      return x;
+    };
+    var result = [];
+    var iteratorFunction = arrayLike[Symbol.iterator];
+    if (typeof iteratorFunction == 'function') {
+      arrayLike = iteratorFunction.call(arrayLike);
+      var next;
+      while (!(next = arrayLike.next()).done) {
+        result.push(opt_mapFn.call(opt_thisArg, next.value));
+      }
+    } else {
+      var len = arrayLike.length;
+      for (var i = 0; i < len; i++) {
+        result.push(opt_mapFn.call(opt_thisArg, arrayLike[i]));
+      }
+    }
+    return result;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Object.is', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(left, right) {
+    if (left === right) {
+      return left !== 0 || 1 / left === 1 / right;
+    } else {
+      return left !== left && right !== right;
+    }
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.prototype.includes', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var includes = function(searchElement, opt_fromIndex) {
+    var array = this;
+    if (array instanceof String) {
+      array = String(array);
+    }
+    var len = array.length;
+    for (var i = opt_fromIndex || 0; i < len; i++) {
+      if (array[i] == searchElement || Object.is(array[i], searchElement)) {
+        return true;
+      }
+    }
+    return false;
+  };
+  return includes;
+}, 'es7', 'es3');
+$jscomp.polyfill('Array.prototype.keys', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function() {
+    return $jscomp.iteratorFromArray(this, function(i) {
+      return i;
+    });
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.of', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(var_args) {
+    return Array.from(arguments);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Array.prototype.values', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function() {
+    return $jscomp.iteratorFromArray(this, function(k, v) {
+      return v;
+    });
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.makeIterator = function(iterable) {
+  $jscomp.initSymbolIterator();
+  var iteratorFunction = iterable[Symbol.iterator];
+  return iteratorFunction ? iteratorFunction.call(iterable) : $jscomp.arrayIterator(iterable);
+};
+$jscomp.FORCE_POLYFILL_PROMISE = false;
+$jscomp.polyfill('Promise', function(NativePromise) {
+  if (NativePromise && !$jscomp.FORCE_POLYFILL_PROMISE) {
+    return NativePromise;
+  }
+  function AsyncExecutor() {
+    this.batch_ = null;
+  }
+  AsyncExecutor.prototype.asyncExecute = function(f) {
+    if (this.batch_ == null) {
+      this.batch_ = [];
+      this.asyncExecuteBatch_();
+    }
+    this.batch_.push(f);
+    return this;
+  };
+  AsyncExecutor.prototype.asyncExecuteBatch_ = function() {
+    var self = this;
+    this.asyncExecuteFunction(function() {
+      self.executeBatch_();
+    });
+  };
+  var nativeSetTimeout = $jscomp.global['setTimeout'];
+  AsyncExecutor.prototype.asyncExecuteFunction = function(f) {
+    nativeSetTimeout(f, 0);
+  };
+  AsyncExecutor.prototype.executeBatch_ = function() {
+    while (this.batch_ && this.batch_.length) {
+      var executingBatch = this.batch_;
+      this.batch_ = [];
+      for (var i = 0; i < executingBatch.length; ++i) {
+        var f = executingBatch[i];
+        delete executingBatch[i];
+        try {
+          f();
+        } catch (error) {
+          this.asyncThrow_(error);
+        }
+      }
+    }
+    this.batch_ = null;
+  };
+  AsyncExecutor.prototype.asyncThrow_ = function(exception) {
+    this.asyncExecuteFunction(function() {
+      throw exception;
+    });
+  };
+  var PromiseState = {PENDING:0, FULFILLED:1, REJECTED:2};
+  var PolyfillPromise = function(executor) {
+    this.state_ = PromiseState.PENDING;
+    this.result_ = undefined;
+    this.onSettledCallbacks_ = [];
+    var resolveAndReject = this.createResolveAndReject_();
+    try {
+      executor(resolveAndReject.resolve, resolveAndReject.reject);
+    } catch (e) {
+      resolveAndReject.reject(e);
+    }
+  };
+  PolyfillPromise.prototype.createResolveAndReject_ = function() {
+    var thisPromise = this;
+    var alreadyCalled = false;
+    function firstCallWins(method) {
+      return function(x) {
+        if (!alreadyCalled) {
+          alreadyCalled = true;
+          method.call(thisPromise, x);
+        }
+      };
+    }
+    return {resolve:firstCallWins(this.resolveTo_), reject:firstCallWins(this.reject_)};
+  };
+  PolyfillPromise.prototype.resolveTo_ = function(value) {
+    if (value === this) {
+      this.reject_(new TypeError('A Promise cannot resolve to itself'));
+    } else {
+      if (value instanceof PolyfillPromise) {
+        this.settleSameAsPromise_(value);
+      } else {
+        if (isObject(value)) {
+          this.resolveToNonPromiseObj_(value);
+        } else {
+          this.fulfill_(value);
+        }
+      }
+    }
+  };
+  PolyfillPromise.prototype.resolveToNonPromiseObj_ = function(obj) {
+    var thenMethod = undefined;
+    try {
+      thenMethod = obj.then;
+    } catch (error) {
+      this.reject_(error);
+      return;
+    }
+    if (typeof thenMethod == 'function') {
+      this.settleSameAsThenable_(thenMethod, obj);
+    } else {
+      this.fulfill_(obj);
+    }
+  };
+  function isObject(value) {
+    switch(typeof value) {
+      case 'object':
+        return value != null;
+      case 'function':
+        return true;
+      default:
+        return false;
+    }
+  }
+  PolyfillPromise.prototype.reject_ = function(reason) {
+    this.settle_(PromiseState.REJECTED, reason);
+  };
+  PolyfillPromise.prototype.fulfill_ = function(value) {
+    this.settle_(PromiseState.FULFILLED, value);
+  };
+  PolyfillPromise.prototype.settle_ = function(settledState, valueOrReason) {
+    if (this.state_ != PromiseState.PENDING) {
+      throw new Error('Cannot settle(' + settledState + ', ' + valueOrReason | '): Promise already settled in state' + this.state_);
+    }
+    this.state_ = settledState;
+    this.result_ = valueOrReason;
+    this.executeOnSettledCallbacks_();
+  };
+  PolyfillPromise.prototype.executeOnSettledCallbacks_ = function() {
+    if (this.onSettledCallbacks_ != null) {
+      var callbacks = this.onSettledCallbacks_;
+      for (var i = 0; i < callbacks.length; ++i) {
+        callbacks[i].call();
+        callbacks[i] = null;
+      }
+      this.onSettledCallbacks_ = null;
+    }
+  };
+  var asyncExecutor = new AsyncExecutor;
+  PolyfillPromise.prototype.settleSameAsPromise_ = function(promise) {
+    var methods = this.createResolveAndReject_();
+    promise.callWhenSettled_(methods.resolve, methods.reject);
+  };
+  PolyfillPromise.prototype.settleSameAsThenable_ = function(thenMethod, thenable) {
+    var methods = this.createResolveAndReject_();
+    try {
+      thenMethod.call(thenable, methods.resolve, methods.reject);
+    } catch (error) {
+      methods.reject(error);
+    }
+  };
+  PolyfillPromise.prototype.then = function(onFulfilled, onRejected) {
+    var resolveChild;
+    var rejectChild;
+    var childPromise = new PolyfillPromise(function(resolve, reject) {
+      resolveChild = resolve;
+      rejectChild = reject;
+    });
+    function createCallback(paramF, defaultF) {
+      if (typeof paramF == 'function') {
+        return function(x) {
+          try {
+            resolveChild(paramF(x));
+          } catch (error) {
+            rejectChild(error);
+          }
+        };
+      } else {
+        return defaultF;
+      }
+    }
+    this.callWhenSettled_(createCallback(onFulfilled, resolveChild), createCallback(onRejected, rejectChild));
+    return childPromise;
+  };
+  PolyfillPromise.prototype['catch'] = function(onRejected) {
+    return this.then(undefined, onRejected);
+  };
+  PolyfillPromise.prototype.callWhenSettled_ = function(onFulfilled, onRejected) {
+    var thisPromise = this;
+    function callback() {
+      switch(thisPromise.state_) {
+        case PromiseState.FULFILLED:
+          onFulfilled(thisPromise.result_);
+          break;
+        case PromiseState.REJECTED:
+          onRejected(thisPromise.result_);
+          break;
+        default:
+          throw new Error('Unexpected state: ' + thisPromise.state_);
+      }
+    }
+    if (this.onSettledCallbacks_ == null) {
+      asyncExecutor.asyncExecute(callback);
+    } else {
+      this.onSettledCallbacks_.push(function() {
+        asyncExecutor.asyncExecute(callback);
+      });
+    }
+  };
+  function resolvingPromise(opt_value) {
+    if (opt_value instanceof PolyfillPromise) {
+      return opt_value;
+    } else {
+      return new PolyfillPromise(function(resolve, reject) {
+        resolve(opt_value);
+      });
+    }
+  }
+  PolyfillPromise['resolve'] = resolvingPromise;
+  PolyfillPromise['reject'] = function(opt_reason) {
+    return new PolyfillPromise(function(resolve, reject) {
+      reject(opt_reason);
+    });
+  };
+  PolyfillPromise['race'] = function(thenablesOrValues) {
+    return new PolyfillPromise(function(resolve, reject) {
+      var iterator = $jscomp.makeIterator(thenablesOrValues);
+      for (var iterRec = iterator.next(); !iterRec.done; iterRec = iterator.next()) {
+        resolvingPromise(iterRec.value).callWhenSettled_(resolve, reject);
+      }
+    });
+  };
+  PolyfillPromise['all'] = function(thenablesOrValues) {
+    var iterator = $jscomp.makeIterator(thenablesOrValues);
+    var iterRec = iterator.next();
+    if (iterRec.done) {
+      return resolvingPromise([]);
+    } else {
+      return new PolyfillPromise(function(resolveAll, rejectAll) {
+        var resultsArray = [];
+        var unresolvedCount = 0;
+        function onFulfilled(i) {
+          return function(ithResult) {
+            resultsArray[i] = ithResult;
+            unresolvedCount--;
+            if (unresolvedCount == 0) {
+              resolveAll(resultsArray);
+            }
+          };
+        }
+        do {
+          resultsArray.push(undefined);
+          unresolvedCount++;
+          resolvingPromise(iterRec.value).callWhenSettled_(onFulfilled(resultsArray.length - 1), rejectAll);
+          iterRec = iterator.next();
+        } while (!iterRec.done);
+      });
+    }
+  };
+  return PolyfillPromise;
+}, 'es6', 'es3');
+$jscomp.executeAsyncGenerator = function(generator) {
+  function passValueToGenerator(value) {
+    return generator.next(value);
+  }
+  function passErrorToGenerator(error) {
+    return generator['throw'](error);
+  }
+  return new Promise(function(resolve, reject) {
+    function handleGeneratorRecord(genRec) {
+      if (genRec.done) {
+        resolve(genRec.value);
+      } else {
+        Promise.resolve(genRec.value).then(passValueToGenerator, passErrorToGenerator).then(handleGeneratorRecord, reject);
+      }
+    }
+    handleGeneratorRecord(generator.next());
+  });
+};
+$jscomp.owns = function(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+};
+$jscomp.polyfill('WeakMap', function(NativeWeakMap) {
+  function isConformant() {
+    if (!NativeWeakMap || !Object.seal) {
+      return false;
+    }
+    try {
+      var x = Object.seal({});
+      var y = Object.seal({});
+      var map = new NativeWeakMap([[x, 2], [y, 3]]);
+      if (map.get(x) != 2 || map.get(y) != 3) {
+        return false;
+      }
+      map['delete'](x);
+      map.set(y, 4);
+      return !map.has(x) && map.get(y) == 4;
+    } catch (err) {
+      return false;
+    }
+  }
+  if (isConformant()) {
+    return NativeWeakMap;
+  }
+  var prop = '$jscomp_hidden_' + Math.random().toString().substring(2);
+  function insert(target) {
+    if (!$jscomp.owns(target, prop)) {
+      var obj = {};
+      $jscomp.defineProperty(target, prop, {value:obj});
+    }
+  }
+  function patch(name) {
+    var prev = Object[name];
+    if (prev) {
+      Object[name] = function(target) {
+        insert(target);
+        return prev(target);
+      };
+    }
+  }
+  patch('freeze');
+  patch('preventExtensions');
+  patch('seal');
+  var index = 0;
+  var PolyfillWeakMap = function(opt_iterable) {
+    this.id_ = (index += Math.random() + 1).toString();
+    if (opt_iterable) {
+      $jscomp.initSymbol();
+      $jscomp.initSymbolIterator();
+      var iter = $jscomp.makeIterator(opt_iterable);
+      var entry;
+      while (!(entry = iter.next()).done) {
+        var item = entry.value;
+        this.set(item[0], item[1]);
+      }
+    }
+  };
+  PolyfillWeakMap.prototype.set = function(key, value) {
+    insert(key);
+    if (!$jscomp.owns(key, prop)) {
+      throw new Error('WeakMap key fail: ' + key);
+    }
+    key[prop][this.id_] = value;
+    return this;
+  };
+  PolyfillWeakMap.prototype.get = function(key) {
+    return $jscomp.owns(key, prop) ? key[prop][this.id_] : undefined;
+  };
+  PolyfillWeakMap.prototype.has = function(key) {
+    return $jscomp.owns(key, prop) && $jscomp.owns(key[prop], this.id_);
+  };
+  PolyfillWeakMap.prototype['delete'] = function(key) {
+    if (!$jscomp.owns(key, prop) || !$jscomp.owns(key[prop], this.id_)) {
+      return false;
+    }
+    return delete key[prop][this.id_];
+  };
+  return PolyfillWeakMap;
+}, 'es6', 'es3');
+$jscomp.MapEntry = function() {
+  this.previous;
+  this.next;
+  this.head;
+  this.key;
+  this.value;
+};
+$jscomp.polyfill('Map', function(NativeMap) {
+  var isConformant = !$jscomp.ASSUME_NO_NATIVE_MAP && function() {
+    if (!NativeMap || !NativeMap.prototype.entries || typeof Object.seal != 'function') {
+      return false;
+    }
+    try {
+      NativeMap = NativeMap;
+      var key = Object.seal({x:4});
+      var map = new NativeMap($jscomp.makeIterator([[key, 's']]));
+      if (map.get(key) != 's' || map.size != 1 || map.get({x:4}) || map.set({x:4}, 't') != map || map.size != 2) {
+        return false;
+      }
+      var iter = map.entries();
+      var item = iter.next();
+      if (item.done || item.value[0] != key || item.value[1] != 's') {
+        return false;
+      }
+      item = iter.next();
+      if (item.done || item.value[0].x != 4 || item.value[1] != 't' || !iter.next().done) {
+        return false;
+      }
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }();
+  if (isConformant) {
+    return NativeMap;
+  }
+  $jscomp.initSymbol();
+  $jscomp.initSymbolIterator();
+  var idMap = new WeakMap;
+  var PolyfillMap = function(opt_iterable) {
+    this.data_ = {};
+    this.head_ = createHead();
+    this.size = 0;
+    if (opt_iterable) {
+      var iter = $jscomp.makeIterator(opt_iterable);
+      var entry;
+      while (!(entry = iter.next()).done) {
+        var item = entry.value;
+        this.set(item[0], item[1]);
+      }
+    }
+  };
+  PolyfillMap.prototype.set = function(key, value) {
+    var r = maybeGetEntry(this, key);
+    if (!r.list) {
+      r.list = this.data_[r.id] = [];
+    }
+    if (!r.entry) {
+      r.entry = {next:this.head_, previous:this.head_.previous, head:this.head_, key:key, value:value};
+      r.list.push(r.entry);
+      this.head_.previous.next = r.entry;
+      this.head_.previous = r.entry;
+      this.size++;
+    } else {
+      r.entry.value = value;
+    }
+    return this;
+  };
+  PolyfillMap.prototype['delete'] = function(key) {
+    var r = maybeGetEntry(this, key);
+    if (r.entry && r.list) {
+      r.list.splice(r.index, 1);
+      if (!r.list.length) {
+        delete this.data_[r.id];
+      }
+      r.entry.previous.next = r.entry.next;
+      r.entry.next.previous = r.entry.previous;
+      r.entry.head = null;
+      this.size--;
+      return true;
+    }
+    return false;
+  };
+  PolyfillMap.prototype.clear = function() {
+    this.data_ = {};
+    this.head_ = this.head_.previous = createHead();
+    this.size = 0;
+  };
+  PolyfillMap.prototype.has = function(key) {
+    return !!maybeGetEntry(this, key).entry;
+  };
+  PolyfillMap.prototype.get = function(key) {
+    var entry = maybeGetEntry(this, key).entry;
+    return entry && entry.value;
+  };
+  PolyfillMap.prototype.entries = function() {
+    return makeIterator(this, function(entry) {
+      return [entry.key, entry.value];
+    });
+  };
+  PolyfillMap.prototype.keys = function() {
+    return makeIterator(this, function(entry) {
+      return entry.key;
+    });
+  };
+  PolyfillMap.prototype.values = function() {
+    return makeIterator(this, function(entry) {
+      return entry.value;
+    });
+  };
+  PolyfillMap.prototype.forEach = function(callback, opt_thisArg) {
+    var iter = this.entries();
+    var item;
+    while (!(item = iter.next()).done) {
+      var entry = item.value;
+      callback.call(opt_thisArg, entry[1], entry[0], this);
+    }
+  };
+  PolyfillMap.prototype[Symbol.iterator] = PolyfillMap.prototype.entries;
+  var maybeGetEntry = function(map, key) {
+    var id = getId(key);
+    var list = map.data_[id];
+    if (list && $jscomp.owns(map.data_, id)) {
+      for (var index = 0; index < list.length; index++) {
+        var entry = list[index];
+        if (key !== key && entry.key !== entry.key || key === entry.key) {
+          return {id:id, list:list, index:index, entry:entry};
+        }
+      }
+    }
+    return {id:id, list:list, index:-1, entry:undefined};
+  };
+  var makeIterator = function(map, func) {
+    var entry = map.head_;
+    return $jscomp.iteratorPrototype(function() {
+      if (entry) {
+        while (entry.head != map.head_) {
+          entry = entry.previous;
+        }
+        while (entry.next != entry.head) {
+          entry = entry.next;
+          return {done:false, value:func(entry)};
+        }
+        entry = null;
+      }
+      return {done:true, value:void 0};
+    });
+  };
+  var createHead = function() {
+    var head = {};
+    head.previous = head.next = head.head = head;
+    return head;
+  };
+  var mapIndex = 0;
+  var getId = function(obj) {
+    var type = obj && typeof obj;
+    if (type == 'object' || type == 'function') {
+      obj = obj;
+      if (!idMap.has(obj)) {
+        var id = '' + ++mapIndex;
+        idMap.set(obj, id);
+        return id;
+      }
+      return idMap.get(obj);
+    }
+    return 'p_' + obj;
+  };
+  return PolyfillMap;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.acosh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    return Math.log(x + Math.sqrt(x * x - 1));
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.asinh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    if (x === 0) {
+      return x;
+    }
+    var y = Math.log(Math.abs(x) + Math.sqrt(x * x + 1));
+    return x < 0 ? -y : y;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.log1p', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    if (x < 0.25 && x > -0.25) {
+      var y = x;
+      var d = 1;
+      var z = x;
+      var zPrev = 0;
+      var s = 1;
+      while (zPrev != z) {
+        y *= x;
+        s *= -1;
+        z = (zPrev = z) + s * y / ++d;
+      }
+      return z;
+    }
+    return Math.log(1 + x);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.atanh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var log1p = Math.log1p;
+  var polyfill = function(x) {
+    x = Number(x);
+    return (log1p(x) - log1p(-x)) / 2;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.cbrt', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    if (x === 0) {
+      return x;
+    }
+    x = Number(x);
+    var y = Math.pow(Math.abs(x), 1 / 3);
+    return x < 0 ? -y : y;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.clz32', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x) >>> 0;
+    if (x === 0) {
+      return 32;
+    }
+    var result = 0;
+    if ((x & 4294901760) === 0) {
+      x <<= 16;
+      result += 16;
+    }
+    if ((x & 4278190080) === 0) {
+      x <<= 8;
+      result += 8;
+    }
+    if ((x & 4026531840) === 0) {
+      x <<= 4;
+      result += 4;
+    }
+    if ((x & 3221225472) === 0) {
+      x <<= 2;
+      result += 2;
+    }
+    if ((x & 2147483648) === 0) {
+      result++;
+    }
+    return result;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.cosh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var exp = Math.exp;
+  var polyfill = function(x) {
+    x = Number(x);
+    return (exp(x) + exp(-x)) / 2;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.expm1', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    if (x < .25 && x > -.25) {
+      var y = x;
+      var d = 1;
+      var z = x;
+      var zPrev = 0;
+      while (zPrev != z) {
+        y *= x / ++d;
+        z = (zPrev = z) + y;
+      }
+      return z;
+    }
+    return Math.exp(x) - 1;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.hypot', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x, y, var_args) {
+    x = Number(x);
+    y = Number(y);
+    var i, z, sum;
+    var max = Math.max(Math.abs(x), Math.abs(y));
+    for (i = 2; i < arguments.length; i++) {
+      max = Math.max(max, Math.abs(arguments[i]));
+    }
+    if (max > 1e100 || max < 1e-100) {
+      x = x / max;
+      y = y / max;
+      sum = x * x + y * y;
+      for (i = 2; i < arguments.length; i++) {
+        z = Number(arguments[i]) / max;
+        sum += z * z;
+      }
+      return Math.sqrt(sum) * max;
+    } else {
+      sum = x * x + y * y;
+      for (i = 2; i < arguments.length; i++) {
+        z = Number(arguments[i]);
+        sum += z * z;
+      }
+      return Math.sqrt(sum);
+    }
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.imul', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(a, b) {
+    a = Number(a);
+    b = Number(b);
+    var ah = a >>> 16 & 65535;
+    var al = a & 65535;
+    var bh = b >>> 16 & 65535;
+    var bl = b & 65535;
+    var lh = ah * bl + al * bh << 16 >>> 0;
+    return al * bl + lh | 0;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.log10', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    return Math.log(x) / Math.LN10;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.log2', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    return Math.log(x) / Math.LN2;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.sign', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    return x === 0 || isNaN(x) ? x : x > 0 ? 1 : -1;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.sinh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var exp = Math.exp;
+  var polyfill = function(x) {
+    x = Number(x);
+    if (x === 0) {
+      return x;
+    }
+    return (exp(x) - exp(-x)) / 2;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.tanh', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    if (x === 0) {
+      return x;
+    }
+    var y = Math.exp(-2 * Math.abs(x));
+    var z = (1 - y) / (1 + y);
+    return x < 0 ? -z : z;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Math.trunc', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    x = Number(x);
+    if (isNaN(x) || x === Infinity || x === -Infinity || x === 0) {
+      return x;
+    }
+    var y = Math.floor(Math.abs(x));
+    return x < 0 ? -y : y;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.EPSILON', function(orig) {
+  return Math.pow(2, -52);
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.MAX_SAFE_INTEGER', function() {
+  return 9007199254740991;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.MIN_SAFE_INTEGER', function() {
+  return -9007199254740991;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.isFinite', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    if (typeof x !== 'number') {
+      return false;
+    }
+    return !isNaN(x) && x !== Infinity && x !== -Infinity;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.isInteger', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    if (!Number.isFinite(x)) {
+      return false;
+    }
+    return x === Math.floor(x);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.isNaN', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    return typeof x === 'number' && isNaN(x);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Number.isSafeInteger', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(x) {
+    return Number.isInteger(x) && Math.abs(x) <= Number.MAX_SAFE_INTEGER;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Object.assign', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, var_args) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      if (!source) {
+        continue;
+      }
+      for (var key in source) {
+        if ($jscomp.owns(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Object.entries', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var entries = function(obj) {
+    var result = [];
+    for (var key in obj) {
+      if ($jscomp.owns(obj, key)) {
+        result.push([key, obj[key]]);
+      }
+    }
+    return result;
+  };
+  return entries;
+}, 'es8', 'es3');
+$jscomp.polyfill('Object.getOwnPropertySymbols', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  return function() {
+    return [];
+  };
+}, 'es6', 'es5');
+$jscomp.polyfill('Reflect.ownKeys', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var symbolPrefix = 'jscomp_symbol_';
+  function isSymbol(key) {
+    return key.substring(0, symbolPrefix.length) == symbolPrefix;
+  }
+  var polyfill = function(target) {
+    var keys = [];
+    var names = Object.getOwnPropertyNames(target);
+    var symbols = Object.getOwnPropertySymbols(target);
+    for (var i = 0; i < names.length; i++) {
+      (isSymbol(names[i]) ? symbols : keys).push(names[i]);
+    }
+    return keys.concat(symbols);
+  };
+  return polyfill;
+}, 'es6', 'es5');
+$jscomp.polyfill('Object.getOwnPropertyDescriptors', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var getOwnPropertyDescriptors = function(obj) {
+    var result = {};
+    var keys = Reflect.ownKeys(obj);
+    for (var i = 0; i < keys.length; i++) {
+      result[keys[i]] = Object.getOwnPropertyDescriptor(obj, keys[i]);
+    }
+    return result;
+  };
+  return getOwnPropertyDescriptors;
+}, 'es8', 'es5');
+$jscomp.underscoreProtoCanBeSet = function() {
+  var x = {a:true};
+  var y = {};
+  try {
+    y.__proto__ = x;
+    return y.a;
+  } catch (e) {
+  }
+  return false;
+};
+$jscomp.setPrototypeOf = typeof Object.setPrototypeOf == 'function' ? Object.setPrototypeOf : $jscomp.underscoreProtoCanBeSet() ? function(target, proto) {
+  target.__proto__ = proto;
+  if (target.__proto__ !== proto) {
+    throw new TypeError(target + ' is not extensible');
+  }
+  return target;
+} : null;
+$jscomp.polyfill('Object.setPrototypeOf', function(orig) {
+  return orig || $jscomp.setPrototypeOf;
+}, 'es6', 'es5');
+$jscomp.polyfill('Object.values', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var values = function(obj) {
+    var result = [];
+    for (var key in obj) {
+      if ($jscomp.owns(obj, key)) {
+        result.push(obj[key]);
+      }
+    }
+    return result;
+  };
+  return values;
+}, 'es8', 'es3');
+$jscomp.polyfill('Reflect.apply', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var apply = Function.prototype.apply;
+  var polyfill = function(target, thisArg, argList) {
+    return apply.call(target, thisArg, argList);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.objectCreate = $jscomp.ASSUME_ES5 || typeof Object.create == 'function' ? Object.create : function(prototype) {
+  var ctor = function() {
+  };
+  ctor.prototype = prototype;
+  return new ctor;
+};
+$jscomp.construct = function() {
+  function reflectConstructWorks() {
+    function Base() {
+    }
+    function Derived() {
+    }
+    new Base;
+    Reflect.construct(Base, [], Derived);
+    return new Base instanceof Base;
+  }
+  if (typeof Reflect != 'undefined' && Reflect.construct) {
+    if (reflectConstructWorks()) {
+      return Reflect.construct;
+    }
+    var brokenConstruct = Reflect.construct;
+    var patchedConstruct = function(target, argList, opt_newTarget) {
+      var out = brokenConstruct(target, argList);
+      if (opt_newTarget) {
+        Reflect.setPrototypeOf(out, opt_newTarget.prototype);
+      }
+      return out;
+    };
+    return patchedConstruct;
+  }
+  function construct(target, argList, opt_newTarget) {
+    if (opt_newTarget === undefined) {
+      opt_newTarget = target;
+    }
+    var proto = opt_newTarget.prototype || Object.prototype;
+    var obj = $jscomp.objectCreate(proto);
+    var apply = Function.prototype.apply;
+    var out = apply.call(target, obj, argList);
+    return out || obj;
+  }
+  return construct;
+}();
+$jscomp.polyfill('Reflect.construct', function(orig) {
+  return $jscomp.construct;
+}, 'es6', 'es3');
+$jscomp.polyfill('Reflect.defineProperty', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, propertyKey, attributes) {
+    try {
+      Object.defineProperty(target, propertyKey, attributes);
+      var desc = Object.getOwnPropertyDescriptor(target, propertyKey);
+      if (!desc) {
+        return false;
+      }
+      return desc.configurable === (attributes.configurable || false) && desc.enumerable === (attributes.enumerable || false) && ('value' in desc ? desc.value === attributes.value && desc.writable === (attributes.writable || false) : desc.get === attributes.get && desc.set === attributes.set);
+    } catch (err) {
+      return false;
+    }
+  };
+  return polyfill;
+}, 'es6', 'es5');
+$jscomp.polyfill('Reflect.deleteProperty', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, propertyKey) {
+    if (!$jscomp.owns(target, propertyKey)) {
+      return true;
+    }
+    try {
+      return delete target[propertyKey];
+    } catch (err) {
+      return false;
+    }
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Reflect.getOwnPropertyDescriptor', function(orig) {
+  return orig || Object.getOwnPropertyDescriptor;
+}, 'es6', 'es5');
+$jscomp.polyfill('Reflect.getPrototypeOf', function(orig) {
+  return orig || Object.getPrototypeOf;
+}, 'es6', 'es5');
+$jscomp.findDescriptor = function(target, propertyKey) {
+  var obj = target;
+  while (obj) {
+    var property = Reflect.getOwnPropertyDescriptor(obj, propertyKey);
+    if (property) {
+      return property;
+    }
+    obj = Reflect.getPrototypeOf(obj);
+  }
+  return undefined;
+};
+$jscomp.polyfill('Reflect.get', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, propertyKey, opt_receiver) {
+    if (arguments.length <= 2) {
+      return target[propertyKey];
+    }
+    var property = $jscomp.findDescriptor(target, propertyKey);
+    if (property) {
+      return property.get ? property.get.call(opt_receiver) : property.value;
+    }
+    return undefined;
+  };
+  return polyfill;
+}, 'es6', 'es5');
+$jscomp.polyfill('Reflect.has', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, propertyKey) {
+    return propertyKey in target;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Reflect.isExtensible', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  if ($jscomp.ASSUME_ES5 || typeof Object.isExtensible == 'function') {
+    return Object.isExtensible;
+  }
+  return function() {
+    return true;
+  };
+}, 'es6', 'es3');
+$jscomp.polyfill('Reflect.preventExtensions', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  if (!($jscomp.ASSUME_ES5 || typeof Object.preventExtensions == 'function')) {
+    return function() {
+      return false;
+    };
+  }
+  var polyfill = function(target) {
+    Object.preventExtensions(target);
+    return !Object.isExtensible(target);
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('Reflect.set', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(target, propertyKey, value, opt_receiver) {
+    var property = $jscomp.findDescriptor(target, propertyKey);
+    if (!property) {
+      if (Reflect.isExtensible(target)) {
+        target[propertyKey] = value;
+        return true;
+      }
+      return false;
+    }
+    if (property.set) {
+      property.set.call(arguments.length > 3 ? opt_receiver : target, value);
+      return true;
+    } else {
+      if (property.writable && !Object.isFrozen(target)) {
+        target[propertyKey] = value;
+        return true;
+      }
+    }
+    return false;
+  };
+  return polyfill;
+}, 'es6', 'es5');
+$jscomp.polyfill('Reflect.setPrototypeOf', function(orig) {
+  if (orig) {
+    return orig;
+  } else {
+    if ($jscomp.setPrototypeOf) {
+      var setPrototypeOf = $jscomp.setPrototypeOf;
+      var polyfill = function(target, proto) {
+        try {
+          setPrototypeOf(target, proto);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      };
+      return polyfill;
+    } else {
+      return null;
+    }
+  }
+}, 'es6', 'es5');
+$jscomp.polyfill('Set', function(NativeSet) {
+  var isConformant = !$jscomp.ASSUME_NO_NATIVE_SET && function() {
+    if (!NativeSet || !NativeSet.prototype.entries || typeof Object.seal != 'function') {
+      return false;
+    }
+    try {
+      NativeSet = NativeSet;
+      var value = Object.seal({x:4});
+      var set = new NativeSet($jscomp.makeIterator([value]));
+      if (!set.has(value) || set.size != 1 || set.add(value) != set || set.size != 1 || set.add({x:4}) != set || set.size != 2) {
+        return false;
+      }
+      var iter = set.entries();
+      var item = iter.next();
+      if (item.done || item.value[0] != value || item.value[1] != value) {
+        return false;
+      }
+      item = iter.next();
+      if (item.done || item.value[0] == value || item.value[0].x != 4 || item.value[1] != item.value[0]) {
+        return false;
+      }
+      return iter.next().done;
+    } catch (err) {
+      return false;
+    }
+  }();
+  if (isConformant) {
+    return NativeSet;
+  }
+  $jscomp.initSymbol();
+  $jscomp.initSymbolIterator();
+  var PolyfillSet = function(opt_iterable) {
+    this.map_ = new Map;
+    if (opt_iterable) {
+      var iter = $jscomp.makeIterator(opt_iterable);
+      var entry;
+      while (!(entry = iter.next()).done) {
+        var item = entry.value;
+        this.add(item);
+      }
+    }
+    this.size = this.map_.size;
+  };
+  PolyfillSet.prototype.add = function(value) {
+    this.map_.set(value, value);
+    this.size = this.map_.size;
+    return this;
+  };
+  PolyfillSet.prototype['delete'] = function(value) {
+    var result = this.map_['delete'](value);
+    this.size = this.map_.size;
+    return result;
+  };
+  PolyfillSet.prototype.clear = function() {
+    this.map_.clear();
+    this.size = 0;
+  };
+  PolyfillSet.prototype.has = function(value) {
+    return this.map_.has(value);
+  };
+  PolyfillSet.prototype.entries = function() {
+    return this.map_.entries();
+  };
+  PolyfillSet.prototype.values = function() {
+    return this.map_.values();
+  };
+  PolyfillSet.prototype.keys = PolyfillSet.prototype.values;
+  PolyfillSet.prototype[Symbol.iterator] = PolyfillSet.prototype.values;
+  PolyfillSet.prototype.forEach = function(callback, opt_thisArg) {
+    var set = this;
+    this.map_.forEach(function(value) {
+      return callback.call(opt_thisArg, value, value, set);
+    });
+  };
+  return PolyfillSet;
+}, 'es6', 'es3');
+$jscomp.checkStringArgs = function(thisArg, arg, func) {
+  if (thisArg == null) {
+    throw new TypeError("The 'this' value for String.prototype." + func + ' must not be null or undefined');
+  }
+  if (arg instanceof RegExp) {
+    throw new TypeError('First argument to String.prototype.' + func + ' must not be a regular expression');
+  }
+  return thisArg + '';
+};
+$jscomp.polyfill('String.prototype.codePointAt', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(position) {
+    var string = $jscomp.checkStringArgs(this, null, 'codePointAt');
+    var size = string.length;
+    position = Number(position) || 0;
+    if (!(position >= 0 && position < size)) {
+      return void 0;
+    }
+    position = position | 0;
+    var first = string.charCodeAt(position);
+    if (first < 55296 || first > 56319 || position + 1 === size) {
+      return first;
+    }
+    var second = string.charCodeAt(position + 1);
+    if (second < 56320 || second > 57343) {
+      return first;
+    }
+    return (first - 55296) * 1024 + second + 9216;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('String.prototype.endsWith', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(searchString, opt_position) {
+    var string = $jscomp.checkStringArgs(this, searchString, 'endsWith');
+    searchString = searchString + '';
+    if (opt_position === void 0) {
+      opt_position = string.length;
+    }
+    var i = Math.max(0, Math.min(opt_position | 0, string.length));
+    var j = searchString.length;
+    while (j > 0 && i > 0) {
+      if (string[--i] != searchString[--j]) {
+        return false;
+      }
+    }
+    return j <= 0;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('String.fromCodePoint', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(var_args) {
+    var result = '';
+    for (var i = 0; i < arguments.length; i++) {
+      var code = Number(arguments[i]);
+      if (code < 0 || code > 1114111 || code !== Math.floor(code)) {
+        throw new RangeError('invalid_code_point ' + code);
+      }
+      if (code <= 65535) {
+        result += String.fromCharCode(code);
+      } else {
+        code -= 65536;
+        result += String.fromCharCode(code >>> 10 & 1023 | 55296);
+        result += String.fromCharCode(code & 1023 | 56320);
+      }
+    }
+    return result;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('String.prototype.includes', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(searchString, opt_position) {
+    var string = $jscomp.checkStringArgs(this, searchString, 'includes');
+    return string.indexOf(searchString, opt_position || 0) !== -1;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.polyfill('String.prototype.repeat', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(copies) {
+    var string = $jscomp.checkStringArgs(this, null, 'repeat');
+    if (copies < 0 || copies > 1342177279) {
+      throw new RangeError('Invalid count value');
+    }
+    copies = copies | 0;
+    var result = '';
+    while (copies) {
+      if (copies & 1) {
+        result += string;
+      }
+      if (copies >>>= 1) {
+        string += string;
+      }
+    }
+    return result;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.stringPadding = function(padString, padLength) {
+  var padding = padString !== undefined ? String(padString) : ' ';
+  if (!(padLength > 0) || !padding) {
+    return '';
+  }
+  var repeats = Math.ceil(padLength / padding.length);
+  return padding.repeat(repeats).substring(0, padLength);
+};
+$jscomp.polyfill('String.prototype.padEnd', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var padEnd = function(targetLength, opt_padString) {
+    var string = $jscomp.checkStringArgs(this, null, 'padStart');
+    var padLength = targetLength - string.length;
+    return string + $jscomp.stringPadding(opt_padString, padLength);
+  };
+  return padEnd;
+}, 'es8', 'es3');
+$jscomp.polyfill('String.prototype.padStart', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var padStart = function(targetLength, opt_padString) {
+    var string = $jscomp.checkStringArgs(this, null, 'padStart');
+    var padLength = targetLength - string.length;
+    return $jscomp.stringPadding(opt_padString, padLength) + string;
+  };
+  return padStart;
+}, 'es8', 'es3');
+$jscomp.polyfill('String.prototype.startsWith', function(orig) {
+  if (orig) {
+    return orig;
+  }
+  var polyfill = function(searchString, opt_position) {
+    var string = $jscomp.checkStringArgs(this, searchString, 'startsWith');
+    searchString = searchString + '';
+    var strLen = string.length;
+    var searchLen = searchString.length;
+    var i = Math.max(0, Math.min(opt_position | 0, string.length));
+    var j = 0;
+    while (j < searchLen && i < strLen) {
+      if (string[i++] != searchString[j++]) {
+        return false;
+      }
+    }
+    return j >= searchLen;
+  };
+  return polyfill;
+}, 'es6', 'es3');
+$jscomp.arrayFromIterator = function(iterator) {
+  var i;
+  var arr = [];
+  while (!(i = iterator.next()).done) {
+    arr.push(i.value);
+  }
+  return arr;
+};
+$jscomp.arrayFromIterable = function(iterable) {
+  if (iterable instanceof Array) {
+    return iterable;
+  } else {
+    return $jscomp.arrayFromIterator($jscomp.makeIterator(iterable));
+  }
+};
+$jscomp.inherits = function(childCtor, parentCtor) {
+  childCtor.prototype = $jscomp.objectCreate(parentCtor.prototype);
+  childCtor.prototype.constructor = childCtor;
+  if ($jscomp.setPrototypeOf) {
+    var setPrototypeOf = $jscomp.setPrototypeOf;
+    setPrototypeOf(childCtor, parentCtor);
+  } else {
+    for (var p in parentCtor) {
+      if (p == 'prototype') {
+        continue;
+      }
+      if (Object.defineProperties) {
+        var descriptor = Object.getOwnPropertyDescriptor(parentCtor, p);
+        if (descriptor) {
+          Object.defineProperty(childCtor, p, descriptor);
+        }
+      } else {
+        childCtor[p] = parentCtor[p];
+      }
+    }
+  }
+  childCtor.superClass_ = parentCtor.prototype;
+};
+$jscomp.polyfill('WeakSet', function(NativeWeakSet) {
+  function isConformant() {
+    if (!NativeWeakSet || !Object.seal) {
+      return false;
+    }
+    try {
+      var x = Object.seal({});
+      var y = Object.seal({});
+      var set = new NativeWeakSet([x]);
+      if (!set.has(x) || set.has(y)) {
+        return false;
+      }
+      set['delete'](x);
+      set.add(y);
+      return !set.has(x) && set.has(y);
+    } catch (err) {
+      return false;
+    }
+  }
+  if (isConformant()) {
+    return NativeWeakSet;
+  }
+  var PolyfillWeakSet = function(opt_iterable) {
+    this.map_ = new WeakMap;
+    if (opt_iterable) {
+      $jscomp.initSymbol();
+      $jscomp.initSymbolIterator();
+      var iter = $jscomp.makeIterator(opt_iterable);
+      var entry;
+      while (!(entry = iter.next()).done) {
+        var item = entry.value;
+        this.add(item);
+      }
+    }
+  };
+  PolyfillWeakSet.prototype.add = function(elem) {
+    this.map_.set(elem, true);
+    return this;
+  };
+  PolyfillWeakSet.prototype.has = function(elem) {
+    return this.map_.has(elem);
+  };
+  PolyfillWeakSet.prototype['delete'] = function(elem) {
+    return this.map_['delete'](elem);
+  };
+  return PolyfillWeakSet;
+}, 'es6', 'es3');
+try {
+  if (Array.prototype.values.toString().indexOf('[native code]') == -1) {
+    delete Array.prototype.values;
+  }
+} catch (e) {
+}
+(function(ExtCmd) {
+  var baseStaticMembers, enumerables = ['constructor', 'toString', 'valueOf', 'toLocaleString'], enumerablesMap = {}, enumerablesObj = {}, enumerablesMask = 0, baseStaticMember, Base, ClassManager, Class, configPreFn, cachedConfigPreFn, platformConfigPostFn, platformConfigPreFn, deprecatedPostFn, privatesPreFn, v5ClassSystem, thunk = function() {
+    var i, mask;
+    Base = Ext.Base;
+    ClassManager = Ext.ClassManager;
+    Class = Ext.Class;
+    for (i = enumerables.length; i-- > 0;) {
+      mask = 1 << i;
+      enumerablesObj[enumerablesMap[mask] = enumerables[i]] = mask;
+    }
+    for (i in enumerablesObj) {
+      enumerablesMask |= enumerablesObj[i];
+    }
+    enumerablesMask = ~enumerablesMask;
+    Function.prototype.$isFunction = 1;
+    v5ClassSystem = !!ClassManager.addAlias;
+    configPreFn = Class.getPreprocessor('config').fn;
+    cachedConfigPreFn = Class.getPreprocessor('cachedConfig');
+    cachedConfigPreFn = cachedConfigPreFn && cachedConfigPreFn.fn;
+    privatesPreFn = Class.getPreprocessor('privates');
+    privatesPreFn = privatesPreFn && privatesPreFn.fn;
+    platformConfigPreFn = Class.getPreprocessor('platformConfig');
+    platformConfigPreFn = platformConfigPreFn && platformConfigPreFn.fn;
+    platformConfigPostFn = ClassManager.postprocessors.platformConfig;
+    platformConfigPostFn = platformConfigPostFn && platformConfigPostFn.fn;
+    deprecatedPostFn = ClassManager.postprocessors.deprecated;
+    deprecatedPostFn = deprecatedPostFn && deprecatedPostFn.fn;
+    baseStaticMembers = Base.$staticMembers;
+    if (!baseStaticMembers) {
+      baseStaticMembers = [];
+      for (baseStaticMember in Base) {
+        if (Base.hasOwnProperty(baseStaticMember)) {
+          baseStaticMembers.push(baseStaticMember);
+        }
+      }
+    }
+    ExtCmd.derive = derive;
+    return derive.apply(this, arguments);
+  }, onBeforeCreated = function(cls, data, hooks) {
+    var enumerableMembers = hooks.enumerableMembers, proto = cls.prototype, member, fn, which, val, existing;
+    if (!data) {
+      return;
+    }
+    if (v5ClassSystem) {
+      cls.addMembers(data);
+    } else {
+      for (member in data) {
+        val = data[member];
+        if (val && val.$isFunction && !val.$isClass && val !== Ext.emptyFn && val !== Ext.identityFn) {
+          existing = proto.hasOwnProperty(member) && proto[member];
+          if (existing) {
+            val.$previous = existing;
+          }
+          proto[member] = fn = val;
+          fn.$owner = cls;
+          fn.$name = member;
+        } else {
+          proto[member] = val;
+        }
+      }
+      for (which = 1; enumerableMembers; which <<= 1) {
+        if (enumerableMembers & which) {
+          enumerableMembers &= ~which;
+          member = enumerablesMap[which];
+          proto[member] = fn = data[member];
+          fn.$owner = cls;
+          fn.$name = member;
+        }
+      }
+    }
+    if (data.platformConfig && platformConfigPostFn) {
+      platformConfigPostFn.call(ClassManager, cls.$className, cls, data);
+    }
+    if (data.deprecated && deprecatedPostFn) {
+      deprecatedPostFn.call(ClassManager, cls.$className, cls, data);
+    }
+  }, derive = function(className, base, data, enumerableMembers, xtypes, xtypesChain, xtypeMap, aliases, mixins, names, createdFn) {
+    var cls = function ctor() {
+      return this.constructor.apply(this, arguments) || null;
+    }, ret = cls, hooks = {enumerableMembers:enumerableMembers & enumerablesMask, onCreated:createdFn, onBeforeCreated:onBeforeCreated, aliases:aliases}, alternates = data.alternateClassName || [], global = Ext.global, alias, alternate, i, ln, n, ns, name, proto, statics, staticMember, targetName, fn, val, altToName = ClassManager.alternateToName || ClassManager.maps.alternateToName, nameToAlt = ClassManager.nameToAlternates || ClassManager.maps.nameToAlternates;
+    for (i = baseStaticMembers.length; i-- > 0;) {
+      name = baseStaticMembers[i];
+      cls[name] = Base[name];
+    }
+    if (data.$isFunction) {
+      data = data(cls);
+    }
+    hooks.data = data;
+    statics = data.statics;
+    delete data.statics;
+    data.$className = className;
+    if ('$className' in data) {
+      cls.$className = data.$className;
+    }
+    cls.extend(base);
+    proto = cls.prototype;
+    if (xtypes) {
+      cls.xtype = data.xtype = xtypes[0];
+      proto.xtypes = xtypes;
+    }
+    proto.xtypesChain = xtypesChain;
+    proto.xtypesMap = xtypeMap;
+    data.alias = aliases;
+    ret.triggerExtended(cls, data, hooks);
+    if (data.onClassExtended) {
+      cls.onExtended(data.onClassExtended, cls);
+      delete data.onClassExtended;
+    }
+    if (data.privates && privatesPreFn) {
+      privatesPreFn.call(Class, cls, data);
+    }
+    if (statics) {
+      if (v5ClassSystem) {
+        cls.addStatics(statics);
+      } else {
+        for (staticMember in statics) {
+          if (statics.hasOwnProperty(staticMember)) {
+            val = statics[staticMember];
+            if (val && val.$isFunction && !val.$isClass && val !== Ext.emptyFn && val !== Ext.identityFn) {
+              cls[staticMember] = fn = val;
+              fn.$owner = cls;
+              fn.$name = staticMember;
+            }
+            cls[staticMember] = val;
+          }
+        }
+      }
+    }
+    if (data.inheritableStatics) {
+      cls.addInheritableStatics(data.inheritableStatics);
+      delete data.inheritableStatics;
+    }
+    if (proto.onClassExtended) {
+      ret.onExtended(proto.onClassExtended, ret);
+      delete proto.onClassExtended;
+    }
+    if (data.platformConfig && platformConfigPreFn) {
+      platformConfigPreFn.call(Class, cls, data);
+      delete data.platformConfig;
+    }
+    if (data.config) {
+      configPreFn.call(Class, cls, data);
+    }
+    if (data.cachedConfig && cachedConfigPreFn) {
+      cachedConfigPreFn.call(Class, cls, data);
+      delete data.cachedConfig;
+    }
+    hooks.onBeforeCreated(cls, hooks.data, hooks);
+    for (i = 0, n = mixins && mixins.length; i < n; ++i) {
+      cls.mixin.apply(cls, mixins[i]);
+    }
+    for (i = 0, n = aliases.length; i < n; i++) {
+      alias = aliases[i];
+      ClassManager.setAlias ? ClassManager.setAlias(cls, alias) : ClassManager.addAlias(cls, alias);
+    }
+    if (data.singleton) {
+      ret = new cls;
+    }
+    if (!(alternates instanceof Array)) {
+      alternates = [alternates];
+    }
+    targetName = ClassManager.getName(ret);
+    for (i = 0, ln = alternates.length; i < ln; i++) {
+      alternate = alternates[i];
+      ClassManager.classes[alternate] = ret;
+      if (v5ClassSystem) {
+        ClassManager.addAlternate(cls, alternate);
+      } else {
+        if (targetName) {
+          altToName[alternate] = targetName;
+          alternates = nameToAlt[targetName] || (nameToAlt[targetName] = []);
+          alternates.push(alternate);
+        }
+      }
+    }
+    for (i = 0, n = names.length; i < n; i += 2) {
+      ns = names[i];
+      if (!ns) {
+        ns = global;
+      }
+      ns[names[i + 1]] = ret;
+    }
+    ClassManager.classes[className] = ret;
+    if (!v5ClassSystem) {
+      if (targetName && targetName !== className) {
+        altToName[className] = targetName;
+        alternates = nameToAlt[targetName] || (nameToAlt[targetName] = []);
+        alternates.push(className);
+      }
+    }
+    delete proto.alternateClassName;
+    if (hooks.onCreated) {
+      hooks.onCreated.call(ret, ret);
+    }
+    if (className) {
+      ClassManager.triggerCreated(className);
+    }
+    return ret;
+  };
+  ExtCmd.derive = thunk;
+})(Ext.cmd = {});
