@@ -53290,7 +53290,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
         Ext.getCmp('scannerEmail').setValue(obj.user.email);
         Ext.Ajax.request({method:'GET', url:'/request/markers', params:{UID:rec.get('recievedUID')}, success:function(response) {
           obj = Ext.JSON.decode(response.responseText);
-          if (true == obj.success) {
+          if (true == obj.success && obj.markers) {
             var marker = obj.markers[0];
             Ext.getCmp('markerViewUID').setValue(renderUID(marker.UID));
             Ext.getCmp('markerViewStatus').setValue(renderStatus(marker.statusCode));
