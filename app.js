@@ -51531,10 +51531,10 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
             var grid = Ext.getCmp('productsGrid');
             grid.getStore().reload();
           } else {
-            Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+            Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
           }
         }, failure:function(response, opt) {
-          Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+          Ext.MessageBox.show({title:'Удаление продукции', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
         }});
       }
     }).setHeight(50);
