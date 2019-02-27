@@ -52177,6 +52177,11 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   if (undefined != editVendorTabPanel) {
     editVendorTabPanel.setActiveTab(0);
   }
+  var grids = comp.query('grid');
+  Ext.each(grids, function(grid) {
+    var store = grid.getStore();
+    store.loadPage(1);
+  });
 }, onEditVendorWindowClose:function(comp, opt) {
   var editVendorTabPanel = Ext.getCmp('editvendortabpanel');
   if (undefined != editVendorTabPanel) {
@@ -52380,6 +52385,19 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
   if (undefined != editProductTabPanel) {
     editProductTabPanel.setActiveTab(0);
+    var grids = comp.query('grid');
+    Ext.each(grids, function(grid) {
+      if (undefined != grid) {
+        var proxy = grid.getStore().getProxy();
+        if (proxy.extraParams['name']) {
+          delete proxy.extraParams.name;
+        }
+        if (proxy.extraParams['comments']) {
+          delete proxy.extraParams.comments;
+        }
+        grid.getStore().reload();
+      }
+    });
   }
 }, onEditProductWindowClose:function(comp, opt) {
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
@@ -52390,13 +52408,24 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var comp = Ext.getCmp('edit_product_window');
   if ('editproduct' == newCard.getId()) {
     var FormPanel = Ext.getCmp('editproductform');
-    if (undefined != FormPanel) {
+    if (FormPanel != undefined) {
       var grid = Ext.getCmp('productsGrid');
-      var rec_sel = grid.getSelectionModel().getSelection()[0];
-      if (rec_sel && rec_sel.index) {
-        grid.getSelectionModel().select(0);
-        grid.getSelectionModel().select(rec_sel.index);
+      var rec_selected = grid.getSelectionModel().getSelection()[0];
+      var page_size = grid.getStore().pageSize;
+      if (rec_selected && rec_selected.index) {
+        var rec_selected_index = rec_selected.index;
+        console.log('rec_selected_index');
+        console.log(rec_selected_index);
+        console.log('page_size');
+        console.log(page_size);
+        console.log((rec_selected_index + 1) % page_size - 1);
+        if (page_size && rec_selected_index + 1 > page_size) {
+          rec_selected_index = (rec_selected_index + 1) % page_size - 1;
+        }
+        grid.getSelectionModel().deselect(rec_selected_index);
+        grid.getSelectionModel().select(rec_selected_index);
       }
+      Ext.getCmp('productsGrid').getSelectionModel().getSelection()[0];
       var rec = grid.getSelectionModel().getSelection()[0];
       if (rec) {
         var product_expiration = rec.get('product_expiration');
@@ -52547,7 +52576,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     ev.initialConfig.componentId = componentId;
     ev.show();
   } else {
-    Ext.create('SopCor.view.products.EditComponent', {id:'edit_component_window', componentId:componentId}).show();
+    Ext.create('SopCor.view.products.EditComponent', {id:'edit_component_window', componentId:componentId, renderTo:Ext.getCmp('#mainwindow')}).show();
   }
 }, updateComponent:function(button) {
   var form = Ext.getCmp('editcomponentform').getForm();
@@ -52845,7 +52874,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       suspended = 1;
     }
     button.setDisabled(true);
-    Ext.Ajax.request({url:'/request/users', method:'post', params:{id:rec.get('userId'), name:rec.get('name'), userDescription:rec.get('userDescription'), contactPhone:rec.get('contactPhone'), accessLevel:rec.get('accessLevel'), suspended:suspended, login:rec.get('login'), vendorId:rec.get('vendorId')}, success:function(response, opt) {
+    Ext.Ajax.request({url:'/request/users', method:'post', params:{id:rec.get('userId'), name:rec.get('name'), userDescription:rec.get('userDescription'), contactPhone:rec.get('contactPhone'), accessLevel:rec.get('accessLevel'), suspended:suspended, email:rec.get('email'), login:rec.get('login'), vendorId:rec.get('vendorId')}, success:function(response, opt) {
       var suspendButton = Ext.getCmp('suspendUserButton');
       suspendButton.setDisabled(false);
       var obj = Ext.decode(response.responseText);
