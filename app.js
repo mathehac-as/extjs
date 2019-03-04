@@ -52412,13 +52412,8 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       var grid = Ext.getCmp('productsGrid');
       var rec_selected = grid.getSelectionModel().getSelection()[0];
       var page_size = grid.getStore().pageSize;
-      if (rec_selected && rec_selected.index) {
+      if (rec_selected) {
         var rec_selected_index = rec_selected.index;
-        console.log('rec_selected_index');
-        console.log(rec_selected_index);
-        console.log('page_size');
-        console.log(page_size);
-        console.log((rec_selected_index + 1) % page_size - 1);
         if (page_size && rec_selected_index + 1 > page_size) {
           rec_selected_index = (rec_selected_index + 1) % page_size - 1;
         }
@@ -52658,6 +52653,16 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     var FormPanel = Ext.getCmp('editcomponentform');
     if (undefined != FormPanel) {
       var grid = Ext.getCmp('componentsGrid');
+      var rec_selected = grid.getSelectionModel().getSelection()[0];
+      var page_size = grid.getStore().pageSize;
+      if (rec_selected) {
+        var rec_selected_index = rec_selected.index;
+        if (page_size && rec_selected_index + 1 > page_size) {
+          rec_selected_index = (rec_selected_index + 1) % page_size - 1;
+        }
+        grid.getSelectionModel().deselect(rec_selected_index);
+        grid.getSelectionModel().select(rec_selected_index);
+      }
       var rec = grid.getSelectionModel().getSelection()[0];
       if (rec) {
         var component_expiration = rec.get('expiration_date');
@@ -53972,6 +53977,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       selected.set('address', form.getValues()['address']);
       selected.set('city', form.getValues()['city']);
       selected.set('region', form.getValues()['region']);
+      selected.set('notes', form.getValues()['notes']);
       Ext.MessageBox.show({title:'Изменение контактных данных', msg:'Изменения сохранены успешно', icon:Ext.MessageBox.INFO, buttons:Ext.MessageBox.OK}).setHeight(50);
     }, failure:function(form, action) {
       var obj = Ext.decode(action.response.responseText);
