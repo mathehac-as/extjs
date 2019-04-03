@@ -51833,11 +51833,10 @@ Ext.cmd.derive('SopCor.controller.AdditionalClient', Ext.app.Controller, {stores
     FormPanel.getForm().load({url:'/request/brief_add', method:'GET'});
   }
 }, checkuid:function(button) {
+  Ext.getCmp('button_checkmarker').up('form').getForm().reset();
+  Ext.getCmp('checkuidresult').getLayout().setActiveItem(0);
+  Ext.getCmp('checkuidresultscans').getLayout().setActiveItem(0);
   Ext.getCmp('center_panel').getLayout().setActiveItem('checkuid');
-  var FormPanel = Ext.getCmp('CheckuidForm');
-  if (undefined != FormPanel) {
-    FormPanel.getForm().load();
-  }
 }, scans:function(button) {
   Ext.getCmp('center_panel').getLayout().setActiveItem('scans');
 }, incomingcontrolact:function(button) {
