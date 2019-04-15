@@ -52056,8 +52056,8 @@ Ext.cmd.derive('SopCor.store.ProductVendors', Ext.data.Store, {model:'SopCor.mod
 Ext.cmd.derive('SopCor.store.ComponentProducts', Ext.data.Store, {model:'SopCor.model.ComponentProduct', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dcomponent_to_product', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'ComponentProducts'], 0);
 Ext.cmd.derive('SopCor.store.UnitTypeComponents', Ext.data.Store, {model:'SopCor.model.UnitTypeComponent', pageSize:20, autoLoad:false, remoteSort:true, proxy:{type:'ajax', url:'/request/linker?data\x3dunits_to_component', reader:{root:'elementList', totalProperty:'totalCount'}, simpleSortMode:true}}, 0, 0, 0, 0, 0, 0, [SopCor.store, 'UnitTypeComponents'], 0);
 var vendorTypes = Ext.create('Ext.data.Store', {fields:['type_id', 'type_name'], data:[{'type_id':1, 'type_name':'Завод'}, {'type_id':2, 'type_name':'Продавец'}, {'type_id':3, 'type_name':'Комплексный поставщик'}, {'type_id':4, 'type_name':'Заказчик'}, {'type_id':5, 'type_name':'Подрядчик'}, {'type_id':6, 'type_name':'СубПодрядчик'}, {'type_id':7, 'type_name':'Контрольный орган'}]});
-Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components', 'ProductVendors', 'ComponentProducts', 'UnitTypeComponents'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 'Report', 'Request', 
-'MarkerScan', 'UnitMeasure', 'Product', 'Component', 'ProductVendor', 'ComponentProduct', 'UnitTypeComponent'], views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options.*'], init:function() {
+Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vendors', 'Tokens', 'Users', 'UnitTypes', 'Reels', 'Markers', 'Options', 'TriggerOptions', 'GoodsGroups', 'UserEvents', 'MarkerEvents', 'Reports', 'Requests', 'MarkerScans', 'UnitMeasures', 'Products', 'Components', 'ProductVendors', 'VendorProducts', 'ComponentProducts', 'UnitTypeComponents'], models:['Vendor', 'Token', 'User', 'UnitType', 'Reel', 'Marker', 'Option', 'TriggerOption', 'GoodsGroup', 'UserEvent', 'MarkerEvent', 
+'Report', 'Request', 'MarkerScan', 'UnitMeasure', 'Product', 'Component', 'ProductVendor', 'VendorProduct', 'ComponentProduct', 'UnitTypeComponent'], views:['vendors.*', 'markers.*', 'products.*', 'events.*', 'reports.*', 'options.*'], init:function() {
   this.control({'statisticsKMO':{render:this.loadStatistics}, 'instancesKMO button[action\x3dvendors]':{click:this.vendors}, 'instancesKMO button[action\x3dmarkers]':{click:this.markers}, 'instancesKMO button[action\x3dproducts]':{click:this.products}, 'instancesKMO button[action\x3devents]':{click:this.events}, 'instancesKMO button[action\x3dreports]':{click:this.reports}, 'instancesKMO button[action\x3doptions]':{click:this.options}, 'vendorslist button[action\x3daddvendor]':{click:this.addVendor}, 
   'menuitem[action\x3daddvendor]':{click:this.addVendor}, 'addvendor button[action\x3dsave]':{click:this.saveVendor}, 'vendorslist button[action\x3ddeletevendor]':{click:this.deleteVendor}, 'menuitem[action\x3ddeletevendor]':{click:this.deleteVendor}, 'vendorslist button[action\x3deditvendor]':{click:this.editVendor}, 'menuitem[action\x3deditvendor]':{click:this.editVendor}, 'vendorslist \x3e grid[id\x3dvendorsGrid]':{itemcontextmenu:this.onVendorsGridContextMenu, selectionchange:this.onVendorsGridSelectionChange}, 
   'editvendor':{show:this.onEditVendorWindowShow, close:this.onEditVendorWindowClose}, 'tabpanel[id\x3deditvendortabpanel]':{tabchange:this.onEditVendorTabChange}, 'vendors':{activate:this.onVendorsActivate}, 'userslist button[action\x3dadduser]':{click:this.addUser}, 'menuitem[action\x3dadduser]':{click:this.addUser}, 'userslist button[action\x3dedituser]':{click:this.editUser}, 'menuitem[action\x3dedituser]':{click:this.editUser}, 'adduser button[action\x3dsave]':{click:this.saveUser}, 'edituser button[action\x3dsave]':{click:this.updateUser}, 
@@ -52065,8 +52065,8 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   'tokenslist \x3e grid[id\x3dtokensGrid]':{itemcontextmenu:this.onTokensGridContextMenu, selectionchange:this.onTokensGridSelectionChange}, 'tokenslist button[action\x3dedittoken]':{click:this.editToken}, 'menuitem[action\x3dedittoken]':{click:this.editToken}, 'tokenslist button[action\x3ddeletetoken]':{click:this.deleteToken}, 'menuitem[action\x3ddeletetoken]':{click:this.deleteToken}, 'tokenslist button[action\x3dsuspendtoken]':{click:this.suspendToken}, 'menuitem[action\x3dsuspendtoken]':{click:this.suspendToken}, 
   'tokenslist button[action\x3daddtoken]':{click:this.addToken}, 'menuitem[action\x3daddtoken]':{click:this.addToken}, 'addtokenform checkbox[id\x3dACL_GLOBAL]':{change:this.onAclGlobalChanged}, 'addtokenform checkbox[id\x3dACL_PRINTING]':{change:this.onAclPrintingChanged}, 'addtoken button[action\x3dsave]':{click:this.saveToken}, 'edittoken button[action\x3dsave]':{click:this.updateToken}, 'unittypesform button[action\x3dsearchunittypes]':{click:this.searchUnitTypes}, 'unittypeslinkform button[action\x3dsearchunittypeslink]':{click:this.searchUnitTypesLink}, 
   'unittypeslinkform button[action\x3dclearunittypeslinkfilter]':{click:this.clearUnitTypesLinkFilter}, 'unittypesunlinkgrid actioncolumn[id\x3dunlinkclick]':{click:this.onUnlinkClick}, 'unittypeslinkgrid actioncolumn[id\x3dlinkclick]':{click:this.onLinkClick}, 'componentslinkform button[action\x3dsearchcomponentslink]':{click:this.searchComponentsLink}, 'componentslinkform button[action\x3dclearcomponentslinkfilter]':{click:this.clearComponentsFilter}, 'componentsunlinkgrid actioncolumn[id\x3dunlinkclick]':{click:this.onUnlinkComponentsClick}, 
-  'componentslinkgrid actioncolumn[id\x3dlinkclick]':{click:this.onLinkComponentsClick}, 'reelslist \x3e grid[id\x3dreelsGrid]':{itemcontextmenu:this.onReelsGridContextMenu, selectionchange:this.onReelsGridSelectionChange}, 'reelslist button[action\x3daddreel]':{click:this.addReel}, 'menuitem[action\x3daddreel]':{click:this.addReel}, 'addreel button[action\x3dsave]':{click:this.saveReel}, 'markersresult \x3e grid[id\x3dmarkersGrid]':{selectionchange:this.onMarkersGridSelectionChange, itemcontextmenu:this.onMarkersGridContextMenu, 
-  celldblclick:this.onMarkersGridDblClick}, 'menuitem[action\x3dshowMarker]':{click:this.onMarkersGridShow}, 'markersresult button[action\x3dmarkreleased]':{click:this.markMarkerReleased}, 'markersresult button[action\x3dmarkspoiled]':{click:this.markMarkerSpoiled}, 'markersresult button[action\x3dmarkcontrafact]':{click:this.markMarkerContrafact}, 'markersform button[action\x3dsearchmarkers]':{click:this.searchMarkers}, 'markersform button[action\x3dclearmarkersfilter]':{click:this.clearMarkersFilter}, 
+  'componentslinkgrid actioncolumn[id\x3dlinkclick]':{click:this.onLinkComponentsClick}, 'reelslist \x3e grid[id\x3dreelsGrid]':{itemcontextmenu:this.onReelsGridContextMenu, selectionchange:this.onReelsGridSelectionChange}, 'reelslist button[action\x3daddreel]':{click:this.addReel}, 'menuitem[action\x3daddreel]':{click:this.addReel}, 'addreel button[action\x3dsave]':{click:this.saveReel}, 'reelslist button[action\x3ddelreel]':{click:this.delreel}, 'markersresult \x3e grid[id\x3dmarkersGrid]':{selectionchange:this.onMarkersGridSelectionChange, 
+  itemcontextmenu:this.onMarkersGridContextMenu, celldblclick:this.onMarkersGridDblClick}, 'menuitem[action\x3dshowMarker]':{click:this.onMarkersGridShow}, 'markersresult button[action\x3dmarkreleased]':{click:this.markMarkerReleased}, 'markersresult button[action\x3dmarkspoiled]':{click:this.markMarkerSpoiled}, 'markersresult button[action\x3dmarkcontrafact]':{click:this.markMarkerContrafact}, 'markersform button[action\x3dsearchmarkers]':{click:this.searchMarkers}, 'markersform button[action\x3dclearmarkersfilter]':{click:this.clearMarkersFilter}, 
   'optionslist \x3e grid[id\x3doptionsGrid]':{itemcontextmenu:this.onOptionsGridContextMenu, selectionchange:this.onOptionsGridSelectionChange}, 'optionslist button[action\x3deditoption]':{click:this.editOption}, 'menuitem[action\x3deditoption]':{click:this.editOption}, 'editoption button[action\x3dsave]':{click:this.saveOption}, 'triggeroptionslist \x3e grid[id\x3dtriggerOptionsGrid]':{itemcontextmenu:this.onTriggerOptionsGridContextMenu, selectionchange:this.onTriggerOptionsGridSelectionChange}, 
   'triggeroptionslist button[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'menuitem[action\x3dedittriggeroption]':{click:this.editTriggerOption}, 'edittriggeroption button[action\x3dsave]':{click:this.saveTriggerOption}, 'goodsgroupslist \x3e grid[id\x3dgoodsGroupsGrid]':{itemcontextmenu:this.onGoodGroupsGridContextMenu, selectionchange:this.onGoodGroupsGridSelectionChange}, 'goodsgroupslist button[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 'menuitem[action\x3daddgoodsgroup]':{click:this.addGoodsGroup}, 
   'addgoodsgroup button[action\x3dsave]':{click:this.saveGoodsGroup}, 'goodsgroupslist button[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'menuitem[action\x3ddeletegoodsgroup]':{click:this.deleteGoodsGroup}, 'unitmeasureslist button[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'menuitem[action\x3daddunitmeasure]':{click:this.addUnitMeasure}, 'addunitmeasure button[action\x3dsave]':{click:this.saveUnitMeasure}, 'usereventsform button[action\x3dsearchuserevents]':{click:this.searcUserEvents}, 
@@ -52180,6 +52180,11 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   if (undefined != editVendorTabPanel) {
     editVendorTabPanel.setActiveTab(0);
   }
+  var grids = comp.query('grid');
+  Ext.each(grids, function(grid) {
+    var store = grid.getStore();
+    store.loadPage(1);
+  });
 }, onEditVendorWindowClose:function(comp, opt) {
   var editVendorTabPanel = Ext.getCmp('editvendortabpanel');
   if (undefined != editVendorTabPanel) {
@@ -52383,6 +52388,19 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
   if (undefined != editProductTabPanel) {
     editProductTabPanel.setActiveTab(0);
+    var grids = comp.query('grid');
+    Ext.each(grids, function(grid) {
+      if (undefined != grid && grid.xtype != 'productvendorlist') {
+        var proxy = grid.getStore().getProxy();
+        if (proxy.extraParams['name']) {
+          delete proxy.extraParams.name;
+        }
+        if (proxy.extraParams['comments']) {
+          delete proxy.extraParams.comments;
+        }
+        grid.getStore().reload();
+      }
+    });
   }
 }, onEditProductWindowClose:function(comp, opt) {
   var editProductTabPanel = Ext.getCmp('editproducttabpanel');
@@ -52393,13 +52411,19 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
   var comp = Ext.getCmp('edit_product_window');
   if ('editproduct' == newCard.getId()) {
     var FormPanel = Ext.getCmp('editproductform');
-    if (undefined != FormPanel) {
+    if (FormPanel != undefined) {
       var grid = Ext.getCmp('productsGrid');
-      var rec_sel = grid.getSelectionModel().getSelection()[0];
-      if (rec_sel && rec_sel.index) {
-        grid.getSelectionModel().select(0);
-        grid.getSelectionModel().select(rec_sel.index);
+      var rec_selected = grid.getSelectionModel().getSelection()[0];
+      var page_size = grid.getStore().pageSize;
+      if (rec_selected) {
+        var rec_selected_index = rec_selected.index;
+        if (page_size && rec_selected_index + 1 > page_size) {
+          rec_selected_index = (rec_selected_index + 1) % page_size - 1;
+        }
+        grid.getSelectionModel().deselect(rec_selected_index);
+        grid.getSelectionModel().select(rec_selected_index);
       }
+      Ext.getCmp('productsGrid').getSelectionModel().getSelection()[0];
       var rec = grid.getSelectionModel().getSelection()[0];
       if (rec) {
         var product_expiration = rec.get('product_expiration');
@@ -52550,7 +52574,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     ev.initialConfig.componentId = componentId;
     ev.show();
   } else {
-    Ext.create('SopCor.view.products.EditComponent', {id:'edit_component_window', componentId:componentId}).show();
+    Ext.create('SopCor.view.products.EditComponent', {id:'edit_component_window', componentId:componentId, renderTo:Ext.getCmp('#mainwindow')}).show();
   }
 }, updateComponent:function(button) {
   var form = Ext.getCmp('editcomponentform').getForm();
@@ -52632,6 +52656,16 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     var FormPanel = Ext.getCmp('editcomponentform');
     if (undefined != FormPanel) {
       var grid = Ext.getCmp('componentsGrid');
+      var rec_selected = grid.getSelectionModel().getSelection()[0];
+      var page_size = grid.getStore().pageSize;
+      if (rec_selected) {
+        var rec_selected_index = rec_selected.index;
+        if (page_size && rec_selected_index + 1 > page_size) {
+          rec_selected_index = (rec_selected_index + 1) % page_size - 1;
+        }
+        grid.getSelectionModel().deselect(rec_selected_index);
+        grid.getSelectionModel().select(rec_selected_index);
+      }
       var rec = grid.getSelectionModel().getSelection()[0];
       if (rec) {
         var component_expiration = rec.get('expiration_date');
@@ -52848,7 +52882,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       suspended = 1;
     }
     button.setDisabled(true);
-    Ext.Ajax.request({url:'/request/users', method:'post', params:{id:rec.get('userId'), name:rec.get('name'), userDescription:rec.get('userDescription'), contactPhone:rec.get('contactPhone'), accessLevel:rec.get('accessLevel'), suspended:suspended, login:rec.get('login'), vendorId:rec.get('vendorId')}, success:function(response, opt) {
+    Ext.Ajax.request({url:'/request/users', method:'post', params:{id:rec.get('userId'), name:rec.get('name'), userDescription:rec.get('userDescription'), contactPhone:rec.get('contactPhone'), accessLevel:rec.get('accessLevel'), suspended:suspended, email:rec.get('email'), login:rec.get('login'), vendorId:rec.get('vendorId')}, success:function(response, opt) {
       var suspendButton = Ext.getCmp('suspendUserButton');
       suspendButton.setDisabled(false);
       var obj = Ext.decode(response.responseText);
@@ -53228,6 +53262,29 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
     ar.show();
   } else {
     Ext.create('SopCor.view.vendors.AddReel', {id:'add_reel_window'}).show();
+  }
+}, delReel:function(button) {
+  var grid = Ext.getCmp('reelsGrid');
+  var rec = grid.getSelectionModel().getSelection()[0];
+  if (rec) {
+    Ext.MessageBox.confirm('Удаление этикетки', 'Вы действительно хотите удалить выбранную этикетку', function(btn) {
+      if ('yes' == btn) {
+        var grid = Ext.getCmp('reelsGrid');
+        var rec = grid.getSelectionModel().getSelection()[0];
+        var id = rec.get('reelId');
+        Ext.Ajax.request({url:'/request/reels', method:'delete', params:{reels:id}, success:function(response, opt) {
+          var obj = Ext.decode(response.responseText);
+          if (obj.success) {
+            var grid = Ext.getCmp('reelsGrid');
+            grid.getStore().reload();
+          } else {
+            Ext.MessageBox.show({title:'Удаление этикетки', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+          }
+        }, failure:function(response, opt) {
+          Ext.MessageBox.show({title:'Удаление этикетки', msg:obj.error.reason, icon:Ext.MessageBox.ERROR, buttons:Ext.MessageBox.OK}).setHeight(50);
+        }});
+      }
+    }).setHeight(50);
   }
 }, saveReel:function(button) {
   var form = Ext.getCmp('addreelform').getForm();
@@ -53946,6 +54003,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
       selected.set('address', form.getValues()['address']);
       selected.set('city', form.getValues()['city']);
       selected.set('region', form.getValues()['region']);
+      selected.set('notes', form.getValues()['notes']);
       Ext.MessageBox.show({title:'Изменение контактных данных', msg:'Изменения сохранены успешно', icon:Ext.MessageBox.INFO, buttons:Ext.MessageBox.OK}).setHeight(50);
     }, failure:function(form, action) {
       var obj = Ext.decode(action.response.responseText);
