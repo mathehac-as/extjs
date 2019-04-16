@@ -53266,7 +53266,6 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
 }, delReel:function(button) {
   var grid = Ext.getCmp('reelsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
-  alert(rec);
   if (rec) {
     Ext.MessageBox.confirm('Удаление этикетки', 'Вы действительно хотите удалить выбранную этикетку', function(btn) {
       if ('yes' == btn) {
