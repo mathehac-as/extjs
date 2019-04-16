@@ -53266,6 +53266,7 @@ Ext.cmd.derive('SopCor.controller.KMOClient', Ext.app.Controller, {stores:['Vend
 }, delReel:function(button) {
   var grid = Ext.getCmp('reelsGrid');
   var rec = grid.getSelectionModel().getSelection()[0];
+  alert(rec);
   if (rec) {
     Ext.MessageBox.confirm('Удаление этикетки', 'Вы действительно хотите удалить выбранную этикетку', function(btn) {
       if ('yes' == btn) {
@@ -54724,11 +54725,11 @@ Ext.cmd.derive('SopCor.view.vendors.UnitTypesLinkGrid', Ext.grid.Panel, {title:'
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['unittypeslinkgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'unittypeslinkgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'unittypeslinkgrid':true}, ['widget.unittypeslinkgrid'], 0, [SopCor.view.vendors, 'UnitTypesLinkGrid'], 0);
 Ext.cmd.derive('SopCor.view.vendors.UnitTypesLinkList', Ext.Container, {id:'unittypeslinklist', layout:'fit', items:[{id:'unitTypesLinkGrid', xtype:'unittypeslinkgrid'}]}, 0, ['unittypeslinklist'], ['component', 'box', 'container', 'unittypeslinklist'], {'component':true, 'box':true, 'container':true, 'unittypeslinklist':true}, ['widget.unittypeslinklist'], 0, [SopCor.view.vendors, 'UnitTypesLinkList'], 0);
-var contextMenuReels = Ext.create('Ext.menu.Menu', {id:'contextMenuReels', alias:'widget.contextMenuReels', items:[{text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png'}]});
+var contextMenuReels = Ext.create('Ext.menu.Menu', {id:'contextMenuReels', alias:'widget.contextMenuReels', items:[{text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png'}, {text:'Удалить', action:'delreel', icon:'/resources/images/icons/delete.png'}]});
 Ext.cmd.derive('SopCor.view.vendors.ReelsGrid', Ext.grid.Panel, {initComponent:function() {
   this.store = 'Reels';
   this.columns = [{text:'Номер первой этикетки', dataIndex:'firstSerial', flex:1, width:150, sortable:true}, {text:'Количество этикеток', dataIndex:'quantity', width:150, sortable:true}, {text:'Серия', dataIndex:'serialnumber', width:200, sortable:true}, {text:'Комментарии', dataIndex:'notes', flex:1, sortable:false}];
-  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addReelButton', text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png', disabled:false}]}];
+  this.dockedItems = [{xtype:'toolbar', items:[{xtype:'button', id:'addReelButton', text:'Добавить', action:'addreel', icon:'/resources/images/icons/add.png', disabled:false}, {xtype:'button', id:'delReelButton', text:'Удалить', action:'delreel', icon:'/resources/images/icons/delete.png', disabled:false}]}];
   this.bbar = Ext.create('Ext.PagingToolbar', {store:this.store, displayInfo:true, displayMsg:'Отображны результаты {0} - {1} из {2}', emptyMsg:'Нет результатов для отображения'});
   Ext.grid.Panel.prototype.initComponent.apply(this, arguments);
 }}, 0, ['reelsgrid'], ['component', 'box', 'container', 'panel', 'tablepanel', 'gridpanel', 'grid', 'reelsgrid'], {'component':true, 'box':true, 'container':true, 'panel':true, 'tablepanel':true, 'gridpanel':true, 'grid':true, 'reelsgrid':true}, ['widget.reelsgrid'], 0, [SopCor.view.vendors, 'ReelsGrid'], 0);
